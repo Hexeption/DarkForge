@@ -39,6 +39,15 @@ compileJava.options.encoding = 'UTF-8'
 version = minecraft_version + "-b" + cibuild + "-univeral"
 archivesBaseName = cibasename
 
+
+def githubOwner = ''
+def githubRepo = ''
+def githubToken = ''
+def githubTagName = ''
+def githubTargetCommitish = ''
+def githubName = ''
+def githubPreRelease = true
+
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
 }
@@ -53,6 +62,16 @@ minecraft {
 
     runDir = "run"
     mappings = project.mcpVersion
+
+
+    githubOwner = teamcity["githubOwner"]
+    githubRepo = teamcity["githubProject"]
+    githubToken = teamcity["githubToken"]
+    githubTagName = teamcity["build.number"]
+    githubTargetCommitish = teamcity["branch"]
+    githubName = teamcity["build.number"]
+
+    githubPreRelease = teamcity["githubPreRelease"];
 }
 
 repositories {
@@ -71,4 +90,18 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
+}
+
+github {
+    owner = githubOwner
+    repo = githubRepo
+    token = githubToken
+    tagName = githubTagName
+    targetCommitish = githubTargetCommitish
+    name = githubName
+    body = file("CHANGELOG.md").text
+    prerelease = githubPreRelease
+    assets = [
+            jar.archivePath
+    ]
 }
