@@ -46,10 +46,10 @@ if (hasProperty("teamcity")) {
 minecraft {
     version = minecraft_version + "-" + forge_version
 
-    replaceIn "ModInfo.java"
-
     replace "@VERSION@", project.version
     replace "@MCVERSION", minecraft_version
+
+    replaceIn "ModInfo.java"
 
     runDir = "run"
     mappings = project.mcpVersion

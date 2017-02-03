@@ -2,6 +2,7 @@ package uk.co.hexeption.darkforge.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -12,6 +13,7 @@ import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.ModuleManager;
 import uk.co.hexeption.darkforge.module.modules.Gui;
+import uk.co.hexeption.darkforge.module.modules.Tracers;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -70,7 +72,8 @@ public class EventManager {
 
     @SubscribeEvent
     public void onGuiRender(final RenderGameOverlayEvent.Chat eventrender) {
-        if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
+
+        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
         if (Minecraft.getMinecraft().world != null) {
@@ -80,9 +83,9 @@ public class EventManager {
                 }
             }
 
-            for(final Window window : ModuleManager.getInstance().getModuleByClass(Gui.class).getGui().getWindowList()){
-                if(window.getPinned()){
-                    window.drawWindow(0,0);
+            for (final Window window : ModuleManager.getInstance().getModuleByClass(Gui.class).getGui().getWindowList()) {
+                if (window.getPinned()) {
+                    window.drawWindow(0, 0);
                 }
             }
 
@@ -110,4 +113,13 @@ public class EventManager {
             return false;
         }
     }
+
+    @SubscribeEvent
+    public void EntityViewRenderEvent(RenderPlayerEvent event) {
+
+        Tracers.ticks = event.getPartialRenderTick();
+
+    }
+
+
 }

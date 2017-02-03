@@ -37,7 +37,7 @@ public class Hud extends Module {
                 if (module.equals(this)) {
                     continue;
                 }
-                if (module.getState()) {
+                if (module.getState() && !module.isCategory(Category.GUI)) {
                     getFontRenderer().drawStringWithShadow(module.getName(), (scaledResolution.getScaledWidth() - 3) - getFontRenderer().getStringWidth(module.getName()), offset += getFontRenderer().FONT_HEIGHT + 1, module.getCategory().color);
                 }
             }

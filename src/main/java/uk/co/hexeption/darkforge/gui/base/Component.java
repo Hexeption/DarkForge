@@ -201,6 +201,6 @@ public abstract class Component {
 
     protected static MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.getInstance().getFontManager().hud;
+        return DarkForge.getInstance().getFontManager().guiTitle;
     }
 }

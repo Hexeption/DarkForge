@@ -1,13 +1,19 @@
 package uk.co.hexeption.darkforge.utils;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.hexeption.darkforge.module.modules.Tracers;
+
+import java.lang.reflect.Method;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -40,7 +46,7 @@ public class RenderUtils {
         glEnable(GL_LIGHTING);
         glEnable(GL_DEPTH_TEST);
         glDepthMask(true);
-        glDisable(GL_BLEND);
+//        glDisable(GL_BLEND);
         glPopMatrix();
         Minecraft.getMinecraft().entityRenderer.enableLightmap();
     }
@@ -72,7 +78,7 @@ public class RenderUtils {
 
         glDisable(GL_POLYGON_SMOOTH);
         glEnable(GL_TEXTURE_2D);
-        glDisable(GL_BLEND);
+//        glDisable(GL_BLEND);
 
     }
 
@@ -183,4 +189,37 @@ public class RenderUtils {
         tessellator.draw();
     }
 
+    public static void drawTracer(double x, double y, double z, float lineWidth, float red, float green, float blue, float alpha) {
+
+        boolean userViewbobbing = Minecraft.getMinecraft().gameSettings.viewBobbing;
+        Minecraft.getMinecraft().gameSettings.viewBobbing = false;
+
+//        try{
+//            Method setupCamreaTransform = EntityRenderer.class.getDeclaredMethod("setupCameraTransform", float.class, int.class);
+//            setupCamreaTransform.setAccessible(true);
+//            setupCamreaTransform.invoke(Minecraft.getMinecraft().entityRenderer,Tracers.ticks, 2);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+        Minecraft.getMinecraft().gameSettings.viewBobbing = userViewbobbing;
+
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        glEnable(GL_LINE_SMOOTH);
+        glLineWidth(lineWidth);
+        glDisable(GL_TEXTURE_2D);
+        glDisable(GL_DEPTH_TEST);
+        glDepthMask(false);
+        glColor4f(red, green, blue, alpha);
+        Vec3d eyes = new Vec3d(0, 0, 1).rotatePitch(-(float) Math.toRadians(Minecraft.getMinecraft().player.rotationPitch)).rotateYaw(-(float) Math.toRadians(Minecraft.getMinecraft().player.rotationYaw));
+        glBegin(GL_LINES);
+        glVertex3d(eyes.xCoord, Minecraft.getMinecraft().player.getEyeHeight() + eyes.yCoord, eyes.zCoord);
+        glVertex3d(x, y, z);
+        glEnd();
+        glEnable(GL_TEXTURE_2D);
+        glEnable(GL_DEPTH_TEST);
+        glDepthMask(true);
+        glDisable(GL_BLEND);
+    }
 }

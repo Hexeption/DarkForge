@@ -28,7 +28,7 @@ public class ModuleManager {
      */
     private void initMods() {
 
-        addModules(new Fly(), new BlockOverlay(), new Hud(), new Fullbright(), new Gui(), new BreadCrumbs());
+        addModules(new Fly(), new BlockOverlay(), new Hud(), new Fullbright(), new Gui(), new BreadCrumbs(), new Tracers());
     }
 
     public void addModules(final Module... modules) {

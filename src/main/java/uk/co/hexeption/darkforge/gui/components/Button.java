@@ -2,6 +2,7 @@ package uk.co.hexeption.darkforge.gui.components;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,8 +63,8 @@ public class Button extends Component {
         final int h = GuiUtils.getHeight();
         final int w = getFontRenderer().getStringWidth(module.getDescription());
 
-        GuiUtils.drawRect(0, h - 11, w + 3, h, 0x77000000);
-        getFontRenderer().drawString(module.getDescription(), 1, h - 10, 0xffffffff);
+        Gui.drawRect(0, h - 11, w + 3, h, 0x77000000);
+        getFontRenderer().drawString(module.getDescription(), 1, h - 7, 0xffffffff);
     }
 
     @Override

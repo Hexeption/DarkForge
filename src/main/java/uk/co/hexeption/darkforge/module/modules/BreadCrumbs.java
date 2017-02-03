@@ -1,6 +1,7 @@
 package uk.co.hexeption.darkforge.module.modules;
 
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,9 +47,12 @@ public class BreadCrumbs extends Module {
             glDepthMask(false);
             glBegin(GL_LINE_STRIP);
             glColor4d(0, 0.7D, 0.7D, 1);
+            double renderPosX = ReflectionHelper.getPrivateValue(RenderManager.class, getMinecraft().getRenderManager(), "renderPosX");
+            double renderPosY = ReflectionHelper.getPrivateValue(RenderManager.class, getMinecraft().getRenderManager(), "renderPosY");
+            double renderPosZ = ReflectionHelper.getPrivateValue(RenderManager.class, getMinecraft().getRenderManager(), "renderPosZ");
 
             for (final double[] pos : positions) {
-                glVertex3d(pos[0] , pos[1], pos[2]);
+                glVertex3d(pos[0] - renderPosX , pos[1] - renderPosY, pos[2] - renderPosZ);
             }
 
             glColor4d(1, 1, 1, 1);
@@ -58,7 +62,7 @@ public class BreadCrumbs extends Module {
             glEnable(GL_LIGHTING);
             glEnable(GL_DEPTH_TEST);
             glDepthMask(true);
-            glDisable(GL_BLEND);
+//            glDisable(GL_BLEND);
             getEntityRenderer().enableLightmap();
             glPopMatrix();
         }

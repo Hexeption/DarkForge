@@ -31,9 +31,15 @@ public class DarkForge {
 
     private String commandPrefix = "#";
 
+    /**
+     * TODO: KillAura
+     * TODO: Speed
+     */
+
 
     @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event) {
+
     }
 
     @EventHandler

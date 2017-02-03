@@ -3,17 +3,21 @@ package uk.co.hexeption.darkforge.gui.base;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.components.Scrollbar;
 import uk.co.hexeption.darkforge.ttf.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.utils.GuiUtils;
+import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.StringUtils;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -78,7 +82,7 @@ public abstract class Window {
         setPinnable(true);
         setDraggable(true);
         addComponents();
-        resizeWindow();
+//        resizeWindow();
         setScrollable(true);
     }
 
@@ -109,19 +113,21 @@ public abstract class Window {
             // draw title rect
             getSkin().drawWindow(getX(), getY(), getWidth(), getTitleHeight(), true);
             // draw title
-            getFontRenderer().drawString(getText(), getX() + 3, getY() + 3, getSkin().getTextColor(true));
+            DarkForge.getInstance().getFontManager().guiTitle.drawString(getText(), getX() + 3, getY() + 6, getSkin().getTextColor(true));
             // draw expanded button
             if (getExpandable()) {
                 getSkin().drawControls((getX() + getWidth()) - 13, getY() + 1, 12, 12, getExpanded() || isOverExpanding(mouseX, mouseY));
+//                GuiUtils.drawTri(10,20,59,10,50,50,1.5F, Color.black);
                 if (isOverExpanding(mouseX, mouseY)) {
-                    renderToolTip(mouseX, mouseY, !getExpanded() ? StringUtils.addED("Minimize") : "Minimize");
+                    renderToolTip( !getExpanded() ? StringUtils.addED("Minimize") : "Minimize");
                 }
             }
             // draw pinned button
             if (getPinnable()) {
-                getSkin().drawControls((getX() + getWidth()) - 26, getY() + 1, 12, 12, getPinned() || isOverPinned(mouseX, mouseY));
+//                getSkin().drawControls((getX() + getWidth()) - 26, getY() + 1, 12, 12, getPinned() || isOverPinned(mouseX, mouseY));
+                RenderUtils.drawCircle((getX() + getWidth()) - 20, getY() + 7,4, getPinned() ? 0xff991F90 : -1);
                 if (isOverPinned(mouseX, mouseY)) {
-                    renderToolTip(mouseX, mouseY, getPinned() ? StringUtils.addED("Pin") : "Pin");
+                    renderToolTip(getPinned() ? StringUtils.addED("Pin") : "Pin");
                 }
             }
             // Scaling/resizing
@@ -275,6 +281,7 @@ public abstract class Window {
         }
     }
 
+    //TODO: Recode
     public void resizeWindow() {
 
         if (componentList.size() > SCROLLBAR_MAGICK) {
@@ -297,13 +304,14 @@ public abstract class Window {
                 magick = component.getW() + 2;
             }
         }
-        final int title = getFontRenderer().getStringWidth(getText()) + 29;
+        final int title = getFontRenderer().getStringWidth(getText()) + 20;
+
         if (magick < title) {
             magick = title;
         } else {
             magick += 4;
         }
-        setWidth(magick);
+        setWidth(magick );
 
         if (getScrollbarExists()) {
             if (!ghettoResizeFix) {
@@ -334,9 +342,11 @@ public abstract class Window {
                 }
 
                 if (getWidth() > componentList.get(0).getW()) {
-                    setWidth(componentList.get(0).getW() + 6);
+//                    setWidth(componentList.get(0).getW() + title + 6);
                 }
             }
+        }else{
+//            setWidth(title * 2);
         }
 
     }
@@ -709,11 +719,17 @@ public abstract class Window {
         componentList.add(component);
     }
 
-    private void renderToolTip(final int mouseX, final int mouseY, final String text) {
+    private void renderToolTip( final String text) {
 
         final int w = getFontRenderer().getStringWidth(text);
-        getFontRenderer().drawString(text, mouseX + 1, mouseY - 9, -1);
 //        GuiUtils.drawRect(mouseX, w + 1, mouseY - 10, 10, 0x77000000);
+
+//        getFontRenderer().drawString(text, mouseX + 1, mouseY - 9, 0xffffffff);
+
+        final int h = GuiUtils.getHeight();
+
+        Gui.drawRect(0, h - 11, w + 3, h, 0x77000000);
+        getFontRenderer().drawString(text, 1, h - 7, 0xffffffff);
     }
 
 
@@ -725,7 +741,7 @@ public abstract class Window {
     @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.getInstance().getFontManager().hud;
+        return DarkForge.getInstance().getFontManager().guiTitle;
     }
 
     @SideOnly(Side.CLIENT)

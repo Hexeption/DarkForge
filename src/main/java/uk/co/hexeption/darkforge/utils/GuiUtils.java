@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.awt.*;
+
 import static org.lwjgl.opengl.GL11.*;
 
 /**
@@ -132,10 +134,33 @@ public class GuiUtils {
 
         glEnd();
 
-        glDisable(GL_BLEND);
+//        glDisable(GL_BLEND);
         glEnable(GL_ALPHA_TEST);
         glEnable(GL_TEXTURE_2D);
 
+    }
+
+    public static void drawTri(double x1, double y1, double x2, double y2, double x3, double y3, double width, Color c) {
+
+        glEnable(GL_BLEND);
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_LINE_SMOOTH);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        setColor(c);
+        glLineWidth((float) width);
+        glBegin(GL_LINE_STRIP);
+        glVertex2d(x1, y1);
+        glVertex2d(x2, y2);
+        glVertex2d(x3, y3);
+        glEnd();
+        glDisable(GL_LINE_SMOOTH);
+        glEnable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+    }
+
+    public static void setColor(Color c) {
+
+        glColor4d(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, c.getAlpha() / 255f);
     }
 
 

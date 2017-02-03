@@ -18,6 +18,7 @@ public class FontManager {
     public MinecraftFontRenderer button = null;
     public MinecraftFontRenderer buttonHoverd = null;
     public MinecraftFontRenderer chat = null;
+    public MinecraftFontRenderer guiTitle = null;
 
 
     private static String fontName = "Comfortaa";
@@ -34,6 +35,8 @@ public class FontManager {
         button = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22) , true, true);
         buttonHoverd = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 25) , true, true);
         chat = new MinecraftFontRenderer(new Font("Verdana", Font.PLAIN, 17) , true, true);
+        guiTitle = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 17) , true, true);
+
     }
 
     public static String getFontName() {
