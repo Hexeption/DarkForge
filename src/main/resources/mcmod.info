@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "darkforge",
+    "name": "DarkForge",
+    "description": "A Hacked Client For Forge",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "www.hexeption.co.uk",
+    "updateUrl": "",
+    "authorList": [
+      "Hexeption"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
