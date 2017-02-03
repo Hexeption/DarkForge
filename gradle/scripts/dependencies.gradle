@@ -1,0 +1,22 @@
+repositories {
+    mavenLocal()
+    mavenCentral()
+
+    //TODO: Make a mod repo
+    maven {
+        name "Mods"
+        url "http://dl.tsr.me/artifactory/libs-release/"
+    }
+}
+
+configurations {
+    mods
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    mods "com.fireball1725.devworld:devworld:1.11-b15-client"
+
+    compile "mezz.jei:jei_1.11:4.1.1.207"
+}

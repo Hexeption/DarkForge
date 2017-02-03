@@ -5,6 +5,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.ModInfo;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.ModuleManager;
@@ -22,7 +23,7 @@ public class Hud extends Module {
     public void onGuiRender() {
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
 
-        getFontRenderer().drawStringWithShadow(DarkForge.MOD_NAME + " v" + DarkForge.VERSION, 1,1, 0xffffffff);
+        getFontRenderer().drawStringWithShadow(uk.co.hexeption.darkforge.ModInfo.MOD_NAME + " v" + uk.co.hexeption.darkforge.ModInfo.VERSION_BUILD, 1,1, 0xffffffff);
         getFontRenderer().drawStringWithShadow("Minecraft v" + MinecraftForge.MC_VERSION +" Forge v" + ForgeVersion.getVersion(), 1,10, 0xffffffff);
 
         arrayList(scaledResolution);

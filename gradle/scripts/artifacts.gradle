@@ -1,0 +1,21 @@
+task devJar(type: Jar) {
+
+    from(sourceSets.main.output) {
+        include "assets/**"
+        include "mcmod.info"
+    }
+
+    classifier = "dev"
+}
+
+artifacts {
+    archives devJar
+}
+
+jar {
+    configurations.shade.each {
+       dep -> from(project.zipTree(dep)){
+           exclude 'META-INF', 'META-INF/**'
+       }
+    }
+}

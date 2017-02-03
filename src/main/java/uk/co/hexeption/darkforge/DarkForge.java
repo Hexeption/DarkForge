@@ -17,16 +17,10 @@ import uk.co.hexeption.darkforge.ttf.FontManager;
 
 import java.io.File;
 
-@Mod(modid = DarkForge.MOD_ID, name = DarkForge.MOD_NAME, version = DarkForge.VERSION)
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.VERSION_BUILD)
 public class DarkForge {
 
-    public static final String MOD_ID = "darkforge";
-
-    public static final String MOD_NAME = "Dark Forge";
-
-    public static final String VERSION = "1.0-SNAPSHOT";
-
-    @Mod.Instance(MOD_ID)
+    @Mod.Instance(ModInfo.MOD_ID)
     private static DarkForge instance;
 
     private EventManager eventManager;
@@ -45,8 +39,8 @@ public class DarkForge {
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
 
-        LogHelper.info(String.format("Starting up %s v%s", MOD_NAME, VERSION));
-        LogHelper.info(String.format("Running %s in Minecraft \"%s\", Forge \"%s\"", MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
+        LogHelper.info(String.format("Starting up %s v%s", ModInfo.MOD_NAME, ModInfo.VERSION_BUILD));
+        LogHelper.info(String.format("Running %s in Minecraft \"%s\", Forge \"%s\"", ModInfo.MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
 
         instance = new DarkForge();
         darkForgeInit();
