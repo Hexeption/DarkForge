@@ -37,6 +37,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 compileJava.options.encoding = 'UTF-8'
 
 version = minecraft_version + "-b" + cibuild + "-univeral"
+archivesBaseName = cibasename
 
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
@@ -45,7 +46,7 @@ if (hasProperty("teamcity")) {
 minecraft {
     version = minecraft_version + "-" + forge_version
 
-    replace "ModInfo.java"
+    replaceIn "ModInfo.java"
 
     replace "@VERSION@", project.version
     replace "@MCVERSION", minecraft_version
