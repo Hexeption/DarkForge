@@ -27,8 +27,10 @@ buildscript {
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
+        classpath 'co.riiid:gradle-github-plugin:0.4.2'
     }
 }
+apply plugin: 'co.riiid.gradle'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -71,10 +73,6 @@ minecraft {
     mappings = project.mcpVersion
 
     useDepAts = true
-}
-
-plugins {
-    id "co.riiid.gradle" version "0.4.2"
 }
 
 processResources {
