@@ -48,6 +48,8 @@ public class Module {
 
     private boolean state;
 
+    protected Minecraft mc = Minecraft.getMinecraft();
+
     public void onWorldTick() {
 
     }
