@@ -52,14 +52,7 @@ def githubPreRelease = true
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
 
-    githubOwner = teamcity["githubOwner"]
-    githubRepo = teamcity["githubProject"]
-    githubToken = teamcity["githubToken"]
-    githubTagName = teamcity["build.number"]
-    githubTargetCommitish = teamcity["branch"]
-    githubName = teamcity["build.number"]
 
-    githubPreRelease = teamcity["githubPreRelease"]
 }
 
 minecraft {
@@ -90,6 +83,16 @@ processResources {
 }
 
 github {
+    if(hasProperty("teamcity")){
+        githubOwner = teamcity["githubOwner"]
+        githubRepo = teamcity["githubProject"]
+        githubToken = teamcity["githubToken"]
+        githubTagName = teamcity["build.number"]
+        githubTargetCommitish = teamcity["branch"]
+        githubName = teamcity["build.number"]
+
+        githubPreRelease = teamcity["githubPreRelease"]
+    }
     owner = githubOwner
     repo = githubRepo
     token = githubToken
