@@ -93,7 +93,7 @@ github {
 
         githubPreRelease = teamcity["githubPreRelease"]
     }
-    owner = githubOwner
+    owner = 'Hexeption'
     repo = githubRepo
     token = githubToken
     tagName = githubTagName
