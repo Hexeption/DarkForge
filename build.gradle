@@ -3,7 +3,6 @@
  */
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.matthewprenger.cursegradle"
-apply plugin: "co.riiid.gradle"
 
 /**
  * Other Scripts
@@ -28,7 +27,6 @@ buildscript {
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
-        classpath 'co.riiid:gradle-github-plugin:0.4.2'
     }
 }
 
@@ -39,7 +37,7 @@ compileJava.options.encoding = 'UTF-8'
 version = minecraft_version + "-b" + cibuild + "-univeral"
 archivesBaseName = cibasename
 
-def githubOwner
+def githubOwner = ''
 def githubRepo = ''
 def githubToken = ''
 def githubTagName = ''
@@ -73,6 +71,10 @@ minecraft {
     mappings = project.mcpVersion
 
     useDepAts = true
+}
+
+plugins {
+    id "co.riiid.gradle" version "0.4.2"
 }
 
 processResources {
