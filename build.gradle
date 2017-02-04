@@ -39,7 +39,7 @@ compileJava.options.encoding = 'UTF-8'
 version = minecraft_version + "-b" + cibuild + "-univeral"
 archivesBaseName = cibasename
 
-def githubOwner = ''
+def githubOwner
 def githubRepo = ''
 def githubToken = ''
 def githubTagName = ''
