@@ -18,11 +18,10 @@
 
 package uk.co.hexeption.darkforge.module.modules;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,19 +34,14 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@Module.ModInfo(name = "Block Overlay", description = "highlights a block", category = Module.Category.RENDER, bind = Keyboard.KEY_O)
-public class BlockOverlay extends Module {
+@Module.ModInfo(name = "ItemESP", description = "highlights a Item", category = Module.Category.RENDER, bind = Keyboard.KEY_L)
+public class ItemESP extends Module {
+
+    private static final AxisAlignedBB ITEM_BOX = new AxisAlignedBB(-0.175, 0, -0.175, 0.175, 0.35, 0.175);
 
     @Override
     @SideOnly(Side.CLIENT)
     public void onWorldRender() {
-
-        RayTraceResult rayTraceResult = mc.objectMouseOver;
-        Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
-        BlockPos blockPos = rayTraceResult.getBlockPos();
-
-        if (Block.getIdFromBlock(block) == 0)
-            return;
 
         glPushMatrix();
         glEnable(GL_BLEND);
@@ -62,22 +56,18 @@ public class BlockOverlay extends Module {
         double renderPosZ = ReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "renderPosZ");
 
         glTranslated(-renderPosX, -renderPosY, -renderPosZ);
-        glTranslated(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
-        float currentBlockDamage = ReflectionHelper.getPrivateValue(PlayerControllerMP.class, mc.playerController, "curBlockDamageMP");
+        glColor4f(0.4f, 0, 1, 0.5F);
 
-        float progress = currentBlockDamage;
+        for (Entity entity : mc.world.loadedEntityList) {
+            if (entity instanceof EntityItem) {
+                glPushMatrix();
+                glTranslated(entity.posX, entity.posY, entity.posZ);
 
-        if (progress < 0)
-            progress = 1;
-
-        float red = progress * 2;
-        float green = 2 - red;
-
-        glColor4f(red, green, 0, 0.25F);
-        RenderUtils.drawSolidBox();
-        glColor4f(red, green, 0, 0.5F);
-        RenderUtils.drawOutlinedBox();
+                RenderUtils.drawOutlinedBox(ITEM_BOX);
+                glPopMatrix();
+            }
+        }
 
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);

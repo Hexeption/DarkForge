@@ -25,6 +25,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -331,6 +332,12 @@ public class RenderUtils {
             glVertex3d(bb.minX, bb.maxY, bb.minZ);
         }
         glEnd();
+    }
+
+    //TODO:Move
+    public static AxisAlignedBB getBoundingBox(BlockPos pos) {
+
+        return Minecraft.getMinecraft().world.getBlockState(pos).getBoundingBox(Minecraft.getMinecraft().world, pos).offset(pos);
     }
 
 }

@@ -41,22 +41,22 @@ public class Hud extends Module {
     public void onGuiRender() {
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
 
-        getFontRenderer().drawStringWithShadow(uk.co.hexeption.darkforge.ModInfo.MOD_NAME + " v" + uk.co.hexeption.darkforge.ModInfo.VERSION_BUILD, 1,1, 0xffffffff);
-        getFontRenderer().drawStringWithShadow("Minecraft v" + MinecraftForge.MC_VERSION +" Forge v" + ForgeVersion.getVersion(), 1,10, 0xffffffff);
+        getFontRenderer().drawStringWithShadow(uk.co.hexeption.darkforge.ModInfo.MOD_NAME + " v" + uk.co.hexeption.darkforge.ModInfo.VERSION_BUILD, 1,5, 0xffffffff);
+        getFontRenderer().drawStringWithShadow("Minecraft v" + MinecraftForge.MC_VERSION +" Forge v" + ForgeVersion.getVersion(), 1,20, 0xffffffff);
 
         arrayList(scaledResolution);
     }
 
     private void arrayList(ScaledResolution scaledResolution) {
 
-        int offset = -getFontRenderer().FONT_HEIGHT + 2;
+        int offset = -DarkForge.getInstance().getFontManager().arraylist.getHeight() + 5;
         if (!getGameSettings().showDebugInfo) {
             for (final Module module : ModuleManager.getInstance().getModules()) {
                 if (module.equals(this)) {
                     continue;
                 }
                 if (module.getState() && !module.isCategory(Category.GUI)) {
-                    getFontRenderer().drawStringWithShadow(module.getName(), (scaledResolution.getScaledWidth() - 3) - getFontRenderer().getStringWidth(module.getName()), offset += getFontRenderer().FONT_HEIGHT + 1, module.getCategory().color);
+                    DarkForge.getInstance().getFontManager().arraylist.drawStringWithShadow(module.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.getInstance().getFontManager().arraylist.getStringWidth(module.getName()), offset += DarkForge.getInstance().getFontManager().arraylist.getHeight() + 1, module.getCategory().color);
                 }
             }
         }

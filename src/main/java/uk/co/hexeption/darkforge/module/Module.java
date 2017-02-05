@@ -29,6 +29,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.ttf.MinecraftFontRenderer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -217,8 +219,8 @@ public class Module {
     }
 
     @SideOnly(Side.CLIENT)
-    protected FontRenderer getFontRenderer() {
+    protected MinecraftFontRenderer getFontRenderer() {
 
-        return getMinecraft().fontRendererObj;
+        return DarkForge.getInstance().getFontManager().hud;
     }
 }

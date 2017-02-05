@@ -57,12 +57,12 @@ compileJava.options.encoding = 'UTF-8'
 version = minecraft_version + "-b" + cibuild + "-univeral"
 archivesBaseName = cibasename
 
-def githubOwner = ''
-def githubRepo = ''
-def githubToken = ''
-def githubTagName = ''
-def githubTargetCommitish = ''
-def githubName = ''
+def githubOwner = 'Hexeption'
+def githubRepo = 'DarkFroge'
+def githubToken = '3f39dbff01d0e194a35c27cc6eee2313f912594d'
+def githubTagName = 'a'
+def githubTargetCommitish = 'a'
+def githubName = 'a'
 def githubPreRelease = true
 
 
