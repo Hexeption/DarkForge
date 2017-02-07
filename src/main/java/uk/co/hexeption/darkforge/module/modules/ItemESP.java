@@ -34,6 +34,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 @Module.ModInfo(name = "ItemESP", description = "highlights a Item", category = Module.Category.RENDER, bind = Keyboard.KEY_L)
 public class ItemESP extends Module {
 

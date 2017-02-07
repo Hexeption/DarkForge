@@ -20,10 +20,11 @@ package uk.co.hexeption.darkforge.config;
 
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.ModuleManager;
 
 import java.io.*;
 import java.util.Map;
@@ -31,6 +32,7 @@ import java.util.Map;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class FileManager {
 
     public final File DARKFORGE_DIR = new File(String.format("%s%sdarkforge%s", Minecraft.getMinecraft().mcDataDir, File.separator, File.separator));

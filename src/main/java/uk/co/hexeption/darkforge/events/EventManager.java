@@ -32,7 +32,6 @@ import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.ModuleManager;
 import uk.co.hexeption.darkforge.module.modules.Gui;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
 

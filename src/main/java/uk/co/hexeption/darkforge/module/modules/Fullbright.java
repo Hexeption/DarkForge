@@ -18,14 +18,15 @@
 
 package uk.co.hexeption.darkforge.module.modules;
 
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.module.Module;
 
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 @Module.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Module.Category.RENDER, bind = Keyboard.KEY_V)
 public class Fullbright extends Module {
 

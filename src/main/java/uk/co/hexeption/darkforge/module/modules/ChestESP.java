@@ -38,6 +38,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 @Module.ModInfo(name = "ChestESP", description = "highlights a Chest", category = Module.Category.RENDER, bind = Keyboard.KEY_N)
 public class ChestESP extends Module {
 

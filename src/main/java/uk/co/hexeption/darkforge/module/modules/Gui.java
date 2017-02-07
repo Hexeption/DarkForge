@@ -19,6 +19,8 @@
 package uk.co.hexeption.darkforge.module.modules;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.api.APIModuleSetup;
 import uk.co.hexeption.darkforge.gui.GuiModule;
@@ -27,6 +29,7 @@ import uk.co.hexeption.darkforge.module.Module;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 @Module.ModInfo(name = "Gui", description = "Gui", category = Module.Category.GUI, bind = Keyboard.KEY_RCONTROL)
 public class Gui extends Module {
 

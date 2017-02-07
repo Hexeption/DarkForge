@@ -25,7 +25,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.tools.nsc.settings.Final;
 import uk.co.hexeption.darkforge.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.base.ISkin;
 import uk.co.hexeption.darkforge.gui.base.Window;

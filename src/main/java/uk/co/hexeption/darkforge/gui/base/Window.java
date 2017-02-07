@@ -20,14 +20,12 @@ package uk.co.hexeption.darkforge.gui.base;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.components.Scrollbar;
 import uk.co.hexeption.darkforge.ttf.MinecraftFontRenderer;
@@ -35,7 +33,6 @@ import uk.co.hexeption.darkforge.utils.GuiUtils;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.StringUtils;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -137,13 +134,13 @@ public abstract class Window {
                 getSkin().drawControls((getX() + getWidth()) - 13, getY() + 1, 12, 12, getExpanded() || isOverExpanding(mouseX, mouseY));
 //                GuiUtils.drawTri(10,20,59,10,50,50,1.5F, Color.black);
                 if (isOverExpanding(mouseX, mouseY)) {
-                    renderToolTip( !getExpanded() ? StringUtils.addED("Minimize") : "Minimize");
+                    renderToolTip(!getExpanded() ? StringUtils.addED("Minimize") : "Minimize");
                 }
             }
             // draw pinned button
             if (getPinnable()) {
 //                getSkin().drawControls((getX() + getWidth()) - 26, getY() + 1, 12, 12, getPinned() || isOverPinned(mouseX, mouseY));
-                RenderUtils.drawCircle((getX() + getWidth()) - 20, getY() + 7,4, getPinned() ? 0xff991F90 : -1);
+                RenderUtils.drawCircle((getX() + getWidth()) - 20, getY() + 7, 4, getPinned() ? 0xff991F90 : -1);
                 if (isOverPinned(mouseX, mouseY)) {
                     renderToolTip(getPinned() ? StringUtils.addED("Pin") : "Pin");
                 }
@@ -317,7 +314,6 @@ public abstract class Window {
             }
 
 
-
             if ((component.getW() + 2) > magick) {
                 magick = component.getW() + 2;
             }
@@ -329,7 +325,7 @@ public abstract class Window {
         } else {
             magick += 4;
         }
-        setWidth(magick );
+        setWidth(magick);
 
         if (getScrollbarExists()) {
             if (!ghettoResizeFix) {
@@ -363,7 +359,7 @@ public abstract class Window {
 //                    setWidth(componentList.get(0).getW() + title + 6);
                 }
             }
-        }else{
+        } else {
 //            setWidth(title * 2);
         }
 
@@ -737,7 +733,7 @@ public abstract class Window {
         componentList.add(component);
     }
 
-    private void renderToolTip( final String text) {
+    private void renderToolTip(final String text) {
 
         final int w = getFontRenderer().getStringWidth(text);
 //        GuiUtils.drawRect(mouseX, w + 1, mouseY - 10, 10, 0x77000000);

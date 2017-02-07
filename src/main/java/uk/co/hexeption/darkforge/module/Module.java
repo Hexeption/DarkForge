@@ -36,6 +36,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class Module {
 
     private String name = getClass().getAnnotation(ModInfo.class).name();

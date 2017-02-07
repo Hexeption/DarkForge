@@ -18,18 +18,18 @@
 
 package uk.co.hexeption.darkforge.gui.windows;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.gui.components.Button;
-import uk.co.hexeption.darkforge.gui.components.Radar;
-import uk.co.hexeption.darkforge.gui.components.Scrollbar;
 import uk.co.hexeption.darkforge.gui.skin.SkinDarkForge;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.ModuleManager;
 
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class WindowModule extends Window {
 
     private final Module.Category category;
@@ -44,6 +44,7 @@ public class WindowModule extends Window {
 
     @Override
     public void addComponents() {
+
     }
 
     private void addCompoentsLater() {

@@ -18,6 +18,8 @@
 
 package uk.co.hexeption.darkforge.module;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.module.modules.*;
@@ -28,6 +30,7 @@ import java.util.List;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class ModuleManager {
 
     private final List<Module> modules = new LinkedList<Module>();

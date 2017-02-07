@@ -19,6 +19,8 @@
 package uk.co.hexeption.darkforge.api.logger;
 
 import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 import uk.co.hexeption.darkforge.ClientInfo;
 
@@ -26,6 +28,7 @@ import uk.co.hexeption.darkforge.ClientInfo;
 /**
  * Created by Hexeption on 29/12/2016.
  */
+@SideOnly(Side.CLIENT)
 public class LogHelper {
 
     private static void log(Level level, Object message) {

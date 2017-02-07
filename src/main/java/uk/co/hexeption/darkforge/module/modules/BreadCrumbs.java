@@ -22,13 +22,12 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import static org.lwjgl.opengl.GL11.*;
-
 import uk.co.hexeption.darkforge.api.annotation.TestClass;
 import uk.co.hexeption.darkforge.module.Module;
 
 import java.util.LinkedList;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -70,7 +69,7 @@ public class BreadCrumbs extends Module {
             double renderPosZ = ReflectionHelper.getPrivateValue(RenderManager.class, getMinecraft().getRenderManager(), "renderPosZ");
 
             for (final double[] pos : positions) {
-                glVertex3d(pos[0] - renderPosX , pos[1] - renderPosY, pos[2] - renderPosZ);
+                glVertex3d(pos[0] - renderPosX, pos[1] - renderPosY, pos[2] - renderPosZ);
             }
 
             glColor4d(1, 1, 1, 1);

@@ -108,16 +108,16 @@ public class Scrollbar extends Component {
         if (!getParent().getDragging()) {
 
             final Point point = new Point(mouseX, mouseY);
-            if(isMouseOver()){
+            if (isMouseOver()) {
                 dragging = true;
                 curval = (float) (point.y - getY()) / (float) getH();
-                if(curval < 0.04){
+                if (curval < 0.04) {
                     curval = 0;
                 }
-                if(curval > 0.96){
+                if (curval > 0.96) {
                     curval = 1;
                 }
-            }else{
+            } else {
                 dragging = false;
             }
         }

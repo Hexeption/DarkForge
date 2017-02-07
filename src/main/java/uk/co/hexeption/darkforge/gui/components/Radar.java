@@ -31,9 +31,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import static org.lwjgl.opengl.GL11.*;
-
 import uk.co.hexeption.darkforge.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.base.ISkin;
 import uk.co.hexeption.darkforge.gui.base.Window;
@@ -41,6 +38,8 @@ import uk.co.hexeption.darkforge.utils.GuiUtils;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 import java.util.List;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Hexeption on 16/01/2017.
@@ -86,29 +85,29 @@ public class Radar extends Component {
                     final String username = p.getDisplayNameString();
 
                     getFontRenderer().drawString(username, (int) (finalx) - (getFontRenderer().getStringWidth(username) / 2), (int) finalY - 11, 0xffffff);
-                    glScalef(2f,2f,2f);
+                    glScalef(2f, 2f, 2f);
                 }
-                if(entity instanceof EntityAnimal){
+                if (entity instanceof EntityAnimal) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xff00ff00);
                 }
-                if(entity instanceof EntityMob){
+                if (entity instanceof EntityMob) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xffff0000);
                 }
-                if(entity instanceof EntitySlime){
+                if (entity instanceof EntitySlime) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xffff88cc);
                 }
-                if(entity instanceof EntityVillager){
+                if (entity instanceof EntityVillager) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xff8b4513);
                 }
-                if(entity instanceof EntityBat){
+                if (entity instanceof EntityBat) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xfff4a460);
                 }
-                if(entity instanceof EntitySquid){
+                if (entity instanceof EntitySquid) {
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 1, 0xff000000);
                     RenderUtils.drawCircle((int) finalx / 2, (int) finalY / 2, 0.75, 0xff003399);
                 }
@@ -118,7 +117,7 @@ public class Radar extends Component {
 
         }
 
-        GuiUtils.drawBorderedRect(getX() - 1, getY() - 2, getW() + 4, getH() + 16, 1.5f,0xaa000000, 0x0 );
+        GuiUtils.drawBorderedRect(getX() - 1, getY() - 2, getW() + 4, getH() + 16, 1.5f, 0xaa000000, 0x0);
     }
 
     @Override

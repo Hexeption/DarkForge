@@ -18,14 +18,10 @@
 
 package uk.co.hexeption.darkforge.gui.skin;
 
-import mezz.jei.util.MathUtil;
-import net.minecraft.client.gui.Gui;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.base.ISkin;
 import uk.co.hexeption.darkforge.utils.GuiUtils;
-import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -71,10 +67,11 @@ public class SkinDarkForge implements ISkin {
 
     @Override
     public void drawSlider(int x, int y, int width, int height, boolean b) {
-        if (b){
-            GuiUtils.drawRect(x,y,width,height, 0xaa000000);
-        }else {
-            GuiUtils.drawRect(x,y,width, height, 0x77000000);
+
+        if (b) {
+            GuiUtils.drawRect(x, y, width, height, 0xaa000000);
+        } else {
+            GuiUtils.drawRect(x, y, width, height, 0x77000000);
         }
     }
 

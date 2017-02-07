@@ -18,9 +18,13 @@
 
 package uk.co.hexeption.darkforge.utils;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class StringUtils {
 
     private static final char[] ALPHANUM = new char[]{

@@ -25,7 +25,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ttf.FontManager;
 import uk.co.hexeption.darkforge.ttf.MinecraftFontRenderer;
 
 import java.awt.*;
@@ -33,6 +32,7 @@ import java.awt.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public abstract class Component {
 
     private int x, y, w, h;

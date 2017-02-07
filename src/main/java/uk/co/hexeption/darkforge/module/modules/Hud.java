@@ -22,27 +22,29 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
-import uk.co.hexeption.darkforge.DarkForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.ClientInfo;
+import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.ModuleManager;
 
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 @Enabled
 @Module.ModInfo(name = "Hud", description = "UI", category = Module.Category.GUI, bind = 0)
 public class Hud extends Module {
 
 
-
     @Override
     public void onGuiRender() {
+
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
 
-        getFontRenderer().drawStringWithShadow(ClientInfo.MOD_NAME + " v" + ClientInfo.VERSION_BUILD, 1,5, 0xffffffff);
-        getFontRenderer().drawStringWithShadow("Minecraft v" + MinecraftForge.MC_VERSION +" Forge v" + ForgeVersion.getVersion(), 1,20, 0xffffffff);
+        getFontRenderer().drawStringWithShadow(ClientInfo.MOD_NAME + " v" + ClientInfo.VERSION_BUILD, 1, 5, 0xffffffff);
+        getFontRenderer().drawStringWithShadow("Minecraft v" + MinecraftForge.MC_VERSION + " Forge v" + ForgeVersion.getVersion(), 1, 20, 0xffffffff);
 
         arrayList(scaledResolution);
     }

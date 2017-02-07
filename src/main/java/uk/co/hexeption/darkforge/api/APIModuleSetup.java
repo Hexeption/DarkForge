@@ -18,6 +18,8 @@
 
 package uk.co.hexeption.darkforge.api;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.module.Module;
 
 import java.util.HashSet;
@@ -25,6 +27,7 @@ import java.util.HashSet;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public final class APIModuleSetup {
 
     private static final HashSet<Module> setupModules = new HashSet<Module>();

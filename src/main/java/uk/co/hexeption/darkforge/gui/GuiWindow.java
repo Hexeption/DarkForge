@@ -19,6 +19,8 @@
 package uk.co.hexeption.darkforge.gui;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.gui.base.Window;
 
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class GuiWindow extends GuiScreen {
 
     private final ArrayList<Window> windowList = new ArrayList();

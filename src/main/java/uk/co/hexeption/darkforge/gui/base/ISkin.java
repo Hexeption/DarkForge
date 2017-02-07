@@ -22,9 +22,13 @@ package uk.co.hexeption.darkforge.gui.base;
  * Created by Hexeption on 15/01/2017.
  */
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 /**
  * Theme for the client gui
  */
+@SideOnly(Side.CLIENT)
 public interface ISkin {
 
     void drawComponent(double x, double y, double width, double height, boolean isOver);

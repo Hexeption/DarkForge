@@ -18,29 +18,27 @@
 
 package uk.co.hexeption.darkforge.module.modules;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 /**
  * Created by Hexeption on 03/02/2017.
  */
+@SideOnly(Side.CLIENT)
 @Module.ModInfo(name = "Tracer", description = "Draws a line to a player/mob/friends", category = Module.Category.RENDER, bind = Keyboard.KEY_P)
 public class Tracers extends Module {
 
     //TODO: Values
-    public static boolean player = true, mob ;
+    public static boolean player = true, mob;
 
     public static double ticks;
 
@@ -66,8 +64,8 @@ public class Tracers extends Module {
             }
             mob = true;
 
-            if(mob){
-                if( entity instanceof EntityMob && entity instanceof EntityAnimal){
+            if (mob) {
+                if (entity instanceof EntityMob && entity instanceof EntityAnimal) {
                     player(entity);
                 }
             }
@@ -91,7 +89,6 @@ public class Tracers extends Module {
         double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * ticks) - renderPosZ;
 //        LogHelper.info("X:" + x + " Y:" + y + " Z:" + z);
         RenderUtils.drawTracer(xPos, yPos, zPos, 2, red, green, blue, alpha);
-
 
 
     }
