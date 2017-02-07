@@ -18,6 +18,7 @@
 
 package uk.co.hexeption.darkforge.gui.windows;
 
+import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.gui.components.Button;
 import uk.co.hexeption.darkforge.gui.components.Radar;
@@ -47,7 +48,7 @@ public class WindowModule extends Window {
 
     private void addCompoentsLater() {
 
-        for (final Module module : ModuleManager.getInstance().getModules()) {
+        for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
             if (module.getCategory().equals(category)) {
                 final Button button = new Button(module.getName(), module);
                 button.setParent(this);

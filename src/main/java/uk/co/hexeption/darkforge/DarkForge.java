@@ -18,98 +18,73 @@
 
 package uk.co.hexeption.darkforge;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.APIModuleSetup;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.module.ModuleManager;
+import uk.co.hexeption.darkforge.config.FileManager;
 import uk.co.hexeption.darkforge.events.EventManager;
+import uk.co.hexeption.darkforge.module.ModuleManager;
 import uk.co.hexeption.darkforge.ttf.FontManager;
 
-import java.io.File;
-
-@Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.VERSION_BUILD)
+@SideOnly(Side.CLIENT)
+@Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)
 public class DarkForge {
 
-    @Mod.Instance(ModInfo.MOD_ID)
-    private static DarkForge instance;
-
-    private EventManager eventManager;
-
-    private FontManager fontManager = new FontManager();
-
-    private final File darkForgeDir = new File(String.format("%s%sdarkforge%s", Minecraft.getMinecraft().mcDataDir, File.separator, File.separator));
-
-    private String commandPrefix = "#";
+    @Mod.Instance(ClientInfo.MOD_ID)
+    public static DarkForge instance;
 
     /**
-     * TODO: KillAura
-     * TODO: Speed
-     *
-     * TODO: MultiBuild
+     * TODO: Fix Static Crash Bug!
      */
+    public static final EventManager EVENT_MANAGER = new EventManager();
+
+    public static final ModuleManager MODULE_MANAGER = new ModuleManager();
+
+    public static final FontManager FONT_MANAGER = new FontManager();
+
+    public static final FileManager FILE_MANAGER = new FileManager();
+
+    public String commandPrefix = "#";
 
 
-    @EventHandler
+    @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event) {
 
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
 
-        LogHelper.info(String.format("Starting up %s v%s", ModInfo.MOD_NAME, ModInfo.VERSION_BUILD));
-        LogHelper.info(String.format("Running %s in Minecraft \"%s\", Forge \"%s\"", ModInfo.MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
-
+        LogHelper.info(String.format("Starting up %s v%s", ClientInfo.MOD_NAME, ClientInfo.VERSION_BUILD));
+        LogHelper.info(String.format("Running %s in Minecraft \"%s\", Forge \"%s\"", ClientInfo.MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
         instance = new DarkForge();
-        darkForgeInit();
-
-    }
-
-    private void darkForgeInit() {
 
         LogHelper.info("Loading Modules...");
-        ModuleManager.getInstance();
+        MODULE_MANAGER.Initialization();
+
         LogHelper.info("Registering Forge Events");
-        eventManager = new EventManager();
-        MinecraftForge.EVENT_BUS.register(eventManager);
+        MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
+
         APIModuleSetup.setupModules();
 
+        LogHelper.info("Loading Fonts...");
+        FONT_MANAGER.loadFonts();
+
         LogHelper.info("Loading config..");
-        //TODO: Work on config
-//        Config.getInstance();
+        FILE_MANAGER.initialization();
 
     }
 
-    @SideOnly(Side.CLIENT)
-    public File getDarkForgeDir() {
+    @Mod.EventHandler
+    public void onFMLPostInitialization(FMLPostInitializationEvent event) {
 
-        if (!darkForgeDir.exists()) {
-            if (darkForgeDir.mkdirs()) {
-                return darkForgeDir;
-            }
-        } else {
-            LogHelper.fatal("Could not create the Darkforge data directory!");
-            LogHelper.fatal("Shutting down...");
-//            Minecraft.getMinecraft().shutdown();
-        }
-        return darkForgeDir;
     }
 
-    public static DarkForge getInstance() {
-
-        return instance;
-    }
-
-    public FontManager getFontManager() {
-
-        return fontManager;
-    }
 }

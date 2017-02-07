@@ -20,8 +20,7 @@ package uk.co.hexeption.darkforge.api.logger;
 
 import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ModInfo;
+import uk.co.hexeption.darkforge.ClientInfo;
 
 
 /**
@@ -31,7 +30,7 @@ public class LogHelper {
 
     private static void log(Level level, Object message) {
 
-        FMLLog.log(ModInfo.MOD_NAME, level, String.valueOf(message));
+        FMLLog.log(ClientInfo.MOD_NAME, level, String.valueOf(message));
     }
 
     /**

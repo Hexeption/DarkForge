@@ -131,7 +131,7 @@ public abstract class Window {
             // draw title rect
             getSkin().drawWindow(getX(), getY(), getWidth(), getTitleHeight(), true);
             // draw title
-            DarkForge.getInstance().getFontManager().guiTitle.drawString(getText(), getX() + 3, getY() + 6, getSkin().getTextColor(true));
+            DarkForge.instance.FONT_MANAGER.guiTitle.drawString(getText(), getX() + 3, getY() + 6, getSkin().getTextColor(true));
             // draw expanded button
             if (getExpandable()) {
                 getSkin().drawControls((getX() + getWidth()) - 13, getY() + 1, 12, 12, getExpanded() || isOverExpanding(mouseX, mouseY));
@@ -759,7 +759,7 @@ public abstract class Window {
     @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.getInstance().getFontManager().guiTitle;
+        return DarkForge.instance.FONT_MANAGER.guiTitle;
     }
 
     @SideOnly(Side.CLIENT)

@@ -25,7 +25,10 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
@@ -36,6 +39,7 @@ import uk.co.hexeption.darkforge.module.modules.Tracers;
 /**
  * Created by Hexeption on 15/01/2017.
  */
+@SideOnly(Side.CLIENT)
 public class EventManager {
 
     private final boolean[] keyStates = new boolean[256];
@@ -49,7 +53,7 @@ public class EventManager {
     public void onServerTick(final TickEvent.ServerTickEvent serverTickEvent) {
 
         if (Minecraft.getMinecraft().world != null) {
-            for (final Module module : ModuleManager.getInstance().getModules()) {
+            for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (module.getState()) {
                     module.onWorldTick();
                 }
@@ -61,7 +65,7 @@ public class EventManager {
     public void onWorldRender(final RenderWorldLastEvent renderWorldLastEvent) {
 
         if (Minecraft.getMinecraft().world != null) {
-            for (final Module module : ModuleManager.getInstance().getModules()) {
+            for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (module.getState()) {
                     module.onWorldRender();
                 }
@@ -73,7 +77,7 @@ public class EventManager {
     public void onClientEvent(final TickEvent.ClientTickEvent clientTickEvent) {
 
         if (Minecraft.getMinecraft().world != null) {
-            for (final Module module : ModuleManager.getInstance().getModules()) {
+            for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (checkKey(module.getBind())) {
                     LogHelper.info(String.format("Found Module %s for key %s", module.getName(), module.getBind()));
                     module.toggle();
@@ -95,13 +99,13 @@ public class EventManager {
             return;
 
         if (Minecraft.getMinecraft().world != null) {
-            for (final Module module : ModuleManager.getInstance().getModules()) {
+            for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (module.getState()) {
                     module.onGuiRender();
                 }
             }
 
-            for (final Window window : ModuleManager.getInstance().getModuleByClass(Gui.class).getGui().getWindowList()) {
+            for (final Window window : DarkForge.instance.MODULE_MANAGER.getModuleByClass(Gui.class).getGui().getWindowList()) {
                 if (window.getPinned()) {
                     window.drawWindow(0, 0);
                 }

@@ -20,12 +20,10 @@ package uk.co.hexeption.darkforge.module;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -151,6 +149,8 @@ public class Module {
 
         //TODO: File save
 
+        DarkForge.instance.FILE_MANAGER.saveModules();
+
     }
 
     public void onEnable() {
@@ -221,6 +221,6 @@ public class Module {
     @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.getInstance().getFontManager().hud;
+        return DarkForge.instance.FONT_MANAGER.hud;
     }
 }

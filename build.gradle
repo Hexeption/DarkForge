@@ -85,7 +85,7 @@ minecraft {
     replace "@VERSION@", project.version
     replace "@MCVERSION", minecraft_version
 
-    replaceIn "ModInfo.java"
+    replaceIn "ClientInfo.java"
 
     runDir = "run"
     mappings = project.mcpVersion

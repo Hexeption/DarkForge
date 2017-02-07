@@ -30,13 +30,10 @@ import java.util.List;
  */
 public class ModuleManager {
 
-    private static ModuleManager instance;
+    private final List<Module> modules = new LinkedList<Module>();
 
-    private final List<Module> modules;
+    public void Initialization() {
 
-    public ModuleManager() {
-
-        modules = new LinkedList<Module>();
         initMods();
         LogHelper.info(String.format("Modules Loaded: %s!", modules.size()));
     }
@@ -114,11 +111,5 @@ public class ModuleManager {
         }
     }
 
-    public static ModuleManager getInstance() {
-
-        if (instance == null)
-            instance = new ModuleManager();
-        return instance;
-    }
 
 }
