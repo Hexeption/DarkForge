@@ -13,7 +13,10 @@ Darkforge is a Forge Mod for Minecraft that allows you to hack on modded servers
 
 ---
 
+##Change Log
+[Link](https://github.com/Hexeption/DarkForge/blob/master/CHANGELOG.md)
 
+---
 
 
 

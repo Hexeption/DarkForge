@@ -8,3 +8,5 @@
 !/LICENSE
 !/build.gradle
 !/gradle.properties
+!/changelog.mustache
+!/CHANGELOG.md

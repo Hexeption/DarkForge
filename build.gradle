@@ -21,6 +21,7 @@
  */
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.matthewprenger.cursegradle"
+apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 
 /**
  * Other Scripts
@@ -46,6 +47,7 @@ buildscript {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
         classpath 'co.riiid:gradle-github-plugin:0.4.2'
+        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.40"
     }
 }
 apply plugin: 'co.riiid.gradle'
@@ -118,5 +120,10 @@ github {
     assets = [
             jar.archivePath
     ]
+}
+
+task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    filePath = "CHANGELOG.md";
+    templateContent = new File('changelog.mustache').getText('UTF-8');
 }
 
