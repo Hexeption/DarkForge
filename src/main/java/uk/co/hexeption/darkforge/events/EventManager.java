@@ -1,24 +1,23 @@
 /*******************************************************************************
- *     DarkForge a Forge Hacked Client
- *     Copyright (C) 2017  Hexeption (Keir Davis)
- *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * DarkForge a Forge Hacked Client
+ * Copyright (C) 2017  Hexeption (Keir Davis)
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
 package uk.co.hexeption.darkforge.events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -34,6 +33,7 @@ import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.modules.Gui;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
+import uk.co.hexeption.darkforge.screen.DarkForgeMainMenu;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -112,6 +112,23 @@ public class EventManager {
 
         }
     }
+
+    @SubscribeEvent
+    public void onScreenInitPost(GuiScreenEvent.InitGuiEvent.Post event) {
+        if (event.getGui() instanceof GuiMainMenu) {
+//            event.getButtonList().add(new GuiButton(1999, 1, 1, "Alt Menu"));
+            Minecraft.getMinecraft().displayGuiScreen(new DarkForgeMainMenu());
+        }
+    }
+
+//    @SubscribeEvent
+//    public void onButtonClickedPost(GuiScreenEvent.ActionPerformedEvent.Post event) {
+//        if(event.getGui() instanceof  GuiMainMenu){
+//            if(event.getButton().id == 1999)
+//                Minecraft.getMinecraft().displayGuiScreen(new DarkForgeMainMenu());
+//        }
+//    }
+
 
     private boolean checkKey(int bind) {
 
