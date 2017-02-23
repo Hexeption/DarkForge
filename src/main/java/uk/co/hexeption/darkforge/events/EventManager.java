@@ -91,7 +91,10 @@ public class EventManager {
 
     @SubscribeEvent
     public void onChatSend(final ServerChatEvent serverChatEvent) {
-        //TODO: Commands Send
+        if (serverChatEvent.getMessage().startsWith(DarkForge.instance.commandPrefix)) {
+            DarkForge.COMMAND_MANAGER.executeCommand(serverChatEvent.getMessage());
+            serverChatEvent.setCanceled(true);
+        }
     }
 
     @SubscribeEvent

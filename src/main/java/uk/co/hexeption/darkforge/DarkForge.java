@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.APIModuleSetup;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.command.CommandManager;
 import uk.co.hexeption.darkforge.config.FileManager;
 import uk.co.hexeption.darkforge.events.EventManager;
 import uk.co.hexeption.darkforge.module.ModuleManager;
@@ -37,20 +38,16 @@ import uk.co.hexeption.darkforge.ttf.FontManager;
 @Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)
 public class DarkForge {
 
-    @Mod.Instance(ClientInfo.MOD_ID)
-    public static DarkForge instance;
-
     /**
      * TODO: Fix Static Crash Bug!
      */
     public static final EventManager EVENT_MANAGER = new EventManager();
-
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
-
+    public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final FontManager FONT_MANAGER = new FontManager();
-
     public static final FileManager FILE_MANAGER = new FileManager();
-
+    @Mod.Instance(ClientInfo.MOD_ID)
+    public static DarkForge instance;
     public String commandPrefix = "#";
 
 
@@ -68,6 +65,10 @@ public class DarkForge {
 
         LogHelper.info("Loading Modules...");
         MODULE_MANAGER.Initialization();
+
+        LogHelper.info("Loading Commands...");
+        COMMAND_MANAGER.Initialization();
+
 
         LogHelper.info("Registering Forge Events");
         MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
