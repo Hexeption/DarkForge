@@ -8,6 +8,11 @@ Changelog of DarkForge
 **Updated Copyright**
 
 
+[9015e679107ae8b](https://github.com/Hexeption/DarkForge/commit/9015e679107ae8b) Hexeption *2017-02-23 17:31:57*
+
+**Updated Copyright**
+
+
 [20241242ce5cd5a](https://github.com/Hexeption/DarkForge/commit/20241242ce5cd5a) Hexeption *2017-02-23 17:05:13*
 
 **Updated Forge**
