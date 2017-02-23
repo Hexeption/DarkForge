@@ -5,10 +5,39 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
+**Added Commands**
+
+
+[70f71fdfbe11f09](https://github.com/Hexeption/DarkForge/commit/70f71fdfbe11f09) Hexeption *2017-02-23 22:38:17*
+
+**Updated Forge Version**
+
+
+[7da356f2841bad0](https://github.com/Hexeption/DarkForge/commit/7da356f2841bad0) Hexeption *2017-02-23 22:37:56*
+
+**Reformatted Main Menu**
+
+
+[acc580f12f2f2c2](https://github.com/Hexeption/DarkForge/commit/acc580f12f2f2c2) Hexeption *2017-02-23 21:31:54*
+
+**Updated ChangeLog**
+
+
+[d6eb24c0e1a592c](https://github.com/Hexeption/DarkForge/commit/d6eb24c0e1a592c) Hexeption *2017-02-23 17:32:26*
+
 **Updated Copyright**
 
 
 [9015e679107ae8b](https://github.com/Hexeption/DarkForge/commit/9015e679107ae8b) Hexeption *2017-02-23 17:31:57*
+
+
+## release-b5
+### No issue
+
+**Update README.md**
+
+
+[36359bc89de5e91](https://github.com/Hexeption/DarkForge/commit/36359bc89de5e91) Hexeption *2017-02-23 17:07:32*
 
 **Updated Copyright**
 
