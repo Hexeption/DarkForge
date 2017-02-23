@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.utils;
-
-public class Panorama {
-}
+/**
+ * Created by Keir on 23/02/2017.
+ */
+package uk.co.hexeption.darkforge.screen;

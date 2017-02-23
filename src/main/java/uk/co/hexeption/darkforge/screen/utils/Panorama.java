@@ -16,100 +16,49 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.screen;
+package uk.co.hexeption.darkforge.screen.utils;
 
-import net.minecraft.client.gui.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.client.GuiModList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.glu.Project;
-import uk.co.hexeption.darkforge.ClientInfo;
-import uk.co.hexeption.darkforge.altmanager.AltManager;
-import uk.co.hexeption.darkforge.utils.Texture;
 
-import java.io.IOException;
-
-public class DarkForgeMainMenu extends GuiScreen {
+@SideOnly(Side.CLIENT)
+public class Panorama extends Gui {
 
     private static final ResourceLocation[] TITLE_PANORAMA_PATHS = new ResourceLocation[]{new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
-    private final Texture title = new Texture("textures/title.png");
+    private Minecraft mc = Minecraft.getMinecraft();
     private int panoramaTimer;
     private ResourceLocation backgroundTexture;
     private DynamicTexture viewportTexture;
 
-    @Override
-    public void initGui() {
-        super.initGui();
+    private int width, height;
+
+    public Panorama(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public void init() {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
-        int y = this.height / 4 + 48;
-        this.buttonList.clear();
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, y, I18n.format("menu.singleplayer", new Object[0])));
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y + 24 * 1, I18n.format("menu.multiplayer", new Object[0])));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, y + 24 * 2, 98, 20, "Mods"));
-        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, "Alt Manager"));
-        this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y + 72, 98, 20, I18n.format("menu.options", new Object[0])));
-        this.buttonList.add(new GuiButton(5, this.width / 2 + 2, y + 72, 98, 20, I18n.format("menu.quit", new Object[0])));
-        this.buttonList.add(new GuiButtonLanguage(6, this.width / 2 - 124, y + 72));
     }
 
-    @Override
-    public void updateScreen() {
-        super.updateScreen();
-        ++this.panoramaTimer;
+    public void update() {
+        panoramaTimer++;
     }
 
-    @Override
-    protected void actionPerformed(GuiButton button) throws IOException {
-        switch (button.id) {
-            case 0:
-                this.mc.displayGuiScreen(new GuiWorldSelection(this));
-                break;
-            case 1:
-                this.mc.displayGuiScreen(new GuiMultiplayer(this));
-                break;
-            case 2:
-                this.mc.displayGuiScreen(new GuiModList(this));
-                break;
-            case 3:
-                this.mc.displayGuiScreen(new AltManager(this));
-                break;
-            case 4:
-                this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
-                break;
-            case 5:
-                this.mc.shutdown();
-                break;
-            case 6:
-                this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.getLanguageManager()));
-                break;
-        }
-    }
-
-    @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
-        super.keyTyped(typedChar, keyCode);
-    }
-
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
-//        super.drawCenteredString(mc.fontRendererObj, "Alt Manager", this.width / 2, 15, 16777215);
-//        super.drawDefaultBackground();
-        GlStateManager.disableAlpha();
-        renderSkybox(mouseX, mouseY, partialTicks);
-        GlStateManager.enableAlpha();
-        float titleX = width / 2 - 150, titleY = 20;
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        title.render(titleX, titleY + 10, 300, 100);
-        drawString(fontRendererObj, ClientInfo.VERSION_BUILD, width - fontRendererObj.getStringWidth(ClientInfo.VERSION_BUILD) - 2, height - 12, 0xffffff);
-        super.drawScreen(mouseX, mouseY, partialTicks);
+    public void updateSize(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -230,7 +179,7 @@ public class DarkForgeMainMenu extends GuiScreen {
     /**
      * Renders the skybox in the main menu
      */
-    private void renderSkybox(int mouseX, int mouseY, float partialTicks) {
+    public void renderSkybox(int mouseX, int mouseY, float partialTicks) {
         this.mc.getFramebuffer().unbindFramebuffer();
         GlStateManager.viewport(0, 0, 256, 256);
         this.drawPanorama(mouseX, mouseY, partialTicks);

@@ -36,7 +36,7 @@ import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.modules.Gui;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
-import uk.co.hexeption.darkforge.screen.DarkForgeMainMenu;
+import uk.co.hexeption.darkforge.screen.gui.DarkForgeMainMenu;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -119,19 +119,9 @@ public class EventManager {
     @SubscribeEvent
     public void onScreenInitPost(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.getGui() instanceof GuiMainMenu) {
-//            event.getButtonList().add(new GuiButton(1999, 1, 1, "Alt Menu"));
             Minecraft.getMinecraft().displayGuiScreen(new DarkForgeMainMenu());
         }
     }
-
-//    @SubscribeEvent
-//    public void onButtonClickedPost(GuiScreenEvent.ActionPerformedEvent.Post event) {
-//        if(event.getGui() instanceof  GuiMainMenu){
-//            if(event.getButton().id == 1999)
-//                Minecraft.getMinecraft().displayGuiScreen(new DarkForgeMainMenu());
-//        }
-//    }
-
 
     private boolean checkKey(int bind) {
 

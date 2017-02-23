@@ -24,7 +24,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.screen.DarkForgeMainMenu;
+import uk.co.hexeption.darkforge.screen.gui.DarkForgeMainMenu;
 import uk.co.hexeption.darkforge.utils.GuiPasswordField;
 import uk.co.hexeption.darkforge.utils.LoginUtils;
 
