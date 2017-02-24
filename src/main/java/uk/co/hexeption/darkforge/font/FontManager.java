@@ -31,13 +31,14 @@ import java.awt.*;
 public class FontManager {
 
     private static String fontName = "Comfortaa";
-    public MinecraftFontRenderer hud = null;
-    public MinecraftFontRenderer arraylist = null;
-    public MinecraftFontRenderer mainMenu = null;
-    public MinecraftFontRenderer button = null;
-    public MinecraftFontRenderer buttonHoverd = null;
-    public MinecraftFontRenderer chat = null;
-    public MinecraftFontRenderer guiTitle = null;
+    public MinecraftFontRenderer hud = new MinecraftFontRenderer();
+    public MinecraftFontRenderer arraylist = new MinecraftFontRenderer();
+    public MinecraftFontRenderer mainMenu = new MinecraftFontRenderer();
+    public MinecraftFontRenderer button = new MinecraftFontRenderer();
+    public MinecraftFontRenderer buttonHoverd = new MinecraftFontRenderer();
+    public MinecraftFontRenderer chat = new MinecraftFontRenderer();
+    public MinecraftFontRenderer guiTitle = new MinecraftFontRenderer();
+
 
     public FontManager() {
 
@@ -58,13 +59,13 @@ public class FontManager {
 
     public void loadFonts() {
 
-        hud = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
-        arraylist = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 18), true, true);
-        mainMenu = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 50), true, true);
-        button = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
-        buttonHoverd = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 25), true, true);
-        chat = new MinecraftFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, true);
-        guiTitle = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 17), true, true);
+        hud.setFont(new Font(fontName, Font.PLAIN, 22), true);
+        arraylist.setFont(new Font(fontName, Font.PLAIN, 18), true);
+        mainMenu.setFont(new Font(fontName, Font.PLAIN, 50), true);
+        button.setFont(new Font(fontName, Font.PLAIN, 22), true);
+        buttonHoverd.setFont(new Font(fontName, Font.PLAIN, 25), true);
+        chat.setFont(new Font("Verdana", Font.PLAIN, 17), true);
+        guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
 
     }
 }

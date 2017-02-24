@@ -36,6 +36,7 @@ import static org.lwjgl.opengl.GL11.*;
 @SideOnly(Side.CLIENT)
 public class RenderUtils {
 
+
     private static final AxisAlignedBB DEFAULT_AABB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
 
     public static void drawESP(final AxisAlignedBB bb, final double r, final double g, final double b) {
