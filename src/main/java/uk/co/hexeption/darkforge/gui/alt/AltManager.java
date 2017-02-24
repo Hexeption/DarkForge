@@ -16,13 +16,14 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.altmanager;
+package uk.co.hexeption.darkforge.gui.alt;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.resources.I18n;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.utils.LoginUtils;
 
 import java.io.IOException;

@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ttf;
+package uk.co.hexeption.darkforge.font;
 
 /**
  * Created by Hexeption on 18/12/2016.
@@ -35,15 +35,14 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class MinecraftFontRenderer extends CFont {
 
-    protected CFont.CharData[] boldChars = new CFont.CharData[256];
-
-    protected CFont.CharData[] italicChars = new CFont.CharData[256];
-
-    protected CFont.CharData[] boldItalicChars = new CFont.CharData[256];
-
     private final int[] colorCode = new int[32];
-
     private final String colorcodeIdentifiers = "0123456789abcdefklmnor";
+    protected CFont.CharData[] boldChars = new CFont.CharData[256];
+    protected CFont.CharData[] italicChars = new CFont.CharData[256];
+    protected CFont.CharData[] boldItalicChars = new CFont.CharData[256];
+    protected DynamicTexture texBold;
+    protected DynamicTexture texItalic;
+    protected DynamicTexture texItalicBold;
 
     public MinecraftFontRenderer(Font font, boolean antiAlias, boolean fractionalMetrics) {
 
@@ -292,12 +291,6 @@ public class MinecraftFontRenderer extends CFont {
         super.setFractionalMetrics(fractionalMetrics);
         setupBoldItalicIDs();
     }
-
-    protected DynamicTexture texBold;
-
-    protected DynamicTexture texItalic;
-
-    protected DynamicTexture texItalicBold;
 
     private void setupBoldItalicIDs() {
 

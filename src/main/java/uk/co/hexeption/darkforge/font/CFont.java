@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ttf;
+package uk.co.hexeption.darkforge.font;
 
 /**
  * Created by Hexeption on 18/12/2016.
@@ -34,21 +34,14 @@ import java.awt.image.BufferedImage;
 @SideOnly(Side.CLIENT)
 public class CFont {
 
-    private float imgSize = 512;
-
     protected CharData[] charData = new CharData[256];
-
     protected Font font;
-
     protected boolean antiAlias;
-
     protected boolean fractionalMetrics;
-
     protected int fontHeight = -1;
-
     protected int charOffset = 0;
-
     protected DynamicTexture tex;
+    private float imgSize = 512;
 
     public CFont(Font font, boolean antiAlias, boolean fractionalMetrics) {
 

@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.screen.utils;
+package uk.co.hexeption.darkforge.gui.screen.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

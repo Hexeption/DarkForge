@@ -16,12 +16,13 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module;
+package uk.co.hexeption.darkforge.managers;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.modules.*;
 
 import java.util.LinkedList;
@@ -80,7 +81,7 @@ public class ModuleManager {
                 }
             }
         }
-        LogHelper.warn(String.format("Module %s not found by class, returning null!", clazz.getCanonicalName()));
+        LogHelper.warn(String.format("module %s not found by class, returning null!", clazz.getCanonicalName()));
         return null;
     }
 
@@ -102,7 +103,7 @@ public class ModuleManager {
             }
         }
 
-        LogHelper.warn(String.format("Module %s not found by class, returning null!", name));
+        LogHelper.warn(String.format("module %s not found by class, returning null!", name));
         return null;
     }
 

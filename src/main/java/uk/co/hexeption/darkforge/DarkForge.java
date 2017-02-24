@@ -27,11 +27,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.command.CommandManager;
-import uk.co.hexeption.darkforge.config.FileManager;
-import uk.co.hexeption.darkforge.events.EventManager;
-import uk.co.hexeption.darkforge.module.ModuleManager;
-import uk.co.hexeption.darkforge.ttf.FontManager;
+import uk.co.hexeption.darkforge.font.FontManager;
+import uk.co.hexeption.darkforge.managers.CommandManager;
+import uk.co.hexeption.darkforge.managers.EventManager;
+import uk.co.hexeption.darkforge.managers.FileManager;
+import uk.co.hexeption.darkforge.managers.ModuleManager;
 
 @SideOnly(Side.CLIENT)
 @Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)

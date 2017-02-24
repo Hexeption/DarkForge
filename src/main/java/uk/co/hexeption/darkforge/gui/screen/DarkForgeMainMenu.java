@@ -16,16 +16,16 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.screen.gui;
+package uk.co.hexeption.darkforge.gui.screen;
 
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.client.GuiModList;
 import uk.co.hexeption.darkforge.ClientInfo;
-import uk.co.hexeption.darkforge.altmanager.AltManager;
-import uk.co.hexeption.darkforge.screen.utils.Panorama;
-import uk.co.hexeption.darkforge.utils.Texture;
+import uk.co.hexeption.darkforge.gui.alt.AltManager;
+import uk.co.hexeption.darkforge.gui.screen.utils.Panorama;
+import uk.co.hexeption.darkforge.utils.render.Texture;
 
 import java.io.IOException;
 
@@ -44,7 +44,7 @@ public class DarkForgeMainMenu extends GuiScreen {
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, y, I18n.format("menu.singleplayer", new Object[0])));
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y + 24 * 1, I18n.format("menu.multiplayer", new Object[0])));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 2, y + 24 * 2, 98, 20, "Mods"));
-        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, "Alt Manager"));
+        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, "alt Manager"));
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y + 72, 98, 20, I18n.format("menu.options", new Object[0])));
         this.buttonList.add(new GuiButton(5, this.width / 2 + 2, y + 72, 98, 20, I18n.format("menu.quit", new Object[0])));
         this.buttonList.add(new GuiButtonLanguage(6, this.width / 2 - 124, y + 72));

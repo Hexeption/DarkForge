@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.altmanager;
+package uk.co.hexeption.darkforge.gui.alt;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -24,19 +24,17 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.screen.gui.DarkForgeMainMenu;
-import uk.co.hexeption.darkforge.utils.GuiPasswordField;
+import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.utils.LoginUtils;
 
 import java.io.IOException;
 
-public class GuiAltDirectLogin extends GuiScreen {
-    public static String login = "";
+public class GuiAltAdd extends GuiScreen {
     private GuiScreen lastScreen;
     private GuiTextField email;
     private GuiPasswordField passwordField;
 
-    public GuiAltDirectLogin(GuiScreen lastScreen) {
+    public GuiAltAdd(GuiScreen lastScreen) {
         this.lastScreen = lastScreen;
     }
 
@@ -44,8 +42,8 @@ public class GuiAltDirectLogin extends GuiScreen {
     public void initGui() {
         Keyboard.enableRepeatEvents(true);
         buttonList.clear();
-        buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60 + 10, "Login"));
-        buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 72 + 22, "Back"));
+        buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60, "Add"));
+        buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 72 + 12, "Back"));
         email = new GuiTextField(0, fontRendererObj, width / 2 - 100, 60, 200, 20);
         email.setMaxStringLength(60);
         email.setFocused(true);
@@ -85,17 +83,25 @@ public class GuiAltDirectLogin extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
+        String login = "";
+
         switch (button.id) {
             case 0:
                 if (passwordField.getText().length() == 0) {
-                    LoginUtils.changeCrackedName(email.getText());
+                    AltsSlot.alts.add(new Alt(email.getText()));
                     login = "";
+                    DarkForge.FILE_MANAGER.saveAlts();
                 } else {
                     login = LoginUtils.loginAlt(email.getText(), passwordField.getText());
 
                     if (login.equals("")) {
-                        mc.displayGuiScreen(new DarkForgeMainMenu());
+                        AltsSlot.alts.add(new Alt(email.getText(), passwordField.getText()));
                     }
+                }
+
+                if (login.equals("")) {
+                    mc.displayGuiScreen(lastScreen);
+                    DarkForge.FILE_MANAGER.saveAlts();
                 }
 
             case 1:
@@ -107,8 +113,7 @@ public class GuiAltDirectLogin extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawDefaultBackground();
-        DarkForge.FONT_MANAGER.hud.drawCenteredString("Direct Login", width / 2, 15, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString(login, width / 2, 30, 16777215);
+        DarkForge.FONT_MANAGER.hud.drawCenteredString("Add a alt", width / 2, 20, 16777215);
         DarkForge.FONT_MANAGER.hud.drawString("Name or E-Mail", width / 2 - 100, 47, 10526880);
         DarkForge.FONT_MANAGER.hud.drawString("Password", width / 2 - 100, 87, 10526880);
         email.drawTextBox();

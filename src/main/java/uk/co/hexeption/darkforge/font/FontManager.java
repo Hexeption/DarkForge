@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ttf;
+package uk.co.hexeption.darkforge.font;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,38 +30,18 @@ import java.awt.*;
 @SideOnly(Side.CLIENT)
 public class FontManager {
 
-    public MinecraftFontRenderer hud = null;
-
-    public MinecraftFontRenderer arraylist = null;
-
-    public MinecraftFontRenderer mainMenu = null;
-
-    public MinecraftFontRenderer button = null;
-
-    public MinecraftFontRenderer buttonHoverd = null;
-
-    public MinecraftFontRenderer chat = null;
-
-    public MinecraftFontRenderer guiTitle = null;
-
-
     private static String fontName = "Comfortaa";
+    public MinecraftFontRenderer hud = null;
+    public MinecraftFontRenderer arraylist = null;
+    public MinecraftFontRenderer mainMenu = null;
+    public MinecraftFontRenderer button = null;
+    public MinecraftFontRenderer buttonHoverd = null;
+    public MinecraftFontRenderer chat = null;
+    public MinecraftFontRenderer guiTitle = null;
 
     public FontManager() {
 
         loadFonts();
-
-    }
-
-    public void loadFonts() {
-
-        hud = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
-        arraylist = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 18), true, true);
-        mainMenu = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 50), true, true);
-        button = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
-        buttonHoverd = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 25), true, true);
-        chat = new MinecraftFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, true);
-        guiTitle = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 17), true, true);
 
     }
 
@@ -74,5 +54,17 @@ public class FontManager {
 
         FontManager.fontName = fontName;
         DarkForge.instance.FONT_MANAGER.loadFonts();
+    }
+
+    public void loadFonts() {
+
+        hud = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
+        arraylist = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 18), true, true);
+        mainMenu = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 50), true, true);
+        button = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 22), true, true);
+        buttonHoverd = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 25), true, true);
+        chat = new MinecraftFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, true);
+        guiTitle = new MinecraftFontRenderer(new Font(fontName, Font.PLAIN, 17), true, true);
+
     }
 }

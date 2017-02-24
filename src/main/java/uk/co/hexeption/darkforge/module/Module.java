@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ttf.MinecraftFontRenderer;
+import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -39,17 +39,12 @@ import java.lang.annotation.RetentionPolicy;
 @SideOnly(Side.CLIENT)
 public class Module {
 
-    private String name = getClass().getAnnotation(ModInfo.class).name();
-
-    private String description = getClass().getAnnotation(ModInfo.class).description();
-
-    private Category category = getClass().getAnnotation(ModInfo.class).category();
-
-    private int bind = getClass().getAnnotation(ModInfo.class).bind();
-
-    private boolean state;
-
     protected Minecraft mc = Minecraft.getMinecraft();
+    private String name = getClass().getAnnotation(ModInfo.class).name();
+    private String description = getClass().getAnnotation(ModInfo.class).description();
+    private Category category = getClass().getAnnotation(ModInfo.class).category();
+    private int bind = getClass().getAnnotation(ModInfo.class).bind();
+    private boolean state;
 
     public void onWorldTick() {
 
@@ -65,29 +60,6 @@ public class Module {
 
     public void initializeLater() {
 
-    }
-
-    public enum Category {
-        COMBAT(0x3ABDFF), MOVEMENET(0xF8FF1F), RENDER(0x48FF1F), WORLD(0xCF1FFF), MISC(0xFFC100), PLAYER(0x00FFEC), GUI(0);
-
-        public int color;
-
-        Category(int color) {
-
-            this.color = color;
-        }
-    }
-
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface ModInfo {
-
-        String name();
-
-        String description();
-
-        Category category();
-
-        int bind();
     }
 
     public String getName() {
@@ -223,5 +195,28 @@ public class Module {
     protected MinecraftFontRenderer getFontRenderer() {
 
         return DarkForge.instance.FONT_MANAGER.hud;
+    }
+
+    public enum Category {
+        COMBAT(0x3ABDFF), MOVEMENET(0xF8FF1F), RENDER(0x48FF1F), WORLD(0xCF1FFF), MISC(0xFFC100), PLAYER(0x00FFEC), GUI(0);
+
+        public int color;
+
+        Category(int color) {
+
+            this.color = color;
+        }
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface ModInfo {
+
+        String name();
+
+        String description();
+
+        Category category();
+
+        int bind();
     }
 }

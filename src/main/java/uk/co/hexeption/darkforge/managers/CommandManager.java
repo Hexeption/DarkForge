@@ -16,9 +16,10 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.command;
+package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.command.Command;
 import uk.co.hexeption.darkforge.command.commands.TestCommand;
 
 import java.util.ArrayList;

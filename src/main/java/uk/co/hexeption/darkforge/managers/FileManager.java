@@ -16,16 +16,16 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.config;
+package uk.co.hexeption.darkforge.managers;
 
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.altmanager.Alt;
-import uk.co.hexeption.darkforge.altmanager.AltsSlot;
+import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.gui.alt.AltsSlot;
 import uk.co.hexeption.darkforge.module.Module;
 
 import java.io.*;

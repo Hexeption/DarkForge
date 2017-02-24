@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.events;
+package uk.co.hexeption.darkforge.managers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -32,9 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
-import uk.co.hexeption.darkforge.screen.gui.DarkForgeMainMenu;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -79,7 +79,7 @@ public class EventManager {
         if (Minecraft.getMinecraft().world != null) {
             for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (checkKey(module.getBind())) {
-                    LogHelper.info(String.format("Found Module %s for key %s", module.getName(), module.getBind()));
+                    LogHelper.info(String.format("Found module %s for key %s", module.getName(), module.getBind()));
                     module.toggle();
                     return;
                 }
