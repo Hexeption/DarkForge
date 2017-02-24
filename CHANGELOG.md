@@ -5,6 +5,30 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
+**:gem: Reformatted and added IntelliJ Formatting**
+
+
+[784f406d9ee7dad](https://github.com/Hexeption/DarkForge/commit/784f406d9ee7dad) Hexeption *2017-02-24 18:57:03*
+
+**Update README.md**
+
+
+[e5e96c4dba2c598](https://github.com/Hexeption/DarkForge/commit/e5e96c4dba2c598) Hexeption *2017-02-24 18:43:58*
+
+**Update README.md**
+
+
+[93e7db4d94904b8](https://github.com/Hexeption/DarkForge/commit/93e7db4d94904b8) Hexeption *2017-02-24 18:43:28*
+
+
+## release-b10
+### No issue
+
+**:gem: Updated ChangeLog**
+
+
+[74f1c1d0cdb0c72](https://github.com/Hexeption/DarkForge/commit/74f1c1d0cdb0c72) Hexeption *2017-02-24 18:29:53*
+
 **:gem: Added new Event System, Themeable Hud**
 
 

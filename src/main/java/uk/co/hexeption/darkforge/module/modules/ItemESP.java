@@ -22,7 +22,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -52,9 +52,9 @@ public class ItemESP extends Module {
         glDisable(GL_TEXTURE_2D);
         glEnable(GL_CULL_FACE);
         glDisable(GL_DEPTH_TEST);
-        double renderPosX = ReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "renderPosX");
-        double renderPosY = ReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "renderPosY");
-        double renderPosZ = ReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "renderPosZ");
+        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
+        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
+        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
 
         glTranslated(-renderPosX, -renderPosY, -renderPosZ);
 
