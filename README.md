@@ -1,4 +1,4 @@
-#DarkForge ![DarkForge Build](http://teamcity.hexeption.co.uk:8111/app/rest/builds/buildType:DarkForge_ReleaseBuild/statusIcon) [![GitHub release](https://img.shields.io/badge/release-1.11--B5-blue.svg)](https://github.com/Hexeption/DarkForge/releases)
+#DarkForge ![DarkForge Build](http://teamcity.hexeption.co.uk:8111/app/rest/builds/buildType:DarkForge_ReleaseBuild/statusIcon) [![GitHub release](http://github-release-version.herokuapp.com/github/hexeption/darkforge/release.svg)](https://github.com/Hexeption/DarkForge/releases)
 
 
 ##About DarkForge 
