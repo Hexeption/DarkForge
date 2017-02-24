@@ -39,6 +39,7 @@ public class LoginUtils {
     private static final Logger logger = LogManager.getLogger();
 
     public static void setSession(Session s) throws IllegalAccessException {
+
         Class<? extends Minecraft> mc = Minecraft.getMinecraft().getClass();
         try {
             Field session = null;
@@ -64,6 +65,7 @@ public class LoginUtils {
     }
 
     public static void login(String name, String password) {
+
         YggdrasilAuthenticationService authenticationService;
         authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
         YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
@@ -80,6 +82,7 @@ public class LoginUtils {
     }
 
     public static String check(String email, String password) {
+
         YggdrasilAuthenticationService authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
         YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
         authentication.setUsername(email);
@@ -109,6 +112,7 @@ public class LoginUtils {
 
 
     public static String loginAlt(String email, String password) {
+
         YggdrasilAuthenticationService authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
         YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
         authentication.setUsername(email);
@@ -140,6 +144,7 @@ public class LoginUtils {
     }
 
     public static String getName(String email, String password) {
+
         YggdrasilAuthenticationService authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
         YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
         authentication.setUsername(email);
@@ -154,6 +159,7 @@ public class LoginUtils {
     }
 
     public static void changeCrackedName(String name) {
+
         try {
             setSession(new Session(name, "", "", "mojang"));
         } catch (IllegalAccessException e) {

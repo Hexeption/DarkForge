@@ -33,15 +33,18 @@ public class Texture {
     private final ResourceLocation texture;
 
     public Texture(String textureURL) {
+
         texture = new ResourceLocation(textureURL);
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
     }
 
     public void render(float x, float y, float width, float height) {
+
         render(x, y, width, height, 0F, 0F, 1F, 1F);
     }
 
     public void render(float x, float y, float width, float height, float u, float v, float t, float s) {
+
         bindTexture();
         Tessellator tessellator = Tessellator.getInstance();
         VertexBuffer renderer = tessellator.getBuffer();
@@ -56,12 +59,14 @@ public class Texture {
     }
 
     public void bindTexture() {
+
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
         GlStateManager.enableTexture2D();
     }
 
     @Override
     public String toString() {
+
         return texture.getResourcePath();
     }
 }

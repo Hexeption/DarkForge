@@ -25,6 +25,7 @@ public class EventKeyboard extends Event {
     public int key;
 
     public EventKeyboard(int key) {
+
         this.key = key;
     }
 

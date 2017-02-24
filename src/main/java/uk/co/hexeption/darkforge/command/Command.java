@@ -30,26 +30,32 @@ public abstract class Command {
     private String description = getClass().getAnnotation(CMDInfo.class).descrption();
 
     public String[] getName() {
+
         return name;
     }
 
     public void setName(String[] name) {
+
         this.name = name;
     }
 
     public String getHelp() {
+
         return help;
     }
 
     public void setHelp(String help) {
+
         this.help = help;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+
         this.description = description;
     }
 
@@ -57,6 +63,7 @@ public abstract class Command {
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface CMDInfo {
+
         String[] name();
 
         String help();

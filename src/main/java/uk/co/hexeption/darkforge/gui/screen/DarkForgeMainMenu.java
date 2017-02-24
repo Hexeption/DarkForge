@@ -37,6 +37,7 @@ public class DarkForgeMainMenu extends GuiScreen {
 
     @Override
     public void initGui() {
+
         panorama.init();
         panorama.updateSize(width, height);
         int y = this.height / 4 + 48;
@@ -52,12 +53,14 @@ public class DarkForgeMainMenu extends GuiScreen {
 
     @Override
     public void updateScreen() {
+
         super.updateScreen();
         panorama.update();
     }
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
+
         switch (button.id) {
             case 0:
                 this.mc.displayGuiScreen(new GuiWorldSelection(this));
@@ -85,11 +88,13 @@ public class DarkForgeMainMenu extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
         super.keyTyped(typedChar, keyCode);
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
         GlStateManager.disableAlpha();
         panorama.renderSkybox(mouseX, mouseY, partialTicks);
         GlStateManager.enableAlpha();

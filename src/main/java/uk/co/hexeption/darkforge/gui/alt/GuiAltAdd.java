@@ -30,16 +30,21 @@ import uk.co.hexeption.darkforge.utils.LoginUtils;
 import java.io.IOException;
 
 public class GuiAltAdd extends GuiScreen {
+
     private GuiScreen lastScreen;
+
     private GuiTextField email;
+
     private GuiPasswordField passwordField;
 
     public GuiAltAdd(GuiScreen lastScreen) {
+
         this.lastScreen = lastScreen;
     }
 
     @Override
     public void initGui() {
+
         Keyboard.enableRepeatEvents(true);
         buttonList.clear();
         buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60, "Add"));
@@ -55,6 +60,7 @@ public class GuiAltAdd extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
         email.textboxKeyTyped(typedChar, keyCode);
         passwordField.textboxKeyTyped(typedChar, keyCode);
 
@@ -65,17 +71,20 @@ public class GuiAltAdd extends GuiScreen {
 
     @Override
     public void updateScreen() {
+
         email.updateCursorCounter();
         passwordField.updateCursorCounter();
     }
 
     @Override
     public void onGuiClosed() {
+
         Keyboard.enableRepeatEvents(false);
     }
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+
         super.mouseClicked(mouseX, mouseY, mouseButton);
         email.mouseClicked(mouseX, mouseY, mouseButton);
         passwordField.mouseClicked(mouseX, mouseY, mouseButton);
@@ -83,6 +92,7 @@ public class GuiAltAdd extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
+
         String login = "";
 
         switch (button.id) {
@@ -112,6 +122,7 @@ public class GuiAltAdd extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
         super.drawDefaultBackground();
         DarkForge.FONT_MANAGER.hud.drawCenteredString("Add a alt", width / 2, 20, 16777215);
         DarkForge.FONT_MANAGER.hud.drawString("Name or E-Mail", width / 2 - 100, 47, 10526880);

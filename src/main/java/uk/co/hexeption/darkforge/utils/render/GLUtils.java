@@ -139,6 +139,7 @@ public final class GLUtils {
      *               GL_CLAMP_TO_EDGE - samples edge color <br> GL_REPEAT - repeats the texture <br>
      */
     public static int applyTexture(int texId, File file, int filter, int wrap) throws IOException {
+
         applyTexture(texId, ImageIO.read(file), filter, wrap);
         return texId;
     }
@@ -150,6 +151,7 @@ public final class GLUtils {
      *               GL_CLAMP_TO_EDGE - samples edge color <br> GL_REPEAT - repeats the texture <br>
      */
     public static int applyTexture(int texId, BufferedImage image, int filter, int wrap) {
+
         int[] pixels = new int[image.getWidth() * image.getHeight()];
         image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
 
@@ -177,6 +179,7 @@ public final class GLUtils {
      *               GL_CLAMP_TO_EDGE - samples edge color <br> GL_REPEAT - repeats the texture <br>
      */
     public static int applyTexture(int texId, int width, int height, ByteBuffer pixels, int filter, int wrap) {
+
         glBindTexture(GL_TEXTURE_2D, texId);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);

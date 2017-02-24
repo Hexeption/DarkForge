@@ -24,13 +24,19 @@ import uk.co.hexeption.darkforge.utils.LoginUtils;
 
 @SideOnly(Side.CLIENT)
 public class Alt {
+
     private String email;
+
     private String name;
+
     private String password;
+
     private boolean cracked;
+
     private boolean favourites;
 
     public Alt(String email, String password, boolean favourites) {
+
         this.email = email;
         this.favourites = favourites;
 
@@ -46,10 +52,12 @@ public class Alt {
     }
 
     public Alt(String email, String password) {
+
         this(email, password, false);
     }
 
     public Alt(String email, String name, String password, boolean favourites) {
+
         this.email = email;
         this.favourites = favourites;
 
@@ -65,6 +73,7 @@ public class Alt {
     }
 
     public Alt(String name, boolean favourites) {
+
         this.email = name;
         this.name = name;
         this.password = null;
@@ -73,14 +82,17 @@ public class Alt {
     }
 
     public Alt(String name) {
+
         this(name, false);
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
 
         if (password == null || password.isEmpty()) {
@@ -94,6 +106,7 @@ public class Alt {
     }
 
     public String getName() {
+
         if (name != null) {
             return name;
         } else if (email != null) {
@@ -104,10 +117,12 @@ public class Alt {
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
     public String getPassword() {
+
         if (password == null || password.isEmpty()) {
             cracked = true;
             return "";
@@ -117,6 +132,7 @@ public class Alt {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
 
         if (password == null || password.isEmpty()) {
@@ -131,18 +147,22 @@ public class Alt {
     }
 
     public boolean isCracked() {
+
         return cracked;
     }
 
     public boolean isFavourites() {
+
         return favourites;
     }
 
     public void setFavourites(boolean favourites) {
+
         this.favourites = favourites;
     }
 
     public void setCracked() {
+
         name = email;
         password = null;
         cracked = true;

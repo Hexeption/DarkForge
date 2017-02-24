@@ -30,23 +30,28 @@ import java.util.regex.Pattern;
 public class CommandManager {
 
     private final Pattern patten = Pattern.compile("([^\\\"']\\\\S*|\\\".+?\\\"|'.+?')\\\\s*");
+
     private final List<Command> commands = new ArrayList<>();
 
 
     public void Initialization() {
+
         initCommands();
         LogHelper.info(String.format("Commands Loaded: %s!", commands.size()));
     }
 
     private void initCommands() {
+
         this.commands.add(new TestCommand());
     }
 
     public List<Command> getCommands() {
+
         return commands;
     }
 
     public boolean executeCommand(String message) {
+
         String commandName = message.contains(" ") ? message.split(" ")[0] : message;
         for (Command command : commands) {
             for (String alias : command.getName()) {
@@ -65,6 +70,7 @@ public class CommandManager {
 
 
     public void addCommand(Command... command) {
+
         synchronized (this.commands) {
             for (final Command command1 : command) {
                 this.commands.add(command1);
@@ -73,6 +79,7 @@ public class CommandManager {
     }
 
     private String[] getArguments(String input) {
+
         Matcher matcher = patten.matcher(input);
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
@@ -82,6 +89,7 @@ public class CommandManager {
     }
 
     private void listAllNames(Command command) {
+
         String namesList = "Available names: ";
         String[] name = command.getName();
         for (int i = 0; i < name.length; i++) {
@@ -92,6 +100,7 @@ public class CommandManager {
     }
 
     public void tryCommand(Command command, String input) {
+
         try {
             String[] args = input.contains(" ") ? getArguments(input.substring(input.indexOf("") + 1)) : null;
             command.execute(input, args);

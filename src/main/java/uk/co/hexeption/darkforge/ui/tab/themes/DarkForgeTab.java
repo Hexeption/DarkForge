@@ -19,4 +19,5 @@
 package uk.co.hexeption.darkforge.ui.tab.themes;
 
 public class DarkForgeTab {
+
 }

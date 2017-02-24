@@ -47,6 +47,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
     private final String colorcodeIdentifiers = "0123456789abcdefklmnor";
 
     public MinecraftFontRenderer() {
+
         for (int index = 0; index < 32; ++index) {
             int noClue = (index >> 3 & 1) * 85;
             int red = (index >> 2 & 1) * 170 + noClue;
@@ -70,15 +71,18 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
     @Deprecated
     @Override
     public int drawString(FontData fontData, String text, int x, int y, int color) {
+
         return 0;
     }
 
     @Override
     public int drawString(String text, int x, int y, int color) {
+
         return drawString(text, x, y, color, false);
     }
 
     public int drawStringWithShadow(String text, int x, int y, int color) {
+
         return Math.max(drawString(text, x + 1, y + 1, color, true), drawString(text, x, y, color, false));
     }
 
@@ -86,6 +90,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * Renders text starting with the middle of the string at the given x, y positions. Includes a shadow effect as well.
      */
     public void drawCenteredStringWithShadow(String text, int x, int y, int color) {
+
         drawStringWithShadow(text, x - getStringWidth(text) / 2, y - getStringHeight(text) / 2, color);
     }
 
@@ -93,6 +98,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * Renders text starting with the middle of the string at the given x, y positions.
      */
     public void drawCenteredString(String text, int x, int y, int color) {
+
         drawString(text, x - getStringWidth(text) / 2, y - getStringHeight(text) / 2, color);
     }
 
@@ -100,6 +106,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * Renders text using the color code rules within the default Minecraft font renderer.
      */
     public int drawString(String text, int x, int y, int color, boolean shadow) {
+
         if (text == null)
             return 0;
         if (color == 553648127)
@@ -221,6 +228,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * This information can normally be acquired through the {@link FontData} object, but with the MinecraftFontRenderer, multiple {@link FontData}s may be used.
      */
     public int getStringHeight(String text) {
+
         if (text == null)
             return 0;
         int height = 0;
@@ -268,6 +276,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * This information can normally be acquired through the {@link FontData} object, but with the MinecraftFontRenderer, multiple {@link FontData}s may be used.
      */
     public int getStringWidth(String text) {
+
         if (text == null)
             return 0;
         int width = 0;
@@ -313,6 +322,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
      * Applies a new font to the default font data as well as the bold, italic, and the bolditalic font data.
      */
     public void setFont(Font font, boolean antialias) {
+
         this.fontData.setFont(font, antialias);
         this.boldFont.setFont(font.deriveFont(Font.BOLD), antialias);
         this.italicFont.setFont(font.deriveFont(Font.ITALIC), antialias);

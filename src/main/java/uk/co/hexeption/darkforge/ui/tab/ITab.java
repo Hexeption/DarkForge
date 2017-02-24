@@ -22,4 +22,5 @@ package uk.co.hexeption.darkforge.ui.tab;
  * Created by Keir on 24/02/2017.
  */
 public interface ITab {
+
 }

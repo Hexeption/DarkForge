@@ -44,14 +44,20 @@ public class DarkForge {
      * TODO: Redo the Events
      */
     public static final EventManager EVENT_MANAGER = new EventManager();
+
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
+
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
+
     public static final FontManager FONT_MANAGER = new FontManager();
+
     public static final FileManager FILE_MANAGER = new FileManager();
+
     public static final Hud HUD = new Hud();
 
     @Mod.Instance(ClientInfo.MOD_ID)
     public static DarkForge instance;
+
     public String commandPrefix = "#";
 
 

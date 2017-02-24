@@ -33,6 +33,7 @@ public class FontUtils {
     private static final Tessellator tessellator = Tessellator.getInstance();
 
     public static void drawTextureRect(float x, float y, float width, float height, float u, float v, float t, float s) {
+
         VertexBuffer renderer = tessellator.getBuffer();
         renderer.begin(GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX);
         renderer.pos(x + width, y, 0F).tex(t, v).endVertex();
@@ -48,6 +49,7 @@ public class FontUtils {
      * Renders a line from the given x, y positions to the second x1, y1 positions.
      */
     public static void drawLine(float size, float x, float y, float x1, float y1) {
+
         glLineWidth(size);
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();

@@ -29,23 +29,32 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class AltsSlot extends GuiSlot {
+
     public static int premiumAlts;
+
     public static int crackedAlts;
+
     public static String login;
+
     public static ArrayList<Alt> alts = new ArrayList<Alt>();
+
     public int selectedSlots;
+
     private AltManager lastScreen;
 
     public AltsSlot(Minecraft mc, AltManager lastScreen) {
+
         super(mc, lastScreen.width, lastScreen.height, 25, lastScreen.height - 45, 30);
         login = "";
         this.lastScreen = lastScreen;
     }
 
     public static void sortAlts() {
+
         Collections.sort(alts, new Comparator<Alt>() {
             @Override
             public int compare(Alt o1, Alt o2) {
+
                 if (o1 == null || o2 == null) {
                     return 0;
                 }
@@ -90,10 +99,12 @@ public class AltsSlot extends GuiSlot {
 
     @Override
     protected boolean isSelected(int slotIndex) {
+
         return selectedSlots == slotIndex;
     }
 
     protected int getSelectedSlots() {
+
         if (selectedSlots > alts.size()) {
             selectedSlots = alts.size();
         }
@@ -103,11 +114,13 @@ public class AltsSlot extends GuiSlot {
 
     @Override
     protected int getSize() {
+
         return alts.size();
     }
 
     @Override
     protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY) {
+
         selectedSlots = slotIndex;
 
         if (isDoubleClick) {
@@ -132,10 +145,12 @@ public class AltsSlot extends GuiSlot {
 
     @Override
     protected void drawBackground() {
+
     }
 
     @Override
     protected void drawSlot(int entryID, int insideLeft, int yPos, int insideSlotHeight, int mouseXIn, int mouseYIn) {
+
         Alt alt = alts.get(entryID);
 
         DarkForge.FONT_MANAGER.hud.drawCenteredString(alt.getName(), width / 2, yPos + 3, 16777215);

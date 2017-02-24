@@ -28,26 +28,45 @@ import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.opengl.GL11;
 
 public class GuiPasswordField extends Gui {
+
     private final FontRenderer field_146211_a;
+
     private final int field_146209_f;
+
     private final int field_146210_g;
+
     private final int field_146218_h;
+
     private final int field_146219_i;
+
     private String field_146216_j = "";
+
     private int field_146217_k = 32;
+
     private int field_146214_l;
+
     private boolean field_146215_m = true;
+
     private boolean field_146212_n = true;
+
     private boolean field_146213_o;
+
     private boolean field_146226_p = true;
+
     private int field_146225_q;
+
     private int field_146224_r;
+
     private int field_146223_s;
+
     private int field_146222_t = 14737632;
+
     private int field_146221_u = 7368816;
+
     private boolean field_146220_v = true;
 
     public GuiPasswordField(FontRenderer par1FontRenderer, int par2, int par3, int par4, int par5) {
+
         this.field_146211_a = par1FontRenderer;
         this.field_146209_f = par2;
         this.field_146210_g = par3;
@@ -56,14 +75,17 @@ public class GuiPasswordField extends Gui {
     }
 
     public void updateCursorCounter() {
+
         this.field_146214_l += 1;
     }
 
     public String getText() {
+
         return this.field_146216_j;
     }
 
     public void setText(String p_146180_1_) {
+
         if (p_146180_1_.length() > this.field_146217_k) {
             this.field_146216_j = p_146180_1_.substring(0, this.field_146217_k);
         } else {
@@ -74,6 +96,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public String func_146207_c() {
+
         int var1 =
                 this.field_146224_r < this.field_146223_s ? this.field_146224_r : this.field_146223_s;
         int var2 =
@@ -82,6 +105,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146191_b(String p_146191_1_) {
+
         String var2 = "";
         String var3 =
                 ChatAllowedCharacters.filterAllowedCharacters(p_146191_1_);
@@ -115,6 +139,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146177_a(int p_146177_1_) {
+
         if (this.field_146216_j.length() != 0) {
             if (this.field_146223_s != this.field_146224_r) {
                 func_146191_b("");
@@ -125,6 +150,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146175_b(int p_146175_1_) {
+
         if (this.field_146216_j.length() != 0) {
             if (this.field_146223_s != this.field_146224_r) {
                 func_146191_b("");
@@ -152,14 +178,17 @@ public class GuiPasswordField extends Gui {
     }
 
     public int func_146187_c(int p_146187_1_) {
+
         return func_146183_a(p_146187_1_, func_146198_h());
     }
 
     public int func_146183_a(int p_146183_1_, int p_146183_2_) {
+
         return func_146197_a(p_146183_1_, func_146198_h(), true);
     }
 
     public int func_146197_a(int p_146197_1_, int p_146197_2_, boolean p_146197_3_) {
+
         int var4 = p_146197_2_;
         boolean var5 = p_146197_1_ < 0;
         int var6 = Math.abs(p_146197_1_);
@@ -203,10 +232,12 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146182_d(int p_146182_1_) {
+
         func_146190_e(this.field_146223_s + p_146182_1_);
     }
 
     public void func_146190_e(int p_146190_1_) {
+
         this.field_146224_r = p_146190_1_;
         int var2 = this.field_146216_j.length();
 
@@ -222,14 +253,17 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146196_d() {
+
         func_146190_e(0);
     }
 
     public void func_146202_e() {
+
         func_146190_e(this.field_146216_j.length());
     }
 
     public boolean textboxKeyTyped(char p_146201_1_, int p_146201_2_) {
+
         if (!this.field_146213_o) {
             return false;
         }
@@ -348,6 +382,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void mouseClicked(int p_146192_1_, int p_146192_2_, int p_146192_3_) {
+
         boolean var4 =
                 (p_146192_1_ >= this.field_146209_f) &&
                         (p_146192_1_ < this.field_146209_f + this.field_146218_h) &&
@@ -374,6 +409,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void drawTextBox() {
+
         if (func_146176_q()) {
             if (func_146181_i()) {
                 drawRect(this.field_146209_f - 1, this.field_146210_g - 1, this.field_146209_f +
@@ -461,6 +497,7 @@ public class GuiPasswordField extends Gui {
     }
 
     private void func_146188_c(int p_146188_1_, int p_146188_2_, int p_146188_3_, int p_146188_4_) {
+
         if (p_146188_1_ < p_146188_3_) {
             int var5 = p_146188_1_;
             p_146188_1_ = p_146188_3_;
@@ -498,6 +535,7 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146203_f(int p_146203_1_) {
+
         this.field_146217_k = p_146203_1_;
 
         if (this.field_146216_j.length() > p_146203_1_) {
@@ -506,34 +544,42 @@ public class GuiPasswordField extends Gui {
     }
 
     public int func_146208_g() {
+
         return this.field_146217_k;
     }
 
     public int func_146198_h() {
+
         return this.field_146224_r;
     }
 
     public boolean func_146181_i() {
+
         return this.field_146215_m;
     }
 
     public void func_146185_a(boolean p_146185_1_) {
+
         this.field_146215_m = p_146185_1_;
     }
 
     public void func_146193_g(int p_146193_1_) {
+
         this.field_146222_t = p_146193_1_;
     }
 
     public void func_146204_h(int p_146204_1_) {
+
         this.field_146221_u = p_146204_1_;
     }
 
     public boolean isFocused() {
+
         return this.field_146213_o;
     }
 
     public void setFocused(boolean p_146195_1_) {
+
         if ((p_146195_1_) && (!this.field_146213_o)) {
             this.field_146214_l = 0;
         }
@@ -542,18 +588,22 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146184_c(boolean p_146184_1_) {
+
         this.field_146226_p = p_146184_1_;
     }
 
     public int func_146186_n() {
+
         return this.field_146223_s;
     }
 
     public int func_146200_o() {
+
         return func_146181_i() ? this.field_146218_h - 8 : this.field_146218_h;
     }
 
     public void func_146199_i(int p_146199_1_) {
+
         int var2 = this.field_146216_j.length();
 
         if (p_146199_1_ > var2) {
@@ -598,14 +648,17 @@ public class GuiPasswordField extends Gui {
     }
 
     public void func_146205_d(boolean p_146205_1_) {
+
         this.field_146212_n = p_146205_1_;
     }
 
     public boolean func_146176_q() {
+
         return this.field_146220_v;
     }
 
     public void func_146189_e(boolean p_146189_1_) {
+
         this.field_146220_v = p_146189_1_;
     }
 }

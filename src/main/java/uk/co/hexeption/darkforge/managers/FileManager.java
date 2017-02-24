@@ -39,9 +39,13 @@ import java.util.Map;
 public class FileManager {
 
     private static Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
+
     private static JsonParser jsonParser = new JsonParser();
+
     public final File DARKFORGE_DIR = new File(String.format("%s%sdarkforge%s", Minecraft.getMinecraft().mcDataDir, File.separator, File.separator));
+
     private final File MODULE = new File(DARKFORGE_DIR, "modules.json");
+
     private final File ALTS = new File(DARKFORGE_DIR, "alts.json");
 
     public void Initialization() {
@@ -112,6 +116,7 @@ public class FileManager {
     }
 
     public void saveAlts() {
+
         try {
             JsonObject json = new JsonObject();
 
@@ -133,6 +138,7 @@ public class FileManager {
     }
 
     public void loadAlts() {
+
         try {
             BufferedReader loadjson = new BufferedReader(new FileReader(ALTS));
             JsonObject altsjson = (JsonObject) jsonParser.parse(loadjson);

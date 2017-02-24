@@ -31,12 +31,19 @@ import java.awt.*;
 public class FontManager {
 
     private static String fontName = "Comfortaa";
+
     public MinecraftFontRenderer hud = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer arraylist = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer mainMenu = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer button = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer buttonHoverd = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer chat = new MinecraftFontRenderer();
+
     public MinecraftFontRenderer guiTitle = new MinecraftFontRenderer();
 
 

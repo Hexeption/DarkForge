@@ -90,6 +90,7 @@ public class EventManager {
 
     @SubscribeEvent
     public void onChatSend(final ServerChatEvent serverChatEvent) {
+
         if (serverChatEvent.getMessage().startsWith(DarkForge.instance.commandPrefix)) {
             DarkForge.COMMAND_MANAGER.executeCommand(serverChatEvent.getMessage());
             serverChatEvent.setCanceled(true);
@@ -117,6 +118,7 @@ public class EventManager {
 
     @SubscribeEvent
     public void onScreenInitPost(GuiScreenEvent.InitGuiEvent.Post event) {
+
         if (event.getGui() instanceof GuiMainMenu) {
             Minecraft.getMinecraft().displayGuiScreen(new DarkForgeMainMenu());
         }

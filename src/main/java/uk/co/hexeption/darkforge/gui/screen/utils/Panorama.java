@@ -35,28 +35,36 @@ import org.lwjgl.util.glu.Project;
 public class Panorama extends Gui {
 
     private static final ResourceLocation[] TITLE_PANORAMA_PATHS = new ResourceLocation[]{new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
+
     private Minecraft mc = Minecraft.getMinecraft();
+
     private int panoramaTimer;
+
     private ResourceLocation backgroundTexture;
+
     private DynamicTexture viewportTexture;
 
     private int width, height;
 
     public Panorama(int width, int height) {
+
         this.width = width;
         this.height = height;
     }
 
     public void init() {
+
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
     }
 
     public void update() {
+
         panoramaTimer++;
     }
 
     public void updateSize(int width, int height) {
+
         this.width = width;
         this.height = height;
     }
@@ -65,6 +73,7 @@ public class Panorama extends Gui {
      * Draws the main menu panorama
      */
     private void drawPanorama(int mouseX, int mouseY, float partialTicks) {
+
         Tessellator tessellator = Tessellator.getInstance();
         VertexBuffer vertexbuffer = tessellator.getBuffer();
         GlStateManager.matrixMode(5889);
@@ -147,6 +156,7 @@ public class Panorama extends Gui {
      * Rotate and blurs the skybox view in the main menu
      */
     private void rotateAndBlurSkybox(float partialTicks) {
+
         this.mc.getTextureManager().bindTexture(this.backgroundTexture);
         GlStateManager.glTexParameteri(3553, 10241, 9729);
         GlStateManager.glTexParameteri(3553, 10240, 9729);
@@ -180,6 +190,7 @@ public class Panorama extends Gui {
      * Renders the skybox in the main menu
      */
     public void renderSkybox(int mouseX, int mouseY, float partialTicks) {
+
         this.mc.getFramebuffer().unbindFramebuffer();
         GlStateManager.viewport(0, 0, 256, 256);
         this.drawPanorama(mouseX, mouseY, partialTicks);

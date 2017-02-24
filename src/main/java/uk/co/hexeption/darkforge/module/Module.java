@@ -40,10 +40,15 @@ import java.lang.annotation.RetentionPolicy;
 public class Module {
 
     protected Minecraft mc = Minecraft.getMinecraft();
+
     private String name = getClass().getAnnotation(ModInfo.class).name();
+
     private String description = getClass().getAnnotation(ModInfo.class).description();
+
     private Category category = getClass().getAnnotation(ModInfo.class).category();
+
     private int bind = getClass().getAnnotation(ModInfo.class).bind();
+
     private boolean state;
 
     public void onWorldTick() {

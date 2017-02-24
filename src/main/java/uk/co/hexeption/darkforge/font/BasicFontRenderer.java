@@ -29,13 +29,16 @@ import uk.co.hexeption.darkforge.utils.render.GLUtils;
 public class BasicFontRenderer implements FontRenderer {
 
     protected final FontData fontData = new FontData();
+
     protected int kerning = 0;
 
     public BasicFontRenderer() {
+
     }
 
     @Override
     public int drawString(FontData fontData, String text, int x, int y, int color) {
+
         if (!fontData.hasFont())
             return 0;
         GlStateManager.enableBlend();
@@ -58,24 +61,29 @@ public class BasicFontRenderer implements FontRenderer {
     }
 
     public int getHeight() {
+
         return fontData.getFontHeight();
     }
 
     @Override
     public int drawString(String text, int x, int y, int color) {
+
         return drawString(fontData, text, x, y, color);
     }
 
     public int getKerning() {
+
         return kerning;
     }
 
     public void setKerning(int kerning) {
+
         this.kerning = kerning;
     }
 
     @Override
     public FontData getFontData() {
+
         return fontData;
     }
 }

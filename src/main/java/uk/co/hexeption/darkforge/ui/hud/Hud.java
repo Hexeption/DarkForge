@@ -29,19 +29,24 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Hud {
+
     private final List<IGameHud> themes = new CopyOnWriteArrayList<>();
+
     private int themeIndex = 0;
 
     public Hud() {
+
         EventManager.register(this);
     }
 
     public void Initialization() {
+
         this.themes.add(new DarkForgeHud());
     }
 
     @EventTarget
     public void render(EventRender2D event) {
+
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
@@ -51,14 +56,17 @@ public class Hud {
 
     @EventTarget
     public void onKeyEvent(EventKeyboard event) {
+
         getCurrentTheme().onKeyPressed(event.key);
     }
 
     public IGameHud getCurrentTheme() {
+
         return (IGameHud) this.themes.get(this.themeIndex);
     }
 
     public IGameHud getTheme(String name) {
+
         for (IGameHud theme : this.themes) {
             if (theme.name().equals(name)) {
                 return theme;
@@ -68,6 +76,7 @@ public class Hud {
     }
 
     public void onNextTheme() {
+
         int index = this.themeIndex;
         int maxSize = this.themes.size();
 

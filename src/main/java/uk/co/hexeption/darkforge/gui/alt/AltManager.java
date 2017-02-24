@@ -31,15 +31,19 @@ import java.io.IOException;
 public class AltManager extends GuiScreen {
 
     private static AltsSlot altslot;
+
     private GuiScreen lastScreen;
+
     private String login;
 
     public AltManager(GuiScreen lastScreen) {
+
         this.lastScreen = lastScreen;
     }
 
     @Override
     public void initGui() {
+
         super.initGui();
         login = "";
         altslot = new AltsSlot(this.mc, this);
@@ -57,6 +61,7 @@ public class AltManager extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
+
         switch (button.id) {
             case 0:
                 mc.displayGuiScreen(lastScreen);
@@ -112,6 +117,7 @@ public class AltManager extends GuiScreen {
 
     @Override
     public void confirmClicked(boolean result, int id) {
+
         if (id == 0) {
             if (result) {
                 AltsSlot.alts.remove(altslot.getSelectedSlots());
@@ -123,6 +129,7 @@ public class AltManager extends GuiScreen {
 
     @Override
     public void updateScreen() {
+
         ((GuiButton) buttonList.get(3)).enabled = !AltsSlot.alts.isEmpty() && altslot.getSelectedSlots() != -1;
         ((GuiButton) buttonList.get(4)).enabled = !AltsSlot.alts.isEmpty() && altslot.getSelectedSlots() != -1;
         ((GuiButton) buttonList.get(6)).enabled = !AltsSlot.alts.isEmpty() && altslot.getSelectedSlots() != -1;
@@ -130,6 +137,7 @@ public class AltManager extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
         if (keyCode == 28 || keyCode == 156) {
             actionPerformed((GuiButton) buttonList.get(0));
         }
@@ -137,6 +145,7 @@ public class AltManager extends GuiScreen {
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+
         if (mouseY >= 36 && mouseY <= height - 46)
             if (mouseX >= width / 2 + 140 || mouseX <= width / 2 - 126) {
                 altslot.elementClicked(-1, false, 0, 0);
@@ -147,12 +156,14 @@ public class AltManager extends GuiScreen {
 
     @Override
     public void handleMouseInput() throws IOException {
+
         super.handleMouseInput();
         altslot.handleMouseInput();
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
         super.drawDefaultBackground();
         altslot.drawScreen(mouseX, mouseY, partialTicks);
         DarkForge.FONT_MANAGER.hud.drawCenteredString("Account Manager", width / 2, 2, 16777215);

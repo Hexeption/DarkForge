@@ -44,6 +44,7 @@ public final class FontData {
      * Creates a font image and the character locations within the font image.
      */
     public FontData setFont(Font font, boolean antialias) {
+
         return setFont(font, antialias, antialias, 16, 2);
     }
 
@@ -51,6 +52,7 @@ public final class FontData {
      * Creates a font image and the character locations within the font image.
      */
     private FontData setFont(Font font, boolean antialias, boolean fractionalmetrics, int characterCount, int padding) {
+
         if (texId == -1)
             texId = GLUtils.getTexture();
 
@@ -121,6 +123,7 @@ public final class FontData {
      * Binds the font texture.
      */
     public void bind() {
+
         GlStateManager.bindTexture(texId);
     }
 
@@ -128,6 +131,7 @@ public final class FontData {
      * @return The bounds of the character within the font image.
      */
     public CharacterData getCharacterBounds(char character) {
+
         return characterBounds[character];
     }
 
@@ -135,6 +139,7 @@ public final class FontData {
      * @return The total width of each character within the string.
      */
     public int getStringWidth(String text) {
+
         int width = 0;
         for (char c : text.toCharArray()) {
             width += characterBounds[c].width;
@@ -146,6 +151,7 @@ public final class FontData {
      * @return True if the character has been mapped in this font.
      */
     public boolean hasBounds(char character) {
+
         return character >= 0 && character < 256;
     }
 
@@ -153,18 +159,22 @@ public final class FontData {
      * @return True if the font has not been set.
      */
     public boolean hasFont() {
+
         return texId != -1;
     }
 
     public int getFontHeight() {
+
         return fontHeight;
     }
 
     public int getTextureWidth() {
+
         return textureWidth;
     }
 
     public int getTextureHeight() {
+
         return textureHeight;
     }
 
@@ -174,11 +184,15 @@ public final class FontData {
     public class CharacterData {
 
         public final int x;
+
         public final int y;
+
         public final int width;
+
         public final int height;
 
         public CharacterData(int x, int y, int width, int height) {
+
             this.x = x;
             this.y = y;
             this.width = width;
