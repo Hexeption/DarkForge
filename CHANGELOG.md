@@ -5,6 +5,54 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
+**:gem: Added new Event System, Themeable Hud**
+
+
+[9538a19e369c7dd](https://github.com/Hexeption/DarkForge/commit/9538a19e369c7dd) Hexeption *2017-02-24 18:27:49*
+
+**:gem: Updated Forge Version from "2237" to "2251"**
+
+
+[b401b12289bb8df](https://github.com/Hexeption/DarkForge/commit/b401b12289bb8df) Hexeption *2017-02-24 17:48:10*
+
+**:gem: Updated CFont**
+
+
+[f07cddc04286ead](https://github.com/Hexeption/DarkForge/commit/f07cddc04286ead) Hexeption *2017-02-24 17:30:48*
+
+**Moved some files around**
+
+
+[924f96ce589ee49](https://github.com/Hexeption/DarkForge/commit/924f96ce589ee49) Hexeption *2017-02-24 17:10:27*
+
+**Removed Old Gui**
+
+
+[c4a643441bcbaec](https://github.com/Hexeption/DarkForge/commit/c4a643441bcbaec) Hexeption *2017-02-24 16:50:30*
+
+
+## release-b9
+### No issue
+
+**Update README.md**
+
+
+[b13760be727aaf0](https://github.com/Hexeption/DarkForge/commit/b13760be727aaf0) Hexeption *2017-02-24 15:36:17*
+
+**i have crippling depression**
+
+
+[49a5646e73b489b](https://github.com/Hexeption/DarkForge/commit/49a5646e73b489b) v0idst4r *2017-02-19 12:12:47*
+
+
+## release-b7
+### No issue
+
+**Updated ChangeLog**
+
+
+[1b0a31c41baa40e](https://github.com/Hexeption/DarkForge/commit/1b0a31c41baa40e) Hexeption *2017-02-23 22:40:17*
+
 **Added Commands**
 
 
@@ -19,6 +67,10 @@ Changelog of DarkForge
 
 
 [acc580f12f2f2c2](https://github.com/Hexeption/DarkForge/commit/acc580f12f2f2c2) Hexeption *2017-02-23 21:31:54*
+
+
+## release-b6
+### No issue
 
 **Updated ChangeLog**
 
