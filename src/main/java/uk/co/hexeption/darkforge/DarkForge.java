@@ -32,19 +32,24 @@ import uk.co.hexeption.darkforge.managers.CommandManager;
 import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.managers.FileManager;
 import uk.co.hexeption.darkforge.managers.ModuleManager;
+import uk.co.hexeption.darkforge.ui.hud.Hud;
 
 @SideOnly(Side.CLIENT)
 @Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)
 public class DarkForge {
 
+
     /**
      * TODO: Fix Static Crash Bug!
+     * TODO: Redo the Events
      */
     public static final EventManager EVENT_MANAGER = new EventManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final FontManager FONT_MANAGER = new FontManager();
     public static final FileManager FILE_MANAGER = new FileManager();
+    public static final Hud HUD = new Hud();
+
     @Mod.Instance(ClientInfo.MOD_ID)
     public static DarkForge instance;
     public String commandPrefix = "#";
@@ -68,15 +73,17 @@ public class DarkForge {
         LogHelper.info("Loading Commands...");
         COMMAND_MANAGER.Initialization();
 
-
         LogHelper.info("Registering Forge Events");
         MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
 
         LogHelper.info("Loading Fonts...");
-        FONT_MANAGER.loadFonts();
+        FONT_MANAGER.Initialization();
 
-        LogHelper.info("Loading config..");
-        FILE_MANAGER.initialization();
+        LogHelper.info("Loading Hud...");
+        HUD.Initialization();
+
+        LogHelper.info("Loading Config...");
+        FILE_MANAGER.Initialization();
 
     }
 

@@ -32,6 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.event.events.render.EventRender2D;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
@@ -107,6 +108,9 @@ public class EventManager {
                     module.onGuiRender();
                 }
             }
+
+            EventRender2D eventRender2D = new EventRender2D(Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+            eventRender2D.call();
 
         }
     }

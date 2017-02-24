@@ -44,7 +44,7 @@ public class FileManager {
     private final File MODULE = new File(DARKFORGE_DIR, "modules.json");
     private final File ALTS = new File(DARKFORGE_DIR, "alts.json");
 
-    public void initialization() {
+    public void Initialization() {
 
         if (!DARKFORGE_DIR.exists())
             DARKFORGE_DIR.mkdir();

@@ -42,7 +42,7 @@ public class FontManager {
 
     public FontManager() {
 
-        loadFonts();
+        Initialization();
 
     }
 
@@ -54,10 +54,10 @@ public class FontManager {
     public static void setFontName(String fontName) {
 
         FontManager.fontName = fontName;
-        DarkForge.instance.FONT_MANAGER.loadFonts();
+        DarkForge.instance.FONT_MANAGER.Initialization();
     }
 
-    public void loadFonts() {
+    public void Initialization() {
 
         hud.setFont(new Font(fontName, Font.PLAIN, 22), true);
         arraylist.setFont(new Font(fontName, Font.PLAIN, 18), true);
