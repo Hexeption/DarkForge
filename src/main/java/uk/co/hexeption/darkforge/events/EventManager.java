@@ -32,9 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.gui.base.Window;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.modules.Gui;
 import uk.co.hexeption.darkforge.module.modules.Tracers;
 import uk.co.hexeption.darkforge.screen.gui.DarkForgeMainMenu;
 
@@ -107,12 +105,6 @@ public class EventManager {
             for (final Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
                 if (module.getState()) {
                     module.onGuiRender();
-                }
-            }
-
-            for (final Window window : DarkForge.instance.MODULE_MANAGER.getModuleByClass(Gui.class).getGui().getWindowList()) {
-                if (window.getPinned()) {
-                    window.drawWindow(0, 0);
                 }
             }
 

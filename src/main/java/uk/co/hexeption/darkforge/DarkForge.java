@@ -26,7 +26,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.hexeption.darkforge.api.APIModuleSetup;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.command.CommandManager;
 import uk.co.hexeption.darkforge.config.FileManager;
@@ -72,8 +71,6 @@ public class DarkForge {
 
         LogHelper.info("Registering Forge Events");
         MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
-
-        APIModuleSetup.setupModules();
 
         LogHelper.info("Loading Fonts...");
         FONT_MANAGER.loadFonts();
