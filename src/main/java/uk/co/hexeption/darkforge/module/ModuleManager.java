@@ -70,14 +70,13 @@ public class ModuleManager {
      * @param <T>
      * @return
      */
-    @SuppressWarnings("unchecked")
     public <T extends Module> T getModuleByClass(final Class<T> clazz) {
 
         synchronized (this.modules) {
             for (final Module module : modules) {
                 if (module.getClass().equals(clazz)) {
 
-                    return (T) module;
+                    return clazz.cast(module);
                 }
             }
         }
