@@ -18,6 +18,12 @@ Darkforge is a Forge Mod for Minecraft that allows you to hack on modded servers
 
 ---
 
+##Build Server & Code Quality Checks
+####Teamcity (Login as Guest)- [Link](http://teamcity.hexeption.co.uk:8111/viewType.html?buildTypeId=DarkForge_ReleaseBuild)
+####SonarQube - [Link](http://sonar.hexeption.co.uk:9000/dashboard?id=DarkForge)
+
+---
+
 ##Contribution 
 ####halalaboos [CFont](https://bitbucket.org/halalaboos/huzuni-final/src/8a99d697bcf3ec6157f2c9cbc7c6dbb497c1bf67/vFINALmc1.10.2/net/halalaboos/huzuni/render/font/?at=master)
 ####v0idst4r [60dc57f](https://github.com/Hexeption/DarkForge/commit/60dc57f407bf6b9d0901a8c583cd4e0cb589451e)
