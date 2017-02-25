@@ -32,4 +32,8 @@ import uk.co.hexeption.darkforge.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class 
+@SideOnly(Side.CLIENT)
+@Module.ModInfo(name = "AutoSprint", description = "highlights a block", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_O)
+public class BlockOverlay extends Module {
+    
+}
