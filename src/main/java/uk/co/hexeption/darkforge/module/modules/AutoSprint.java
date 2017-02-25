@@ -36,4 +36,26 @@ import static org.lwjgl.opengl.GL11.*;
 @Module.ModInfo(name = "AutoSprint", description = "Automatically Sprints for you.", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_S)
 public class BlockOverlay extends Module {
     
+        @Override
+    @SideOnly(Side.CLIENT)
+    public void onEnable() {
+
+        getPlayer().setSprinting(true);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onDisable() {
+
+        getPlayer().setSprinting(false);
+    }
+
+    @Override
+  public void onWorldTick()
+  {
+    if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && 
+      (!mc.player.isSneaking())) {
+      mc.player.setSprinting(true);
+    }
+    
 }
