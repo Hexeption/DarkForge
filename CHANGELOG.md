@@ -5,6 +5,36 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
+**:gem: Added Teamcity and SonarCube links**
+
+
+[f212b40f433406e](https://github.com/Hexeption/DarkForge/commit/f212b40f433406e) Hexeption *2017-02-25 02:03:47*
+
+**:bug: Fixed Reflection**
+
+
+[e9e6877869b94ac](https://github.com/Hexeption/DarkForge/commit/e9e6877869b94ac) Hexeption *2017-02-24 23:26:54*
+
+**Grammar (Again)**
+
+ * Here is the Grammar Fix
+
+[a39f67131c379ae](https://github.com/Hexeption/DarkForge/commit/a39f67131c379ae) Xdarkwolf33 *2017-02-24 22:41:19*
+
+**Update README.md**
+
+
+[8bf620af18f7cda](https://github.com/Hexeption/DarkForge/commit/8bf620af18f7cda) Xdarkwolf33 *2017-02-24 21:16:38*
+
+**Grammar Update #1**
+
+ * Changed Line 47 to say:
+ * this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, &quot;alt Manager&quot;));
+ * to
+ * this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, &quot;Alt Manager&quot;));
+
+[e636026350535db](https://github.com/Hexeption/DarkForge/commit/e636026350535db) Xdarkwolf33 *2017-02-24 21:06:26*
+
 **:gem: Reformatted and added IntelliJ Formatting**
 
 
