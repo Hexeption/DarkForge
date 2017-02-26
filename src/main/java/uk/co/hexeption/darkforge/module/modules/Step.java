@@ -17,9 +17,4 @@ public class Step extends Module {
 	public void onDisable() {
 		getPlayer().stepHeight = 0.5f;
 	}
-	    
-    public EntityPlayerSP getPlayer()
-    {
-    	return Minecraft.getMinecraft().player;
-    }
 }
