@@ -16,29 +16,43 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ui.hud.themes;
+package uk.co.hexeption.darkforge.gui.gui.base;
 
-import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+import java.util.ArrayList;
 
-public class DarkForgeHud implements IGameHud {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public class Container extends Component {
 
-    @Override
-    public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
-        DarkForge.CLICK_GUI.renderPinned();
+    private ArrayList<Component> components = new ArrayList<>();
 
-//        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
+
+    public Container(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+
+        super(xPos, yPos, width, height, componentType, component, text);
     }
 
-    @Override
-    public String name() {
+    public void addComponent(Component c) {
 
-        return "DarkForge";
+        components.add(c);
     }
 
-    @Override
-    public void onKeyPressed(int key) {
+    public void removeCompoent(Component c) {
 
+        components.remove(c);
     }
+
+    public void renderChildren(int mouseX, int mouseY) {
+
+        for (Component c : getComponents()) {
+            c.render(mouseX, mouseY);
+        }
+    }
+
+    public ArrayList<Component> getComponents() {
+
+        return components;
+    }
+
 }

@@ -28,10 +28,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.font.FontManager;
-import uk.co.hexeption.darkforge.managers.CommandManager;
-import uk.co.hexeption.darkforge.managers.EventManager;
-import uk.co.hexeption.darkforge.managers.FileManager;
-import uk.co.hexeption.darkforge.managers.ModuleManager;
+import uk.co.hexeption.darkforge.gui.gui.ClickGui;
+import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 
 @SideOnly(Side.CLIENT)
@@ -52,6 +50,8 @@ public class DarkForge {
     public static final FontManager FONT_MANAGER = new FontManager();
 
     public static final FileManager FILE_MANAGER = new FileManager();
+
+    public static final GuiManager CLICK_GUI = new GuiManager();
 
     public static final Hud HUD = new Hud();
 
@@ -87,6 +87,8 @@ public class DarkForge {
 
         LogHelper.info("Loading Hud...");
         HUD.Initialization();
+
+        CLICK_GUI.Initialization();
 
         LogHelper.info("Loading Config...");
         FILE_MANAGER.Initialization();

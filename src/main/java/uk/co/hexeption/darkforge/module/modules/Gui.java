@@ -16,29 +16,22 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ui.hud.themes;
+package uk.co.hexeption.darkforge.module.modules;
 
 import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+import uk.co.hexeption.darkforge.module.Module;
 
-public class DarkForgeHud implements IGameHud {
-
-    @Override
-    public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
-        DarkForge.CLICK_GUI.renderPinned();
-
-//        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
-    }
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+@Module.ModInfo(name = "Click Gui", description = "Enable shit", category = Module.Category.GUI, bind = Keyboard.KEY_LCONTROL)
+public class Gui extends Module {
 
     @Override
-    public String name() {
+    public void onEnable() {
 
-        return "DarkForge";
-    }
-
-    @Override
-    public void onKeyPressed(int key) {
-
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.CLICK_GUI);
     }
 }

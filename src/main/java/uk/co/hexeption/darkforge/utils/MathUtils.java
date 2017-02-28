@@ -16,29 +16,23 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ui.hud.themes;
+package uk.co.hexeption.darkforge.utils;
 
-import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public class MathUtils {
 
-public class DarkForgeHud implements IGameHud {
+    //TODO: Add Math
 
-    @Override
-    public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
-        DarkForge.CLICK_GUI.renderPinned();
+    public static int getMiddle(int i, int j) {
 
-//        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
+        return (i + j) / 2;
     }
 
-    @Override
-    public String name() {
+    public static double getMiddleDouble(int i, int j) {
 
-        return "DarkForge";
+        return ((double) i + (double) j) / 2.0;
     }
 
-    @Override
-    public void onKeyPressed(int key) {
-
-    }
 }

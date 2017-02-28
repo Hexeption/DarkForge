@@ -16,29 +16,15 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.ui.hud.themes;
+package uk.co.hexeption.darkforge.gui.gui.listener;
 
-import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+import uk.co.hexeption.darkforge.gui.gui.base.Component;
 
-public class DarkForgeHud implements IGameHud {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public interface ComponentClickListener {
 
-    @Override
-    public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
-        DarkForge.CLICK_GUI.renderPinned();
+    void onComponenetClick(Component component, int button);
 
-//        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
-    }
-
-    @Override
-    public String name() {
-
-        return "DarkForge";
-    }
-
-    @Override
-    public void onKeyPressed(int key) {
-
-    }
 }
