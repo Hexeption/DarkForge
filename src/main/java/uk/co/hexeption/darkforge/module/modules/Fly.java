@@ -27,7 +27,7 @@ import uk.co.hexeption.darkforge.module.Module;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENET, bind = Keyboard.KEY_F)
+@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_F)
 public class Fly extends Module {
 
     @Override

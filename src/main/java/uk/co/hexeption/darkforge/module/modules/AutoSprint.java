@@ -18,44 +18,33 @@
 
 package uk.co.hexeption.darkforge.module.modules;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.*;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.*;
-import org.lwjgl.*;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.*;
-
-import static org.lwjgl.opengl.GL11.*;
 
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "AutoSprint", description = "Automatically Sprints for you.", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_S)
-public class BlockOverlay extends Module {
-    
-        @Override
-    @SideOnly(Side.CLIENT)
+@Module.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_S)
+public class AutoSprint extends Module {
+
+    @Override
     public void onEnable() {
 
         getPlayer().setSprinting(true);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void onDisable() {
 
         getPlayer().setSprinting(false);
     }
 
     @Override
-  public void onWorldTick()
-  {
-    if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && 
-      (!mc.player.isSneaking())) {
-      mc.player.setSprinting(true);
+    public void onWorldTick() {
+
+        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+            mc.player.setSprinting(true);
+        }
+
     }
-    
 }

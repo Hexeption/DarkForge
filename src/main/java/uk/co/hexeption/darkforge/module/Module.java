@@ -203,7 +203,7 @@ public class Module {
     }
 
     public enum Category {
-        COMBAT(0x3ABDFF), MOVEMENET(0xF8FF1F), RENDER(0x48FF1F), WORLD(0xCF1FFF), MISC(0xFFC100), PLAYER(0x00FFEC), GUI(0);
+        COMBAT(0x3ABDFF), MOVEMENT(0xF8FF1F), RENDER(0x48FF1F), WORLD(0xCF1FFF), MISC(0xFFC100), PLAYER(0x00FFEC), GUI(0);
 
         public int color;
 
