@@ -16,24 +16,14 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
+package uk.co.hexeption.darkforge.gui.gui.listener;
 
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
-import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
+import uk.co.hexeption.darkforge.gui.gui.elements.CheckButton;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 28/02/2017.
  */
-public class DarkForgeTheme extends Theme {
+public interface CheckButtonClickListener {
 
-    public DarkForgeTheme() {
-
-        super("DarkForge");
-        this.fontRenderer = DarkForge.FONT_MANAGER.clickGui;
-        addRenderer(ComponentType.FRAME, new DarkForgeFrame(this));
-        addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
-        addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));
-        addRenderer(ComponentType.CHECK_BUTTON, new DarkForgeCheckButton(this));
-    }
+    void onCheckButtonClick(CheckButton checkButton);
 }
