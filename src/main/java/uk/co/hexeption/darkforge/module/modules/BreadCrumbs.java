@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.api.annotation.TestClass;
 import uk.co.hexeption.darkforge.module.Module;
 
@@ -53,16 +54,13 @@ public class BreadCrumbs extends Module {
         synchronized (positions) {
             glPushMatrix();
 
+            glDisable(GL11.GL_TEXTURE_2D);
+            glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL11.GL_LINE_SMOOTH);
+            glEnable(GL11.GL_BLEND);
+            glDisable(GL11.GL_DEPTH_TEST);
             getEntityRenderer().disableLightmap();
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glLineWidth(1.5f);
-            glDisable(GL_LIGHTING);
-            glDisable(GL_TEXTURE_2D);
-            glEnable(GL_LINE_SMOOTH);
-            glDisable(GL_DEPTH_TEST);
-            glDepthMask(false);
-            glBegin(GL_LINE_STRIP);
+            glBegin(GL11.GL_LINE_STRIP);
             glColor4d(0, 0.7D, 0.7D, 1);
             double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
             double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
@@ -74,13 +72,10 @@ public class BreadCrumbs extends Module {
 
             glColor4d(1, 1, 1, 1);
             glEnd();
-            glDisable(GL_LINE_SMOOTH);
-            glEnable(GL_TEXTURE_2D);
-            glEnable(GL_LIGHTING);
-            glEnable(GL_DEPTH_TEST);
-            glDepthMask(true);
-//            glDisable(GL_BLEND);
-            getEntityRenderer().enableLightmap();
+            glEnable(GL11.GL_DEPTH_TEST);
+            glDisable(GL11.GL_LINE_SMOOTH);
+            glDisable(GL11.GL_BLEND);
+            glEnable(GL11.GL_TEXTURE_2D);
             glPopMatrix();
         }
     }
