@@ -55,9 +55,9 @@ public class DarkForgeButton extends ComponentRenderer {
         RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
 
         if (button.isEnabled()) {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.green.hashCode());
+            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.green.hashCode());
         } else {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.white.hashCode());
+            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
         }
     }
 }

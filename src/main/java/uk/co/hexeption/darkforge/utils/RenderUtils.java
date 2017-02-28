@@ -40,7 +40,6 @@ import static org.lwjgl.opengl.GL11.*;
 @SideOnly(Side.CLIENT)
 public class RenderUtils {
 
-
     private static final AxisAlignedBB DEFAULT_AABB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
 
     public static void drawESP(final AxisAlignedBB bb, final double r, final double g, final double b) {
@@ -102,8 +101,8 @@ public class RenderUtils {
 
     }
 
-    public static void drawFilledCircle(int cx, int cy, double r, int c)
-    {
+    public static void drawFilledCircle(int cx, int cy, double r, int c) {
+
         r *= 2.0D;
         cx *= 2;
         cy *= 2;
@@ -118,8 +117,7 @@ public class RenderUtils {
         glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
         GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 
-        for (int i = 0; i <= 360; i++)
-        {
+        for (int i = 0; i <= 360; i++) {
             double x = Math.sin(i * Math.PI / 180.0D) * r;
             double y = Math.cos(i * Math.PI / 180.0D) * r;
             GL11.glVertex2d(cx + x, cy + y);
@@ -132,9 +130,8 @@ public class RenderUtils {
     }
 
 
+    public static void enableGL2D() {
 
-    public static void enableGL2D()
-    {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -145,16 +142,14 @@ public class RenderUtils {
         GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_NICEST);
     }
 
-    public static void disableGL2D()
-    {
+    public static void disableGL2D() {
+
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_DONT_CARE);
         GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_DONT_CARE);
     }
-
 
 
     public static void color(final int color) {
@@ -294,7 +289,7 @@ public class RenderUtils {
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_DEPTH_TEST);
         glDepthMask(true);
-        glDisable(GL_BLEND);
+//        glDisable(GL_BLEND);
     }
 
     public static void drawSolidBox() {
@@ -408,7 +403,6 @@ public class RenderUtils {
         GL11.glEnd();
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
     }
 
     public static void drawHLine(float par1, float par2, float par3, int color) {
@@ -463,7 +457,6 @@ public class RenderUtils {
         GL11.glEnd();
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
     }
 
@@ -497,7 +490,6 @@ public class RenderUtils {
         GL11.glEnd();
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
     }
 

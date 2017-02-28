@@ -75,6 +75,6 @@ public class FontManager {
         buttonHoverd.setFont(new Font(fontName, Font.PLAIN, 25), true);
         chat.setFont(new Font("Verdana", Font.PLAIN, 17), true);
         guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
-        clickGui.setFont(new Font("Arial", Font.PLAIN, 16), true);
+        clickGui.setFont(new Font(fontName, Font.PLAIN, 16), true);
     }
 }

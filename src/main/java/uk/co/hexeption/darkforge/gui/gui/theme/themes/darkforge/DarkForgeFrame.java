@@ -65,10 +65,10 @@ public class DarkForgeFrame extends ComponentRenderer {
         if (frame.isPinnable()) {
             isPinnable(frame, dimension, mouseX, mouseY);
         }
-
         GLUtils.glColor(new Color(54, 54, 54));
         theme.fontRenderer.drawCenteredString(frame.getText(), frame.getX() + 30, MathUtils.getMiddle(frame.getY(), (int) (frame.getY() + 18)) - (theme.fontRenderer.getHeight() / 10), Color.WHITE.hashCode());
         GLUtils.glColor(new Color(54, 54, 54));
+
     }
 
 
