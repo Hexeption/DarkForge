@@ -43,7 +43,7 @@ public class Container extends Component {
         components.remove(c);
     }
 
-    public void renderCompoents(int mouseX, int mouseY) {
+    public void renderChildren(int mouseX, int mouseY) {
 
         for (Component c : getComponents()) {
             c.render(mouseX, mouseY);

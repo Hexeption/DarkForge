@@ -51,7 +51,7 @@ public class DarkForge {
 
     public static final FileManager FILE_MANAGER = new FileManager();
 
-    public static final ClickGui CLICK_GUI = new GuiManager();
+    public static final GuiManager CLICK_GUI = new GuiManager();
 
     public static final Hud HUD = new Hud();
 
@@ -87,6 +87,8 @@ public class DarkForge {
 
         LogHelper.info("Loading Hud...");
         HUD.Initialization();
+
+        CLICK_GUI.Initialization();
 
         LogHelper.info("Loading Config...");
         FILE_MANAGER.Initialization();

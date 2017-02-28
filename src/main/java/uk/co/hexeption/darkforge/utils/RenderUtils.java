@@ -27,6 +27,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+import uk.co.hexeption.darkforge.utils.render.GLUtils;
+
+import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -97,6 +101,60 @@ public class RenderUtils {
 //        glDisable(GL_BLEND);
 
     }
+
+    public static void drawFilledCircle(int cx, int cy, double r, int c)
+    {
+        r *= 2.0D;
+        cx *= 2;
+        cy *= 2;
+        float f = (c >> 24 & 0xFF) / 255.0F;
+        float f1 = (c >> 16 & 0xFF) / 255.0F;
+        float f2 = (c >> 8 & 0xFF) / 255.0F;
+        float f3 = (c & 0xFF) / 255.0F;
+        enableGL2D();
+        GL11.glScalef(0.5F, 0.5F, 0.5F);
+        GL11.glColor4f(f1, f2, f3, f);
+        glEnable(GL_POLYGON_SMOOTH);
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+
+        for (int i = 0; i <= 360; i++)
+        {
+            double x = Math.sin(i * Math.PI / 180.0D) * r;
+            double y = Math.cos(i * Math.PI / 180.0D) * r;
+            GL11.glVertex2d(cx + x, cy + y);
+        }
+
+        GL11.glEnd();
+        GL11.glScalef(2.0F, 2.0F, 2.0F);
+        disableGL2D();
+        glDisable(GL_POLYGON_SMOOTH);
+    }
+
+
+
+    public static void enableGL2D()
+    {
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glDepthMask(true);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
+        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_NICEST);
+    }
+
+    public static void disableGL2D()
+    {
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_DONT_CARE);
+        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_DONT_CARE);
+    }
+
 
 
     public static void color(final int color) {
@@ -333,6 +391,114 @@ public class RenderUtils {
     public static AxisAlignedBB getBoundingBox(BlockPos pos) {
 
         return Minecraft.getMinecraft().world.getBlockState(pos).getBoundingBox(Minecraft.getMinecraft().world, pos).offset(pos);
+    }
+
+    public static void drawTri(double x1, double y1, double x2, double y2, double x3, double y3, double width, Color c) {
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GLUtils.glColor(c);
+        GL11.glLineWidth((float) width);
+        GL11.glBegin(GL11.GL_LINE_STRIP);
+        GL11.glVertex2d(x1, y1);
+        GL11.glVertex2d(x2, y2);
+        GL11.glVertex2d(x3, y3);
+        GL11.glEnd();
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    public static void drawHLine(float par1, float par2, float par3, int color) {
+
+        if (par2 < par1) {
+            float var5 = par1;
+            par1 = par2;
+            par2 = var5;
+        }
+
+        drawRect(par1, par3, par2 + 1, par3 + 1, color);
+    }
+
+    public static void drawVLine(float par1, float par2, float par3, int color) {
+
+        if (par3 < par2) {
+            float var5 = par2;
+            par2 = par3;
+            par3 = var5;
+        }
+
+        drawRect(par1, par2 + 1, par1 + 1, par3, color);
+    }
+
+    public static void drawRect(float left, float top, float right, float bottom, Color color) {
+
+        float var5;
+
+        if (left < right) {
+            var5 = left;
+            left = right;
+            right = var5;
+        }
+
+        if (top < bottom) {
+            var5 = top;
+            top = bottom;
+            bottom = var5;
+        }
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glPushMatrix();
+        GLUtils.glColor(color);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glVertex2d((float) left, (float) bottom);
+        GL11.glVertex2d((float) right, (float) bottom);
+        GL11.glVertex2d((float) right, (float) top);
+        GL11.glVertex2d((float) left, (float) top);
+        GL11.glEnd();
+        GL11.glPopMatrix();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+    }
+
+    public static void drawRect(float left, float top, float right, float bottom, int color) {
+
+        float var5;
+
+        if (left < right) {
+            var5 = left;
+            left = right;
+            right = var5;
+        }
+
+        if (top < bottom) {
+            var5 = top;
+            top = bottom;
+            bottom = var5;
+        }
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glPushMatrix();
+        GLUtils.glColor(color);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glVertex2d((float) left, (float) bottom);
+        GL11.glVertex2d((float) right, (float) bottom);
+        GL11.glVertex2d((float) right, (float) top);
+        GL11.glVertex2d((float) left, (float) top);
+        GL11.glEnd();
+        GL11.glPopMatrix();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
     }
 
 }

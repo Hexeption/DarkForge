@@ -65,7 +65,7 @@ public class Interactable {
 
     }
 
-    public int getxPos() {
+    public int getX() {
 
         return xPos;
     }
@@ -75,7 +75,7 @@ public class Interactable {
         this.xPos = xPos;
     }
 
-    public int getyPos() {
+    public int getY() {
 
         return yPos;
     }

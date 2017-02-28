@@ -59,6 +59,7 @@ public class ClickGui extends GuiScreen {
     public void handleInput() throws IOException {
 
         int scale = mc.gameSettings.guiScale;
+        mc.gameSettings.guiScale = 2;
 
         if (Keyboard.isCreated()) {
             Keyboard.enableRepeatEvents(true);
@@ -88,11 +89,13 @@ public class ClickGui extends GuiScreen {
                     mouse[1] = mouseY;
                 } else if (Mouse.getEventButtonState()) {
                     onMouseClick(mouseX, mouseY, Mouse.getEventButton());
-                }else{
+                } else {
                     onMouseRelease(mouseX, mouseY);
                 }
             }
         }
+
+        mc.gameSettings.guiScale = scale;
 
         super.handleInput();
     }
@@ -122,7 +125,7 @@ public class ClickGui extends GuiScreen {
         }
 
         if (dragging && this.currentFrame != null) {
-            int yOffset = (int) ((y - this.draggingOffset.getY()) - currentFrame.getyPos());
+            int yOffset = (int) ((y - this.draggingOffset.getY()) - currentFrame.getY());
             currentFrame.setxPos((int) (x - this.draggingOffset.getX()));
             currentFrame.setyPos((int) (y - this.draggingOffset.getY()));
 
@@ -134,8 +137,8 @@ public class ClickGui extends GuiScreen {
                     int height = 0;
 
                     for (Component component1 : container.getComponents()) {
-                        component1.setxPos(component.getxPos());
-                        component1.setyPos(component.getyPos());
+                        component1.setxPos(component.getX());
+                        component1.setyPos(component.getY());
                         height += component1.getDimension().height;
                     }
                 }
@@ -175,7 +178,7 @@ public class ClickGui extends GuiScreen {
 
                 if (frame.isMouseOver(x, y)) {
                     this.dragging = true;
-                    this.draggingOffset = new Vector2f(x - frame.getxPos(), y - frame.getyPos());
+                    this.draggingOffset = new Vector2f(x - frame.getX(), y - frame.getY());
                 }
 
                 frame.onMousePress(x, y, buttonID);
@@ -186,7 +189,7 @@ public class ClickGui extends GuiScreen {
     public void onUpdate() {
 
         for (Frame frame : frames) {
-            frame.onUpdate();
+            frame.updateComponents();
         }
     }
 
@@ -210,4 +213,6 @@ public class ClickGui extends GuiScreen {
 
         return theme;
     }
+
+
 }

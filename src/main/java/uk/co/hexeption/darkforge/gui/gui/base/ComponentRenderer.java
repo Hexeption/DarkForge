@@ -48,37 +48,5 @@ public class ComponentRenderer {
 
     }
 
-    public static void drawRect(float left, float top, float right, float bottom, Color color) {
 
-        float var5;
-
-        if (left < right) {
-            var5 = left;
-            left = right;
-            right = var5;
-        }
-
-        if (top < bottom) {
-            var5 = top;
-            top = bottom;
-            bottom = var5;
-        }
-
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GL11.glPushMatrix();
-        GLUtils.glColor(color);
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2d((float) left, (float) bottom);
-        GL11.glVertex2d((float) right, (float) bottom);
-        GL11.glVertex2d((float) right, (float) top);
-        GL11.glVertex2d((float) left, (float) top);
-        GL11.glEnd();
-        GL11.glPopMatrix();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_LINE_SMOOTH);
-    }
 }

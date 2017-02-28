@@ -25,6 +25,7 @@ import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.elements.Button;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
+import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 
 import java.awt.*;
@@ -47,17 +48,18 @@ public class DarkForgeButton extends ComponentRenderer {
         String text = button.getText();
         Color color = new Color(31, 31, 31, 20);
 
-        if (GLUtils.isHovered(button.getxPos(), button.getyPos(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
+        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
             color = new Color(31, 31, 31, 120);
         }
 
-        drawRect(button.getxPos(), button.getyPos(), button.getxPos() + button.getDimension().width - 1, button.getyPos() + button.getDimension().height, color);
+        System.out.println("Testing");
+
+        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
 
         if (button.isEnabled()) {
-            theme.fontRenderer.drawString(text, button.getxPos() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getyPos() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.green.hashCode());
+            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.green.hashCode());
         } else {
-            theme.fontRenderer.drawString(text, button.getxPos() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getyPos() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.white.hashCode());
+            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.white.hashCode());
         }
-
     }
 }

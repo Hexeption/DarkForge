@@ -40,11 +40,11 @@ public class Frame extends Container {
     }
 
     @Override
-    public void renderCompoents(int mouseX, int mouseY) {
+    public void renderChildren(int mouseX, int mouseY) {
 
         if (this.isMaximized()) {
             GL11.glEnable(GL11.GL_SCISSOR_TEST);
-            GL11.glScissor(getxPos() * 2, Display.getHeight() - ((getyPos() + getDimension().height) * 2), getDimension().width * 2, (getDimension().height - getFrameBoxHeight()) * 2);
+            GL11.glScissor(getX() * 2, Display.getHeight() - ((getY() + getDimension().height) * 2), getDimension().width * 2, (getDimension().height - getFrameBoxHeight()) * 2);
 
             for (Component component : getComponents()) {
                 component.render(mouseX, mouseY);
@@ -61,7 +61,7 @@ public class Frame extends Container {
             ClickGui.getTheme().getRenderer().get(getComponentType()).doInteractions(this, x, y);
         }
 
-        if (x >= getxPos() && y >= getyPos() + this.getFrameBoxHeight() && x <= getxPos() + getDimension().getWidth() && y <= getyPos() + getDimension().getHeight()) {
+        if (x >= getX() && y >= getY() + this.getFrameBoxHeight() && x <= getX() + getDimension().getWidth() && y <= getY() + getDimension().getHeight()) {
             for (Component c : this.getComponents()) {
                 if (c.isMouseOver(x, y) && maximized) {
                     c.onMousePress(x, y, buttonID);
@@ -73,7 +73,7 @@ public class Frame extends Container {
     @Override
     public void onMouseRelease(int x, int y, int buttonID) {
 
-        if (x >= getxPos() && y >= getyPos() + this.getFrameBoxHeight() && x <= getxPos() + getDimension().getWidth() && y <= getyPos() + getDimension().getHeight()) {
+        if (x >= getX() && y >= getY() + this.getFrameBoxHeight() && x <= getX() + getDimension().getWidth() && y <= getY() + getDimension().getHeight()) {
             for (Component c : this.getComponents()) {
                 if (c.isMouseOver(x, y) && maximized) {
                     c.onMouseRelease(x, y, buttonID);
@@ -89,7 +89,7 @@ public class Frame extends Container {
             ClickGui.getTheme().getRenderer().get(getComponentType()).doInteractions(this, x, y);
         }
 
-        if (x >= getxPos() && y >= getyPos() + this.getFrameBoxHeight() && x <= getxPos() + getDimension().getWidth() && y <= getyPos() + getDimension().getHeight()) {
+        if (x >= getX() && y >= getY() + this.getFrameBoxHeight() && x <= getX() + getDimension().getWidth() && y <= getY() + getDimension().getHeight()) {
             for (Component c : this.getComponents()) {
                 if (c.isMouseOver(x, y) && maximized) {
                     c.onMouseDrag(x, y);
@@ -101,7 +101,7 @@ public class Frame extends Container {
 
     public boolean isMouseOverBar(int x, int y) {
 
-        return (x >= getxPos() && y >= getyPos() && x <= getxPos() + getDimension().getWidth() && y <= getyPos() + this.getFrameBoxHeight());
+        return (x >= getX() && y >= getY() && x <= getX() + getDimension().getWidth() && y <= getY() + this.getFrameBoxHeight());
     }
 
     public void scrollFrame(int ammount) {
@@ -124,6 +124,7 @@ public class Frame extends Container {
 
         for (Component c : this.getComponents()) {
             c.onUpdate();
+            System.out.println(c.getComponentType()+ "|" + c.getText() + "|" + c.getClass());
 
             if (c instanceof Container) {
                 Container container = (Container) c;
@@ -132,7 +133,7 @@ public class Frame extends Container {
                 }
             }
 
-            int yCount = getyPos() + this.getFrameBoxHeight();
+            int yCount = getY() + this.getFrameBoxHeight();
 
             for (Component component1 : this.getComponents()) {
                 if (this.getComponents().indexOf(component1) < this.getComponents().indexOf(c)) {
@@ -158,7 +159,7 @@ public class Frame extends Container {
 
     public int getMaxY() {
 
-        return (int) (this.getyPos() + this.getDimension().getHeight());
+        return (int) (this.getY() + this.getDimension().getHeight());
     }
 
     public int getFrameBoxHeight() {

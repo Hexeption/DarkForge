@@ -30,4 +30,9 @@ public class MathUtils {
         return (i + j) / 2;
     }
 
+    public static double getMiddleDouble(int i, int j) {
+
+        return ((double) i + (double) j) / 2.0;
+    }
+
 }

@@ -61,4 +61,9 @@ public class Button extends Component {
 
         return listeners;
     }
+
+    public void setEnabled(boolean enabled) {
+
+        this.enabled = enabled;
+    }
 }
