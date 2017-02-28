@@ -15,7 +15,15 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui.elements;
 
-public class Scrollbar {
+package uk.co.hexeption.darkforge.gui.gui.listener;
+
+import uk.co.hexeption.darkforge.gui.gui.elements.Slider;
+
+/**
+ * Created by Hexeption on 28/02/2017.
+ */
+public interface SliderChangeListener {
+
+    void onSliderChange(Slider slider);
 }

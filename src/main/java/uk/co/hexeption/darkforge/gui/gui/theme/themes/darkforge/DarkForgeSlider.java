@@ -18,12 +18,10 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
-import uk.co.hexeption.darkforge.gui.gui.elements.Button;
+import uk.co.hexeption.darkforge.gui.gui.elements.Slider;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
@@ -31,33 +29,24 @@ import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import java.awt.*;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 28/02/2017.
  */
-@SideOnly(Side.CLIENT)
-public class DarkForgeButton extends ComponentRenderer {
+public class DarkForgeSlider extends ComponentRenderer {
 
-    public DarkForgeButton(Theme theme) {
+    public DarkForgeSlider(Theme theme) {
 
-        super(ComponentType.BUTTON, theme);
+        super(ComponentType.SLIDER, theme);
     }
 
     @Override
     public void drawComponent(Component component, int mouseX, int mouseY) {
 
-        Button button = (Button) component;
-        String text = button.getText();
-        Color color = new Color(31, 31, 31, 20);
-
-        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
-            color = new Color(31, 31, 31, 120);
-        }
-
-        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-
-        if (button.isEnabled()) {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.green.hashCode());
-        } else {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 2), Color.white.hashCode());
-        }
+        Slider slider = (Slider) component;
+        int width = (int) ((slider.getDimension().getWidth()) * slider.getPercent());
+        GLUtils.glColor(new Color(128, 128, 128));
+        theme.fontRenderer.drawString(slider.getText(), slider.getX() + 2, slider.getY() + 2, Color.white.hashCode());
+        theme.fontRenderer.drawString(slider.getValue() + "", slider.getX() + slider.getDimension().width - theme.fontRenderer.getStringWidth(slider.getValue() + "") - 2, slider.getY() + 2, Color.white.hashCode());
+        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, (int) (slider.getX() + (width) + 1), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(7, 23, 38));
+        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, (int) (slider.getX() + (width)), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(128, 128, 128));
     }
 }

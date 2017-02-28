@@ -67,7 +67,7 @@ public class DarkForgeFrame extends ComponentRenderer {
         }
 
         GLUtils.glColor(new Color(54, 54, 54));
-        theme.fontRenderer.drawCenteredString(frame.getText(), frame.getX() + 30, MathUtils.getMiddle(frame.getY(), (int) (frame.getY() + 18)) - (theme.fontRenderer.getHeight() / 2), Color.WHITE.hashCode());
+        theme.fontRenderer.drawCenteredString(frame.getText(), frame.getX() + 30, MathUtils.getMiddle(frame.getY(), (int) (frame.getY() + 18)) - (theme.fontRenderer.getHeight() / 10), Color.WHITE.hashCode());
         GLUtils.glColor(new Color(54, 54, 54));
     }
 
