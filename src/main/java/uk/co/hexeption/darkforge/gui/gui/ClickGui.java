@@ -212,8 +212,6 @@ public class ClickGui extends GuiScreen {
             frame.updateComponents();
         }
 
-        System.out.println(mouse[0] + "|" + mouse[1]);
-
     }
 
 
