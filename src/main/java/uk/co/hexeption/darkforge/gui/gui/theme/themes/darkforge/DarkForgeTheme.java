@@ -35,5 +35,6 @@ public class DarkForgeTheme extends Theme {
         addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
         addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));
         addRenderer(ComponentType.CHECK_BUTTON, new DarkForgeCheckButton(this));
+        addRenderer(ComponentType.EXPANDING_BUTTON, new DarkForgeExpandingButton(this));
     }
 }

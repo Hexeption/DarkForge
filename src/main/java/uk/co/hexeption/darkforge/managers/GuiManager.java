@@ -20,10 +20,7 @@ package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
-import uk.co.hexeption.darkforge.gui.gui.elements.Button;
-import uk.co.hexeption.darkforge.gui.gui.elements.CheckButton;
-import uk.co.hexeption.darkforge.gui.gui.elements.Frame;
-import uk.co.hexeption.darkforge.gui.gui.elements.Slider;
+import uk.co.hexeption.darkforge.gui.gui.elements.*;
 import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
 import uk.co.hexeption.darkforge.gui.gui.listener.SliderChangeListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
@@ -61,6 +58,10 @@ public class GuiManager extends ClickGui {
         final CheckButton checkButton = new CheckButton(0, 0, 100, 18, frame, "Hi", true);
         checkButton.addListeners(checkButton1 -> System.out.println(checkButton1.isEnabled()));
 
+        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, "Testing");;
+        expandingButton.addComponent(slider);
+
+        frame.addComponent(expandingButton);
         frame.addComponent(checkButton);
         frame.addComponent(slider);
         frame.addComponent(button);
