@@ -31,6 +31,7 @@ import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -42,11 +43,11 @@ import static org.lwjgl.opengl.GL11.*;
 @Module.ModInfo(name = "ChestESP", description = "highlights a Chest", category = Module.Category.RENDER, bind = Keyboard.KEY_N)
 public class ChestESP extends Module {
 
-    private final ArrayList<AxisAlignedBB> chest = new ArrayList<>();
+    private final ArrayDeque<AxisAlignedBB> chest = new ArrayDeque<>();
 
-    private final ArrayList<AxisAlignedBB> enderChest = new ArrayList<>();
+    private final ArrayDeque<AxisAlignedBB> enderChest = new ArrayDeque<>();
 
-    private final ArrayList<AxisAlignedBB> trapedChest = new ArrayList<>();
+    private final ArrayDeque<AxisAlignedBB> trapedChest = new ArrayDeque<>();
 
     @Override
     @SideOnly(Side.CLIENT)
