@@ -16,11 +16,12 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.font;
+package uk.co.hexeption.darkforge.managers;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 
 import java.awt.*;
 
