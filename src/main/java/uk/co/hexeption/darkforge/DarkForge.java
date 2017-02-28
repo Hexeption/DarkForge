@@ -66,7 +66,7 @@ public class DarkForge {
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event) {
 
-        if (SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
+        if (!SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
             throw new OutdatedJavaException(String.format("%s requires Java 8 or newer, Please update your java", ClientInfo.MOD_NAME));
         }
 
