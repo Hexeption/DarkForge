@@ -124,7 +124,7 @@ public class Frame extends Container {
 
         for (Component c : this.getComponents()) {
             c.onUpdate();
-            System.out.println(c.getComponentType()+ "|" + c.getText() + "|" + c.getClass());
+//            System.out.println(c.getComponentType()+ "|" + c.getText() + "|" + c.getClass());
 
             if (c instanceof Container) {
                 Container container = (Container) c;

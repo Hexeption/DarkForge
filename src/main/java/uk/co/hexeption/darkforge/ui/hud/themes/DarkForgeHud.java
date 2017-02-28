@@ -26,8 +26,9 @@ public class DarkForgeHud implements IGameHud {
 
     @Override
     public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
+        DarkForge.CLICK_GUI.renderPinned();
 
-        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
+//        DarkForge.FONT_MANAGER.hud.drawString("TEST", 100, 100, 0xffffff);
     }
 
     @Override

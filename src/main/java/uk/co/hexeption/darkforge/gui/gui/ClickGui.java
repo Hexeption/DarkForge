@@ -17,8 +17,10 @@
  ******************************************************************************/
 package uk.co.hexeption.darkforge.gui.gui;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
@@ -35,7 +37,7 @@ public class ClickGui extends GuiScreen {
 
     private static Theme theme;
 
-    private final ArrayList<Frame> frames = new ArrayList<>();
+    private static ArrayList<Frame> frames = new ArrayList<>();
 
     private Frame currentFrame;
 
@@ -44,6 +46,24 @@ public class ClickGui extends GuiScreen {
     private boolean dragging = false;
 
     private Vector2f draggingOffset;
+
+    public static void renderPinned() {
+
+        Minecraft mc = Minecraft.getMinecraft();
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
+        float scale = scaledResolution.getScaleFactor() / (float) Math.pow(scaledResolution.getScaleFactor(), 2D);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 1000);
+        GlStateManager.scale(scale * 2, scale * 2, scale * 2);
+
+        for (Frame frame : frames) {
+            if (frame.isPinned()) {
+                frame.render(mouse[0], mouse[1]);
+            }
+        }
+
+        GlStateManager.popMatrix();
+    }
 
     //Screen
 
@@ -176,7 +196,7 @@ public class ClickGui extends GuiScreen {
             if (frame.isMouseOver(x, y)) {
                 this.currentFrame = frame;
 
-                if (frame.isMouseOver(x, y)) {
+                if (frame.isMouseOverBar(x, y)) {
                     this.dragging = true;
                     this.draggingOffset = new Vector2f(x - frame.getX(), y - frame.getY());
                 }
@@ -191,6 +211,9 @@ public class ClickGui extends GuiScreen {
         for (Frame frame : frames) {
             frame.updateComponents();
         }
+
+        System.out.println(mouse[0] + "|" + mouse[1]);
+
     }
 
 

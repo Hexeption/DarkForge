@@ -40,8 +40,31 @@ public class GuiManager extends ClickGui {
 //        Frame frame = new Frame(x, y, 100, 130, "Testing");
 //
 //        final Button button = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button1 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button2 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button3 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button4 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button5 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button6 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button7 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button8 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button9 = new Button(0, 0, 100, 18, frame, "Hex");
+//        final Button button10 = new Button(0, 0, 100, 18, frame, "Hex");
+//
+//
 //
 //        frame.addComponent(button);
+//        frame.addComponent(button1);
+//        frame.addComponent(button2);
+//        frame.addComponent(button3);
+//        frame.addComponent(button4);
+//        frame.addComponent(button5);
+//        frame.addComponent(button6);
+//        frame.addComponent(button7);
+//        frame.addComponent(button8);
+//        frame.addComponent(button9);
+//        frame.addComponent(button10);
+//
 //        this.addFrame(frame);
 
         int right = GLUtils.getScreenWidth();
