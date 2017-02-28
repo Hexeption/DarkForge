@@ -18,13 +18,21 @@
 
 package uk.co.hexeption.darkforge.managers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
-import uk.co.hexeption.darkforge.gui.gui.elements.Button;
-import uk.co.hexeption.darkforge.gui.gui.elements.Frame;
+import uk.co.hexeption.darkforge.gui.gui.base.Component;
+import uk.co.hexeption.darkforge.gui.gui.elements.*;
+import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
+import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
+import uk.co.hexeption.darkforge.gui.gui.listener.SliderChangeListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
+import uk.co.hexeption.darkforge.value.BooleanValue;
+import uk.co.hexeption.darkforge.value.DoubleValue;
+import uk.co.hexeption.darkforge.value.FloatValue;
+import uk.co.hexeption.darkforge.value.Value;
 
 /**
  * Created by Hexeption on 27/02/2017.
@@ -45,10 +53,59 @@ public class GuiManager extends ClickGui {
 
                 for (final Module module : DarkForge.MODULE_MANAGER.getModules()) {
                     if (module.getCategory() == category) {
-                        final Button button = new Button(0, 0, 100, 18, frame, module.getName());
-                        button.addListeners((component, button1) -> module.toggle());
-                        button.setEnabled(module.getState());
-                        frame.addComponent(button);
+                        if (module.getValues().isEmpty()) {
+                            final Button button = new Button(0, 0, 100, 18, frame, module.getName());
+                            button.addListeners((component, button1) -> module.toggle());
+                            button.setEnabled(module.getState());
+                            frame.addComponent(button);
+                        } else {
+                            final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, module.getName());
+                            expandingButton.addListner((component, button) -> module.toggle());
+                            expandingButton.setEnabled(module.getState());
+
+                            for (Value value : module.getValues()) {
+                                if (value instanceof BooleanValue) {
+                                    final BooleanValue booleanValue = (BooleanValue) value;
+                                    CheckButton button = new CheckButton(0, 0, expandingButton.getDimension().width, 18, expandingButton, booleanValue.getName(), booleanValue.getValue());
+                                    button.addListeners(checkButton -> {
+
+                                        for (Value value1 : module.getValues()) {
+                                            if (value1.getName().equals(booleanValue.getName())) {
+                                                value1.setValue(checkButton.isEnabled());
+                                            }
+                                        }
+                                    });
+                                    expandingButton.addComponent(button);
+
+                                } else if (value instanceof FloatValue) {
+                                    final FloatValue floatValue = (FloatValue) value;
+                                    Slider slider = new Slider(floatValue.getMin(), floatValue.getMax(), floatValue.getValue(), expandingButton, floatValue.getName());
+                                    slider.addListener(slider1 -> {
+                                        for (Value val : module.getValues()) {
+                                            if (val.getName().equals(value.getName())) {
+                                                val.setValue(slider1.getValue());
+                                            }
+                                        }
+                                    });
+                                    expandingButton.addComponent(slider);
+                                } else if (value instanceof DoubleValue) {
+                                    final DoubleValue doubleValue = (DoubleValue) value;
+                                    Slider slider = new Slider(doubleValue.getMin(), doubleValue.getMax(), doubleValue.getValue(), expandingButton, doubleValue.getName());
+                                    slider.addListener(slider12 -> {
+
+                                        for (Value value1 : module.getValues()) {
+                                            if (value1.getName().equals(value.getName())) {
+                                                value1.setValue(slider12.getValue());
+                                            }
+                                        }
+                                    });
+
+                                    expandingButton.addComponent(slider);
+                                }
+                            }
+
+                            frame.addComponent(expandingButton);
+                        }
                     }
                 }
                 if (x + 120 < right) {

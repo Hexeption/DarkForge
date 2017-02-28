@@ -29,9 +29,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
+import uk.co.hexeption.darkforge.value.Value;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -49,7 +51,33 @@ public class Module {
 
     private int bind = getClass().getAnnotation(ModInfo.class).bind();
 
+    private ArrayList<Value> values = new ArrayList<>();
+
     private boolean state;
+
+    public void setValues(ArrayList<Value> values) {
+
+        for (Value value : values) {
+            for (Value value1 : this.values) {
+                if (value.getName().equalsIgnoreCase(value1.getName())) {
+                    value1.setValue(value.getValue());
+                }
+            }
+        }
+
+    }
+
+    public void addValue(Value... values) {
+
+        for (Value value : values) {
+            this.getValues().add(value);
+        }
+    }
+
+    public ArrayList<Value> getValues() {
+
+        return values;
+    }
 
     public void onWorldTick() {
 
