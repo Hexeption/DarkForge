@@ -15,16 +15,44 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui.elements;
 
-import uk.co.hexeption.darkforge.gui.gui.base.Component;
-import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+package uk.co.hexeption.darkforge.gui.gui.base;
 
-public class Slider extends Component {
-    public boolean dragging = false;
+import java.util.ArrayList;
 
-    public Slider(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public class Container extends Component {
+
+    private ArrayList<Component> components = new ArrayList<>();
+
+
+    public Container(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
 
         super(xPos, yPos, width, height, componentType, component, text);
     }
+
+    public void addComponent(Component c) {
+
+        components.add(c);
+    }
+
+    public void removeCompoent(Component c) {
+
+        components.remove(c);
+    }
+
+    public void renderCompoents(int mouseX, int mouseY) {
+
+        for (Component c : getComponents()) {
+            c.render(mouseX, mouseY);
+        }
+    }
+
+    public ArrayList<Component> getComponents() {
+
+        return components;
+    }
+
 }

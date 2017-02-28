@@ -15,16 +15,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui.elements;
+
+package uk.co.hexeption.darkforge.gui.gui.listener;
 
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
-import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 
-public class Slider extends Component {
-    public boolean dragging = false;
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public interface ComponentClickListener {
 
-    public Slider(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+    void onComponenetClick(Component component, int button);
 
-        super(xPos, yPos, width, height, componentType, component, text);
-    }
 }

@@ -15,16 +15,19 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui.elements;
 
-import uk.co.hexeption.darkforge.gui.gui.base.Component;
-import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+package uk.co.hexeption.darkforge.utils;
 
-public class Slider extends Component {
-    public boolean dragging = false;
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public class MathUtils {
 
-    public Slider(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+    //TODO: Add Math
 
-        super(xPos, yPos, width, height, componentType, component, text);
+    public static int getMiddle(int i, int j) {
+
+        return (i + j) / 2;
     }
+
 }

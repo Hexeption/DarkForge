@@ -17,5 +17,48 @@
  ******************************************************************************/
 package uk.co.hexeption.darkforge.gui.gui.elements;
 
-public class Button {
+import uk.co.hexeption.darkforge.gui.gui.base.Component;
+import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
+
+import java.util.ArrayList;
+
+public class Button extends Component {
+
+    private boolean enabled = false;
+
+    public ArrayList<ComponentClickListener> listeners = new ArrayList<>();
+
+    public Button(int xPos, int yPos, int width, int height, Component component, String text) {
+
+        super(xPos, yPos, width, height, ComponentType.BUTTON, component, text);
+    }
+
+    public void addListeners(ComponentClickListener listener) {
+
+        listeners.add(listener);
+    }
+
+    public void onMousePress(int x, int y, int button) {
+
+        if (button != 0) {
+            return;
+        }
+
+        this.enabled = !this.enabled;
+
+        for (ComponentClickListener listener : listeners) {
+            listener.onComponenetClick(this, button);
+        }
+    }
+
+    public boolean isEnabled() {
+
+        return enabled;
+    }
+
+    public ArrayList<ComponentClickListener> getListeners() {
+
+        return listeners;
+    }
 }

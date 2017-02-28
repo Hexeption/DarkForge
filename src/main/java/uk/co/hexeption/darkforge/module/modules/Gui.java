@@ -15,16 +15,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui;
 
-import net.minecraft.client.gui.GuiScreen;
-import uk.co.hexeption.darkforge.gui.gui.elements.Frame;
+package uk.co.hexeption.darkforge.module.modules;
 
-import java.util.ArrayList;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.module.Module;
 
-public class GuiManager extends GuiScreen {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+@Module.ModInfo(name = "Click Gui", description = "Enable shit", category = Module.Category.GUI, bind = Keyboard.KEY_LCONTROL)
+public class Gui extends Module {
 
-    private final ArrayList<Frame> frames = new ArrayList<>();
+    @Override
+    public void onEnable() {
 
-
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.CLICK_GUI);
+    }
 }

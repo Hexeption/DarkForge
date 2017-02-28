@@ -15,16 +15,28 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.gui.gui.elements;
 
-import uk.co.hexeption.darkforge.gui.gui.base.Component;
-import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+package uk.co.hexeption.darkforge.managers;
 
-public class Slider extends Component {
-    public boolean dragging = false;
+import uk.co.hexeption.darkforge.gui.gui.ClickGui;
+import uk.co.hexeption.darkforge.gui.gui.elements.Button;
+import uk.co.hexeption.darkforge.gui.gui.elements.Frame;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
 
-    public Slider(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+public class GuiManager extends ClickGui {
 
-        super(xPos, yPos, width, height, componentType, component, text);
+    public GuiManager() {
+
+        this.setTheme(new DarkForgeTheme());
+        int x = 10;
+        int y = 20;
+
+        Frame frame = new Frame(x, y, 100, 130, "Test");
+        Button button = new Button(0, 0, 100, 18, frame, "hi");
+        frame.addComponent(button);
+        this.addFrame(frame);
     }
 }
