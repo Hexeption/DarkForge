@@ -42,6 +42,28 @@ public class GuiManager extends ClickGui {
     public void Initialization() {
 
         this.setTheme(new DarkForgeTheme());
+
+        addCategoryPanels();
+        addInfoPanel();
+        addPlayerPanel();
+        addMiniMapPanel();
+
+    }
+
+    private void addMiniMapPanel() {
+
+    }
+
+    private void addPlayerPanel() {
+
+    }
+
+    private void addInfoPanel() {
+
+    }
+
+    private void addCategoryPanels() {
+
         int x = 40;
         int y = 30;
         int right = GLUtils.getScreenWidth();
@@ -120,7 +142,6 @@ public class GuiManager extends ClickGui {
                 this.addFrame(frame);
             }
         }
-
     }
 
 
