@@ -18,24 +18,35 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
-import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.gui.gui.base.Component;
+import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+import uk.co.hexeption.darkforge.gui.gui.elements.Text;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 04/03/2017.
  */
-public class DarkForgeTheme extends Theme {
+public class DarkForgeText extends ComponentRenderer {
 
-    public DarkForgeTheme() {
+    public DarkForgeText(Theme theme) {
 
-        super("DarkForge");
-        this.fontRenderer = DarkForge.FONT_MANAGER.clickGui;
-        addRenderer(ComponentType.FRAME, new DarkForgeFrame(this));
-        addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
-        addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));
-        addRenderer(ComponentType.CHECK_BUTTON, new DarkForgeCheckButton(this));
-        addRenderer(ComponentType.EXPANDING_BUTTON, new DarkForgeExpandingButton(this));
-        addRenderer(ComponentType.TEXT, new DarkForgeText(this));
+        super(ComponentType.TEXT, theme);
+    }
+
+    @Override
+    public void drawComponent(Component component, int mouseX, int mouseY) {
+
+        Text text = (Text) component;
+        String[] message = text.getMessage();
+
+        int y = text.getY();
+
+        for (String s : message) {
+            theme.fontRenderer.drawString(s, text.getX() + 5, y + 5, -1);
+            y += 10;
+        }
+
+
     }
 }

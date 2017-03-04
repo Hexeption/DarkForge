@@ -70,19 +70,19 @@ public class ChestESP extends Module {
         glTranslated(-renderPosX, -renderPosY, -renderPosZ);
 
         glColor4f(0, 1, 0, 0.25F);
-        chest.forEach((bb) -> RenderUtils.drawSolidBox(bb));
+        chest.forEach(RenderUtils::drawSolidBox);
         glColor4f(0, 1, 0, 0.5F);
-        chest.forEach((bb) -> RenderUtils.drawOutlinedBox(bb));
+        chest.forEach(RenderUtils::drawOutlinedBox);
 
         glColor4f(1, 0.5F, 1, 0.25F);
-        enderChest.forEach((bb) -> RenderUtils.drawSolidBox(bb));
+        enderChest.forEach(RenderUtils::drawSolidBox);
         glColor4f(1, 0.5F, 1, 0.5F);
-        enderChest.forEach((bb) -> RenderUtils.drawOutlinedBox(bb));
+        enderChest.forEach(RenderUtils::drawOutlinedBox);
 
         glColor4f(1, 0, 0, 0.25F);
-        trapedChest.forEach((bb) -> RenderUtils.drawSolidBox(bb));
+        trapedChest.forEach(RenderUtils::drawSolidBox);
         glColor4f(1, 0, 0, 0.5F);
-        trapedChest.forEach((bb) -> RenderUtils.drawOutlinedBox(bb));
+        trapedChest.forEach(RenderUtils::drawOutlinedBox);
         glPopMatrix();
 
         glEnable(GL_DEPTH_TEST);
