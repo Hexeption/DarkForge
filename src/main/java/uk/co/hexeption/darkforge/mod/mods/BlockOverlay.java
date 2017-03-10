@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -36,8 +36,8 @@ import static org.lwjgl.opengl.GL11.*;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Block Overlay", description = "highlights a block", category = Module.Category.RENDER, bind = Keyboard.KEY_O)
-public class BlockOverlay extends Module {
+@Mod.ModInfo(name = "Block Overlay", description = "highlights a block", category = Mod.Category.RENDER, bind = Keyboard.KEY_O)
+public class BlockOverlay extends Mod {
 
     @Override
     @SideOnly(Side.CLIENT)

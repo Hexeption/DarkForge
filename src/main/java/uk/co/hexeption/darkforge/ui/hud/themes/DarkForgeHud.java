@@ -25,7 +25,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.gui.gui.ClickGui;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.ui.hud.IGameHud;
 
 import java.text.SimpleDateFormat;
@@ -39,11 +40,11 @@ public class DarkForgeHud implements IGameHud {
 
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
 
-        DarkForge.CLICK_GUI.renderPinned();
+        ClickGui.renderPinned();
 
         DarkForge.FONT_MANAGER.hud.drawStringWithShadow(ClientInfo.MOD_NAME + " for " + ClientInfo.MINECRAFT_VERISON, 1, 5, -1);
         DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Time:§r " + new SimpleDateFormat("hh:mm a").format(new Date()), 1, 17, -1);
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7FPS:§r " + minecraft.getDebugFPS(), 1, 29, -1);
+        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7FPS:§r " + Minecraft.getDebugFPS(), 1, 29, -1);
 
         if (!minecraft.isSingleplayer()) {
             int version = 15, ping = 25;
@@ -62,9 +63,9 @@ public class DarkForgeHud implements IGameHud {
     void drawArrayList(ScaledResolution scaledResolution) {
 
         int yCount = 5;
-        for (Module module : DarkForge.MODULE_MANAGER.getModules()) {
-            if (module.getState() && module.getCategory() != Module.Category.GUI) {
-                DarkForge.FONT_MANAGER.arraylist.drawStringWithShadow(module.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.FONT_MANAGER.arraylist.getStringWidth(module.getName()), yCount, module.getCategory().color);
+        for (Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
+            if (mod.getState() && mod.getCategory() != Mod.Category.GUI) {
+                DarkForge.FONT_MANAGER.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.FONT_MANAGER.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
             }
         }

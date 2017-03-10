@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.block.BlockChest;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -28,11 +28,10 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -40,8 +39,8 @@ import static org.lwjgl.opengl.GL11.*;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "ChestESP", description = "highlights a Chest", category = Module.Category.RENDER, bind = Keyboard.KEY_N)
-public class ChestESP extends Module {
+@Mod.ModInfo(name = "ChestESP", description = "highlights a Chest", category = Mod.Category.RENDER, bind = Keyboard.KEY_N)
+public class ChestESP extends Mod {
 
     private final ArrayDeque<AxisAlignedBB> chest = new ArrayDeque<>();
 

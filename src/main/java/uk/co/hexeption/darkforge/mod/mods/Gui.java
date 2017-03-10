@@ -16,35 +16,22 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.mod.Mod;
 
-@SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_S)
-public class AutoSprint extends Module {
+/**
+ * Created by Hexeption on 27/02/2017.
+ */
+@Mod.ModInfo(name = "Click Gui", description = "Enable shit", category = Mod.Category.GUI, bind = Keyboard.KEY_LCONTROL)
+public class Gui extends Mod {
 
     @Override
     public void onEnable() {
 
-        getPlayer().setSprinting(true);
-    }
-
-    @Override
-    public void onDisable() {
-
-        getPlayer().setSprinting(false);
-    }
-
-    @Override
-    public void onWorldTick() {
-
-        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
-            mc.player.setSprinting(true);
-        }
-
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.CLICK_GUI);
     }
 }

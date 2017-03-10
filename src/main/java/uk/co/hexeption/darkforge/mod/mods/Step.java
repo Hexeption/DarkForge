@@ -15,38 +15,29 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mod.mods;
 
-package uk.co.hexeption.darkforge.module.modules;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 
-/**
- * Created by Hexeption on 15/01/2017.
- */
-@SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Module.Category.RENDER, bind = Keyboard.KEY_V)
-public class Fullbright extends Module {
+@Mod.ModInfo(name = "Step", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_S)
+public class Step extends Mod {
+
+    private float stepHeight = 1.5f;
+
+    /**
+     * One and a half block
+     */
 
     @Override
-    public void onWorldRender() {
+    public void onEnable() {
 
-        if (getState())
-            if (getGameSettings().gammaSetting < 16) {
-                getGameSettings().gammaSetting += 0.5;
-            } else if (getGameSettings().gammaSetting > 0.5) {
-                if (getGameSettings().gammaSetting < 1f)
-                    getGameSettings().gammaSetting = 0.5f;
-                else
-                    getGameSettings().gammaSetting -= 0.5;
-            }
+        getPlayer().stepHeight = stepHeight;
     }
 
     @Override
     public void onDisable() {
 
-        getGameSettings().gammaSetting = 0.5f;
+        getPlayer().stepHeight = 0.5f;
     }
 }

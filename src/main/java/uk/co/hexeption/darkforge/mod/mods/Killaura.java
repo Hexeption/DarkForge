@@ -16,18 +16,17 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.TimerUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
 import uk.co.hexeption.darkforge.value.DoubleValue;
@@ -36,31 +35,20 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 /**
  * Created by Hexeption on 28/02/2017.
  */
-@Module.ModInfo(name = "Kill Aura", description = "Kill them kids", category = Module.Category.COMBAT, bind = Keyboard.KEY_R)
-public class Killaura extends Module {
-
-    private BooleanValue player;
-
-    private BooleanValue mob;
-
-    private BooleanValue locked;
-
-    private BooleanValue invisiableEntitys;
-
-    private BooleanValue packetCrit;
-
-    private BooleanValue jumpCrit;
-
-    private BooleanValue multiAura;
-
-    private BooleanValue autoDelay;
-
-    private DoubleValue range;
-
-    private FloatValue delay;
+@Mod.ModInfo(name = "Kill Aura", description = "Kill them kids", category = Mod.Category.COMBAT, bind = Keyboard.KEY_R)
+public class Killaura extends Mod {
 
     public TimerUtils time = new TimerUtils();
-
+    private BooleanValue player;
+    private BooleanValue mob;
+    private BooleanValue locked;
+    private BooleanValue invisiableEntitys;
+    private BooleanValue packetCrit;
+    private BooleanValue jumpCrit;
+    private BooleanValue multiAura;
+    private BooleanValue autoDelay;
+    private DoubleValue range;
+    private FloatValue delay;
     private EntityLivingBase target;
 
     private float yaw;
@@ -217,7 +205,7 @@ public class Killaura extends Module {
 
     public boolean isValid(EntityLivingBase entity) {
 
-        if (player.getValue().booleanValue() && ((entity instanceof EntityPlayer)) && (isInAttackRange(entity)) && (entity.ticksExisted > 30) && (((EntityPlayer) entity).getHealth() > 0.0F) && (!entity.isDead)) {
+        if (player.getValue().booleanValue() && ((entity instanceof EntityPlayer)) && (isInAttackRange(entity)) && (entity.ticksExisted > 30) && (entity.getHealth() > 0.0F) && (!entity.isDead)) {
             if ((!entity.getName().startsWith("Body #"))) {
                 if (invisiableEntitys.getValue().booleanValue() && (!entity.isInvisible()) && (entity.canEntityBeSeen(getPlayer()))) {
                     return true;
@@ -251,12 +239,12 @@ public class Killaura extends Module {
 
     public boolean isInAttackRange(Entity target) {
 
-        return target.getDistanceToEntity(getPlayer()) <= ((Double) range.value).doubleValue();
+        return target.getDistanceToEntity(getPlayer()) <= range.value.doubleValue();
     }
 
     public boolean isInStareRange(Entity target) {
 
-        return target.getDistanceToEntity(getPlayer()) <= ((Double) range.value).doubleValue() + 0.2D;
+        return target.getDistanceToEntity(getPlayer()) <= range.value.doubleValue() + 0.2D;
     }
 
 }

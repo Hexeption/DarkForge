@@ -26,7 +26,7 @@ import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.alt.AltsSlot;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.io.*;
 import java.util.Iterator;
@@ -44,7 +44,7 @@ public class FileManager {
 
     public final File DARKFORGE_DIR = new File(String.format("%s%sdarkforge%s", Minecraft.getMinecraft().mcDataDir, File.separator, File.separator));
 
-    private final File MODULE = new File(DARKFORGE_DIR, "modules.json");
+    private final File MODULE = new File(DARKFORGE_DIR, "mods.json");
 
     private final File ALTS = new File(DARKFORGE_DIR, "alts.json");
 
@@ -73,9 +73,9 @@ public class FileManager {
             loadJson.close();
 
             for (Map.Entry<String, JsonElement> entry : moduleJason.entrySet()) {
-                Module mods = DarkForge.instance.MODULE_MANAGER.getModuleByName(entry.getKey());
+                Mod mods = DarkForge.MODULE_MANAGER.getModuleByName(entry.getKey());
 
-                if (mods != null && mods.getCategory() != Module.Category.GUI) {
+                if (mods != null && mods.getCategory() != Mod.Category.GUI) {
                     JsonObject jsonMod = (JsonObject) entry.getValue();
                     boolean enabled = jsonMod.get("enabled").getAsBoolean();
 
@@ -98,12 +98,12 @@ public class FileManager {
         try {
             JsonObject json = new JsonObject();
 
-            for (Module module : DarkForge.instance.MODULE_MANAGER.getModules()) {
+            for (Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
                 JsonObject jsonModules = new JsonObject();
-                jsonModules.addProperty("enabled", module.getState());
-                jsonModules.addProperty("bind", module.getBind());
+                jsonModules.addProperty("enabled", mod.getState());
+                jsonModules.addProperty("bind", mod.getBind());
 
-                json.add(module.getName(), jsonModules);
+                json.add(mod.getName(), jsonModules);
             }
 
             PrintWriter saveJson = new PrintWriter(new FileWriter(MODULE));
@@ -151,8 +151,8 @@ public class FileManager {
                 String email = entry.getKey();
                 String name = altzz.get("name") == null ? "" : altzz.get("name").getAsString();
                 String password = altzz.get("password") == null ? "" : altzz.get("password").getAsString();
-                boolean cracked = altzz.get("cracked") == null ? true : altzz.get("cracked").getAsBoolean();
-                boolean favourites = altzz.get("favourites") == null ? false : altzz.get("favourites").getAsBoolean();
+                boolean cracked = altzz.get("cracked") == null || altzz.get("cracked").getAsBoolean();
+                boolean favourites = altzz.get("favourites") != null && altzz.get("favourites").getAsBoolean();
 
                 if (cracked) {
                     AltsSlot.alts.add(new Alt(email, favourites));

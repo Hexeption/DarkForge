@@ -16,22 +16,37 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
-import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 15/01/2017.
  */
-@Module.ModInfo(name = "Click Gui", description = "Enable shit", category = Module.Category.GUI, bind = Keyboard.KEY_LCONTROL)
-public class Gui extends Module {
+@SideOnly(Side.CLIENT)
+@Mod.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Mod.Category.RENDER, bind = Keyboard.KEY_V)
+public class Fullbright extends Mod {
 
     @Override
-    public void onEnable() {
+    public void onWorldRender() {
 
-        Minecraft.getMinecraft().displayGuiScreen(DarkForge.CLICK_GUI);
+        if (getState())
+            if (getGameSettings().gammaSetting < 16) {
+                getGameSettings().gammaSetting += 0.5;
+            } else if (getGameSettings().gammaSetting > 0.5) {
+                if (getGameSettings().gammaSetting < 1f)
+                    getGameSettings().gammaSetting = 0.5f;
+                else
+                    getGameSettings().gammaSetting -= 0.5;
+            }
+    }
+
+    @Override
+    public void onDisable() {
+
+        getGameSettings().gammaSetting = 0.5f;
     }
 }

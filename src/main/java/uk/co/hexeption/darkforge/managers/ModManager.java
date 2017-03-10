@@ -22,8 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.module.Module;
-import uk.co.hexeption.darkforge.module.modules.*;
+import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.mod.mods.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,14 +32,14 @@ import java.util.List;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-public class ModuleManager {
+public class ModManager {
 
-    private final List<Module> modules = new LinkedList<Module>();
+    private final List<Mod> mods = new LinkedList<Mod>();
 
     public void Initialization() {
 
         initMods();
-        LogHelper.info(String.format("Modules Loaded: %s!", modules.size()));
+        LogHelper.info(String.format("Modules Loaded: %s!", mods.size()));
     }
 
     /**
@@ -50,67 +50,67 @@ public class ModuleManager {
         addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura());
     }
 
-    public void addModules(final Module... modules) {
+    public void addModules(final Mod... mods) {
 
-        synchronized (this.modules) {
-            for (final Module module : modules) {
-                if (module.getClass().isAnnotationPresent(Enabled.class)) {
-                    this.modules.add(module);
-                    module.toggle();
+        synchronized (this.mods) {
+            for (final Mod mod : mods) {
+                if (mod.getClass().isAnnotationPresent(Enabled.class)) {
+                    this.mods.add(mod);
+                    mod.toggle();
                     continue;
                 }
-                this.modules.add(module);
+                this.mods.add(mod);
             }
         }
     }
 
     /**
-     * Returns a module by class
+     * Returns a mod by class
      *
      * @param clazz
      * @param <T>
      * @return
      */
-    public <T extends Module> T getModuleByClass(final Class<T> clazz) {
+    public <T extends Mod> T getModuleByClass(final Class<T> clazz) {
 
-        synchronized (this.modules) {
-            for (final Module module : modules) {
-                if (module.getClass().equals(clazz)) {
+        synchronized (this.mods) {
+            for (final Mod mod : mods) {
+                if (mod.getClass().equals(clazz)) {
 
-                    return clazz.cast(module);
+                    return clazz.cast(mod);
                 }
             }
         }
-        LogHelper.warn(String.format("module %s not found by class, returning null!", clazz.getCanonicalName()));
+        LogHelper.warn(String.format("mod %s not found by class, returning null!", clazz.getCanonicalName()));
         return null;
     }
 
     /**
-     * Returns a module by a string name
+     * Returns a mod by a string name
      *
      * @param name
      * @param <T>
      * @return
      */
     @SuppressWarnings("unchecked")
-    public <T extends Module> T getModuleByName(final String name) {
+    public <T extends Mod> T getModuleByName(final String name) {
 
-        synchronized (this.modules) {
-            for (final Module module : modules) {
-                if (module.getName().replaceAll(" ", "").toLowerCase().equals(name.toLowerCase())) {
-                    return (T) module;
+        synchronized (this.mods) {
+            for (final Mod mod : mods) {
+                if (mod.getName().replaceAll(" ", "").toLowerCase().equals(name.toLowerCase())) {
+                    return (T) mod;
                 }
             }
         }
 
-        LogHelper.warn(String.format("module %s not found by class, returning null!", name));
+        LogHelper.warn(String.format("mod %s not found by class, returning null!", name));
         return null;
     }
 
-    public List<Module> getModules() {
+    public List<Mod> getMods() {
 
-        synchronized (this.modules) {
-            return this.modules;
+        synchronized (this.mods) {
+            return this.mods;
         }
     }
 

@@ -16,39 +16,35 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 
-/**
- * Created by Hexeption on 15/01/2017.
- */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_F)
-public class Fly extends Module {
+@Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_S)
+public class AutoSprint extends Mod {
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void onEnable() {
 
-        getPlayer().capabilities.isFlying = true;
+        getPlayer().setSprinting(true);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void onDisable() {
 
-        getPlayer().capabilities.isFlying = false;
+        getPlayer().setSprinting(false);
     }
 
     @Override
     public void onWorldTick() {
 
-        if (!getPlayer().capabilities.isFlying) {
-            getPlayer().capabilities.isFlying = true;
+        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+            mc.player.setSprinting(true);
         }
+
     }
 }

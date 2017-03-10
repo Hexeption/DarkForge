@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module;
+package uk.co.hexeption.darkforge.mod;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-public class Module {
+public class Mod {
 
     protected Minecraft mc = Minecraft.getMinecraft();
 
@@ -55,18 +55,6 @@ public class Module {
 
     private boolean state;
 
-    public void setValues(ArrayList<Value> values) {
-
-        for (Value value : values) {
-            for (Value value1 : this.values) {
-                if (value.getName().equalsIgnoreCase(value1.getName())) {
-                    value1.setValue(value.getValue());
-                }
-            }
-        }
-
-    }
-
     public void addValue(Value... values) {
 
         for (Value value : values) {
@@ -77,6 +65,18 @@ public class Module {
     public ArrayList<Value> getValues() {
 
         return values;
+    }
+
+    public void setValues(ArrayList<Value> values) {
+
+        for (Value value : values) {
+            for (Value value1 : this.values) {
+                if (value.getName().equalsIgnoreCase(value1.getName())) {
+                    value1.setValue(value.getValue());
+                }
+            }
+        }
+
     }
 
     public void onWorldTick() {
@@ -155,7 +155,7 @@ public class Module {
 
         //TODO: File save
 
-        DarkForge.instance.FILE_MANAGER.saveModules();
+        DarkForge.FILE_MANAGER.saveModules();
 
     }
 
@@ -178,9 +178,7 @@ public class Module {
 
     public final boolean isCategory(Category category) {
 
-        if (category == this.category)
-            return true;
-        return false;
+        return category == this.category;
     }
 
     public String getKeyName() {
@@ -227,7 +225,7 @@ public class Module {
     @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.instance.FONT_MANAGER.hud;
+        return DarkForge.FONT_MANAGER.hud;
     }
 
     public enum Category {

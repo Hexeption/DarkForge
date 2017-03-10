@@ -16,18 +16,17 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
 import uk.co.hexeption.darkforge.value.DoubleValue;
@@ -37,19 +36,15 @@ import uk.co.hexeption.darkforge.value.FloatValue;
  * Created by Hexeption on 03/02/2017.
  */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Tracer", description = "Draws a line to a player/mob/friends", category = Module.Category.RENDER, bind = Keyboard.KEY_P)
-public class Tracers extends Module {
-
-    //TODO: Values
-    private BooleanValue player, mob;
-
-    private FloatValue testingFloat;
-
-    private DoubleValue testingDouble;
+@Mod.ModInfo(name = "Tracer", description = "Draws a line to a player/mob/friends", category = Mod.Category.RENDER, bind = Keyboard.KEY_P)
+public class Tracers extends Mod {
 
     public static double ticks;
-
     public static double x, y, z;
+    //TODO: Values
+    private BooleanValue player, mob;
+    private FloatValue testingFloat;
+    private DoubleValue testingDouble;
 
     public Tracers() {
 

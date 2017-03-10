@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.api.annotation.TestClass;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.util.LinkedList;
 
@@ -35,8 +35,8 @@ import static org.lwjgl.opengl.GL11.*;
  */
 @SideOnly(Side.CLIENT)
 @TestClass
-@Module.ModInfo(name = "Bread Crumbs", description = "Leaves a trail behind you", category = Module.Category.RENDER, bind = 0)
-public class BreadCrumbs extends Module {
+@Mod.ModInfo(name = "Bread Crumbs", description = "Leaves a trail behind you", category = Mod.Category.RENDER, bind = 0)
+public class BreadCrumbs extends Mod {
 
     private final LinkedList<double[]> positions = new LinkedList<double[]>();
 

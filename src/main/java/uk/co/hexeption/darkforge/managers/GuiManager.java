@@ -18,16 +18,11 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
-import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
-import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
-import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
-import uk.co.hexeption.darkforge.gui.gui.listener.SliderChangeListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
 import uk.co.hexeption.darkforge.value.DoubleValue;
@@ -68,30 +63,30 @@ public class GuiManager extends ClickGui {
         int y = 30;
         int right = GLUtils.getScreenWidth();
 
-        for (Module.Category category : Module.Category.values()) {
-            if (category != Module.Category.GUI) {
+        for (Mod.Category category : Mod.Category.values()) {
+            if (category != Mod.Category.GUI) {
                 String name = Character.toString(category.toString().toLowerCase().charAt(0)).toUpperCase() + category.toString().toLowerCase().substring(1);
                 Frame frame = new Frame(x, y, 100, 130, name);
 
-                for (final Module module : DarkForge.MODULE_MANAGER.getModules()) {
-                    if (module.getCategory() == category) {
-                        if (module.getValues().isEmpty()) {
-                            final Button button = new Button(0, 0, 100, 18, frame, module.getName());
-                            button.addListeners((component, button1) -> module.toggle());
-                            button.setEnabled(module.getState());
+                for (final Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
+                    if (mod.getCategory() == category) {
+                        if (mod.getValues().isEmpty()) {
+                            final Button button = new Button(0, 0, 100, 18, frame, mod.getName());
+                            button.addListeners((component, button1) -> mod.toggle());
+                            button.setEnabled(mod.getState());
                             frame.addComponent(button);
                         } else {
-                            final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, module.getName());
-                            expandingButton.addListner((component, button) -> module.toggle());
-                            expandingButton.setEnabled(module.getState());
+                            final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName());
+                            expandingButton.addListner((component, button) -> mod.toggle());
+                            expandingButton.setEnabled(mod.getState());
 
-                            for (Value value : module.getValues()) {
+                            for (Value value : mod.getValues()) {
                                 if (value instanceof BooleanValue) {
                                     final BooleanValue booleanValue = (BooleanValue) value;
                                     CheckButton button = new CheckButton(0, 0, expandingButton.getDimension().width, 18, expandingButton, booleanValue.getName(), booleanValue.getValue());
                                     button.addListeners(checkButton -> {
 
-                                        for (Value value1 : module.getValues()) {
+                                        for (Value value1 : mod.getValues()) {
                                             if (value1.getName().equals(booleanValue.getName())) {
                                                 value1.setValue(checkButton.isEnabled());
                                             }
@@ -103,7 +98,7 @@ public class GuiManager extends ClickGui {
                                     final FloatValue floatValue = (FloatValue) value;
                                     Slider slider = new Slider(floatValue.getMin(), floatValue.getMax(), floatValue.getValue(), expandingButton, floatValue.getName());
                                     slider.addListener(slider1 -> {
-                                        for (Value val : module.getValues()) {
+                                        for (Value val : mod.getValues()) {
                                             if (val.getName().equals(value.getName())) {
                                                 val.setValue(slider1.getValue());
                                             }
@@ -115,7 +110,7 @@ public class GuiManager extends ClickGui {
                                     Slider slider = new Slider(doubleValue.getMin(), doubleValue.getMax(), doubleValue.getValue(), expandingButton, doubleValue.getName());
                                     slider.addListener(slider12 -> {
 
-                                        for (Value value1 : module.getValues()) {
+                                        for (Value value1 : mod.getValues()) {
                                             if (value1.getName().equals(value.getName())) {
                                                 value1.setValue(slider12.getValue());
                                             }

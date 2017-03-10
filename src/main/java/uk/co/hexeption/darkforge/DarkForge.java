@@ -29,7 +29,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.SystemUtils;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.managers.FontManager;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 import uk.co.hexeption.darkforge.utils.OutdatedJavaException;
@@ -45,7 +44,7 @@ public class DarkForge {
      */
     public static final EventManager EVENT_MANAGER = new EventManager();
 
-    public static final ModuleManager MODULE_MANAGER = new ModuleManager();
+    public static final ModManager MODULE_MANAGER = new ModManager();
 
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
 

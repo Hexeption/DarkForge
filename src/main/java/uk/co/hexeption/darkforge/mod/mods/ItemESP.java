@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -35,8 +35,8 @@ import static org.lwjgl.opengl.GL11.*;
  * Created by Hexeption on 15/01/2017.
  */
 @SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "ItemESP", description = "highlights a Item", category = Module.Category.RENDER, bind = Keyboard.KEY_L)
-public class ItemESP extends Module {
+@Mod.ModInfo(name = "ItemESP", description = "highlights a Item", category = Mod.Category.RENDER, bind = Keyboard.KEY_L)
+public class ItemESP extends Mod {
 
     private static final AxisAlignedBB ITEM_BOX = new AxisAlignedBB(-0.175, 0, -0.175, 0.175, 0.35, 0.175);
 
