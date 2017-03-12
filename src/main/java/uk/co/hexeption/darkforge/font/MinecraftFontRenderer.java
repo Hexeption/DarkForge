@@ -103,7 +103,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
     }
 
     /**
-     * Renders text using the color code rules within the default Minecraft font renderer.
+     * Renders text using the color code rules within the default MixinMinecraft font renderer.
      */
     public int drawString(String text, int x, int y, int color, boolean shadow) {
 

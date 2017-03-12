@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.ui.hud;
 
 import net.minecraft.client.Minecraft;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;

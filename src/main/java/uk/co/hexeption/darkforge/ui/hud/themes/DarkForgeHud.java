@@ -42,9 +42,9 @@ public class DarkForgeHud implements IGameHud {
 
         ClickGui.renderPinned();
 
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow(ClientInfo.MOD_NAME + " for " + ClientInfo.MINECRAFT_VERISON, 1, 5, -1);
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Time:§r " + new SimpleDateFormat("hh:mm a").format(new Date()), 1, 17, -1);
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7FPS:§r " + Minecraft.getDebugFPS(), 1, 29, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow(ClientInfo.MOD_NAME + " for " + ClientInfo.MINECRAFT_VERISON, 1, 5, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Time:§r " + new SimpleDateFormat("hh:mm a").format(new Date()), 1, 17, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7FPS:§r " + Minecraft.getDebugFPS(), 1, 29, -1);
 
         if (!minecraft.isSingleplayer()) {
             int version = 15, ping = 25;
@@ -53,8 +53,8 @@ public class DarkForgeHud implements IGameHud {
                 ping += 15;
             }
 
-            DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Version:§r " + minecraft.getCurrentServerData().gameVersion, 1, scaledResolution.getScaledHeight() - version, -1);
-            DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
+            DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Version:§r " + minecraft.getCurrentServerData().gameVersion, 1, scaledResolution.getScaledHeight() - version, -1);
+            DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
         }
 
         drawArrayList(scaledResolution);
@@ -63,9 +63,9 @@ public class DarkForgeHud implements IGameHud {
     void drawArrayList(ScaledResolution scaledResolution) {
 
         int yCount = 5;
-        for (Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
+        for (Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
             if (mod.getState() && mod.getCategory() != Mod.Category.GUI) {
-                DarkForge.FONT_MANAGER.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.FONT_MANAGER.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
+                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
             }
         }

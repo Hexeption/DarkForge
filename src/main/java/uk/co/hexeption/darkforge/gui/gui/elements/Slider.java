@@ -78,7 +78,7 @@ public class Slider extends Component {
     @Override
     public void onUpdate() {
 
-        int[] mouse = DarkForge.CLICK_GUI.mouse;
+        int[] mouse = DarkForge.INSTANCE.guiManager.mouse;
         this.dragging = false;
 
         if (dragging && !isMouseOver(mouse[0], mouse[1])) {

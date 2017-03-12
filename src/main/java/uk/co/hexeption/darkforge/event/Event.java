@@ -28,7 +28,7 @@ public abstract class Event {
     /**
      * Main events you may need:
      * <p>
-     * Minecraft:
+     * MixinMinecraft:
      * - EventKeyboard
      * - EventMiddleClick
      * - EventTick

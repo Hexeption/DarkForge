@@ -64,7 +64,7 @@ public class FontManager {
     public static void setFontName(String fontName) {
 
         FontManager.fontName = fontName;
-        DarkForge.instance.FONT_MANAGER.Initialization();
+        DarkForge.INSTANCE.fontManager.Initialization();
     }
 
     public void Initialization() {

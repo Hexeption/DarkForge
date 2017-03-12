@@ -30,7 +30,7 @@ public class DarkForgeTheme extends Theme {
     public DarkForgeTheme() {
 
         super("DarkForge");
-        this.fontRenderer = DarkForge.FONT_MANAGER.clickGui;
+        this.fontRenderer = DarkForge.INSTANCE.fontManager.clickGui;
         addRenderer(ComponentType.FRAME, new DarkForgeFrame(this));
         addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
         addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));

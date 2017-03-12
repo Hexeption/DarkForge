@@ -68,7 +68,7 @@ public class GuiManager extends ClickGui {
                 String name = Character.toString(category.toString().toLowerCase().charAt(0)).toUpperCase() + category.toString().toLowerCase().substring(1);
                 Frame frame = new Frame(x, y, 100, 130, name);
 
-                for (final Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
+                for (final Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
                     if (mod.getCategory() == category) {
                         if (mod.getValues().isEmpty()) {
                             final Button button = new Button(0, 0, 100, 18, frame, mod.getName());

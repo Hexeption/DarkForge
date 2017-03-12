@@ -88,13 +88,13 @@ public class AltManager extends GuiScreen {
                 if (loginAlt.isCracked()) {
                     LoginUtils.changeCrackedName(loginAlt.getName());
                     this.mc.displayGuiScreen(lastScreen);
-                    DarkForge.FILE_MANAGER.saveAlts();
+                    DarkForge.INSTANCE.fileManager.saveAlts();
                 } else {
                     login = LoginUtils.loginAlt(loginAlt.getEmail(), loginAlt.getPassword());
 
                     if (login.equals("")) {
                         this.mc.displayGuiScreen(lastScreen);
-                        DarkForge.FILE_MANAGER.saveAlts();
+                        DarkForge.INSTANCE.fileManager.saveAlts();
                     } else {
                         if (login.equals("§4§lWrong password!")) {
                             AltsSlot.alts.remove(altslot.getSelectedSlots());
@@ -110,7 +110,7 @@ public class AltManager extends GuiScreen {
                 Alt alt = AltsSlot.alts.get(altslot.getSelectedSlots());
                 alt.setFavourites(!alt.isFavourites());
                 AltsSlot.sortAlts();
-                DarkForge.FILE_MANAGER.saveAlts();
+                DarkForge.INSTANCE.fileManager.saveAlts();
                 break;
         }
     }
@@ -166,9 +166,9 @@ public class AltManager extends GuiScreen {
 
         super.drawDefaultBackground();
         altslot.drawScreen(mouseX, mouseY, partialTicks);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString("Account Manager", width / 2, 2, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString(login + AltsSlot.login, width / 2, 14, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString("§aCurrently signed in as " + this.mc.getSession().getUsername(), width / 2, height - 40, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString("Account Manager", width / 2, 2, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString(login + AltsSlot.login, width / 2, 14, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString("§aCurrently signed in as " + this.mc.getSession().getUsername(), width / 2, height - 40, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

@@ -155,7 +155,7 @@ public class Mod {
 
         //TODO: File save
 
-        DarkForge.FILE_MANAGER.saveModules();
+        DarkForge.INSTANCE.fileManager.saveModules();
 
     }
 
@@ -225,7 +225,7 @@ public class Mod {
     @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
-        return DarkForge.FONT_MANAGER.hud;
+        return DarkForge.INSTANCE.fontManager.hud;
     }
 
     public enum Category {

@@ -32,6 +32,6 @@ public class Gui extends Mod {
     @Override
     public void onEnable() {
 
-        Minecraft.getMinecraft().displayGuiScreen(DarkForge.CLICK_GUI);
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.guiManager);
     }
 }

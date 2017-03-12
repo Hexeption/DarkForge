@@ -73,7 +73,7 @@ public class FileManager {
             loadJson.close();
 
             for (Map.Entry<String, JsonElement> entry : moduleJason.entrySet()) {
-                Mod mods = DarkForge.MODULE_MANAGER.getModuleByName(entry.getKey());
+                Mod mods = DarkForge.INSTANCE.modManager.getModuleByName(entry.getKey());
 
                 if (mods != null && mods.getCategory() != Mod.Category.GUI) {
                     JsonObject jsonMod = (JsonObject) entry.getValue();
@@ -98,7 +98,7 @@ public class FileManager {
         try {
             JsonObject json = new JsonObject();
 
-            for (Mod mod : DarkForge.MODULE_MANAGER.getMods()) {
+            for (Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
                 JsonObject jsonModules = new JsonObject();
                 jsonModules.addProperty("enabled", mod.getState());
                 jsonModules.addProperty("bind", mod.getBind());

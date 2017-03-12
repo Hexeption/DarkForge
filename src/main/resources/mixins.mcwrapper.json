@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "uk.co.hexeption.mcwrapper.mixin",
+  "refmap": "mixins.darkforge.refmap.json",
+  "mixins": [
+    "MixinMinecraft",
+    "client.gui.MixinGuiInGame"
+  ]
+}

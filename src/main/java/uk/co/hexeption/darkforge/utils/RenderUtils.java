@@ -266,7 +266,7 @@ public class RenderUtils {
 //        try{
 //            Method setupCamreaTransform = EntityRenderer.class.getDeclaredMethod("setupCameraTransform", float.class, int.class);
 //            setupCamreaTransform.setAccessible(true);
-//            setupCamreaTransform.invoke(Minecraft.getMinecraft().entityRenderer,Tracers.ticks, 2);
+//            setupCamreaTransform.invoke(MixinMinecraft.getMinecraft().entityRenderer,Tracers.ticks, 2);
 //        }catch (Exception e){
 //            e.printStackTrace();
 //        }
