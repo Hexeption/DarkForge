@@ -24,6 +24,7 @@ import uk.co.hexeption.darkforge.api.annotation.TestClass;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.util.LinkedList;
@@ -42,7 +43,7 @@ public class BreadCrumbs extends Mod {
 
 
     @EventTarget
-    public void onPreMotionTick(EventPreMotionUpdate event) {
+    public void onUpdate(EventUpdate event) {
 
         synchronized (positions) {
             positions.add(new double[]{getPlayer().posX, getPlayer().posY, getPlayer().posZ});

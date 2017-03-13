@@ -29,6 +29,7 @@ import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
@@ -91,8 +92,7 @@ public class ChestESP extends Mod {
 
 
     @EventTarget
-    public void onPreMotionTick(EventPreMotionUpdate event) {
-
+    public void onUpdate(EventUpdate event) {
         chest.clear();
         enderChest.clear();
         trapedChest.clear();

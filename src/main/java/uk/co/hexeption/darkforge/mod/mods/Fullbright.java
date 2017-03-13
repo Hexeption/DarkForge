@@ -23,6 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
+import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -33,8 +34,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 public class Fullbright extends Mod {
 
     @EventTarget
-    public void onPreMotionTick(EventPreMotionUpdate event) {
-
+    public void onUpdate(EventUpdate event) {
         if (getState())
             if (getGameSettings().gammaSetting < 16) {
                 getGameSettings().gammaSetting += 0.5;

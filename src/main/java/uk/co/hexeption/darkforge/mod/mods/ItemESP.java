@@ -76,8 +76,5 @@ public class ItemESP extends Mod {
         glPopMatrix();
     }
 
-    private void glPushMatrix() {
-
-    }
 
 }

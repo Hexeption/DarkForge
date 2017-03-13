@@ -36,7 +36,9 @@ import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 public abstract class MixinEntityPlayerSP extends MixinEntityPlayer {
 
     private EventPreMotionUpdate preMotionUpdate = new EventPreMotionUpdate();
+
     private EventPostMotionUpdate postMotionUpdate = new EventPostMotionUpdate();
+
     private EventMove eventMove = new EventMove(0, 0, 0);
 
     @Shadow
@@ -44,6 +46,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntityPlayer {
 
     @Inject(method = "onUpdate()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/EntityPlayerSP;onUpdateWalkingPlayer()V", shift = At.Shift.BEFORE), cancellable = true)
     private void updateEvents(CallbackInfo callbackInfo) {
+
         preMotionUpdate.setCancelled(false);
         preMotionUpdate.call();
 
@@ -52,7 +55,6 @@ public abstract class MixinEntityPlayerSP extends MixinEntityPlayer {
         }
 
         postMotionUpdate.call();
-        callbackInfo.cancel();
     }
 
     /**
@@ -60,6 +62,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntityPlayer {
      */
     @Overwrite
     public void move(MoverType type, double x, double y, double z) {
+
         double d0 = this.posX;
         double d1 = this.posZ;
         eventMove.setMotionX(x);

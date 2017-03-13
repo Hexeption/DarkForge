@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
 import uk.co.hexeption.mcwrapper.MCWrapper;
 import uk.co.hexeption.mcwrapper.base.MinecraftClient;
@@ -26,6 +27,8 @@ import javax.annotation.Nullable;
  */
 @Mixin(net.minecraft.client.Minecraft.class)
 public abstract class MixinMinecraft implements MinecraftClient {
+
+    private EventUpdate eventUpdate = new EventUpdate();
 
     @Shadow
     public PlayerControllerMP playerController;
@@ -66,6 +69,8 @@ public abstract class MixinMinecraft implements MinecraftClient {
         if (this.currentScreen instanceof GuiMainMenu) {
             displayGuiScreen(new DarkForgeMainMenu());
         }
+
+        eventUpdate.call();
     }
 
     @Override
