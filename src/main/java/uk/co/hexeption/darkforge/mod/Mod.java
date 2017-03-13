@@ -130,13 +130,13 @@ public class Mod {
 
         onToggle();
         if (state) {
-            onEnable();
             this.state = true;
+            onEnable();
             //TODO: Event register
             EventManager.register(this);
         } else {
-            onDisable();
             this.state = false;
+            onDisable();
             //TODO: Event unregister
             EventManager.unregister(this);
         }
@@ -238,6 +238,6 @@ public class Mod {
 
         Category category();
 
-        int bind();
+        int bind() default 0;
     }
 }

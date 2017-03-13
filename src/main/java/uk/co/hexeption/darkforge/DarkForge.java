@@ -41,7 +41,7 @@ public enum DarkForge {
      * TODO: Redo the Events
      */
 
-    public final ModManager modManager = new ModManager();
+    public static final ModManager modManager = new ModManager();
 
     public final CommandManager commandManager = new CommandManager();
 

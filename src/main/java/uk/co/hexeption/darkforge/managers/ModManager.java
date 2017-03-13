@@ -47,21 +47,20 @@ public class ModManager {
      */
     private void initMods() {
 
-        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura());
+        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(), new Xray());
     }
 
     public void addModules(final Mod... mods) {
 
-        synchronized (this.mods) {
-            for (final Mod mod : mods) {
-                if (mod.getClass().isAnnotationPresent(Enabled.class)) {
-                    this.mods.add(mod);
-                    mod.toggle();
-                    continue;
-                }
+        for (final Mod mod : mods) {
+            if (mod.getClass().isAnnotationPresent(Enabled.class)) {
                 this.mods.add(mod);
+                mod.toggle();
+                continue;
             }
+            this.mods.add(mod);
         }
+
     }
 
     /**
@@ -73,14 +72,13 @@ public class ModManager {
      */
     public <T extends Mod> T getModuleByClass(final Class<T> clazz) {
 
-        synchronized (this.mods) {
-            for (final Mod mod : mods) {
-                if (mod.getClass().equals(clazz)) {
+        for (final Mod mod : mods) {
+            if (mod.getClass().equals(clazz)) {
 
-                    return clazz.cast(mod);
-                }
+                return clazz.cast(mod);
             }
         }
+
         LogHelper.warn(String.format("mod %s not found by class, returning null!", clazz.getCanonicalName()));
         return null;
     }
@@ -95,13 +93,12 @@ public class ModManager {
     @SuppressWarnings("unchecked")
     public <T extends Mod> T getModuleByName(final String name) {
 
-        synchronized (this.mods) {
-            for (final Mod mod : mods) {
-                if (mod.getName().replaceAll(" ", "").toLowerCase().equals(name.toLowerCase())) {
-                    return (T) mod;
-                }
+        for (final Mod mod : mods) {
+            if (mod.getName().replaceAll(" ", "").toLowerCase().equals(name.toLowerCase())) {
+                return (T) mod;
             }
         }
+
 
         LogHelper.warn(String.format("mod %s not found by class, returning null!", name));
         return null;

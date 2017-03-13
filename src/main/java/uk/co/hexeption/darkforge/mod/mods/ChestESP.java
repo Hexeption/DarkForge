@@ -92,6 +92,10 @@ public class ChestESP extends Mod {
 
     @EventTarget
     public void onUpdate(EventUpdate event) {
+
+        if (mc.world == null)
+            return;
+
         chest.clear();
         enderChest.clear();
         trapedChest.clear();

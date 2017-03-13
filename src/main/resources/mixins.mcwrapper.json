@@ -12,6 +12,9 @@
     "entity.living.player.MixinEntityPlayerSP",
     "entity.living.player.MixinAbstractClientPlayer",
     "renderer.MixinEntityRenderer",
-    "multiplayer.MixinPlayerControllerMP"
+    "multiplayer.MixinPlayerControllerMP",
+    "block.MixinBlock",
+    "block.MixinBlockModelRenderer",
+    "renderer.chunk.MixinVisGraph"
   ]
 }
