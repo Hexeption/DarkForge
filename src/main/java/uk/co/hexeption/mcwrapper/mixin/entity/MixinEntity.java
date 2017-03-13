@@ -17,54 +17,77 @@
  ******************************************************************************/
 package uk.co.hexeption.mcwrapper.mixin.entity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import uk.co.hexeption.mcwrapper.base.entity.Entity;
 
 /**
  * Created by Keir on 13/03/2017.
  */
-@Mixin(Entity.class)
-public abstract class MixinEntity {
+@Mixin(net.minecraft.entity.Entity.class)
+public abstract class MixinEntity implements Entity {
 
     @Shadow
     public World world;
+
     @Shadow
     public double prevPosX;
+
     @Shadow
     public double prevPosY;
+
     @Shadow
     public double prevPosZ;
+
     @Shadow
     public double posX;
+
     @Shadow
     public double posY;
+
     @Shadow
     public double posZ;
+
     @Shadow
     public double motionX;
+
     @Shadow
     public double motionY;
+
     @Shadow
     public double motionZ;
+
     @Shadow
     public float rotationYaw;
+
     @Shadow
     public float rotationPitch;
+
     @Shadow
     public boolean onGround;
+
     @Shadow
     public boolean isDead;
+
     @Shadow
     public float fallDistance;
+
     @Shadow
     public float stepHeight;
+
     @Shadow
     public boolean noClip;
 
     @Shadow
     public void move(MoverType type, double x, double y, double z) {
+
+    }
+
+    @Override
+    public World getWorld() {
+
+        return world;
     }
 }

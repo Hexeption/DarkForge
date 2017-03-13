@@ -21,30 +21,34 @@ package uk.co.hexeption.darkforge.mod.mods;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 @SideOnly(Side.CLIENT)
-@Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_S)
+@Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_L)
 public class AutoSprint extends Mod {
 
     @Override
     public void onEnable() {
 
-        getPlayer().setSprinting(true);
+        if (getPlayer() != null)
+            getPlayer().setSprinting(true);
     }
 
     @Override
     public void onDisable() {
 
-        getPlayer().setSprinting(false);
+        if (getPlayer() != null)
+            getPlayer().setSprinting(false);
     }
 
-//    @Override
-//    public void onWorldTick() {
-//
-//        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
-//            mc.player.setSprinting(true);
-//        }
-//
-//    }
+    @EventTarget
+    public void onPreMotionTick(EventPreMotionUpdate event) {
+
+        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+            mc.player.setSprinting(true);
+        }
+    }
+
 }

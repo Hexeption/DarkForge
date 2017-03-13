@@ -18,13 +18,23 @@
 
 package uk.co.hexeption.darkforge.mod.mods;
 
+import net.minecraft.block.BlockChest;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
+import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.utils.RenderUtils;
 
 import java.util.ArrayDeque;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -39,84 +49,73 @@ public class ChestESP extends Mod {
 
     private final ArrayDeque<AxisAlignedBB> trapedChest = new ArrayDeque<>();
 
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//
-//    public void onWorldRender() {
-//
-//        glEnable(GL_BLEND);
-//        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//        glEnable(GL_LINE_SMOOTH);
-//        glLineWidth(2);
-//        glDisable(GL_TEXTURE_2D);
-//        glEnable(GL_CULL_FACE);
-//        glDisable(GL_DEPTH_TEST);
-//
-//        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
-//        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
-//        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
-//
-//        glPushMatrix();
-//        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
-//
-//        glColor4f(0, 1, 0, 0.25F);
-//        chest.forEach(RenderUtils::drawSolidBox);
-//        glColor4f(0, 1, 0, 0.5F);
-//        chest.forEach(RenderUtils::drawOutlinedBox);
-//
-//        glColor4f(1, 0.5F, 1, 0.25F);
-//        enderChest.forEach(RenderUtils::drawSolidBox);
-//        glColor4f(1, 0.5F, 1, 0.5F);
-//        enderChest.forEach(RenderUtils::drawOutlinedBox);
-//
-//        glColor4f(1, 0, 0, 0.25F);
-//        trapedChest.forEach(RenderUtils::drawSolidBox);
-//        glColor4f(1, 0, 0, 0.5F);
-//        trapedChest.forEach(RenderUtils::drawOutlinedBox);
-//        glPopMatrix();
-//
-//        glEnable(GL_DEPTH_TEST);
-//        glEnable(GL_TEXTURE_2D);
-//        glDisable(GL_BLEND);
-//        glDisable(GL_LINE_SMOOTH);
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    @Override
-//    public void onWorldTick() {
-//
-//        chest.clear();
-//        enderChest.clear();
-//        trapedChest.clear();
-//
-//        for (TileEntity tileEntity : mc.world.loadedTileEntityList) {
-//            if (tileEntity instanceof TileEntityChest) {
-//                TileEntityChest chest = (TileEntityChest) tileEntity;
-//
-//                if (chest.adjacentChestXPos != null || chest.adjacentChestZPos != null)
-//                    continue;
-//
-//                AxisAlignedBB bb = RenderUtils.getBoundingBox(chest.getPos());
-//
-//                if (chest.adjacentChestXNeg != null)
-//                    bb = bb.union(RenderUtils.getBoundingBox(chest.adjacentChestXNeg.getPos()));
-//                else if (chest.adjacentChestZNeg != null)
-//                    bb = bb.union(RenderUtils.getBoundingBox(chest.adjacentChestZNeg.getPos()));
-//
-//                boolean trapped = chest.getChestType() == BlockChest.Type.TRAP;
-//
-//                if (trapped)
-//                    this.trapedChest.add(bb);
-//                else
-//                    this.chest.add(bb);
-//            }
-//
-//            if (tileEntity instanceof TileEntityEnderChest) {
-//                AxisAlignedBB bb = RenderUtils.getBoundingBox(tileEntity.getPos());
-//
-//                this.enderChest.add(bb);
-//            }
-//        }
-//
-//    }
+    @EventTarget
+    public void onRender3D(EventRender3D event) {
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_LINE_SMOOTH);
+        glLineWidth(2);
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_CULL_FACE);
+        glDisable(GL_DEPTH_TEST);
+
+        double renderPosX = mc.getRenderManager().viewerPosX;
+        double renderPosY = mc.getRenderManager().viewerPosY;
+        double renderPosZ = mc.getRenderManager().viewerPosZ;
+
+        glPushMatrix();
+        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
+
+        glColor4f(0, 1, 0, 0.25F);
+        chest.forEach(RenderUtils::drawSolidBox);
+        glColor4f(0, 1, 0, 0.5F);
+        chest.forEach(RenderUtils::drawOutlinedBox);
+
+        glColor4f(1, 0.5F, 1, 0.25F);
+        enderChest.forEach(RenderUtils::drawSolidBox);
+        glColor4f(1, 0.5F, 1, 0.5F);
+        enderChest.forEach(RenderUtils::drawOutlinedBox);
+
+        glColor4f(1, 0, 0, 0.25F);
+        trapedChest.forEach(RenderUtils::drawSolidBox);
+        glColor4f(1, 0, 0, 0.5F);
+        trapedChest.forEach(RenderUtils::drawOutlinedBox);
+        glPopMatrix();
+
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
+    }
+
+
+    @EventTarget
+    public void onPreMotionTick(EventPreMotionUpdate event) {
+
+        chest.clear();
+        enderChest.clear();
+        trapedChest.clear();
+        for (TileEntity tileEntity : mc.world.loadedTileEntityList) {
+            if (tileEntity instanceof TileEntityChest) {
+                TileEntityChest chest = (TileEntityChest) tileEntity;
+                if (chest.adjacentChestXPos != null || chest.adjacentChestZPos != null)
+                    continue;
+                AxisAlignedBB bb = RenderUtils.getBoundingBox(chest.getPos());
+                if (chest.adjacentChestXNeg != null)
+                    bb = bb.union(RenderUtils.getBoundingBox(chest.adjacentChestXNeg.getPos()));
+                else if (chest.adjacentChestZNeg != null)
+                    bb = bb.union(RenderUtils.getBoundingBox(chest.adjacentChestZNeg.getPos()));
+                boolean trapped = chest.getChestType() == BlockChest.Type.TRAP;
+                if (trapped)
+                    this.trapedChest.add(bb);
+                else
+                    this.chest.add(bb);
+            }
+            if (tileEntity instanceof TileEntityEnderChest) {
+                AxisAlignedBB bb = RenderUtils.getBoundingBox(tileEntity.getPos());
+                this.enderChest.add(bb);
+            }
+        }
+    }
 }

@@ -263,14 +263,6 @@ public class RenderUtils {
         boolean userViewbobbing = Minecraft.getMinecraft().gameSettings.viewBobbing;
         Minecraft.getMinecraft().gameSettings.viewBobbing = false;
 
-//        try{
-//            Method setupCamreaTransform = EntityRenderer.class.getDeclaredMethod("setupCameraTransform", float.class, int.class);
-//            setupCamreaTransform.setAccessible(true);
-//            setupCamreaTransform.invoke(MixinMinecraft.getMinecraft().entityRenderer,Tracers.ticks, 2);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
         Minecraft.getMinecraft().gameSettings.viewBobbing = userViewbobbing;
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

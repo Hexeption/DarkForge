@@ -18,11 +18,18 @@
 
 package uk.co.hexeption.darkforge.mod.mods;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.utils.RenderUtils;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -33,40 +40,44 @@ public class ItemESP extends Mod {
 
     private static final AxisAlignedBB ITEM_BOX = new AxisAlignedBB(-0.175, 0, -0.175, 0.175, 0.35, 0.175);
 
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public void onWorldRender() {
-//
-//        glPushMatrix();
-//        glEnable(GL_BLEND);
-//        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//        glEnable(GL_LINE_SMOOTH);
-//        glLineWidth(2);
-//        glDisable(GL_TEXTURE_2D);
-//        glEnable(GL_CULL_FACE);
-//        glDisable(GL_DEPTH_TEST);
-//        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
-//        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
-//        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
-//
-//        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
-//
-//        glColor4f(0.4f, 0, 1, 0.5F);
-//
-//        for (Entity entity : mc.world.loadedEntityList) {
-//            if (entity instanceof EntityItem) {
-//                glPushMatrix();
-//                glTranslated(entity.posX, entity.posY, entity.posZ);
-//
-//                RenderUtils.drawOutlinedBox(ITEM_BOX);
-//                glPopMatrix();
-//            }
-//        }
-//
-//        glEnable(GL_DEPTH_TEST);
-//        glEnable(GL_TEXTURE_2D);
-//        glDisable(GL_BLEND);
-//        glDisable(GL_LINE_SMOOTH);
-//        glPopMatrix();
-//    }
+    @EventTarget
+    public void onRender3D(EventRender3D event) {
+
+        glPushMatrix();
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_LINE_SMOOTH);
+        glLineWidth(2);
+        glDisable(GL_TEXTURE_2D);
+        glEnable(GL_CULL_FACE);
+        glDisable(GL_DEPTH_TEST);
+        double renderPosX = mc.getRenderManager().viewerPosX;
+        double renderPosY = mc.getRenderManager().viewerPosY;
+        double renderPosZ = mc.getRenderManager().viewerPosZ;
+
+        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
+
+        glColor4f(0.4f, 0, 1, 0.5F);
+
+        for (Entity entity : mc.world.loadedEntityList) {
+            if (entity instanceof EntityItem) {
+                glPushMatrix();
+                glTranslated(entity.posX, entity.posY, entity.posZ);
+
+                RenderUtils.drawOutlinedBox(ITEM_BOX);
+                glPopMatrix();
+            }
+        }
+
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
+        glPopMatrix();
+    }
+
+    private void glPushMatrix() {
+
+    }
+
 }

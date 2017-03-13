@@ -10,6 +10,8 @@
     "entity.living.MixinEntityLiving",
     "entity.living.player.MixinEntityPlayer",
     "entity.living.player.MixinEntityPlayerSP",
-    "entity.living.player.MixinAbstractClientPlayer"
+    "entity.living.player.MixinAbstractClientPlayer",
+    "renderer.MixinEntityRenderer",
+    "multiplayer.MixinPlayerControllerMP"
   ]
 }

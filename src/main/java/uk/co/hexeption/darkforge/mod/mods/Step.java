@@ -20,7 +20,7 @@ package uk.co.hexeption.darkforge.mod.mods;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.mod.Mod;
 
-@Mod.ModInfo(name = "Step", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_S)
+@Mod.ModInfo(name = "Step", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_K)
 public class Step extends Mod {
 
     private float stepHeight = 1.5f;
@@ -32,12 +32,14 @@ public class Step extends Mod {
     @Override
     public void onEnable() {
 
-        getPlayer().stepHeight = stepHeight;
+        if (getPlayer() != null)
+            getPlayer().stepHeight = stepHeight;
     }
 
     @Override
     public void onDisable() {
 
-        getPlayer().stepHeight = 0.5f;
+        if (getPlayer() != null)
+            getPlayer().stepHeight = 0.5f;
     }
 }

@@ -20,10 +20,14 @@ package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
@@ -38,10 +42,14 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 public class Tracers extends Mod {
 
     public static double ticks;
+
     public static double x, y, z;
+
     //TODO: Values
     private BooleanValue player, mob;
+
     private FloatValue testingFloat;
+
     private DoubleValue testingDouble;
 
     public Tracers() {
@@ -53,35 +61,36 @@ public class Tracers extends Mod {
 
         addValue(player, mob, testingFloat, testingDouble);
     }
-//
-//    @Override
-//    public void onWorldRender() {
-//
-//        for (Object entityList : getWorld().loadedEntityList) {
-//            if (!(entityList instanceof EntityLivingBase)) {
-//                continue;
-//            }
-//
-//            EntityLivingBase entity = (EntityLivingBase) entityList;
-//
-//            if (player.getValue()) {
-//                if (entity instanceof EntityPlayer) {
-//                    if (entity != getPlayer() && !entity.isInvisible()) {
-//                        player(entity);
-//
-//                    }
-//                }
-//            }
-//
-//            if (mob.getValue()) {
-//                if (entity instanceof EntityMob) {
-//                    player(entity);
-//                }
-//            }
-//
-//
-//        }
-//    }
+
+
+    @EventTarget
+    public void onRender3D(EventRender3D event) {
+
+        for (Object entityList : getWorld().loadedEntityList) {
+            if (!(entityList instanceof EntityLivingBase)) {
+                continue;
+            }
+
+            EntityLivingBase entity = (EntityLivingBase) entityList;
+
+            if (player.getValue()) {
+                if (entity instanceof EntityPlayer) {
+                    if (entity != getPlayer() && !entity.isInvisible()) {
+                        player(entity);
+
+                    }
+                }
+            }
+
+            if (mob.getValue()) {
+                if (entity instanceof EntityMob) {
+                    player(entity);
+                }
+            }
+
+
+        }
+    }
 
     private void player(EntityLivingBase entity) {
 
@@ -90,9 +99,9 @@ public class Tracers extends Mod {
 
     private void render(float red, float green, float blue, float alpha, EntityLivingBase entityLivingBase) {
 
-        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
-        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
-        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
+        double renderPosX = mc.getRenderManager().viewerPosX;
+        double renderPosY = mc.getRenderManager().viewerPosY;
+        double renderPosZ = mc.getRenderManager().viewerPosZ;
         double xPos = (entityLivingBase.lastTickPosX + (entityLivingBase.posX - entityLivingBase.lastTickPosX) * ticks) - renderPosX;
         double yPos = (entityLivingBase.lastTickPosY + (entityLivingBase.posY - entityLivingBase.lastTickPosY) * ticks) - renderPosY;
         double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * ticks) - renderPosZ;
