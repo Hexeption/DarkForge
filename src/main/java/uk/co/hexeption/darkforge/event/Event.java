@@ -29,7 +29,7 @@ public abstract class Event {
      * Main events you may need:
      * <p>
      * MixinMinecraft:
-     * - EventKeyboard
+     * - KeyboardEvent
      * - EventMiddleClick
      * - EventTick
      * <p>
@@ -39,10 +39,10 @@ public abstract class Event {
      * - EventPostMotionUpdates
      * <p>
      * GuiIngame:
-     * - EventRender2D
+     * - Render2DEvent
      * <p>
      * EntityRenderer:
-     * - EventRender3D
+     * - Render3DEvent
      */
 
     private boolean cancelled;
@@ -88,7 +88,7 @@ public abstract class Event {
 
         POST("POST", 1);
 
-        private State(final String string, final int number) {
+        State(final String string, final int number) {
 
         }
     }

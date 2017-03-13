@@ -5,11 +5,11 @@ import uk.co.hexeption.darkforge.event.Event;
 /**
  * Created by Hexeption on 13/03/2017.
  */
-public class EventRender3D extends Event {
+public class Render3DEvent extends Event {
 
     private float partialTicks;
 
-    public EventRender3D(float partialTicks) {
+    public Render3DEvent(float partialTicks) {
 
         this.partialTicks = partialTicks;
     }

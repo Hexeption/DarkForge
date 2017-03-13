@@ -21,8 +21,8 @@ package uk.co.hexeption.darkforge.ui.hud;
 import net.minecraft.client.Minecraft;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;
-import uk.co.hexeption.darkforge.event.events.render.EventRender2D;
+import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
+import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
 import uk.co.hexeption.darkforge.ui.hud.themes.DarkForgeHud;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class Hud {
     }
 
     @EventTarget
-    public void render(EventRender2D event) {
+    public void render(Render2DEvent event) {
 
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
@@ -55,7 +55,7 @@ public class Hud {
     }
 
     @EventTarget
-    public void onKeyEvent(EventKeyboard event) {
+    public void onKeyEvent(KeyboardEvent event) {
 
         getCurrentTheme().onKeyPressed(event.getKey());
     }

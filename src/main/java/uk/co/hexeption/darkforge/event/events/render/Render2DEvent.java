@@ -15,24 +15,28 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.event.events.movement;
+
+package uk.co.hexeption.darkforge.event.events.render;
 
 import uk.co.hexeption.darkforge.event.Event;
 
-/**
- * Created by Keir on 13/03/2017.
- */
-public class EventPreMotionUpdate extends Event {
+public class Render2DEvent extends Event {
 
-    private boolean cancelled = false;
+    private int width, height;
 
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
+    public Render2DEvent(int width, int height) {
+
+        this.width = width;
+        this.height = height;
     }
 
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public int getWidth() {
+
+        return width;
+    }
+
+    public int getHeight() {
+
+        return height;
     }
 }

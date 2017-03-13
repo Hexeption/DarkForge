@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
@@ -41,7 +41,7 @@ public class ItemESP extends Mod {
     private static final AxisAlignedBB ITEM_BOX = new AxisAlignedBB(-0.175, 0, -0.175, 0.175, 0.35, 0.175);
 
     @EventTarget
-    public void onRender3D(EventRender3D event) {
+    public void onRender3D(Render3DEvent event) {
 
         glPushMatrix();
         glEnable(GL_BLEND);

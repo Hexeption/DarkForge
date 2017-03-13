@@ -15,22 +15,24 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.darkforge.event.events.other;
+package uk.co.hexeption.darkforge.event.events.movement;
 
 import uk.co.hexeption.darkforge.event.Event;
 
-public class EventKeyboard extends Event {
+/**
+ * Created by Keir on 13/03/2017.
+ */
+public class PreMotionUpdateEvent extends Event {
 
-    private int key;
+    private boolean cancelled = false;
 
-    public EventKeyboard(int key) {
-
-        this.key = key;
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
     }
 
-    public int getKey() {
-
-        return key;
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }

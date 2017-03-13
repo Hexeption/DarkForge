@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.mcwrapper.MCWrapper;
@@ -38,7 +38,7 @@ public class BlockOverlay extends Mod {
 
 
     @EventTarget
-    public void onRender3D(EventRender3D event) {
+    public void onRender3D(Render3DEvent event) {
 
         RayTraceResult rayTraceResult = mc.objectMouseOver;
         Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();

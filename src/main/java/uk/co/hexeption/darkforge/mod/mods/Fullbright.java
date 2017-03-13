@@ -22,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 

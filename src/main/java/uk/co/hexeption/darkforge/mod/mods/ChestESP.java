@@ -27,8 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
-import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
@@ -51,7 +50,7 @@ public class ChestESP extends Mod {
     private final ArrayDeque<AxisAlignedBB> trapedChest = new ArrayDeque<>();
 
     @EventTarget
-    public void onRender3D(EventRender3D event) {
+    public void onRender3D(Render3DEvent event) {
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

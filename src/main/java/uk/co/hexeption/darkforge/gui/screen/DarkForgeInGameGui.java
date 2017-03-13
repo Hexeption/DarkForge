@@ -2,7 +2,7 @@ package uk.co.hexeption.darkforge.gui.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
-import uk.co.hexeption.darkforge.event.events.render.EventRender2D;
+import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
 
 /**
  * Created by Hexeption on 12/03/2017.
@@ -23,7 +23,7 @@ public class DarkForgeInGameGui extends GuiIngame {
         super.renderGameOverlay(partialTicks);
 
         if(!mc.gameSettings.showDebugInfo){
-            EventRender2D eventRender2D = new EventRender2D(mc.displayWidth, mc.displayHeight);
+            Render2DEvent eventRender2D = new Render2DEvent(mc.displayWidth, mc.displayHeight);
             eventRender2D.call();
         }
     }

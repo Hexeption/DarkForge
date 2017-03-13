@@ -18,25 +18,6 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.event.events.render.EventRender2D;
-import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
-import uk.co.hexeption.darkforge.mod.Mod;
-import uk.co.hexeption.darkforge.mod.mods.Tracers;
-
 /**
  * Created by Hexeption on 15/01/2017.
  */

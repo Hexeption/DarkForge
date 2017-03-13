@@ -22,11 +22,11 @@ import uk.co.hexeption.darkforge.event.Event;
 /**
  * Created by Keir on 13/03/2017.
  */
-public class EventMove extends Event {
+public class MoveEvent extends Event {
 
     private double motionX, motionY, motionZ;
 
-    public EventMove(double motionX, double motionY, double motionZ) {
+    public MoveEvent(double motionX, double motionY, double motionZ) {
         this.motionX = motionX;
         this.motionY = motionY;
         this.motionZ = motionZ;

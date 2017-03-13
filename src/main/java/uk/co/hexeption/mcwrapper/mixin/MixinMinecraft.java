@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
 import uk.co.hexeption.mcwrapper.MCWrapper;
@@ -28,21 +28,21 @@ import javax.annotation.Nullable;
 @Mixin(net.minecraft.client.Minecraft.class)
 public abstract class MixinMinecraft implements MinecraftClient {
 
-    private EventUpdate eventUpdate = new EventUpdate();
+    @Shadow
+    private static int debugFPS;
 
     @Shadow
     public PlayerControllerMP playerController;
 
     @Shadow
-    @Final
-    private Timer timer;
-
-    @Shadow
-    private static int debugFPS;
-
-    @Shadow
     @Nullable
     public GuiScreen currentScreen;
+
+    private EventUpdate eventUpdate = new EventUpdate();
+
+    @Shadow
+    @Final
+    private Timer timer;
 
     @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen guiScreenIn);
@@ -58,7 +58,7 @@ public abstract class MixinMinecraft implements MinecraftClient {
     public void onKeyPressed(CallbackInfo callbackInfo) {
 
         if (Keyboard.getEventKeyState()) {
-            EventKeyboard eventKeyboard = new EventKeyboard(Keyboard.getEventKey());
+            KeyboardEvent eventKeyboard = new KeyboardEvent(Keyboard.getEventKey());
             eventKeyboard.call();
         }
     }

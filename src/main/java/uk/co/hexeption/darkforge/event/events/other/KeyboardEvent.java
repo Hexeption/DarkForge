@@ -15,24 +15,22 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.event.events.movement;
+
+package uk.co.hexeption.darkforge.event.events.other;
 
 import uk.co.hexeption.darkforge.event.Event;
 
-/**
- * Created by Keir on 13/03/2017.
- */
-public class EventPostMotionUpdate extends Event {
+public class KeyboardEvent extends Event {
 
-    private boolean cancelled = false;
+    private int key;
 
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
+    public KeyboardEvent(int key) {
+
+        this.key = key;
     }
 
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public int getKey() {
+
+        return key;
     }
 }

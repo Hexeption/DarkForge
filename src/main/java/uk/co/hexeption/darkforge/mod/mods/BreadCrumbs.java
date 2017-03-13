@@ -22,8 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.TestClass;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
-import uk.co.hexeption.darkforge.event.events.render.EventRender3D;
+import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 
@@ -52,7 +51,7 @@ public class BreadCrumbs extends Mod {
 
 
     @EventTarget
-    public void onRender3D(EventRender3D event) {
+    public void onRender3D(Render3DEvent event) {
 
         synchronized (positions) {
             glPushMatrix();

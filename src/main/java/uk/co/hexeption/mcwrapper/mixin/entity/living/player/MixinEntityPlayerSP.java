@@ -25,9 +25,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import uk.co.hexeption.darkforge.event.events.movement.EventMove;
-import uk.co.hexeption.darkforge.event.events.movement.EventPostMotionUpdate;
-import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
+import uk.co.hexeption.darkforge.event.events.movement.MoveEvent;
+import uk.co.hexeption.darkforge.event.events.movement.PostMotionUpdateEvent;
+import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 
 /**
  * Created by Keir on 13/03/2017.
@@ -35,11 +35,11 @@ import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 @Mixin(EntityPlayerSP.class)
 public abstract class MixinEntityPlayerSP extends MixinEntityPlayer {
 
-    private EventPreMotionUpdate preMotionUpdate = new EventPreMotionUpdate();
+    private PreMotionUpdateEvent preMotionUpdate = new PreMotionUpdateEvent();
 
-    private EventPostMotionUpdate postMotionUpdate = new EventPostMotionUpdate();
+    private PostMotionUpdateEvent postMotionUpdate = new PostMotionUpdateEvent();
 
-    private EventMove eventMove = new EventMove(0, 0, 0);
+    private MoveEvent eventMove = new MoveEvent(0, 0, 0);
 
     @Shadow
     protected abstract void updateAutoJump(float p_189810_1_, float p_189810_2_);

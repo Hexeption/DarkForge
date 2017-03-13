@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
+import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 @SideOnly(Side.CLIENT)
@@ -44,7 +44,7 @@ public class AutoSprint extends Mod {
     }
 
     @EventTarget
-    public void onPreMotionTick(EventPreMotionUpdate event) {
+    public void onPreMotionTick(PreMotionUpdateEvent event) {
 
         if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
             mc.player.setSprinting(true);

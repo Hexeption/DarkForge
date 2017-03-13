@@ -25,7 +25,7 @@ import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -90,7 +90,7 @@ public enum DarkForge {
     }
 
     @EventTarget
-    private void EventKeyboard(EventKeyboard event) {
+    private void EventKeyboard(KeyboardEvent event) {
 
         for (Mod m : modManager.getMods()) {
             if (Keyboard.getEventKey() == m.getBind()) {
