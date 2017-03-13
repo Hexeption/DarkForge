@@ -61,49 +61,6 @@ public enum DarkForge {
 
     }
 
-    //    @Mod.EventHandler
-//    public void onFMLPreInitialization(FMLPreInitializationEvent event) {
-//
-//        if (!SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
-//            throw new OutdatedJavaException(String.format("%s requires Java 8 or newer, Please update your java", ClientInfo.MOD_NAME));
-//        }
-//
-//    }
-//
-//    @Mod.EventHandler
-//    public void onFMLInitialization(FMLInitializationEvent event) {
-//
-//        LogHelper.info(String.format("Starting up %s v%s", ClientInfo.MOD_NAME, ClientInfo.VERSION_BUILD));
-//        LogHelper.info(String.format("Running %s in MixinMinecraft \"%s\", Forge \"%s\"", ClientInfo.MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
-//        instance = new DarkForge();
-//
-//        LogHelper.info("Loading Modules...");
-//        modManager.Initialization();
-//
-//        LogHelper.info("Loading Commands...");
-//        commandManager.Initialization();
-//
-//        LogHelper.info("Registering Forge Events");
-//        MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
-//
-//        LogHelper.info("Loading Fonts...");
-//        fontManager.Initialization();
-//
-//        LogHelper.info("Loading Hud...");
-//        hud.Initialization();
-//
-//        guiManager.Initialization();
-//
-//        LogHelper.info("Loading Config...");
-//        fileManager.Initialization();
-//
-//    }
-//
-//    @Mod.EventHandler
-//    public void onFMLPostInitialization(FMLPostInitializationEvent event) {
-//
-//    }
-
     public void start() {
 
         Minecraft mc = Minecraft.getMinecraft();
