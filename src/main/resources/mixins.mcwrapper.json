@@ -5,6 +5,11 @@
   "refmap": "mixins.darkforge.refmap.json",
   "mixins": [
     "MixinMinecraft",
-    "client.gui.MixinGuiInGame"
+    "client.gui.MixinGuiInGame",
+    "entity.MixinEntity",
+    "entity.living.MixinEntityLiving",
+    "entity.living.player.MixinEntityPlayer",
+    "entity.living.player.MixinEntityPlayerSP",
+    "entity.living.player.MixinAbstractClientPlayer"
   ]
 }

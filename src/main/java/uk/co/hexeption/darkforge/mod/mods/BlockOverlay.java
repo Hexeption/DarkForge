@@ -18,19 +18,10 @@
 
 package uk.co.hexeption.darkforge.mod.mods;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.mod.Mod;
-import uk.co.hexeption.darkforge.utils.RenderUtils;
-
-import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -39,51 +30,51 @@ import static org.lwjgl.opengl.GL11.*;
 @Mod.ModInfo(name = "Block Overlay", description = "highlights a block", category = Mod.Category.RENDER, bind = Keyboard.KEY_O)
 public class BlockOverlay extends Mod {
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onWorldRender() {
-
-        RayTraceResult rayTraceResult = mc.objectMouseOver;
-        Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
-        BlockPos blockPos = rayTraceResult.getBlockPos();
-
-        if (Block.getIdFromBlock(block) == 0)
-            return;
-
-        glPushMatrix();
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable(GL_LINE_SMOOTH);
-        glLineWidth(2);
-        glDisable(GL_TEXTURE_2D);
-        glEnable(GL_CULL_FACE);
-        glDisable(GL_DEPTH_TEST);
-        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
-        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
-        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
-
-        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
-        glTranslated(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-
-        float currentBlockDamage = ObfuscationReflectionHelper.getPrivateValue(PlayerControllerMP.class, mc.playerController, "e", "curBlockDamageMP");
-
-        float progress = currentBlockDamage;
-
-        if (progress < 0)
-            progress = 1;
-
-        float red = progress * 2;
-        float green = 2 - red;
-
-        glColor4f(red, green, 0, 0.25F);
-        RenderUtils.drawSolidBox();
-        glColor4f(red, green, 0, 0.5F);
-        RenderUtils.drawOutlinedBox();
-
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_TEXTURE_2D);
-        glDisable(GL_BLEND);
-        glDisable(GL_LINE_SMOOTH);
-        glPopMatrix();
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public void onWorldRender() {
+//
+//        RayTraceResult rayTraceResult = mc.objectMouseOver;
+//        Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
+//        BlockPos blockPos = rayTraceResult.getBlockPos();
+//
+//        if (Block.getIdFromBlock(block) == 0)
+//            return;
+//
+//        glPushMatrix();
+//        glEnable(GL_BLEND);
+//        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//        glEnable(GL_LINE_SMOOTH);
+//        glLineWidth(2);
+//        glDisable(GL_TEXTURE_2D);
+//        glEnable(GL_CULL_FACE);
+//        glDisable(GL_DEPTH_TEST);
+//        double renderPosX = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "o", "renderPosX");
+//        double renderPosY = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "p", "renderPosY");
+//        double renderPosZ = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, mc.getRenderManager(), "q", "renderPosZ");
+//
+//        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
+//        glTranslated(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+//
+//        float currentBlockDamage = ObfuscationReflectionHelper.getPrivateValue(PlayerControllerMP.class, mc.playerController, "e", "curBlockDamageMP");
+//
+//        float progress = currentBlockDamage;
+//
+//        if (progress < 0)
+//            progress = 1;
+//
+//        float red = progress * 2;
+//        float green = 2 - red;
+//
+//        glColor4f(red, green, 0, 0.25F);
+//        RenderUtils.drawSolidBox();
+//        glColor4f(red, green, 0, 0.5F);
+//        RenderUtils.drawOutlinedBox();
+//
+//        glEnable(GL_DEPTH_TEST);
+//        glEnable(GL_TEXTURE_2D);
+//        glDisable(GL_BLEND);
+//        glDisable(GL_LINE_SMOOTH);
+//        glPopMatrix();
+//    }
 }

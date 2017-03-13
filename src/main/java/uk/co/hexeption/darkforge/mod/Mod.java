@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.value.Value;
 
@@ -79,21 +80,6 @@ public class Mod {
 
     }
 
-    public void onWorldTick() {
-
-    }
-
-    public void onWorldRender() {
-
-    }
-
-    public void onGuiRender() {
-
-    }
-
-    public void initializeLater() {
-
-    }
 
     public String getName() {
 
@@ -147,10 +133,12 @@ public class Mod {
             onEnable();
             this.state = true;
             //TODO: Event register
+            EventManager.register(this);
         } else {
             onDisable();
             this.state = false;
             //TODO: Event unregister
+            EventManager.unregister(this);
         }
 
         //TODO: File save
@@ -185,6 +173,8 @@ public class Mod {
 
         return getBind() == -1 ? "-1" : Keyboard.getKeyName(getBind());
     }
+
+    //TODO: Remove
 
     @SideOnly(Side.CLIENT)
     protected Minecraft getMinecraft() {

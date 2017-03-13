@@ -39,12 +39,12 @@ public class AutoSprint extends Mod {
         getPlayer().setSprinting(false);
     }
 
-    @Override
-    public void onWorldTick() {
-
-        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
-            mc.player.setSprinting(true);
-        }
-
-    }
+//    @Override
+//    public void onWorldTick() {
+//
+//        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+//            mc.player.setSprinting(true);
+//        }
+//
+//    }
 }

@@ -21,7 +21,11 @@ package uk.co.hexeption.darkforge.mod.mods;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.movement.EventMove;
+import uk.co.hexeption.darkforge.event.events.movement.EventPreMotionUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.value.DoubleValue;
 
 /**
  * Created by Hexeption on 15/01/2017.
@@ -30,25 +34,55 @@ import uk.co.hexeption.darkforge.mod.Mod;
 @Mod.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_F)
 public class Fly extends Mod {
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onEnable() {
+    private final DoubleValue speed = new DoubleValue("Speed", 0.8D, 0D, 9D);
 
-        getPlayer().capabilities.isFlying = true;
+    public Fly() {
+        addValue(speed);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDisable() {
-
-        getPlayer().capabilities.isFlying = false;
+    @EventTarget
+    public void eventPreMotionUpdate(EventPreMotionUpdate event) {
+        if (getPlayer().movementInput.jump) {
+            getPlayer().motionY = speed.getValue();
+        } else if (getPlayer().movementInput.sneak) {
+            getPlayer().motionY = -speed.getValue();
+        } else {
+            getPlayer().motionY = 0;
+        }
     }
 
-    @Override
-    public void onWorldTick() {
+    @EventTarget
+    public void eventMove(EventMove event) {
+        setMoveSpeed(event, speed.getValue());
+    }
 
-        if (!getPlayer().capabilities.isFlying) {
-            getPlayer().capabilities.isFlying = true;
+    public void setMoveSpeed(final EventMove event, final double speed) {
+        double forward = getPlayer().movementInput.moveForward;
+        double strafe = getPlayer().movementInput.moveStrafe;
+        float yaw = getPlayer().rotationYaw;
+
+        if (forward == 0.0 && strafe == 0.0) {
+            event.setMotionX(0.0);
+            event.setMotionZ(0.0);
+        } else {
+            if (forward != 0.0) {
+                if (strafe > 0.0) {
+                    yaw += ((forward > 0.0) ? -45 : 45);
+                } else if (strafe < 0.0) {
+                    yaw += ((forward > 0.0) ? 45 : -45);
+                }
+
+                strafe = 0.0;
+
+                if (forward > 0.0) {
+                    forward = 1.0;
+                } else if (forward < 0.0) {
+                    forward = -1.0;
+                }
+            }
+
+            event.setMotionX(forward * speed * Math.cos(Math.toRadians(yaw + 90.0f)) + strafe * speed * Math.sin(Math.toRadians(yaw + 90.0f)));
+            event.setMotionZ(forward * speed * Math.sin(Math.toRadians(yaw + 90.0f)) - strafe * speed * Math.cos(Math.toRadians(yaw + 90.0f)));
         }
     }
 }

@@ -72,56 +72,56 @@ public class Killaura extends Mod {
     }
 
 
-    @Override
-    public void onWorldTick() {
-
-        //Multi Aura
-        if (multiAura.getValue()) {
-            time.updateMS();
-
-            for (Object o : getWorld().loadedEntityList) {
-                if (o instanceof EntityLivingBase) {
-                    EntityLivingBase entity = (EntityLivingBase) o;
-
-                    if (!(entity instanceof EntityPlayerSP) && isValid(entity)) {
-                        faceTarget(entity, Float.MAX_VALUE, Float.MAX_VALUE);
-                        getPlayer().rotationPitch += 9.0E-4F;
-
-                        if (time.hasTimePassedM(delay.getValue().intValue())) {
-                            getPlayer().swingArm(EnumHand.MAIN_HAND);
-                            getMinecraft().playerController.attackEntity(getPlayer(), entity);
-                            time.updateLastMS();
-                        }
-                    }
-                }
-            }
-        }
-
-
-        updateTargets();
-
-        for (Object y : getWorld().loadedEntityList) {
-
-            if ((y instanceof EntityLiving)) {
-                EntityLiving e = (EntityLiving) y;
-
-                if ((isValid(e)) && (e.getDistanceToEntity(getPlayer()) < target.getDistanceToEntity(getPlayer()))) {
-                    target = e;
-                }
-            }
-        }
-
-        if (isValid(target)) {
-            if (isInStareRange(target)) {
-                faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
-                getPlayer().rotationPitch += 9.0E-4F;
-            }
-
-            faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
-            getPlayer().rotationPitch += 9.0E-4F;
-            attackEntity();
-        }
-    }
+//    @Override
+//    public void onWorldTick() {
+//
+//        //Multi Aura
+//        if (multiAura.getValue()) {
+//            time.updateMS();
+//
+//            for (Object o : getWorld().loadedEntityList) {
+//                if (o instanceof EntityLivingBase) {
+//                    EntityLivingBase entity = (EntityLivingBase) o;
+//
+//                    if (!(entity instanceof EntityPlayerSP) && isValid(entity)) {
+//                        faceTarget(entity, Float.MAX_VALUE, Float.MAX_VALUE);
+//                        getPlayer().rotationPitch += 9.0E-4F;
+//
+//                        if (time.hasTimePassedM(delay.getValue().intValue())) {
+//                            getPlayer().swingArm(EnumHand.MAIN_HAND);
+//                            getMinecraft().playerController.attackEntity(getPlayer(), entity);
+//                            time.updateLastMS();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        updateTargets();
+//
+//        for (Object y : getWorld().loadedEntityList) {
+//
+//            if ((y instanceof EntityLiving)) {
+//                EntityLiving e = (EntityLiving) y;
+//
+//                if ((isValid(e)) && (e.getDistanceToEntity(getPlayer()) < target.getDistanceToEntity(getPlayer()))) {
+//                    target = e;
+//                }
+//            }
+//        }
+//
+//        if (isValid(target)) {
+//            if (isInStareRange(target)) {
+//                faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
+//                getPlayer().rotationPitch += 9.0E-4F;
+//            }
+//
+//            faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
+//            getPlayer().rotationPitch += 9.0E-4F;
+//            attackEntity();
+//        }
+//    }
 
     private void updateTargets() {
 

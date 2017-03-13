@@ -19,7 +19,6 @@
 package uk.co.hexeption.darkforge.ui.hud;
 
 import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.EventKeyboard;
@@ -52,18 +51,18 @@ public class Hud {
             return;
 
         IGameHud currentTheme = getCurrentTheme();
-        currentTheme.render(Minecraft.getMinecraft(), event.width, event.height);
+        currentTheme.render(Minecraft.getMinecraft(), event.getWidth(), event.getHeight());
     }
 
     @EventTarget
     public void onKeyEvent(EventKeyboard event) {
 
-        getCurrentTheme().onKeyPressed(event.key);
+        getCurrentTheme().onKeyPressed(event.getKey());
     }
 
     public IGameHud getCurrentTheme() {
 
-        return (IGameHud) this.themes.get(this.themeIndex);
+        return this.themes.get(this.themeIndex);
     }
 
     public IGameHud getTheme(String name) {

@@ -22,7 +22,7 @@ import uk.co.hexeption.darkforge.event.Event;
 
 public class EventKeyboard extends Event {
 
-    public int key;
+    private int key;
 
     public EventKeyboard(int key) {
 

@@ -15,28 +15,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.mcwrapper.mixin.entity.living.player;
 
-package uk.co.hexeption.darkforge.event.events.render;
+import net.minecraft.entity.player.EntityPlayer;
+import org.spongepowered.asm.mixin.Mixin;
+import uk.co.hexeption.mcwrapper.mixin.entity.living.MixinEntityLiving;
 
-import uk.co.hexeption.darkforge.event.Event;
+/**
+ * Created by Keir on 13/03/2017.
+ */
+@Mixin(EntityPlayer.class)
+public abstract class MixinEntityPlayer extends MixinEntityLiving {
 
-public class EventRender2D extends Event {
-
-    private int width, height;
-
-    public EventRender2D(int width, int height) {
-
-        this.width = width;
-        this.height = height;
-    }
-
-    public int getWidth() {
-
-        return width;
-    }
-
-    public int getHeight() {
-
-        return height;
-    }
 }

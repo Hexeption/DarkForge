@@ -20,8 +20,6 @@ package uk.co.hexeption.darkforge.mod.mods;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -55,35 +53,35 @@ public class Tracers extends Mod {
 
         addValue(player, mob, testingFloat, testingDouble);
     }
-
-    @Override
-    public void onWorldRender() {
-
-        for (Object entityList : getWorld().loadedEntityList) {
-            if (!(entityList instanceof EntityLivingBase)) {
-                continue;
-            }
-
-            EntityLivingBase entity = (EntityLivingBase) entityList;
-
-            if (player.getValue()) {
-                if (entity instanceof EntityPlayer) {
-                    if (entity != getPlayer() && !entity.isInvisible()) {
-                        player(entity);
-
-                    }
-                }
-            }
-
-            if (mob.getValue()) {
-                if (entity instanceof EntityMob) {
-                    player(entity);
-                }
-            }
-
-
-        }
-    }
+//
+//    @Override
+//    public void onWorldRender() {
+//
+//        for (Object entityList : getWorld().loadedEntityList) {
+//            if (!(entityList instanceof EntityLivingBase)) {
+//                continue;
+//            }
+//
+//            EntityLivingBase entity = (EntityLivingBase) entityList;
+//
+//            if (player.getValue()) {
+//                if (entity instanceof EntityPlayer) {
+//                    if (entity != getPlayer() && !entity.isInvisible()) {
+//                        player(entity);
+//
+//                    }
+//                }
+//            }
+//
+//            if (mob.getValue()) {
+//                if (entity instanceof EntityMob) {
+//                    player(entity);
+//                }
+//            }
+//
+//
+//        }
+//    }
 
     private void player(EntityLivingBase entity) {
 

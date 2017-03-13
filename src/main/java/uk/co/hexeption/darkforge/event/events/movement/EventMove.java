@@ -15,28 +15,44 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.darkforge.event.events.render;
+package uk.co.hexeption.darkforge.event.events.movement;
 
 import uk.co.hexeption.darkforge.event.Event;
 
-public class EventRender2D extends Event {
+/**
+ * Created by Keir on 13/03/2017.
+ */
+public class EventMove extends Event {
 
-    private int width, height;
+    private double motionX, motionY, motionZ;
 
-    public EventRender2D(int width, int height) {
-
-        this.width = width;
-        this.height = height;
+    public EventMove(double motionX, double motionY, double motionZ) {
+        this.motionX = motionX;
+        this.motionY = motionY;
+        this.motionZ = motionZ;
     }
 
-    public int getWidth() {
-
-        return width;
+    public double getMotionX() {
+        return motionX;
     }
 
-    public int getHeight() {
+    public void setMotionX(double motionX) {
+        this.motionX = motionX;
+    }
 
-        return height;
+    public double getMotionY() {
+        return motionY;
+    }
+
+    public void setMotionY(double motionY) {
+        this.motionY = motionY;
+    }
+
+    public double getMotionZ() {
+        return motionZ;
+    }
+
+    public void setMotionZ(double motionZ) {
+        this.motionZ = motionZ;
     }
 }
