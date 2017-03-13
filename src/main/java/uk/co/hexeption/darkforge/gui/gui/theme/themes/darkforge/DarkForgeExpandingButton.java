@@ -51,7 +51,7 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         }
 
         RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-        theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 2), button.isEnabled() ? Color.green.hashCode() : Color.WHITE.hashCode());
+        theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), button.isEnabled() ? Color.green.hashCode() : Color.WHITE.hashCode());
 
         if (button.isMaximized()) {
             RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getButtonHeight(), new Color(128, 128, 128, 55));
