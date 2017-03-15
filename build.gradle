@@ -114,6 +114,13 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
+
+    dependencies {
+        include(dependency('org.spongepowered:mixin'))
+    }
+
+    exclude 'dummyThing'
+    exclude 'LICENSE.txt'
 }
 
 github {
