@@ -39,16 +39,27 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 public class Killaura extends Mod {
 
     public TimerUtils time = new TimerUtils();
+
     private BooleanValue player;
+
     private BooleanValue mob;
+
     private BooleanValue locked;
+
     private BooleanValue invisiableEntitys;
+
     private BooleanValue packetCrit;
+
     private BooleanValue jumpCrit;
+
     private BooleanValue multiAura;
+
     private BooleanValue autoDelay;
+
     private DoubleValue range;
+
     private FloatValue delay;
+
     private EntityLivingBase target;
 
     private float yaw;

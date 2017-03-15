@@ -25,9 +25,9 @@ import java.util.ArrayList;
 
 public class Button extends Component {
 
-    private boolean enabled = false;
-
     public ArrayList<ComponentClickListener> listeners = new ArrayList<>();
+
+    private boolean enabled = false;
 
     public Button(int xPos, int yPos, int width, int height, Component component, String text) {
 
@@ -57,13 +57,13 @@ public class Button extends Component {
         return enabled;
     }
 
-    public ArrayList<ComponentClickListener> getListeners() {
-
-        return listeners;
-    }
-
     public void setEnabled(boolean enabled) {
 
         this.enabled = enabled;
+    }
+
+    public ArrayList<ComponentClickListener> getListeners() {
+
+        return listeners;
     }
 }

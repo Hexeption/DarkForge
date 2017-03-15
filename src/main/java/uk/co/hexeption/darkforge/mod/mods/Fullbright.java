@@ -34,6 +34,7 @@ public class Fullbright extends Mod {
 
     @EventTarget
     public void onUpdate(EventUpdate event) {
+
         if (getState())
             if (getGameSettings().gammaSetting < 16) {
                 getGameSettings().gammaSetting += 0.5;

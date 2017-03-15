@@ -55,12 +55,12 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
 
         if (button.isMaximized()) {
             RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getButtonHeight(), new Color(128, 128, 128, 55));
-            RenderUtils.drawRect(button.getX(), button.getY() +  button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getDimension().height, new Color(128, 128, 128, 55));
+            RenderUtils.drawRect(button.getX(), button.getY() + button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getDimension().height, new Color(128, 128, 128, 55));
         }
 
-        if(!button.isMaximized()){
+        if (!button.isMaximized()) {
             RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 19 - 6, button.getX() + button.getDimension().width - 6, button.getY() + 6, 1.5, Color.WHITE);
-        }else{
+        } else {
             RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 19 - 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 6, button.getX() + button.getDimension().width - 6, button.getY() + 19 - 6, 1.5, Color.WHITE);
         }
 

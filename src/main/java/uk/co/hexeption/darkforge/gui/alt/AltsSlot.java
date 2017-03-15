@@ -52,6 +52,7 @@ public class AltsSlot extends GuiSlot {
     public static void sortAlts() {
 
         Collections.sort(alts, new Comparator<Alt>() {
+
             @Override
             public int compare(Alt o1, Alt o2) {
 

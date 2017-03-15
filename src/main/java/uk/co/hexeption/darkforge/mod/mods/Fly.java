@@ -37,11 +37,13 @@ public class Fly extends Mod {
     private final DoubleValue speed = new DoubleValue("Speed", 0.8D, 0D, 9D);
 
     public Fly() {
+
         addValue(speed);
     }
 
     @EventTarget
     public void eventPreMotionUpdate(PreMotionUpdateEvent event) {
+
         if (getPlayer().movementInput.jump) {
             getPlayer().motionY = speed.getValue();
         } else if (getPlayer().movementInput.sneak) {
@@ -53,10 +55,12 @@ public class Fly extends Mod {
 
     @EventTarget
     public void eventMove(MoveEvent event) {
+
         setMoveSpeed(event, speed.getValue());
     }
 
     public void setMoveSpeed(final MoveEvent event, final double speed) {
+
         double forward = getPlayer().movementInput.moveForward;
         double strafe = getPlayer().movementInput.moveStrafe;
         float yaw = getPlayer().rotationYaw;

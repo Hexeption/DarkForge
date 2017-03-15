@@ -26,4 +26,5 @@ import uk.co.hexeption.mcwrapper.mixin.entity.MixinEntity;
  */
 @Mixin(EntityLivingBase.class)
 public abstract class MixinEntityLiving extends MixinEntity {
+
 }

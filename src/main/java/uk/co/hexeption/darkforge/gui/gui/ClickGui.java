@@ -35,13 +35,13 @@ import java.util.ArrayList;
 
 public class ClickGui extends GuiScreen {
 
+    public static int[] mouse = new int[2];
+
     private static Theme theme;
 
     private static ArrayList<Frame> frames = new ArrayList<>();
 
     private Frame currentFrame;
-
-    public static int[] mouse = new int[2];
 
     private boolean dragging = false;
 
@@ -67,6 +67,16 @@ public class ClickGui extends GuiScreen {
 
     //Screen
 
+    public static Theme getTheme() {
+
+        return theme;
+    }
+
+    public void setTheme(Theme theme) {
+
+        ClickGui.theme = theme;
+    }
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
@@ -74,6 +84,9 @@ public class ClickGui extends GuiScreen {
             frame.render(mouse[0], mouse[1]);
         }
     }
+
+
+    //Frame
 
     @Override
     public void handleInput() throws IOException {
@@ -125,9 +138,6 @@ public class ClickGui extends GuiScreen {
 
         onUpdate();
     }
-
-
-    //Frame
 
     public void onMouseUpdate(int x, int y) {
 
@@ -214,25 +224,14 @@ public class ClickGui extends GuiScreen {
 
     }
 
-
     public void addFrame(Frame frame) {
 
-        this.frames.add(frame);
-    }
-
-    public void setTheme(Theme theme) {
-
-        ClickGui.theme = theme;
+        frames.add(frame);
     }
 
     public ArrayList<Frame> getFrames() {
 
         return frames;
-    }
-
-    public static Theme getTheme() {
-
-        return theme;
     }
 
 

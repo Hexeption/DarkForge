@@ -18,7 +18,7 @@
 package uk.co.hexeption.darkforge.gui.gui.elements;
 
 import org.lwjgl.input.Mouse;
-import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.listener.SliderChangeListener;
@@ -27,13 +27,13 @@ import java.util.ArrayList;
 
 public class Slider extends Component {
 
-    private ArrayList<SliderChangeListener> listeners = new ArrayList<>();
-
     public boolean dragging = false;
 
     public double min, max, value;
 
     public double percent = 0;
+
+    private ArrayList<SliderChangeListener> listeners = new ArrayList<>();
 
 
     public Slider(double min, double max, double value, Component component, String text) {
@@ -78,7 +78,7 @@ public class Slider extends Component {
     @Override
     public void onUpdate() {
 
-        int[] mouse = DarkForge.INSTANCE.guiManager.mouse;
+        int[] mouse = ClickGui.mouse;
         this.dragging = false;
 
         if (dragging && !isMouseOver(mouse[0], mouse[1])) {

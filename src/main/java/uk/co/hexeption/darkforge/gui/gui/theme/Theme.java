@@ -29,11 +29,11 @@ import java.util.HashMap;
  */
 public class Theme {
 
+    public MinecraftFontRenderer fontRenderer;
+
     private HashMap<ComponentType, ComponentRenderer> rendererHashMap = new HashMap<>();
 
     private String themeName;
-
-    public MinecraftFontRenderer fontRenderer;
 
     private int frameHeight = 20;
 

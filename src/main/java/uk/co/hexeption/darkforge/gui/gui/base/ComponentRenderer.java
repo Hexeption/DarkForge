@@ -18,20 +18,16 @@
 
 package uk.co.hexeption.darkforge.gui.gui.base;
 
-import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
-import uk.co.hexeption.darkforge.utils.render.GLUtils;
-
-import java.awt.*;
 
 /**
  * Created by Hexeption on 27/02/2017.
  */
 public class ComponentRenderer {
 
-    private ComponentType type;
-
     public Theme theme;
+
+    private ComponentType type;
 
     public ComponentRenderer(ComponentType type, Theme theme) {
 
