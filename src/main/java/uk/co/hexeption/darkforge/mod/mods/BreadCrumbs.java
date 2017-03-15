@@ -44,6 +44,9 @@ public class BreadCrumbs extends Mod {
     @EventTarget
     public void onUpdate(EventUpdate event) {
 
+        if (getPlayer() == null)
+            return;
+
         synchronized (positions) {
             positions.add(new double[]{getPlayer().posX, getPlayer().posY, getPlayer().posZ});
         }

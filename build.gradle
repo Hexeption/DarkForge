@@ -164,7 +164,7 @@ jar {
                 "MixinConfigs": 'mixins.mcwrapper.json',
                 "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
                 "TweakOrder": 0,
-                'FMLCorePluginContainsFMLMod': 'uk.co.hexeption.darkforge.mixin.MixinLoader ',
+                'FMLCorePluginContainsFMLMod': 'uk.co.hexeption.darkforge.mixin.MixinLoader',
                 'FMLAT': 'darkforge_at.cfg')
     }
 }

@@ -21,7 +21,7 @@ public class MixinBlock {
     @Inject(method = "shouldSideBeRendered", at = @At("HEAD"), cancellable = true)
     public void shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 
-        if (DarkForge.modManager.getModuleByClass(Xray.class).getState()) {
+        if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
             callbackInfoReturnable.setReturnValue(Xray.INSTANCE.isXrayBlock(blockState.getBlock()));
 
@@ -31,7 +31,7 @@ public class MixinBlock {
     @Inject(method = "getAmbientOcclusionLightValue", at = @At("HEAD"), cancellable = true)
     public void getAmbientOcclusionLightValue(IBlockState state, CallbackInfoReturnable<Float> callbackInfoReturnable) {
 
-        if (DarkForge.modManager.getModuleByClass(Xray.class).getState()) {
+        if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
             callbackInfoReturnable.setReturnValue(10000F);
 

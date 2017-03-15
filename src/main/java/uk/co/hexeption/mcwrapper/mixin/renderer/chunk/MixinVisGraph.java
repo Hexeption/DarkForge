@@ -20,7 +20,7 @@ public class MixinVisGraph {
     @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
     public void setOpaqueCube(BlockPos pos, CallbackInfo callbackInfo) {
 
-        if (DarkForge.modManager.getModuleByClass(Xray.class).getState()) {
+        if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
             callbackInfo.cancel();
         }
@@ -29,7 +29,7 @@ public class MixinVisGraph {
     @Inject(method = "computeVisibility", at = @At("HEAD"), cancellable = true)
     public void computeVisibility(CallbackInfoReturnable<SetVisibility> callbackInfoReturnable) {
 
-        if (DarkForge.modManager.getModuleByClass(Xray.class).getState()) {
+        if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
             SetVisibility setVisibility = new SetVisibility();
             setVisibility.setAllVisible(true);
             callbackInfoReturnable.setReturnValue(setVisibility);

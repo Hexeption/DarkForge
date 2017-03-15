@@ -21,7 +21,7 @@ public abstract class MixinBlockModelRenderer {
     @Inject(method = "renderBlock(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/VertexBuffer;)Z", at = @At("HEAD"), cancellable = true)
     public void renderBlock(IBlockState state, BlockPos pos, IBlockAccess blockAccess, VertexBuffer worldRendererIn, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 
-        if (DarkForge.modManager.getModuleByClass(Xray.class).getState()) {
+        if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
             if (Xray.INSTANCE.shouldIgnore(state.getBlock())) {
                 callbackInfoReturnable.setReturnValue(false);

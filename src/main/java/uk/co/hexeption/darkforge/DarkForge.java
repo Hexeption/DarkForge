@@ -35,13 +35,7 @@ import uk.co.hexeption.darkforge.ui.hud.Hud;
 public enum DarkForge {
     INSTANCE;
 
-
-    /**
-     * TODO: Fix Static Crash Bug!
-     * TODO: Redo the Events
-     */
-
-    public static final ModManager modManager = new ModManager();
+    public final ModManager modManager = new ModManager();
 
     public final CommandManager commandManager = new CommandManager();
 

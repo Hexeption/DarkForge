@@ -25,7 +25,7 @@ import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.mod.mods.*;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +34,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class ModManager {
 
-    private final List<Mod> mods = new LinkedList<Mod>();
+    private final List<Mod> mods = new ArrayList<>();
 
     public void Initialization() {
 
@@ -47,7 +47,7 @@ public class ModManager {
      */
     private void initMods() {
 
-        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(), new Xray());
+        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(), new Xray(), new CustomChat());
     }
 
     public void addModules(final Mod... mods) {
@@ -94,7 +94,7 @@ public class ModManager {
     public <T extends Mod> T getModuleByName(final String name) {
 
         for (final Mod mod : mods) {
-            if (mod.getName().replaceAll(" ", "").toLowerCase().equals(name.toLowerCase())) {
+            if (mod.getName().toLowerCase().equals(name.toLowerCase())) {
                 return (T) mod;
             }
         }
