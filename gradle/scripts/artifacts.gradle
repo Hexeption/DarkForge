@@ -36,10 +36,4 @@ jar {
            exclude 'META-INF', 'META-INF/**'
        }
     }
-    dependencies {
-        include(dependency('org.spongepowered:mixin'))
-    }
-
-    exclude 'dummyThing'
-    exclude 'LICENSE.txt'
 }
