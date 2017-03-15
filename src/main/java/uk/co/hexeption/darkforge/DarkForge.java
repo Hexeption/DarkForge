@@ -77,6 +77,7 @@ public enum DarkForge {
 
         LogHelper.info("Loading Config...");
         fileManager.Initialization();
+
     }
 
     public void end() {
