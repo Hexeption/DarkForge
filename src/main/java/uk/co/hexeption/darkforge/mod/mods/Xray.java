@@ -76,6 +76,19 @@ public class Xray extends Mod {
     }
 
     @Override
+    public void onEnable() {
+
+        getGameSettings().gammaSetting = 10000;
+    }
+
+    @Override
+    public void onDisable() {
+
+        getGameSettings().gammaSetting = 0.5f;
+
+    }
+
+    @Override
     public void toggle() {
 
         super.toggle();
