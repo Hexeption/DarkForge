@@ -43,11 +43,12 @@ public class BlockOverlay extends Mod {
 
         RayTraceResult rayTraceResult = mc.objectMouseOver;
 
+        if (rayTraceResult.entityHit != null)
+            return;
+
         Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
         BlockPos blockPos = rayTraceResult.getBlockPos();
 
-        if (rayTraceResult.entityHit != null)
-            return;
 
         if (Block.getIdFromBlock(block) == 0)
             return;
@@ -82,6 +83,8 @@ public class BlockOverlay extends Mod {
         RenderUtils.drawSolidBox();
         glColor4f(red, green, 0, 0.5F);
         RenderUtils.drawOutlinedBox();
+
+        glColor4f(1, 1, 1, 1);
 
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);

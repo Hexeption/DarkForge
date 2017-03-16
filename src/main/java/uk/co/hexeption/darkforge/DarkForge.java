@@ -55,7 +55,6 @@ public enum DarkForge {
     DarkForge() {
 
         EventManager.register(this);
-
     }
 
     public void start() {
@@ -80,6 +79,8 @@ public enum DarkForge {
 
         LogHelper.info("Loading Gui...");
         guiManager.Initialization();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
 
     public void end() {
@@ -92,7 +93,6 @@ public enum DarkForge {
         for (Mod m : modManager.getMods()) {
             if (Keyboard.getEventKey() == m.getBind()) {
                 m.toggle();
-                LogHelper.info("Toggle");
             }
         }
     }
@@ -105,6 +105,6 @@ public enum DarkForge {
 
     public void addChatMessage(String message) {
 
-        addChatMessage(new TextComponentString(TextFormatting.RED + "[DF] " + TextFormatting.GRAY + message));
+        addChatMessage(new TextComponentString(TextFormatting.DARK_RED + "[DF] " + TextFormatting.GRAY + message));
     }
 }

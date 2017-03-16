@@ -81,6 +81,7 @@ public class ChestESP extends Mod {
         trapedChest.forEach(RenderUtils::drawSolidBox);
         glColor4f(1, 0, 0, 0.5F);
         trapedChest.forEach(RenderUtils::drawOutlinedBox);
+        glColor4f(1, 1, 1, 1);
         glPopMatrix();
 
         glEnable(GL_DEPTH_TEST);

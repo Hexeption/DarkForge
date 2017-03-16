@@ -65,9 +65,11 @@ public class ItemESP extends Mod {
                 glTranslated(entity.posX, entity.posY, entity.posZ);
 
                 RenderUtils.drawOutlinedBox(ITEM_BOX);
+
                 glPopMatrix();
             }
         }
+        glColor4f(1, 1, 1, 1);
 
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
