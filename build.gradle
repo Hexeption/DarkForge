@@ -93,7 +93,7 @@ minecraft {
     version = minecraft_version + "-" + forge_version
 
     replace "@VERSION@", project.version
-    replace "@MCVERSION", minecraft_version
+    replace "@MCVERSION@", minecraft_version
 
     replaceIn "ClientInfo.java"
 
