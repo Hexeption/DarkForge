@@ -19,6 +19,9 @@
 package uk.co.hexeption.darkforge;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -66,18 +69,17 @@ public enum DarkForge {
         LogHelper.info("Loading Commands...");
         commandManager.Initialization();
 
-
         LogHelper.info("Loading Fonts...");
         fontManager.Initialization();
 
         LogHelper.info("Loading Hud...");
         hud.Initialization();
 
-        guiManager.Initialization();
-
         LogHelper.info("Loading Config...");
         fileManager.Initialization();
 
+        LogHelper.info("Loading Gui...");
+        guiManager.Initialization();
     }
 
     public void end() {
@@ -95,4 +97,14 @@ public enum DarkForge {
         }
     }
 
+
+    public void addChatMessage(ITextComponent component) {
+
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(component);
+    }
+
+    public void addChatMessage(String message) {
+
+        addChatMessage(new TextComponentString(TextFormatting.RED + "[DF] " + TextFormatting.GRAY + message));
+    }
 }

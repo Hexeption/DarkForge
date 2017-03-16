@@ -40,9 +40,14 @@ public class BlockOverlay extends Mod {
     @EventTarget
     public void onRender3D(Render3DEvent event) {
 
+
         RayTraceResult rayTraceResult = mc.objectMouseOver;
+
         Block block = mc.world.getBlockState(rayTraceResult.getBlockPos()).getBlock();
         BlockPos blockPos = rayTraceResult.getBlockPos();
+
+        if (rayTraceResult.entityHit != null)
+            return;
 
         if (Block.getIdFromBlock(block) == 0)
             return;

@@ -18,10 +18,14 @@
 
 package uk.co.hexeption.darkforge.command;
 
+import net.minecraft.client.Minecraft;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public abstract class Command {
+
+    protected Minecraft mc = Minecraft.getMinecraft();
 
     private String[] name = getClass().getAnnotation(CMDInfo.class).name();
 

@@ -41,7 +41,7 @@ public abstract class MixinBlockModelRenderer {
 
         if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
-            if (Xray.INSTANCE.shouldIgnore(state.getBlock())) {
+            if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).shouldIgnore(state.getBlock())) {
                 callbackInfoReturnable.setReturnValue(false);
             }
 

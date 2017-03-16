@@ -33,18 +33,17 @@ import java.util.ArrayList;
 @Mod.ModInfo(name = "Xray", description = "See ores?", category = Mod.Category.RENDER, bind = Keyboard.KEY_X)
 public class Xray extends Mod {
 
-    public static final Xray INSTANCE = new Xray();
+    /**
+     * Need Brightness
+     */
 
-    private static ArrayList<Block> xrayBlocks;
+    public final ArrayList<Block> xrayBlocks = new ArrayList<Block>();
 
     private final FloatValue opacity = new FloatValue("Opacity", 30F, 0F, 100F);
 
     public Xray() {
 
         addValue(opacity);
-
-        xrayBlocks = new ArrayList<Block>();
-
 
         //Ore Blocks
         xrayBlocks.add(Blocks.COAL_ORE);
@@ -97,4 +96,6 @@ public class Xray extends Mod {
 
         return !isXrayBlock(block) || block instanceof BlockBush;
     }
+
+
 }

@@ -41,7 +41,7 @@ public class MixinBlock {
 
         if (DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).getState()) {
 
-            callbackInfoReturnable.setReturnValue(Xray.INSTANCE.isXrayBlock(blockState.getBlock()));
+            callbackInfoReturnable.setReturnValue(DarkForge.INSTANCE.modManager.getModuleByClass(Xray.class).isXrayBlock(blockState.getBlock()));
 
         }
     }
