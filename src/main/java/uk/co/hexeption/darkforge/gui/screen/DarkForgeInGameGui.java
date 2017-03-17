@@ -20,6 +20,7 @@ package uk.co.hexeption.darkforge.gui.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
 import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
 import uk.co.hexeption.darkforge.utils.ReflectionHelper;
 
@@ -46,5 +47,10 @@ public class DarkForgeInGameGui extends GuiIngame {
             Render2DEvent eventRender2D = new Render2DEvent(mc.displayWidth, mc.displayHeight);
             eventRender2D.call();
         }
+    }
+
+    @Override
+    protected void renderPotionEffects(ScaledResolution resolution) {
+
     }
 }
