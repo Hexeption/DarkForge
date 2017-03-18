@@ -27,6 +27,10 @@ import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.alt.AltsSlot;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.value.BooleanValue;
+import uk.co.hexeption.darkforge.value.DoubleValue;
+import uk.co.hexeption.darkforge.value.FloatValue;
+import uk.co.hexeption.darkforge.value.Value;
 
 import java.io.*;
 import java.util.Iterator;
@@ -83,6 +87,24 @@ public class FileManager {
                         mods.setState(true);
                     }
 
+                    if (!mods.getValues().isEmpty()) {
+                        for (Value value : mods.getValues()) {
+                            if (value instanceof BooleanValue) {
+                                boolean bvalue = jsonMod.get(value.getName()).getAsBoolean();
+                                value.setValue(bvalue);
+                            }
+                            if (value instanceof DoubleValue) {
+                                double dvalue = jsonMod.get(value.getName()).getAsDouble();
+                                value.setValue(dvalue);
+                            }
+                            if (value instanceof FloatValue) {
+                                float fvalue = jsonMod.get(value.getName()).getAsFloat();
+                                value.setValue(fvalue);
+                            }
+
+                        }
+                    }
+
                     mods.setBind(jsonMod.get("bind").getAsInt());
                 }
             }
@@ -102,6 +124,21 @@ public class FileManager {
                 JsonObject jsonModules = new JsonObject();
                 jsonModules.addProperty("enabled", mod.getState());
                 jsonModules.addProperty("bind", mod.getBind());
+
+                if (!mod.getValues().isEmpty()) {
+                    for (Value value : mod.getValues()) {
+                        if (value instanceof BooleanValue) {
+                            jsonModules.addProperty(value.getName(), (Boolean) value.getValue());
+                        }
+                        if (value instanceof DoubleValue) {
+                            jsonModules.addProperty(value.getName(), (Number) value.getValue());
+                        }
+                        if (value instanceof FloatValue) {
+                            jsonModules.addProperty(value.getName(), (Number) value.getValue());
+                        }
+
+                    }
+                }
 
                 json.add(mod.getName(), jsonModules);
             }
