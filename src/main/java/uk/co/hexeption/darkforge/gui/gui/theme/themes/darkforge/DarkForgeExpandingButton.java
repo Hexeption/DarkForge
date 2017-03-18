@@ -45,17 +45,26 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         ExpandingButton button = (ExpandingButton) component;
         String text = button.getText();
         Color color = new Color(31, 31, 31, 20);
+        Color enable = new Color(77, 8, 8, 100);
 
-        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
+
+        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, 18, mouseX, mouseY)) {
             color = new Color(31, 31, 31, 120);
         }
 
-        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-        theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), button.isEnabled() ? Color.green.hashCode() : Color.WHITE.hashCode());
+
+        if (button.isEnabled()) {
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, enable);
+        } else {
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, color);
+        }
+
+//        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
+        theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.WHITE.hashCode());
 
         if (button.isMaximized()) {
-            RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getButtonHeight(), new Color(128, 128, 128, 55));
-            RenderUtils.drawRect(button.getX(), button.getY() + button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getDimension().height, new Color(128, 128, 128, 55));
+            RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getY() + button.getButtonHeight(), new Color(255, 255, 255, 80));
+            RenderUtils.drawRect(button.getX(), button.getY() + button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getY() + button.getDimension().height, new Color(255, 255, 255, 80));
         }
 
         if (!button.isMaximized()) {

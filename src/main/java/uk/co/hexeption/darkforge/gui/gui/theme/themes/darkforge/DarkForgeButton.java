@@ -47,17 +47,20 @@ public class DarkForgeButton extends ComponentRenderer {
         Button button = (Button) component;
         String text = button.getText();
         Color color = new Color(31, 31, 31, 20);
+        Color enable = new Color(77, 8, 8, 100);
 
         if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
             color = new Color(31, 31, 31, 120);
         }
 
-        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
+//        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
 
         if (button.isEnabled()) {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.green.hashCode());
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, enable);
         } else {
-            theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
         }
+
+        theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
     }
 }

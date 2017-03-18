@@ -35,7 +35,7 @@ public class Theme {
 
     private String themeName;
 
-    private int frameHeight = 20;
+    private int frameHeight = 15;
 
     public Theme(String themeName) {
 

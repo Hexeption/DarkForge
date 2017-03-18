@@ -51,6 +51,6 @@ public class DarkForgeCheckButton extends ComponentRenderer {
             RenderUtils.drawTri(button.getX() + 6, button.getY() + 8, button.getX() + button.getDimension().height - 10, button.getY() + button.getDimension().height - 6, button.getX() + button.getDimension().height - 7, button.getY() + 6, 2, Color.white);
         }
 
-        theme.fontRenderer.drawString(text, button.getX() + 18, MathUtils.getMiddle(button.getY(), button.getY() + button.getDimension().height) - theme.fontRenderer.getHeight() / 2 + 1, Color.white.hashCode());
+        theme.fontRenderer.drawString(text, button.getX() + 18, MathUtils.getMiddle(button.getY(), button.getY() + button.getDimension().height) - theme.fontRenderer.getHeight() / 3 + 2, Color.white.hashCode());
     }
 }

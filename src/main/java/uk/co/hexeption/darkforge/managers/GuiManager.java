@@ -45,6 +45,28 @@ public class GuiManager extends ClickGui {
 
     }
 
+//    private void categorys(){
+//        Frame frame = new Frame(10, 10,100, 50, "Gui Manager");
+//        for (Mod.Category category : Mod.Category.values()) {
+//            if(category != Mod.Category.GUI){
+//                String name = Character.toString(category.toString().toLowerCase().charAt(0)).toUpperCase() + category.toString().toLowerCase().substring(1);
+//                Button button = new Button(0,0,100,18, frame, name);
+//                button.addListeners(new ComponentClickListener() {
+//
+//                    @Override
+//                    public void onComponenetClick(Component component, int button) {
+//
+//                    }
+//                });
+//                frame.addComponent(button);
+//            }
+//        }
+//
+//        frame.setMaximizible(true);
+//        frame.setPinnable(false);
+//        this.addFrame(frame);
+//    }
+
     private void addMiniMapPanel() {
 
     }
