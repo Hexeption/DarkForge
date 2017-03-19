@@ -138,7 +138,7 @@ public class GuiManager extends ClickGui {
                             }
                         }
 
-                        Keybind keybind = new Keybind(0, 0, 12, 12, expandingButton, mod);
+                        KeybindMods keybind = new KeybindMods(0, 0, 12, 12, expandingButton, mod);
                         expandingButton.addComponent(keybind);
                         frame.addComponent(expandingButton);
                     }
