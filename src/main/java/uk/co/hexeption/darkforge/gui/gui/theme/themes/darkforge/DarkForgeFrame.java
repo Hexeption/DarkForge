@@ -82,11 +82,16 @@ public class DarkForgeFrame extends ComponentRenderer {
         }
 
         RenderUtils.drawRect(frame.getX() + dimension.width - 38, frame.getY(), frame.getX() + dimension.width - 19, frame.getY() + 15, color);
-        RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 3, Color.WHITE.getRGB());
+//        RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 3, Color.WHITE.getRGB());
         RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY(), 0x8C808080);
 
+        GLUtils.glColor(255, 255, 255, 255);
         if (!frame.isPinned()) {
-            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 2, new Color(54, 54, 54).hashCode());
+//            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 14, true, new Color(0, 37, 108,255).hashCode());
+            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 14, true, new Color(255, 255, 255, 255).hashCode());
+        } else {
+            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 4, new Color(255, 255, 255, 255).hashCode());
+            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 2, new Color(176, 176, 176, 255).hashCode());
         }
     }
 
@@ -103,12 +108,12 @@ public class DarkForgeFrame extends ComponentRenderer {
         RenderUtils.drawRect(frame.getX() + dimension.width - 19, frame.getY(), frame.getX() + dimension.width, frame.getY() + 15, color);
 
         if (frame.isMaximized()) {
-            RenderUtils.drawTri(frame.getX() + dimension.width - 19 + 6, frame.getY() + 5, MathUtils.getMiddleDouble(frame.getX() + dimension.width - 19, frame.getX() + dimension.width), frame.getY() + 19 - 8, frame.getX() + dimension.width - 6, frame.getY() + 5, 1.5, Color.WHITE);
+            drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 12, true, new Color(255, 255, 255, 255).hashCode());
             RenderUtils.drawVLine(frame.getX(), frame.getY(), frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
             RenderUtils.drawVLine(frame.getX() + dimension.width, frame.getY(), frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
             RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
         } else {
-            RenderUtils.drawTri(frame.getX() + dimension.width - 19 + 6, frame.getY() + 19 - 8, MathUtils.getMiddleDouble(frame.getX() + dimension.width - 19, frame.getX() + dimension.width), frame.getY() + 5, frame.getX() + dimension.width - 6, frame.getY() + 19 - 8, 1.8, Color.WHITE);
+            drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 12, false, new Color(255, 255, 255, 255).hashCode());
         }
     }
 
@@ -153,4 +158,6 @@ public class DarkForgeFrame extends ComponentRenderer {
             frame.setPinned(!frame.isPinned());
         }
     }
+
+
 }

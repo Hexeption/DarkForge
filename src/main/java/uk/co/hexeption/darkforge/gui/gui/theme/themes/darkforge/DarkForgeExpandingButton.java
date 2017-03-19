@@ -23,7 +23,6 @@ import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.elements.ExpandingButton;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
-import uk.co.hexeption.darkforge.utils.MathUtils;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 
@@ -68,9 +67,11 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         }
 
         if (!button.isMaximized()) {
-            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 19 - 6, button.getX() + button.getDimension().width - 6, button.getY() + 6, 1.5, Color.WHITE);
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, true, new Color(255, 255, 255, 255).hashCode());
+//            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 19 - 6, button.getX() + button.getDimension().width - 6, button.getY() + 6, 1.5, Color.WHITE);
         } else {
-            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 19 - 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 6, button.getX() + button.getDimension().width - 6, button.getY() + 19 - 6, 1.5, Color.WHITE);
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, false, new Color(255, 255, 255, 255).hashCode());
+//            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 19 - 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 6, button.getX() + button.getDimension().width - 6, button.getY() + 19 - 6, 1.5, Color.WHITE);
         }
 
         if (button.isMaximized()) {

@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.gui.gui.theme;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+import uk.co.hexeption.darkforge.utils.render.Texture;
 
 import java.util.HashMap;
 
@@ -30,6 +31,8 @@ import java.util.HashMap;
 public class Theme {
 
     public MinecraftFontRenderer fontRenderer;
+
+    public Texture icons;
 
     private HashMap<ComponentType, ComponentRenderer> rendererHashMap = new HashMap<>();
 

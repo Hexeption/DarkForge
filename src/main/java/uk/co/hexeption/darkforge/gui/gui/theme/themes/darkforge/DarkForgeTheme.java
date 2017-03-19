@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
+import uk.co.hexeption.darkforge.utils.render.Texture;
 
 /**
  * Created by Hexeption on 27/02/2017.
@@ -31,6 +32,7 @@ public class DarkForgeTheme extends Theme {
 
         super("DarkForge");
         this.fontRenderer = DarkForge.INSTANCE.fontManager.clickGui;
+        this.icons = new Texture("textures/icons.png");
         addRenderer(ComponentType.FRAME, new DarkForgeFrame(this));
         addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
         addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));

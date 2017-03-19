@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.gui.gui.base;
 
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
+import uk.co.hexeption.darkforge.utils.render.GLUtils;
 
 /**
  * Created by Hexeption on 27/02/2017.
@@ -42,6 +43,31 @@ public class ComponentRenderer {
 
     public void doInteractions(Component component, int mouseX, int mouseY) {
 
+    }
+
+    public void drawExpanded(int x, int y, int size, boolean expanded, int color) {
+
+        GLUtils.glColor(color);
+        theme.icons.render(x, y, size, size, expanded ? 64F / 256F : 0F, 0F, expanded ? 128F / 256F : 64F / 256F, 64F / 256F);
+
+    }
+
+    public void drawPin(int x, int y, int size, boolean expanded, int color) {
+
+        GLUtils.glColor(color);
+        theme.icons.render(x, y, size, size, 64F / 256F, 128F / 256F, 128F / 256F, 64F / 256F);
+
+    }
+
+    public void drawArrow(int x, int y, int size, boolean right, int color) {
+
+        GLUtils.glColor(color);
+        theme.icons.render(x, y, size, size, 0, right ? 0 : 64F / 256F, 64F / 256F, right ? 64F / 256F : 128F / 256F);
+    }
+
+    public void drawArrow(int x, int y, int size, boolean right) {
+
+        drawArrow(x, y, size, right, 0xFFFFFFFF);
     }
 
 
