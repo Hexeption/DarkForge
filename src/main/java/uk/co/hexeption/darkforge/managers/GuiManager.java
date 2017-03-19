@@ -92,16 +92,10 @@ public class GuiManager extends ClickGui {
 
                 for (final Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
                     if (mod.getCategory() == category) {
-                        if (mod.getValues().isEmpty()) {
-                            final Button button = new Button(0, 0, 100, 18, frame, mod.getName());
-                            button.addListeners((component, button1) -> mod.toggle());
-                            button.setEnabled(mod.getState());
-                            frame.addComponent(button);
-                        } else {
-                            final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName());
-                            expandingButton.addListner((component, button) -> mod.toggle());
-                            expandingButton.setEnabled(mod.getState());
-
+                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName());
+                        expandingButton.addListner((component, button) -> mod.toggle());
+                        expandingButton.setEnabled(mod.getState());
+                        if (!mod.getValues().isEmpty()) {
                             for (Value value : mod.getValues()) {
                                 if (value instanceof BooleanValue) {
                                     final BooleanValue booleanValue = (BooleanValue) value;
@@ -142,11 +136,14 @@ public class GuiManager extends ClickGui {
                                     expandingButton.addComponent(slider);
                                 }
                             }
-
-                            frame.addComponent(expandingButton);
                         }
+
+                        Keybind keybind = new Keybind(0, 0, 12, 12, expandingButton, mod);
+                        expandingButton.addComponent(keybind);
+                        frame.addComponent(expandingButton);
                     }
                 }
+
                 if (x + 120 < right) {
                     x += 120;
                 } else {

@@ -85,6 +85,39 @@ public class ClickGui extends GuiScreen {
         }
     }
 
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
+        super.keyTyped(typedChar, keyCode);
+        for (Frame frame : frames) {
+            frame.onKeyPressed(keyCode);
+        }
+    }
+
+    @Override
+    public void initGui() {
+
+        super.initGui();
+        Keyboard.enableRepeatEvents(true);
+    }
+
+    @Override
+    public void handleKeyboardInput() throws IOException {
+
+        super.handleKeyboardInput();
+    }
+
+    @Override
+    public void onGuiClosed() {
+
+        super.onGuiClosed();
+    }
+
+    @Override
+    public boolean doesGuiPauseGame() {
+
+        return false;
+    }
 
     //Frame
 
@@ -215,6 +248,7 @@ public class ClickGui extends GuiScreen {
             }
         }
     }
+
 
     public void onUpdate() {
 
