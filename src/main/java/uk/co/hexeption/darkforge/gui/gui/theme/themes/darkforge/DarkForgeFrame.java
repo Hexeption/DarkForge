@@ -73,7 +73,7 @@ public class DarkForgeFrame extends ComponentRenderer {
 
     private void isPinnable(Frame frame, Dimension dimension, int mouseX, int mouseY) {
 
-        Color color = new Color(1, 1, 1);
+        Color color;
 
         if (mouseX >= frame.getX() + dimension.width - 38 && mouseY >= frame.getY() && mouseY <= frame.getY() + 16 && mouseX <= frame.getX() + dimension.width - 16) {
             color = new Color(197, 239, 247, 50);
@@ -82,12 +82,10 @@ public class DarkForgeFrame extends ComponentRenderer {
         }
 
         RenderUtils.drawRect(frame.getX() + dimension.width - 38, frame.getY(), frame.getX() + dimension.width - 19, frame.getY() + 15, color);
-//        RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 3, Color.WHITE.getRGB());
         RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY(), 0x8C808080);
 
         GLUtils.glColor(255, 255, 255, 255);
         if (!frame.isPinned()) {
-//            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 14, true, new Color(0, 37, 108,255).hashCode());
             drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 14, true, new Color(255, 255, 255, 255).hashCode());
         } else {
             RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 4, new Color(255, 255, 255, 255).hashCode());
@@ -97,7 +95,7 @@ public class DarkForgeFrame extends ComponentRenderer {
 
     private void isMaximizible(Frame frame, Dimension dimension, int mouseX, int mouseY) {
 
-        Color color = new Color(1, 1, 1);
+        Color color;
 
         if (mouseX >= frame.getX() + dimension.width - 19 && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + dimension.width) {
             color = new Color(197, 239, 247, 50);
@@ -140,14 +138,12 @@ public class DarkForgeFrame extends ComponentRenderer {
             RenderUtils.drawRect((int) (frame.getX() + dimension.getWidth() - 1), (int) y, (int) (frame.getX() + frame.getDimension().getWidth()), (int) (y + barHeight), new Color(255, 239, 239));
         }
 
-
     }
 
     @Override
     public void doInteractions(Component component, int mouseX, int mouseY) {
 
         Frame frame = (Frame) component;
-        int fontHeight = theme.fontRenderer.getHeight();
         Dimension area = frame.getDimension();
 
         if (mouseX >= frame.getX() + area.width - 16 && frame.isMaximizible() && mouseY >= frame.getY() && mouseY <= frame.getY() + 16 && mouseX <= frame.getX() + area.width) {

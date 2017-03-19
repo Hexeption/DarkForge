@@ -46,7 +46,5 @@ public class DarkForgeText extends ComponentRenderer {
             theme.fontRenderer.drawString(s, text.getX() + 5, y + 5, -1);
             y += 10;
         }
-
-
     }
 }

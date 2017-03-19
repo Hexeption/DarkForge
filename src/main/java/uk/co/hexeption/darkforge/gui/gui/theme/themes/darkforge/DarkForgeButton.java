@@ -53,8 +53,6 @@ public class DarkForgeButton extends ComponentRenderer {
             color = new Color(31, 31, 31, 120);
         }
 
-//        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-
         if (button.isEnabled()) {
             RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, enable);
         } else {

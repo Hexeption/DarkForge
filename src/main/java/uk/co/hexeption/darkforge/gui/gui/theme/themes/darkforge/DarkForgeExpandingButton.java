@@ -18,6 +18,8 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
@@ -31,6 +33,7 @@ import java.awt.*;
 /**
  * Created by Hexeption on 28/02/2017.
  */
+@SideOnly(Side.CLIENT)
 public class DarkForgeExpandingButton extends ComponentRenderer {
 
     public DarkForgeExpandingButton(Theme theme) {
@@ -46,11 +49,9 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         Color color = new Color(31, 31, 31, 20);
         Color enable = new Color(77, 8, 8, 100);
 
-
         if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, 18, mouseX, mouseY)) {
             color = new Color(31, 31, 31, 120);
         }
-
 
         if (button.isEnabled()) {
             RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, enable);
@@ -58,7 +59,6 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
             RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, color);
         }
 
-//        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
         theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.WHITE.hashCode());
 
         if (button.isMaximized()) {
@@ -67,11 +67,9 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         }
 
         if (!button.isMaximized()) {
-            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, true, new Color(255, 255, 255, 255).hashCode());
-//            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 19 - 6, button.getX() + button.getDimension().width - 6, button.getY() + 6, 1.5, Color.WHITE);
-        } else {
             drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, false, new Color(255, 255, 255, 255).hashCode());
-//            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 19 - 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 6, button.getX() + button.getDimension().width - 6, button.getY() + 19 - 6, 1.5, Color.WHITE);
+        } else {
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, true, new Color(255, 255, 255, 255).hashCode());
         }
 
         if (button.isMaximized()) {
