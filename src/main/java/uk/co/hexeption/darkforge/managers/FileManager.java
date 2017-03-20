@@ -33,7 +33,6 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 import uk.co.hexeption.darkforge.value.Value;
 
 import java.io.*;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -52,6 +51,8 @@ public class FileManager {
 
     private final File ALTS = new File(DARKFORGE_DIR, "alts.json");
 
+    private final File FRIENDS = new File(DARKFORGE_DIR, "friends.json");
+
     public void Initialization() {
 
         if (!DARKFORGE_DIR.exists())
@@ -66,6 +67,11 @@ public class FileManager {
             saveAlts();
         else
             loadAlts();
+
+        if (!FRIENDS.exists())
+            saveFriends();
+        else
+            loadFriends();
     }
 
 
@@ -180,10 +186,8 @@ public class FileManager {
             BufferedReader loadjson = new BufferedReader(new FileReader(ALTS));
             JsonObject altsjson = (JsonObject) jsonParser.parse(loadjson);
             AltsSlot.alts.clear();
-            Iterator<Map.Entry<String, JsonElement>> itr = altsjson.entrySet().iterator();
 
-            while (itr.hasNext()) {
-                Map.Entry<String, JsonElement> entry = itr.next();
+            for (Map.Entry<String, JsonElement> entry : altsjson.entrySet()) {
                 JsonObject altzz = entry.getValue().getAsJsonObject();
                 String email = entry.getKey();
                 String name = altzz.get("name") == null ? "" : altzz.get("name").getAsString();
@@ -196,6 +200,44 @@ public class FileManager {
                 } else {
                     AltsSlot.alts.add(new Alt(email, name, password, favourites));
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFriends() {
+
+        try {
+            JsonObject jsonObject = new JsonObject();
+            for (String username : DarkForge.INSTANCE.friendManager.getFriends().keySet()) {
+                JsonObject object = new JsonObject();
+                object.addProperty("alias", DarkForge.INSTANCE.friendManager.getFriends().get(username));
+                jsonObject.add(username, object);
+            }
+
+            PrintWriter savedJson = new PrintWriter(new FileWriter(FRIENDS));
+            savedJson.println(gsonPretty.toJson(jsonObject));
+            savedJson.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void loadFriends() {
+
+        try {
+            BufferedReader loadjson = new BufferedReader(new FileReader(FRIENDS));
+            JsonObject altsjson = (JsonObject) jsonParser.parse(loadjson);
+            DarkForge.INSTANCE.friendManager.getFriends().clear();
+
+            for (Map.Entry<String, JsonElement> entry : altsjson.entrySet()) {
+                JsonObject friend = entry.getValue().getAsJsonObject();
+
+                String username = entry.getKey();
+                String alias = friend.get("alias").getAsString();
+                DarkForge.INSTANCE.friendManager.addFriend(username, alias);
             }
         } catch (Exception e) {
             e.printStackTrace();

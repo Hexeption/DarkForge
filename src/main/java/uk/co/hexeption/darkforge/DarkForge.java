@@ -48,6 +48,8 @@ public enum DarkForge {
 
     public final GuiManager guiManager = new GuiManager();
 
+    public final FriendManager friendManager = new FriendManager();
+
     public final Hud hud = new Hud();
 
     public String commandPrefix = "#";
@@ -79,6 +81,8 @@ public enum DarkForge {
 
         LogHelper.info("Loading Gui...");
         guiManager.Initialization();
+
+        LogHelper.info(friendManager.getFriends());
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
