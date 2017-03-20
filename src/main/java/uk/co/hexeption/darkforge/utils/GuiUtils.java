@@ -153,7 +153,7 @@ public class GuiUtils {
         glEnd();
 
 //        glDisable(GL_BLEND);
-        glEnable(GL_ALPHA_TEST);
+//        glEnable(GL_ALPHA_TEST);
         glEnable(GL_TEXTURE_2D);
 
     }

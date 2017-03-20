@@ -78,12 +78,12 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
     @Override
     public int drawString(String text, int x, int y, int color) {
 
-        return drawString(text, x, y, color, false);
+        return drawString(text, x, y, color, false, 0);
     }
 
     public int drawStringWithShadow(String text, int x, int y, int color) {
 
-        return Math.max(drawString(text, x + 1, y + 1, color, true), drawString(text, x, y, color, false));
+        return Math.max(drawString(text, x + 1, y + 1, color, true, 0), drawString(text, x, y, color, false, 0));
     }
 
     /**
@@ -102,10 +102,37 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
         drawString(text, x - getStringWidth(text) / 2, y - getStringHeight(text) / 2, color);
     }
 
+
+    public int drawString(String text, int x, int y, int color, float z) {
+
+        return drawString(text, x, y, color, false, z);
+    }
+
+    public int drawStringWithShadow(String text, int x, int y, int color, float z) {
+
+        return Math.max(drawString(text, x + 1, y + 1, color, true, z), drawString(text, x, y, color, false, z));
+    }
+
+    /**
+     * Renders text starting with the middle of the string at the given x, y positions. Includes a shadow effect as well.
+     */
+    public void drawCenteredStringWithShadow(String text, int x, int y, int color, float z) {
+
+        drawStringWithShadow(text, x - getStringWidth(text) / 2, y - getStringHeight(text) / 2, color, z);
+    }
+
+    /**
+     * Renders text starting with the middle of the string at the given x, y positions.
+     */
+    public void drawCenteredString(String text, int x, int y, int color, float z) {
+
+        drawString(text, x - getStringWidth(text) / 2, y - getStringHeight(text) / 2, color, z);
+    }
+
     /**
      * Renders text using the color code rules within the default MixinMinecraft font renderer.
      */
-    public int drawString(String text, int x, int y, int color, boolean shadow) {
+    public int drawString(String text, int x, int y, int color, boolean shadow, float z) {
 
         if (text == null)
             return 0;
@@ -210,7 +237,7 @@ public final class MinecraftFontRenderer extends BasicFontRenderer {
                             (float) area.x / currentFont.getTextureWidth(),
                             (float) area.y / currentFont.getTextureHeight(),
                             (float) (area.x + area.width) / currentFont.getTextureWidth(),
-                            (float) (area.y + area.height) / currentFont.getTextureHeight());
+                            (float) (area.y + area.height) / currentFont.getTextureHeight(), z);
                     if (strikethrough)
                         FontUtils.drawLine(x, y + area.height / 4 + 2, x + area.width / 2, y + area.height / 4 + 2, 1F);
                     if (underline)

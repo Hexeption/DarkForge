@@ -49,6 +49,8 @@ public class FontManager {
 
     public MinecraftFontRenderer clickGui = new MinecraftFontRenderer();
 
+    public MinecraftFontRenderer huzuni = new MinecraftFontRenderer();
+
 
     public FontManager() {
 
@@ -77,5 +79,6 @@ public class FontManager {
         chat.setFont(new Font("Verdana", Font.PLAIN, 18), true);
         guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
         clickGui.setFont(new Font(fontName, Font.PLAIN, 16), true);
+        huzuni.setFont(new Font("Roboto Condensed", Font.PLAIN, 16), true);
     }
 }

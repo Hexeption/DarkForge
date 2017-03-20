@@ -41,8 +41,8 @@ public class DarkForgeKeybinds extends ComponentRenderer {
     public void drawComponent(Component component, int mouseX, int mouseY) {
 
         KeybindMods keybind = (KeybindMods) component;
-        theme.fontRenderer.drawString("KeybindMods", keybind.getX() + 2, keybind.getY() + 2, -1);
-        int nameWidth = theme.fontRenderer.getStringWidth("KeybindMods") + 5;
+        theme.fontRenderer.drawString("Keybind", keybind.getX() + 2, keybind.getY() + 2, -1);
+        int nameWidth = theme.fontRenderer.getStringWidth("Keybind") + 5;
         RenderUtils.drawRect(keybind.getX() + nameWidth, keybind.getY(), keybind.getX() + keybind.getDimension().width, keybind.getY() + keybind.getDimension().height, new Color(76, 76, 76, 255));
         theme.fontRenderer.drawString(keybind.getMod().getKeyName(), keybind.getX() + keybind.getDimension().width / 2 + nameWidth / 2 - theme.fontRenderer.getStringWidth(keybind.getMod().getKeyName()) / 2, keybind.getY() + 2, keybind.isEditing() ? new Color(137, 9, 9, 255).hashCode() : new Color(255, 255, 255, 255).hashCode());
     }

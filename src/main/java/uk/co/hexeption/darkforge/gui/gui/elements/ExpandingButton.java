@@ -22,6 +22,7 @@ import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.base.Container;
 import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.util.ArrayList;
 
@@ -36,10 +37,19 @@ public class ExpandingButton extends Container {
 
     private int buttonHeight;
 
+    private Mod mod;
+
     public ExpandingButton(int xPos, int yPos, int width, int buttonHeight, Component component, String text) {
 
         super(xPos, yPos, width, 0, ComponentType.EXPANDING_BUTTON, component, text);
         this.buttonHeight = buttonHeight;
+    }
+
+    public ExpandingButton(int xPos, int yPos, int width, int buttonHeight, Component component, String text, Mod mod) {
+
+        super(xPos, yPos, width, 0, ComponentType.EXPANDING_BUTTON, component, text);
+        this.buttonHeight = buttonHeight;
+        this.mod = mod;
     }
 
     @Override
@@ -165,5 +175,10 @@ public class ExpandingButton extends Container {
     public void setButtonHeight(int buttonHeight) {
 
         this.buttonHeight = buttonHeight;
+    }
+
+    public Mod getMod() {
+
+        return mod;
     }
 }

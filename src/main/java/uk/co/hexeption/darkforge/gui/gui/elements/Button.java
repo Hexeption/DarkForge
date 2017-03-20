@@ -20,6 +20,7 @@ package uk.co.hexeption.darkforge.gui.gui.elements;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.util.ArrayList;
 
@@ -27,11 +28,19 @@ public class Button extends Component {
 
     public ArrayList<ComponentClickListener> listeners = new ArrayList<>();
 
+    private Mod mod;
+
     private boolean enabled = false;
 
     public Button(int xPos, int yPos, int width, int height, Component component, String text) {
 
         super(xPos, yPos, width, height, ComponentType.BUTTON, component, text);
+    }
+
+    public Button(int xPos, int yPos, int width, int height, Component component, String text, Mod mod) {
+
+        super(xPos, yPos, width, height, ComponentType.BUTTON, component, text);
+        this.mod = mod;
     }
 
     public void addListeners(ComponentClickListener listener) {
@@ -65,5 +74,10 @@ public class Button extends Component {
     public ArrayList<ComponentClickListener> getListeners() {
 
         return listeners;
+    }
+
+    public Mod getMod() {
+
+        return mod;
     }
 }

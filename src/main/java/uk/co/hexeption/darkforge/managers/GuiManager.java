@@ -36,6 +36,7 @@ public class GuiManager extends ClickGui {
 
     public void Initialization() {
 
+//        this.setTheme(new HuzuniTheme());
         this.setTheme(new DarkForgeTheme());
 
         addCategoryPanels();
@@ -92,7 +93,7 @@ public class GuiManager extends ClickGui {
 
                 for (final Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
                     if (mod.getCategory() == category) {
-                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName());
+                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName(), mod);
                         expandingButton.addListner((component, button) -> mod.toggle());
                         expandingButton.setEnabled(mod.getState());
                         if (!mod.getValues().isEmpty()) {
