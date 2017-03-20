@@ -18,8 +18,8 @@
 
 package uk.co.hexeption.darkforge.gui.gui.elements;
 
+import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -39,15 +39,18 @@ public class KeybindMods extends Component {
         this.mod = mod;
     }
 
-
     @Override
-    public void onKeyPressed(int key) {
+    public void onUpdate() {
 
-        LogHelper.info("HEwX");
+        if (Keyboard.getEventKeyState()) {
 
-        if (editing) {
-            mod.setBind(key);
-            editing = false;
+            if (editing) {
+                if (Keyboard.getEventKey() == Keyboard.KEY_DELETE)
+                    mod.setBind(0);
+                else
+                    mod.setBind(Keyboard.getEventKey());
+                editing = false;
+            }
         }
     }
 
@@ -57,6 +60,8 @@ public class KeybindMods extends Component {
         if (x > this.getX() + DarkForge.INSTANCE.fontManager.clickGui.getStringWidth("KeybindMods") + 6 && x < this.getX() + this.getDimension().width && y > this.getY() && y < this.getY() + this.getDimension().height) {
             editing = !editing;
         }
+
+
     }
 
     public Mod getMod() {
@@ -67,5 +72,10 @@ public class KeybindMods extends Component {
     public boolean isEditing() {
 
         return editing;
+    }
+
+    public void setEditing(boolean editing) {
+
+        this.editing = editing;
     }
 }

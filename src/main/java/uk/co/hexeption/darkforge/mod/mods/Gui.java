@@ -33,5 +33,6 @@ public class Gui extends Mod {
     public void onEnable() {
 
         Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.guiManager);
+        toggle();
     }
 }

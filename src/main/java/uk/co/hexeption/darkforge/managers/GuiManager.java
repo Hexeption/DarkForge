@@ -21,7 +21,7 @@ package uk.co.hexeption.darkforge.managers;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
-import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni.HuzuniTheme;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
@@ -36,8 +36,8 @@ public class GuiManager extends ClickGui {
 
     public void Initialization() {
 
-//        this.setTheme(new HuzuniTheme());
-        this.setTheme(new DarkForgeTheme());
+        this.setTheme(new HuzuniTheme());
+//        this.setTheme(new DarkForgeTheme());
 
         addCategoryPanels();
         addInfoPanel();
@@ -139,7 +139,7 @@ public class GuiManager extends ClickGui {
                             }
                         }
 
-                        KeybindMods keybind = new KeybindMods(0, 0, 12, 12, expandingButton, mod);
+                        KeybindMods keybind = new KeybindMods(0, 0, 12, 15, expandingButton, mod);
                         expandingButton.addComponent(keybind);
                         frame.addComponent(expandingButton);
                     }

@@ -86,9 +86,11 @@ public class DarkForgeFrame extends ComponentRenderer {
 
         GLUtils.glColor(255, 255, 255, 255);
         if (!frame.isPinned()) {
-            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 12, false, new Color(255, 255, 255, 255).hashCode());
+            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 43, frame.getX() + dimension.width - 30) + 1, frame.getY(), 13, true, new Color(158, 158, 158, 255).hashCode());
+
+//            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 12, false, new Color(255, 255, 255, 255).hashCode());
         } else {
-            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 1, 13, true, new Color(255, 255, 255, 255).hashCode());
+            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 43, frame.getX() + dimension.width - 30) + 1, frame.getY() + 1, 13, true, new Color(255, 255, 255, 255).hashCode());
 
 //            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 4, new Color(255, 255, 255, 255).hashCode());
 //            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 2, new Color(176, 176, 176, 255).hashCode());
