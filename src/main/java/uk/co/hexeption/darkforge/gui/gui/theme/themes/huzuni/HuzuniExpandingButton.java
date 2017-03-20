@@ -66,7 +66,7 @@ public class HuzuniExpandingButton extends ComponentRenderer {
         }
 
 
-        theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.WHITE.hashCode());
+        theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.WHITE.hashCode());
 
         if (button.isMaximized()) {
             RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getY() + button.getButtonHeight(), new Color(255, 255, 255, 80));
