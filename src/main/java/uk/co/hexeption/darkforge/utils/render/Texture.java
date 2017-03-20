@@ -56,6 +56,7 @@ public class Texture {
         renderer.pos(x + width, y + height, 0F).tex(t, s).endVertex();
         renderer.pos(x + width, y, 0F).tex(t, v).endVertex();
         tessellator.draw();
+
     }
 
     public void bindTexture() {

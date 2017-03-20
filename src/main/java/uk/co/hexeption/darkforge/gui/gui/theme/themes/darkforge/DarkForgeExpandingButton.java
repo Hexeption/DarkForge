@@ -67,9 +67,9 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         }
 
         if (!button.isMaximized()) {
-            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, false, new Color(255, 255, 255, 255).hashCode());
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 13, false, new Color(255, 255, 255, 255).hashCode());
         } else {
-            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 12, true, new Color(255, 255, 255, 255).hashCode());
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 13, true, new Color(255, 255, 255, 255).hashCode());
         }
 
         if (button.isMaximized()) {

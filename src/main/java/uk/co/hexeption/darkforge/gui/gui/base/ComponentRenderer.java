@@ -62,7 +62,11 @@ public class ComponentRenderer {
     public void drawPin(int x, int y, int size, boolean expanded, int color) {
 
         GLUtils.glColor(color);
-        theme.icons.render(x, y, size, size, 64F / 256F, 128F / 256F, 128F / 256F, 64F / 256F);
+//        theme.icons.render(x, y, size, size, 64F / 256F, 128F / 256F, 128F / 256F, 64F / 256F);
+        if (!expanded)
+            theme.icons.render(x, y, 16, 16, 192f / 256f, 128F / 256F, 128F / 256F, 64F / 256F);
+        else
+            theme.icons.render(x, y, 16, 16, 192f / 256f, 0, 128F / 256F, 64F / 256F);
 
     }
 
