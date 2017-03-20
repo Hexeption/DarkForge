@@ -52,7 +52,7 @@ public enum DarkForge {
 
     public final Hud hud = new Hud();
 
-    public String commandPrefix = "#";
+    public String commandPrefix = ".";
 
     DarkForge() {
 

@@ -39,7 +39,7 @@ public class ModManager {
     public void Initialization() {
 
         initMods();
-        LogHelper.info(String.format("Modules Loaded: %s!", mods.size()));
+        LogHelper.info(String.format("Mods Loaded: %s!", mods.size()));
     }
 
     /**

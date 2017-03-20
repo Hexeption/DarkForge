@@ -20,6 +20,7 @@ package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.command.Command;
+import uk.co.hexeption.darkforge.command.commands.Friend;
 import uk.co.hexeption.darkforge.command.commands.TestCommand;
 import uk.co.hexeption.darkforge.command.commands.Xray;
 
@@ -42,7 +43,7 @@ public class CommandManager {
 
     private void initCommands() {
 
-        addCommand(new TestCommand(), new Xray());
+        addCommand(new TestCommand(), new Xray(), new Friend());
     }
 
     public List<Command> getCommands() {
