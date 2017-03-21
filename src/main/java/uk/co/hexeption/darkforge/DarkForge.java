@@ -89,6 +89,9 @@ public enum DarkForge {
 
     public void end() {
 
+        fileManager.saveFriends();
+        fileManager.saveAlts();
+        fileManager.saveModules();
     }
 
     @EventTarget

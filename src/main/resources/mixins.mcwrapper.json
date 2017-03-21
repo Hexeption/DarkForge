@@ -11,10 +11,12 @@
     "entity.living.player.MixinEntityPlayer",
     "entity.living.player.MixinEntityPlayerSP",
     "entity.living.player.MixinAbstractClientPlayer",
-    "renderer.MixinEntityRenderer",
     "multiplayer.MixinPlayerControllerMP",
     "block.MixinBlock",
     "block.MixinBlockModelRenderer",
+    "renderer.MixinEntityRenderer",
+    "renderer.MixinRenderPlayer",
+    "renderer.MixinRenderManager",
     "renderer.chunk.MixinVisGraph"
   ]
 }

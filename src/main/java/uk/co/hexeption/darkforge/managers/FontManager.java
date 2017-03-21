@@ -51,13 +51,6 @@ public class FontManager {
 
     public MinecraftFontRenderer huzuni = new MinecraftFontRenderer();
 
-
-    public FontManager() {
-
-        Initialization();
-
-    }
-
     public static String getFontName() {
 
         return fontName;

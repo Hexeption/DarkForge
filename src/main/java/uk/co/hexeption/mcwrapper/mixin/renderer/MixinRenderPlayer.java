@@ -16,35 +16,26 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.utils;
+package uk.co.hexeption.mcwrapper.mixin.renderer;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 20/03/2017.
  */
-@SideOnly(Side.CLIENT)
-public class GuiUtils {
+@Mixin(RenderPlayer.class)
+public class MixinRenderPlayer {
 
+    @Inject(method = "renderEntityName", at = @At("HEAD"), cancellable = true)
+    protected void renderEntityName(AbstractClientPlayer entityIn, double x, double y, double z, String name, double distanceSq, CallbackInfo callbackInfo) {
 
-    public static ScaledResolution getScaledResolution() {
-
-        final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
-        return scaledResolution;
-    }
-
-    public static int getWidth() {
-
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledWidth();
-    }
-
-    public static int getHeight() {
-
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledHeight();
+//        if (DarkForge.INSTANCE.modManager.getModuleByClass(NameTags.class).getState()) {
+//            callbackInfo.cancel();
+//        }
     }
 }

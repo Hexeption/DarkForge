@@ -22,7 +22,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.util.Timer;
+import org.apache.commons.lang3.JavaVersion;
+import org.apache.commons.lang3.SystemUtils;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,9 +37,11 @@ import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
+import uk.co.hexeption.darkforge.utils.OutdatedJavaException;
 import uk.co.hexeption.mcwrapper.MCWrapper;
 import uk.co.hexeption.mcwrapper.base.MinecraftClient;
 import uk.co.hexeption.mcwrapper.base.multiplayer.Controller;
+import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
 
 import javax.annotation.Nullable;
 
@@ -63,13 +68,23 @@ public abstract class MixinMinecraft implements MinecraftClient {
     private Timer timer;
 
     @Shadow
+    private ModelManager modelManager;
+
+    @Shadow
+    private net.minecraft.client.renderer.entity.RenderManager renderManager;
+
+    @Shadow
     public abstract void displayGuiScreen(@Nullable GuiScreen guiScreenIn);
 
     @Inject(method = "run()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;init()V", shift = At.Shift.AFTER))
     public void init(CallbackInfo callbackInfo) {
 
         MCWrapper.setMinecraft((Minecraft) (Object) this);
-        DarkForge.INSTANCE.start();
+        if (SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
+            DarkForge.INSTANCE.start();
+        } else {
+            throw new OutdatedJavaException("Darkforge requires Java 8 or newer, Please update your java to the latest version");
+        }
     }
 
     @Inject(method = "runTickKeyboard()V", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z"))
@@ -113,5 +128,17 @@ public abstract class MixinMinecraft implements MinecraftClient {
     public int getFPS() {
 
         return debugFPS;
+    }
+
+    @Override
+    public ModelManager getModelManager() {
+
+        return modelManager;
+    }
+
+    @Override
+    public RenderManager getRenderManager() {
+
+        return ((RenderManager) renderManager);
     }
 }

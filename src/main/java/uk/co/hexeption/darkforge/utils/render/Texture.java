@@ -59,7 +59,7 @@ public class Texture {
 
     }
 
-    public void bindTexture() {
+    private void bindTexture() {
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
         GlStateManager.enableTexture2D();

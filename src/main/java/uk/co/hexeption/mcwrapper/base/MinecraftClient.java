@@ -18,7 +18,9 @@
 
 package uk.co.hexeption.mcwrapper.base;
 
+import net.minecraft.client.renderer.block.model.ModelManager;
 import uk.co.hexeption.mcwrapper.base.multiplayer.Controller;
+import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
 
 /**
  * Created by Hexeption on 13/03/2017.
@@ -27,6 +29,9 @@ public interface MinecraftClient {
 
     Controller getController();
 
+    ModelManager getModelManager();
+
+    RenderManager getRenderManager();
 
     float getTimerSpeed();
 

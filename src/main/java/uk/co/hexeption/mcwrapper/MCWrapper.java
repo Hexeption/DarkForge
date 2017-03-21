@@ -21,6 +21,7 @@ package uk.co.hexeption.mcwrapper;
 import net.minecraft.client.Minecraft;
 import uk.co.hexeption.mcwrapper.base.MinecraftClient;
 import uk.co.hexeption.mcwrapper.base.multiplayer.Controller;
+import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
 
 /**
  * Created by Hexeption on 13/03/2017.
@@ -42,6 +43,11 @@ public class MCWrapper {
     public static Controller getController() {
 
         return getMinecraft().getController();
+    }
+
+    public static RenderManager getRenderManager() {
+
+        return getMinecraft().getRenderManager();
     }
 
 

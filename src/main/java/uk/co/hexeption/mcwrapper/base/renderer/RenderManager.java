@@ -16,35 +16,17 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.utils;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+package uk.co.hexeption.mcwrapper.base.renderer;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 20/03/2017.
  */
-@SideOnly(Side.CLIENT)
-public class GuiUtils {
+public interface RenderManager {
 
+    double getRenderPosX();
 
-    public static ScaledResolution getScaledResolution() {
+    double getRenderPosY();
 
-        final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
-        return scaledResolution;
-    }
+    double getRenderPosZ();
 
-    public static int getWidth() {
-
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledWidth();
-    }
-
-    public static int getHeight() {
-
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledHeight();
-    }
 }

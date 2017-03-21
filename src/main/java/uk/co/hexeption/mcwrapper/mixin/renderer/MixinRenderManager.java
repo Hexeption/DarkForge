@@ -16,35 +16,42 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.utils;
+package uk.co.hexeption.mcwrapper.mixin.renderer;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 20/03/2017.
  */
-@SideOnly(Side.CLIENT)
-public class GuiUtils {
+@Mixin(net.minecraft.client.renderer.entity.RenderManager.class)
+public abstract class MixinRenderManager implements RenderManager {
 
+    @Shadow
+    private double renderPosX;
 
-    public static ScaledResolution getScaledResolution() {
+    @Shadow
+    private double renderPosY;
 
-        final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
-        return scaledResolution;
+    @Shadow
+    private double renderPosZ;
+
+    @Override
+    public double getRenderPosX() {
+
+        return renderPosX;
     }
 
-    public static int getWidth() {
+    @Override
+    public double getRenderPosY() {
 
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledWidth();
+        return renderPosY;
     }
 
-    public static int getHeight() {
+    @Override
+    public double getRenderPosZ() {
 
-        final ScaledResolution sr = getScaledResolution();
-        return sr.getScaledHeight();
+        return renderPosZ;
     }
 }
