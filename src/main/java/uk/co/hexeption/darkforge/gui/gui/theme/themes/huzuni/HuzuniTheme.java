@@ -38,7 +38,7 @@ public class HuzuniTheme extends Theme {
         this.fontRenderer = DarkForge.INSTANCE.fontManager.huzuni;
         this.icons = new Texture("textures/icons.png");
         addRenderer(ComponentType.FRAME, new HuzuniFrame(this));
-        addRenderer(ComponentType.BUTTON, new HuzuinButton(this));
+        addRenderer(ComponentType.BUTTON, new HuzuniButton(this));
         addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));
         addRenderer(ComponentType.CHECK_BUTTON, new DarkForgeCheckButton(this));
         addRenderer(ComponentType.EXPANDING_BUTTON, new HuzuniExpandingButton(this));

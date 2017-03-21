@@ -34,9 +34,9 @@ import java.awt.*;
  * Created by Hexeption on 27/02/2017.
  */
 @SideOnly(Side.CLIENT)
-public class HuzuinButton extends ComponentRenderer {
+public class HuzuniButton extends ComponentRenderer {
 
-    public HuzuinButton(Theme theme) {
+    public HuzuniButton(Theme theme) {
 
         super(ComponentType.BUTTON, theme);
     }
