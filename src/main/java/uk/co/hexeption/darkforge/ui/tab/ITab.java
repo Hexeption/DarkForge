@@ -18,9 +18,17 @@
 
 package uk.co.hexeption.darkforge.ui.tab;
 
+import net.minecraft.client.Minecraft;
+
 /**
  * Created by Keir on 24/02/2017.
  */
 public interface ITab {
+
+    String name();
+
+    void render(Minecraft mc, int diaplyWidth, int displayHeight);
+
+    void onKeypressed(int key);
 
 }

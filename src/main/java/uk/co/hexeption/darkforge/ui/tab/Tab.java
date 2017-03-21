@@ -18,6 +18,68 @@
 
 package uk.co.hexeption.darkforge.ui.tab;
 
+import net.minecraft.client.Minecraft;
+import uk.co.hexeption.darkforge.event.EventManager;
+import uk.co.hexeption.darkforge.event.EventTarget;
+import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
+import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
+import uk.co.hexeption.darkforge.ui.tab.themes.DarkForgeTab;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Tab {
+
+    private final List<ITab> tabs = new CopyOnWriteArrayList<>();
+
+    private int tabIndex = 0;
+
+    public Tab() {
+
+        EventManager.register(this);
+    }
+
+    public void Initialization() {
+
+        this.tabs.add(new DarkForgeTab());
+    }
+
+    @EventTarget
+    public void render2D(Render2DEvent event) {
+
+        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            return;
+
+        ITab currentTab = getCurrentTab();
+        currentTab.render(Minecraft.getMinecraft(), event.getWidth(), event.getHeight());
+    }
+
+    @EventTarget
+    public void onKeyEvent(KeyboardEvent event) {
+
+        getCurrentTab().onKeypressed(event.getKey());
+    }
+
+    public ITab getCurrentTab() {
+
+        return this.tabs.get(tabIndex);
+    }
+
+    public void onNextTheme() {
+
+        int index = this.tabIndex;
+        int maxSize = this.tabs.size();
+
+        if (index != -1) {
+            index++;
+
+            if (index >= maxSize) {
+                index = 0;
+            }
+
+            this.tabIndex = index;
+        }
+    }
+
 
 }

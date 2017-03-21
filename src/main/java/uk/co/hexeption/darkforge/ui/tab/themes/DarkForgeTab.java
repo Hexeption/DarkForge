@@ -18,6 +18,66 @@
 
 package uk.co.hexeption.darkforge.ui.tab.themes;
 
-public class DarkForgeTab {
+import net.minecraft.client.Minecraft;
+import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.ui.tab.ITab;
 
+import java.util.ArrayList;
+
+public class DarkForgeTab implements ITab {
+
+    /**
+     * TODO: Finish
+     */
+
+    private ArrayList<String> category = new ArrayList<>();
+
+    private int selectedMod, selectedTab;
+
+    private int tab;
+
+    private int tabHeight = 45;
+
+    public DarkForgeTab() {
+
+        Mod.Category[] array;
+        int j = (array = Mod.Category.values()).length;
+
+        for (int i = 0; i < j; i++) {
+            Mod.Category category = array[i];
+
+            if (category.name().equalsIgnoreCase("gui")) {
+                continue;
+
+            }
+
+            this.category.add(category.toString().substring(0, 1) + category.toString().substring(1, category.toString().length()).toLowerCase());
+        }
+    }
+
+    @Override
+    public String name() {
+
+        return "DarkForge";
+    }
+
+    @Override
+    public void render(Minecraft mc, int diaplyWidth, int displayHeight) {
+
+//        int count = 0;
+//        for (Mod.Category category : Mod.Category.values()) {
+//            if (!category.name().equalsIgnoreCase("gui")) {
+//                int y = tabHeight + (count * 15);
+//
+//                GLUtils.glColor(new Color(108, 1, 0, 200));
+//                GLUtils.drawBorderRect(1, y, 70, y + 15, 1);
+//                count++;
+//            }
+//        }
+    }
+
+    @Override
+    public void onKeypressed(int key) {
+
+    }
 }

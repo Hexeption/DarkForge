@@ -33,6 +33,7 @@ import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
+import uk.co.hexeption.darkforge.ui.tab.Tab;
 
 @SideOnly(Side.CLIENT)
 public enum DarkForge {
@@ -52,6 +53,8 @@ public enum DarkForge {
 
     public final Hud hud = new Hud();
 
+    public final Tab tab = new Tab();
+
     public String commandPrefix = ".";
 
     DarkForge() {
@@ -64,7 +67,7 @@ public enum DarkForge {
         Minecraft mc = Minecraft.getMinecraft();
         mc.ingameGUI = new DarkForgeInGameGui(mc);
 
-        LogHelper.info("Loading Modules...");
+        LogHelper.info("Loading Mods...");
         modManager.Initialization();
 
         LogHelper.info("Loading Commands...");
@@ -73,13 +76,16 @@ public enum DarkForge {
         LogHelper.info("Loading Fonts...");
         fontManager.Initialization();
 
-        LogHelper.info("Loading Hud...");
+        LogHelper.info("Loading Huds...");
         hud.Initialization();
 
-        LogHelper.info("Loading Config...");
+        LogHelper.info("Loading Tabs...");
+        tab.Initialization();
+
+        LogHelper.info("Loading Configs...");
         fileManager.Initialization();
 
-        LogHelper.info("Loading Gui...");
+        LogHelper.info("Loading Guis...");
         guiManager.Initialization();
 
         LogHelper.info(friendManager.getFriends());
