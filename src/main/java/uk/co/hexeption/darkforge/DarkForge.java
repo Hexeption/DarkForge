@@ -32,6 +32,7 @@ import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.notifcation.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 import uk.co.hexeption.darkforge.ui.tab.Tab;
 
@@ -50,6 +51,8 @@ public enum DarkForge {
     public final GuiManager guiManager = new GuiManager();
 
     public final FriendManager friendManager = new FriendManager();
+
+    public final NotificationManager notificationManager = new NotificationManager();
 
     public final Hud hud = new Hud();
 
@@ -88,6 +91,15 @@ public enum DarkForge {
         LogHelper.info("Loading Guis...");
         guiManager.Initialization();
 
+        addNotification(Notification.Type.ERROR, "Main", "Testing", 10);
+        addNotification(Notification.Type.INFO, "Main1", "Testing", 12);
+        addNotification(Notification.Type.INFO, "Main2", "Testing", 103);
+        addNotification(Notification.Type.ERROR, "Main3", "Testing", 130);
+
+        for (Notification noti : notificationManager.getNotifications()) {
+            LogHelper.info(noti.getType() + " : " + noti.getLocation() + " : " + noti.getMessage() + " : " + noti.getDuration());
+        }
+
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
 
@@ -116,5 +128,10 @@ public enum DarkForge {
     public void addChatMessage(String message) {
 
         addChatMessage(new TextComponentString(TextFormatting.DARK_RED + "[DF] " + TextFormatting.GRAY + message));
+    }
+
+    public void addNotification(Notification.Type type, String location, String message, int duration) {
+
+        notificationManager.addNotification(new Notification(type, location, message, duration));
     }
 }
