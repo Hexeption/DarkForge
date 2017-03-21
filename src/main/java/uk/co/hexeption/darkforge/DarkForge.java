@@ -88,8 +88,6 @@ public enum DarkForge {
         LogHelper.info("Loading Guis...");
         guiManager.Initialization();
 
-        LogHelper.info(friendManager.getFriends());
-
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
 
@@ -109,7 +107,6 @@ public enum DarkForge {
             }
         }
     }
-
 
     public void addChatMessage(ITextComponent component) {
 
