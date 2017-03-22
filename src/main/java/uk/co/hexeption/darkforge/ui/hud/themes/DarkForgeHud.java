@@ -86,14 +86,16 @@ public class DarkForgeHud implements IGameHud {
         TimerUtils timerUtils = new TimerUtils();
         int ycount = 0;
         for (Notification notification : DarkForge.INSTANCE.notificationManager.getNotifications()) {
-            if (timerUtils.getSystemTime() - notification.getTime() >= notification.getDuration()) {
-                DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
-                ycount -= 15;
-            } else {
-                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getType().type, scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 20, scaledResolution.getScaledHeight() - 20 - ycount, notification.getType().color);
-                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
+            if (notification != null) {
+                if (timerUtils.getSystemTime() - notification.getTime() >= notification.getDuration()) {
+                    DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
+                    ycount -= 15;
+                } else {
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getType().type, scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 20, scaledResolution.getScaledHeight() - 20 - ycount, notification.getType().color);
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
+                }
+                ycount += 15;
             }
-            ycount += 15;
         }
     }
 
