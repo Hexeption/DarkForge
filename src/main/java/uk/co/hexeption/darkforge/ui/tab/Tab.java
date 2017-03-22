@@ -57,7 +57,7 @@ public class Tab {
     @EventTarget
     public void onKeyEvent(KeyboardEvent event) {
 
-        getCurrentTab().onKeypressed(event.getKey());
+        getCurrentTab().onKeyPressed(event.getKey());
     }
 
     public ITab getCurrentTab() {
