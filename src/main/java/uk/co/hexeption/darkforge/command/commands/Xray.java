@@ -39,21 +39,21 @@ public class Xray extends Command {
         if (args.length > 0) {
             if (args[0].equalsIgnoreCase("add")) {
                 int blockname = Integer.valueOf(args[1]);
-                if (DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).isXrayBlock(Block.getBlockById(Integer.valueOf(args[1])))) {
+                if (DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).isXrayBlock(Block.getBlockById(Integer.valueOf(args[1])))) {
                     DarkForge.INSTANCE.addChatMessage(blockname + " is already in the list");
                     return;
                 }
 
-                DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).xrayBlocks.add(Block.getBlockById(Integer.valueOf(args[1])));
+                DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).xrayBlocks.add(Block.getBlockById(Integer.valueOf(args[1])));
                 DarkForge.INSTANCE.addChatMessage("'" + Block.getBlockById(blockname).getLocalizedName() + "' has been added.");
                 mc.renderGlobal.loadRenderers();
                 return;
             }
 
             if (args[0].equalsIgnoreCase("del")) {
-                for (int i = 0; i < DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).xrayBlocks.size(); i++) {
-                    if (Integer.toString(Block.getIdFromBlock(DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).xrayBlocks.get(i))).toLowerCase().equals(args[1])) {
-                        DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).xrayBlocks.remove(i);
+                for (int i = 0; i < DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).xrayBlocks.size(); i++) {
+                    if (Integer.toString(Block.getIdFromBlock(DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).xrayBlocks.get(i))).toLowerCase().equals(args[1])) {
+                        DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).xrayBlocks.remove(i);
                         DarkForge.INSTANCE.addChatMessage("'" + Block.getBlockById(i).getLocalizedName() + "' has been removed.");
                         mc.renderGlobal.loadRenderers();
                         return;
@@ -65,7 +65,7 @@ public class Xray extends Command {
             }
 
             if (args[0].equalsIgnoreCase("list")) {
-                for (int i = 0; i < DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.Xray.class).xrayBlocks.size(); i++) {
+                for (int i = 0; i < DarkForge.INSTANCE.modManager.getModuleByClass(uk.co.hexeption.darkforge.mod.mods.render.Xray.class).xrayBlocks.size(); i++) {
                     LogHelper.info(Block.getBlockById(i).getLocalizedName());
                 }
             }

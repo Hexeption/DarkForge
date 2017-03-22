@@ -23,7 +23,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.mod.Mod;
-import uk.co.hexeption.darkforge.mod.mods.*;
+import uk.co.hexeption.darkforge.mod.mods.combat.Killaura;
+import uk.co.hexeption.darkforge.mod.mods.gui.Gui;
+import uk.co.hexeption.darkforge.mod.mods.misc.CustomChat;
+import uk.co.hexeption.darkforge.mod.mods.movement.AutoSprint;
+import uk.co.hexeption.darkforge.mod.mods.movement.Fly;
+import uk.co.hexeption.darkforge.mod.mods.movement.Step;
+import uk.co.hexeption.darkforge.mod.mods.render.*;
 
 import java.util.ArrayList;
 import java.util.List;

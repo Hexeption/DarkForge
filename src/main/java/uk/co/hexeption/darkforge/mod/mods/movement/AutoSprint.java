@@ -16,39 +16,39 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.mod.mods;
+package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
+import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 
-/**
- * Created by Hexeption on 15/01/2017.
- */
 @SideOnly(Side.CLIENT)
-@Mod.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Mod.Category.RENDER, bind = Keyboard.KEY_V)
-public class Fullbright extends Mod {
+@Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_L)
+public class AutoSprint extends Mod {
 
-    @EventTarget
-    public void onUpdate(EventUpdate event) {
+    @Override
+    public void onEnable() {
 
-        if (getState())
-            if (getGameSettings().gammaSetting < 16) {
-                getGameSettings().gammaSetting += 0.5;
-            } else if (getGameSettings().gammaSetting > 0.5) {
-                if (getGameSettings().gammaSetting < 1f)
-                    getGameSettings().gammaSetting = 0.5f;
-                else
-                    getGameSettings().gammaSetting -= 0.5;
-            }
+        if (getPlayer() != null)
+            getPlayer().setSprinting(true);
     }
 
     @Override
     public void onDisable() {
 
-        getGameSettings().gammaSetting = 0.5f;
+        if (getPlayer() != null)
+            getPlayer().setSprinting(false);
     }
+
+    @EventTarget
+    public void onPreMotionTick(PreMotionUpdateEvent event) {
+
+        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+            mc.player.setSprinting(true);
+        }
+    }
+
 }

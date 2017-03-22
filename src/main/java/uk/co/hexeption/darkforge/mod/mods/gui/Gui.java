@@ -16,22 +16,23 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.mod.mods;
+package uk.co.hexeption.darkforge.mod.mods.gui;
 
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.PostMotionUpdateEvent;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Hexeption on 27/02/2017.
  */
-@Mod.ModInfo(name = "No Slowdown", description = "Stops items from slowing you down.", category = Mod.Category.MOVEMENT)
-public class NoSlowdown extends Mod {
+@Mod.ModInfo(name = "Click Gui", description = "Enable shit", category = Mod.Category.GUI, bind = Keyboard.KEY_LCONTROL)
+public class Gui extends Mod {
 
-    @EventTarget
-    public void PostMotionUpdate(PostMotionUpdateEvent event) {
+    @Override
+    public void onEnable() {
 
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.guiManager);
+        toggle();
     }
-
-
 }

@@ -15,24 +15,31 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mod.mods.movement;
 
-package uk.co.hexeption.darkforge.mod.mods;
-
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.mod.Mod;
 
-/**
- * Created by Hexeption on 27/02/2017.
- */
-@Mod.ModInfo(name = "Click Gui", description = "Enable shit", category = Mod.Category.GUI, bind = Keyboard.KEY_LCONTROL)
-public class Gui extends Mod {
+@Mod.ModInfo(name = "Step", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_K)
+public class Step extends Mod {
+
+    private float stepHeight = 1.5f;
+
+    /**
+     * One and a half block
+     */
 
     @Override
     public void onEnable() {
 
-        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.guiManager);
-        toggle();
+        if (getPlayer() != null)
+            getPlayer().stepHeight = stepHeight;
+    }
+
+    @Override
+    public void onDisable() {
+
+        if (getPlayer() != null)
+            getPlayer().stepHeight = 0.5f;
     }
 }

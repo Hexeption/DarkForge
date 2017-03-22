@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.mod.mods;
+package uk.co.hexeption.darkforge.mod.mods.render;
 
 import net.minecraft.block.BlockChest;
 import net.minecraft.tileentity.TileEntity;

@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.mod.mods.CustomChat;
+import uk.co.hexeption.darkforge.mod.mods.misc.CustomChat;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;

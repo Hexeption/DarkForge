@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.mod.mods.Xray;
+import uk.co.hexeption.darkforge.mod.mods.render.Xray;
 
 /**
  * Created by Hexeption on 13/03/2017.

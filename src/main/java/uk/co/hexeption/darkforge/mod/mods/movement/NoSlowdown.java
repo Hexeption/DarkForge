@@ -16,39 +16,22 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.mod.mods;
+package uk.co.hexeption.darkforge.mod.mods.movement;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
+import uk.co.hexeption.darkforge.event.events.movement.PostMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 
-@SideOnly(Side.CLIENT)
-@Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_L)
-public class AutoSprint extends Mod {
-
-    @Override
-    public void onEnable() {
-
-        if (getPlayer() != null)
-            getPlayer().setSprinting(true);
-    }
-
-    @Override
-    public void onDisable() {
-
-        if (getPlayer() != null)
-            getPlayer().setSprinting(false);
-    }
+/**
+ * Created by Hexeption on 13/03/2017.
+ */
+@Mod.ModInfo(name = "No Slowdown", description = "Stops items from slowing you down.", category = Mod.Category.MOVEMENT)
+public class NoSlowdown extends Mod {
 
     @EventTarget
-    public void onPreMotionTick(PreMotionUpdateEvent event) {
+    public void PostMotionUpdate(PostMotionUpdateEvent event) {
 
-        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
-            mc.player.setSprinting(true);
-        }
     }
+
 
 }
