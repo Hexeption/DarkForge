@@ -28,9 +28,12 @@ import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.notifcation.Notification;
 import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+import uk.co.hexeption.darkforge.utils.TimerUtils;
 import uk.co.hexeption.darkforge.utils.render.Texture;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -62,6 +65,7 @@ public class DarkForgeHud implements IGameHud {
         }
 
         drawArrayList(scaledResolution);
+        drawNotifcations(scaledResolution);
 
         GlStateManager.color(255, 255, 255);
     }
@@ -74,6 +78,22 @@ public class DarkForgeHud implements IGameHud {
                 DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
             }
+        }
+    }
+
+    void drawNotifcations(ScaledResolution scaledResolution) {
+
+        TimerUtils timerUtils = new TimerUtils();
+        int ycount = 0;
+        for (Notification notification : DarkForge.INSTANCE.notificationManager.getNotifications()) {
+            if (timerUtils.getSystemTime() - notification.getTime() >= notification.getDuration()) {
+                DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
+                ycount -= 15;
+            } else {
+                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getType().type, scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 20, scaledResolution.getScaledHeight() - 20 - ycount, notification.getType().color);
+                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
+            }
+            ycount += 15;
         }
     }
 

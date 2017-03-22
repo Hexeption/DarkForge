@@ -91,15 +91,6 @@ public enum DarkForge {
         LogHelper.info("Loading Guis...");
         guiManager.Initialization();
 
-        addNotification(Notification.Type.ERROR, "Main", "Testing", 10);
-        addNotification(Notification.Type.INFO, "Main1", "Testing", 12);
-        addNotification(Notification.Type.INFO, "Main2", "Testing", 103);
-        addNotification(Notification.Type.ERROR, "Main3", "Testing", 130);
-
-        for (Notification noti : notificationManager.getNotifications()) {
-            LogHelper.info(noti.getType() + " : " + noti.getLocation() + " : " + noti.getMessage() + " : " + noti.getDuration());
-        }
-
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
 
@@ -112,7 +103,6 @@ public enum DarkForge {
 
     @EventTarget
     private void EventKeyboard(KeyboardEvent event) {
-
         for (Mod m : modManager.getMods()) {
             if (Keyboard.getEventKey() == m.getBind()) {
                 m.toggle();
