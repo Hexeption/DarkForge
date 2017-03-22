@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.notifcation;
+package uk.co.hexeption.darkforge.notification;
 
 import uk.co.hexeption.darkforge.utils.TimerUtils;
 

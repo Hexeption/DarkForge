@@ -28,7 +28,7 @@ import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.mod.Mod;
-import uk.co.hexeption.darkforge.notifcation.Notification;
+import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.IGameHud;
 import uk.co.hexeption.darkforge.utils.TimerUtils;
 import uk.co.hexeption.darkforge.utils.render.Texture;

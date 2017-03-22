@@ -32,7 +32,7 @@ import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.mod.Mod;
-import uk.co.hexeption.darkforge.notifcation.Notification;
+import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 import uk.co.hexeption.darkforge.ui.tab.Tab;
 

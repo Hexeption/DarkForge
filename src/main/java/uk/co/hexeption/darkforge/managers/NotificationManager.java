@@ -18,7 +18,7 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import uk.co.hexeption.darkforge.notifcation.Notification;
+import uk.co.hexeption.darkforge.notification.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
