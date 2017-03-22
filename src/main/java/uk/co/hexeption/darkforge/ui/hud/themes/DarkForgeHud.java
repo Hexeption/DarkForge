@@ -74,7 +74,7 @@ public class DarkForgeHud implements IGameHud {
 
         int yCount = 5;
         for (Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
-            if (mod.getState() && mod.getCategory() != Mod.Category.GUI) {
+            if (mod.getState() && mod.getCategory() != Mod.Category.GUI && mod.isVisable()) {
                 DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
             }

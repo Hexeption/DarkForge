@@ -26,6 +26,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.mod.mods.combat.Killaura;
 import uk.co.hexeption.darkforge.mod.mods.gui.Gui;
 import uk.co.hexeption.darkforge.mod.mods.misc.CustomChat;
+import uk.co.hexeption.darkforge.mod.mods.misc.MiddleClickFriend;
 import uk.co.hexeption.darkforge.mod.mods.movement.AutoSprint;
 import uk.co.hexeption.darkforge.mod.mods.movement.Fly;
 import uk.co.hexeption.darkforge.mod.mods.movement.Step;
@@ -53,7 +54,7 @@ public class ModManager {
      */
     private void initMods() {
 
-        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(), new Xray(), new CustomChat());
+        addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(), new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(), new Xray(), new CustomChat(), new MiddleClickFriend());
     }
 
     public void addModules(final Mod... mods) {

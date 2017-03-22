@@ -52,6 +52,8 @@ public class Mod {
 
     private int bind = getClass().getAnnotation(ModInfo.class).bind();
 
+    private boolean visable = getClass().getAnnotation(ModInfo.class).visable();
+
     private ArrayList<Value> values = new ArrayList<>();
 
     private boolean state;
@@ -147,6 +149,16 @@ public class Mod {
 
     }
 
+    public boolean isVisable() {
+
+        return visable;
+    }
+
+    public void setVisable(boolean visable) {
+
+        this.visable = visable;
+    }
+
     public void onEnable() {
 
     }
@@ -239,5 +251,7 @@ public class Mod {
         Category category();
 
         int bind() default 0;
+
+        boolean visable() default true;
     }
 }

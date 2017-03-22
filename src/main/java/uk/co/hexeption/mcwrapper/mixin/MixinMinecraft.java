@@ -27,6 +27,7 @@ import net.minecraft.util.Timer;
 import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.SystemUtils;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,6 +36,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
+import uk.co.hexeption.darkforge.event.events.other.MouseEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
 import uk.co.hexeption.darkforge.utils.OutdatedJavaException;
@@ -93,6 +95,15 @@ public abstract class MixinMinecraft implements MinecraftClient {
         if (Keyboard.getEventKeyState()) {
             KeyboardEvent eventKeyboard = new KeyboardEvent(Keyboard.getEventKey());
             eventKeyboard.call();
+        }
+    }
+
+    @Inject(method = "runTickMouse()V", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Mouse;getEventButtonState()Z"))
+    public void onMousePressed(CallbackInfo callbackInfo) {
+
+        if (Mouse.getEventButtonState()) {
+            MouseEvent mouseEvent = new MouseEvent(Mouse.getEventButton());
+            mouseEvent.call();
         }
     }
 
