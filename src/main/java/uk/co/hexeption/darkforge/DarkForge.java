@@ -103,6 +103,18 @@ public enum DarkForge {
 
     @EventTarget
     private void EventKeyboard(KeyboardEvent event) {
+
+
+        if (event.getKey() == Keyboard.KEY_H) {
+            addNotification(Notification.Type.ERROR, "this", "Testing Error", 5000);
+
+        }
+        if (event.getKey() == Keyboard.KEY_J) {
+            addNotification(Notification.Type.INFO, "this", "Testing Info", 5000);
+
+        }
+
+
         for (Mod m : modManager.getMods()) {
             if (Keyboard.getEventKey() == m.getBind()) {
                 m.toggle();

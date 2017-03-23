@@ -35,12 +35,16 @@ import uk.co.hexeption.darkforge.utils.render.Texture;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 @SideOnly(Side.CLIENT)
 public class DarkForgeHud implements IGameHud {
 
     public Texture icons = new Texture("textures/icons.png");
+
+    private ArrayList<Mod> orderdMods = new ArrayList<>();
 
     @Override
     public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
@@ -64,6 +68,7 @@ public class DarkForgeHud implements IGameHud {
             DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
         }
 
+        reorderMods();
         drawArrayList(scaledResolution);
         drawNotifcations(scaledResolution);
 
@@ -72,8 +77,12 @@ public class DarkForgeHud implements IGameHud {
 
     void drawArrayList(ScaledResolution scaledResolution) {
 
+        if (this.orderdMods.isEmpty()) {
+            this.orderdMods.addAll(DarkForge.INSTANCE.modManager.getMods());
+        }
+
         int yCount = 5;
-        for (Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
+        for (Mod mod : this.orderdMods) {
             if (mod.getState() && mod.getCategory() != Mod.Category.GUI && mod.isVisable()) {
                 DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
@@ -97,6 +106,45 @@ public class DarkForgeHud implements IGameHud {
                 ycount += 15;
             }
         }
+    }
+
+    void reorderMods() {
+
+        ArrayList<Mod> mods = this.orderdMods;
+
+        /**
+         * Text Size
+         */
+        Collections.sort(mods, (o1, o2) -> {
+
+            if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) > DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                return -1;
+            }
+            if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) < DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                return 1;
+            }
+
+            return 0;
+        });
+
+        /**
+         * Alphabetical
+         */
+//        Collections.sort(mods, new Comparator<Mod>() {
+//
+//            @Override
+//            public int compare(Mod o1, Mod o2) {
+//
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+
+        /**
+         * Category
+         */
+//        Collections.sort(mods, Comparator.comparingInt(o -> o.getCategory().ordinal()));
+
+        this.orderdMods = mods;
     }
 
     @Override
