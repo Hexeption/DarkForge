@@ -36,7 +36,7 @@ import uk.co.hexeption.darkforge.utils.render.Texture;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 @SideOnly(Side.CLIENT)
@@ -68,7 +68,7 @@ public class DarkForgeHud implements IGameHud {
             DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
         }
 
-        reorderMods();
+        reorderMods(0);
         drawArrayList(scaledResolution);
         drawNotifcations(scaledResolution);
 
@@ -108,41 +108,32 @@ public class DarkForgeHud implements IGameHud {
         }
     }
 
-    void reorderMods() {
+    void reorderMods(int sort) {
 
         ArrayList<Mod> mods = this.orderdMods;
 
-        /**
-         * Text Size
-         */
-        Collections.sort(mods, (o1, o2) -> {
+        switch (sort) {
+            case 0:
+                mods.sort((o1, o2) -> {
 
-            if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) > DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
-                return -1;
-            }
-            if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) < DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
-                return 1;
-            }
+                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) > DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                        return -1;
+                    }
+                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) < DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                        return 1;
+                    }
 
-            return 0;
-        });
+                    return 0;
+                });
+                break;
+            case 1:
+                mods.sort(Comparator.comparing(Mod::getName));
+                break;
+            case 2:
+                mods.sort(Comparator.comparingInt(o -> o.getCategory().ordinal()));
 
-        /**
-         * Alphabetical
-         */
-//        Collections.sort(mods, new Comparator<Mod>() {
-//
-//            @Override
-//            public int compare(Mod o1, Mod o2) {
-//
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
-
-        /**
-         * Category
-         */
-//        Collections.sort(mods, Comparator.comparingInt(o -> o.getCategory().ordinal()));
+                break;
+        }
 
         this.orderdMods = mods;
     }
