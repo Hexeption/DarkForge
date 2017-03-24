@@ -82,7 +82,12 @@ public class DarkForgeFrame extends ComponentRenderer {
         }
 
         RenderUtils.drawRect(frame.getX() + dimension.width - 38, frame.getY(), frame.getX() + dimension.width - 19, frame.getY() + 15, color);
-        RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY(), 0x8C808080);
+
+        if (frame.isMaximized()) {
+            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY(), 0x8C808080);
+        } else {
+            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width - 1, frame.getY(), 0x8C808080);
+        }
 
         GLUtils.glColor(255, 255, 255, 255);
         if (!frame.isPinned()) {
@@ -111,10 +116,12 @@ public class DarkForgeFrame extends ComponentRenderer {
 
         if (frame.isMaximized()) {
             drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 13, true, new Color(255, 255, 255, 255).hashCode());
-            RenderUtils.drawVLine(frame.getX(), frame.getY(), frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
-            RenderUtils.drawVLine(frame.getX() + dimension.width, frame.getY(), frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+            RenderUtils.drawVLine(frame.getX(), frame.getY() - 1, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+            RenderUtils.drawVLine(frame.getX() + dimension.width, frame.getY() - 1, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
             RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+
         } else {
+
             drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 13, false, new Color(255, 255, 255, 255).hashCode());
         }
     }
