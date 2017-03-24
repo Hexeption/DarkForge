@@ -75,7 +75,7 @@ public class DarkForgeHud implements IGameHud {
         GlStateManager.color(255, 255, 255);
     }
 
-    void drawArrayList(ScaledResolution scaledResolution) {
+    private void drawArrayList(ScaledResolution scaledResolution) {
 
         if (this.orderdMods.isEmpty()) {
             this.orderdMods.addAll(DarkForge.INSTANCE.modManager.getMods());
@@ -90,7 +90,7 @@ public class DarkForgeHud implements IGameHud {
         }
     }
 
-    void drawNotifcations(ScaledResolution scaledResolution) {
+    private void drawNotifcations(ScaledResolution scaledResolution) {
 
         TimerUtils timerUtils = new TimerUtils();
         int ycount = 0;
@@ -108,7 +108,7 @@ public class DarkForgeHud implements IGameHud {
         }
     }
 
-    void reorderMods(int sort) {
+    private void reorderMods(int sort) {
 
         ArrayList<Mod> mods = this.orderdMods;
 

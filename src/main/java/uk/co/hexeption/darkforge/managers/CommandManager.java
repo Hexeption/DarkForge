@@ -25,6 +25,7 @@ import uk.co.hexeption.darkforge.command.commands.TestCommand;
 import uk.co.hexeption.darkforge.command.commands.Xray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -75,9 +76,7 @@ public class CommandManager {
     public void addCommand(Command... command) {
 
         synchronized (this.commands) {
-            for (final Command command1 : command) {
-                this.commands.add(command1);
-            }
+            this.commands.addAll(Arrays.asList(command));
         }
     }
 

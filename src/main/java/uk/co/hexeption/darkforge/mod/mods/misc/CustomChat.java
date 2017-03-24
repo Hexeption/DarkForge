@@ -23,7 +23,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 /**
  * Created by Hexeption on 15/03/2017.
  */
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC)
+@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
 public class CustomChat extends Mod {
 
 }

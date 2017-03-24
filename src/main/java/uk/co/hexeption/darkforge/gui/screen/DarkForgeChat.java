@@ -26,12 +26,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.mod.mods.misc.CustomChat;
+import uk.co.hexeption.darkforge.mod.mods.misc.NameProtect;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
@@ -121,6 +123,17 @@ public class DarkForgeChat extends GuiNewChat {
                                 int j2 = -i1 * 9;
                                 drawRect(-2, j2 - 9, 0 + k + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
+                                if (s.startsWith("<")) {
+                                    if (DarkForge.INSTANCE.modManager.getModuleByClass(NameProtect.class).getState()) {
+                                        String name = s.substring(s.indexOf("<") + 1, s.indexOf(">")).replaceAll("§r", "");
+                                        if (DarkForge.INSTANCE.friendManager.isFriend(name)) {
+                                            s = s.replaceAll(name, TextFormatting.AQUA + DarkForge.INSTANCE.friendManager.getAlias(name) + TextFormatting.RESET);
+                                        }
+                                    } else {
+                                        s = chatline.getChatComponent().getFormattedText();
+                                    }
+                                }
+
                                 GlStateManager.enableBlend();
                                 drawStringWithShadow(s, 0.0F, (float) (j2 - 8), 16777215 + (l1 << 24));
                                 GlStateManager.disableAlpha();

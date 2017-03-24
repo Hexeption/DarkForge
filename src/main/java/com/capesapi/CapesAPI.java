@@ -88,7 +88,7 @@ public class CapesAPI {
      */
     public static ResourceLocation getCape(UUID uuid) {
 
-        return capes.containsKey(uuid) ? capes.get(uuid) : null;
+        return capes.getOrDefault(uuid, null);
     }
 
     public static boolean hasCape(UUID uuid) {

@@ -33,7 +33,7 @@ public class EventManager {
     private static final Map<Class<? extends Event>, ArrayHelper<Data>> REGISTRY_MAP;
 
     static {
-        REGISTRY_MAP = new HashMap<Class<? extends Event>, ArrayHelper<Data>>();
+        REGISTRY_MAP = new HashMap<>();
     }
 
     public static void register(final Object o) {

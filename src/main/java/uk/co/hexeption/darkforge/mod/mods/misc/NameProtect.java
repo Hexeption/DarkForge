@@ -16,55 +16,16 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.mod.mods.misc;
 
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import org.spongepowered.asm.launch.MixinBootstrap;
-import org.spongepowered.asm.mixin.Mixins;
-
-import javax.annotation.Nullable;
-import java.util.Map;
+import uk.co.hexeption.darkforge.api.annotation.Enabled;
+import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 12/03/2017.
+ * Created by Hexeption on 24/03/2017.
  */
-public class MixinLoader implements IFMLLoadingPlugin {
+@Enabled
+@Mod.ModInfo(name = "Name Protect", description = "Hides your real username", category = Mod.Category.MISC, visable = false)
+public class NameProtect extends Mod {
 
-    public MixinLoader() {
-
-        MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.mcwrapper.json");
-
-    }
-
-
-    @Override
-    public String[] getASMTransformerClass() {
-
-        return new String[0];
-    }
-
-    @Override
-    public String getModContainerClass() {
-
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public String getSetupClass() {
-
-        return null;
-    }
-
-    @Override
-    public void injectData(Map<String, Object> data) {
-
-    }
-
-    @Override
-    public String getAccessTransformerClass() {
-
-        return null;
-    }
 }

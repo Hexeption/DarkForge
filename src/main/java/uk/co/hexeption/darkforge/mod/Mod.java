@@ -134,12 +134,10 @@ public class Mod {
         if (state) {
             this.state = true;
             onEnable();
-            //TODO: Event register
             EventManager.register(this);
         } else {
             this.state = false;
             onDisable();
-            //TODO: Event unregister
             EventManager.unregister(this);
         }
 
