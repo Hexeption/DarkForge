@@ -31,6 +31,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.IGameHud;
 import uk.co.hexeption.darkforge.utils.TimerUtils;
+import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import uk.co.hexeption.darkforge.utils.render.Texture;
 
 import java.awt.*;
@@ -42,7 +43,11 @@ import java.util.Date;
 @SideOnly(Side.CLIENT)
 public class DarkForgeHud implements IGameHud {
 
-    public Texture icons = new Texture("textures/icons.png");
+    public Texture info = new Texture("textures/info.png");
+
+    public Texture error = new Texture("textures/error.png");
+
+    public Texture question = new Texture("textures/question.png");
 
     private ArrayList<Mod> orderdMods = new ArrayList<>();
 
@@ -70,7 +75,7 @@ public class DarkForgeHud implements IGameHud {
 
         reorderMods(0);
         drawArrayList(scaledResolution);
-        drawNotifcations(scaledResolution);
+        drawNotifications(scaledResolution);
 
         GlStateManager.color(255, 255, 255);
     }
@@ -90,17 +95,30 @@ public class DarkForgeHud implements IGameHud {
         }
     }
 
-    private void drawNotifcations(ScaledResolution scaledResolution) {
+    private void drawNotifications(ScaledResolution scaledResolution) {
 
         TimerUtils timerUtils = new TimerUtils();
         int ycount = 0;
         for (Notification notification : DarkForge.INSTANCE.notificationManager.getNotifications()) {
             if (notification != null) {
                 if (timerUtils.getSystemTime() - notification.getTime() >= notification.getDuration()) {
-                    DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
+//                    DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
                     ycount -= 15;
                 } else {
-                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getType().type, scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 20, scaledResolution.getScaledHeight() - 20 - ycount, notification.getType().color);
+                    switch (notification.getType()) {
+                        case INFO:
+                            GLUtils.glColor(Color.WHITE);
+                            info.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                        case ERROR:
+                            GLUtils.glColor(Color.WHITE);
+                            error.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                        case QUESTION:
+                            GLUtils.glColor(Color.WHITE);
+                            question.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                    }
                     DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
                 }
                 ycount += 15;

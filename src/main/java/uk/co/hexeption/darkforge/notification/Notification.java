@@ -72,7 +72,7 @@ public class Notification {
     }
 
     public enum Type {
-        INFO("!", 0x403BFF), ERROR("X", 0x6C0100);
+        INFO("!", 0xff403BFF), ERROR("X", 0xff6C0100), QUESTION("?", 0xFFFFDA00);
 
         public final String type;
 

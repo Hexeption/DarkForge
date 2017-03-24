@@ -106,11 +106,15 @@ public enum DarkForge {
 
 
         if (event.getKey() == Keyboard.KEY_H) {
-            addNotification(Notification.Type.ERROR, "this", "Testing Error", 5000);
+            addNotification(Notification.Type.ERROR, "this", "Testing Error", 50000);
 
         }
         if (event.getKey() == Keyboard.KEY_J) {
-            addNotification(Notification.Type.INFO, "this", "Testing Info", 5000);
+            addNotification(Notification.Type.INFO, "this", "Testing Info", 50000);
+
+        }
+        if (event.getKey() == Keyboard.KEY_L) {
+            addNotification(Notification.Type.QUESTION, "this", "Testing Question", 50000);
 
         }
 
