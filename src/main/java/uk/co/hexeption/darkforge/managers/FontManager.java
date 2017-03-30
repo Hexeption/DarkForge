@@ -51,6 +51,11 @@ public class FontManager {
 
     public MinecraftFontRenderer huzuni = new MinecraftFontRenderer();
 
+    public MinecraftFontRenderer hud_big = new MinecraftFontRenderer();
+
+    public MinecraftFontRenderer hud_small = new MinecraftFontRenderer();
+
+
     public static String getFontName() {
 
         return fontName;
@@ -73,5 +78,7 @@ public class FontManager {
         guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
         clickGui.setFont(new Font(fontName, Font.PLAIN, 16), true);
         huzuni.setFont(new Font("Roboto Condensed", Font.PLAIN, 16), true);
+        hud_big.setFont(new Font(fontName, Font.PLAIN, 40), true);
+        hud_small.setFont(new Font(fontName, Font.PLAIN, 12), true);
     }
 }

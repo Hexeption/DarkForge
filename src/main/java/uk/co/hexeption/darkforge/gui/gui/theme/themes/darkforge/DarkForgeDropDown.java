@@ -18,28 +18,34 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
-import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.gui.gui.base.Component;
+import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
+import uk.co.hexeption.darkforge.gui.gui.elements.Dropdown;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
-import uk.co.hexeption.darkforge.utils.render.Texture;
+
+import java.awt.*;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 24/03/2017.
  */
-public class DarkForgeTheme extends Theme {
+public class DarkForgeDropDown extends ComponentRenderer {
 
-    public DarkForgeTheme() {
+    public DarkForgeDropDown(Theme theme) {
 
-        super("DarkForge");
-        this.fontRenderer = DarkForge.INSTANCE.fontManager.clickGui;
-        this.icons = new Texture("textures/icons.png");
-        addRenderer(ComponentType.FRAME, new DarkForgeFrame(this));
-        addRenderer(ComponentType.BUTTON, new DarkForgeButton(this));
-        addRenderer(ComponentType.SLIDER, new DarkForgeSlider(this));
-        addRenderer(ComponentType.CHECK_BUTTON, new DarkForgeCheckButton(this));
-        addRenderer(ComponentType.EXPANDING_BUTTON, new DarkForgeExpandingButton(this));
-        addRenderer(ComponentType.TEXT, new DarkForgeText(this));
-        addRenderer(ComponentType.KEYBIND, new DarkForgeKeybinds(this));
-        addRenderer(ComponentType.DROPDOWN, new DarkForgeDropDown(this));
+        super(ComponentType.DROPDOWN, theme);
+    }
+
+    @Override
+    public void drawComponent(Component component, int mouseX, int mouseY) {
+
+        Dropdown dropdown = (Dropdown) component;
+        String text = dropdown.getText();
+
+        theme.fontRenderer.drawString(text, dropdown.getX() + 5, dropdown.getY() + (dropdown.getDropdownHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
+
+        if (dropdown.isMaximized()) {
+            dropdown.renderChildren(mouseX, mouseY);
+        }
     }
 }

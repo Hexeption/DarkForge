@@ -22,5 +22,5 @@ package uk.co.hexeption.darkforge.gui.gui.base;
  * Created by Hexeption on 27/02/2017.
  */
 public enum ComponentType {
-    FRAME, PANEL, BUTTON, EXPANDING_BUTTON, CHECK_BUTTON, SLIDER, KEYBIND, TEXT
+    FRAME, PANEL, BUTTON, EXPANDING_BUTTON, CHECK_BUTTON, SLIDER, KEYBIND, TEXT, DROPDOWN
 }

@@ -5,6 +5,11 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
+**? Updated Changelog**
+
+
+[b7c6123c9eed9c8](https://github.com/Hexeption/DarkForge/commit/b7c6123c9eed9c8) Hexeption *2017-03-24 15:41:49*
+
 **:bug: Fixed Gui Theme**
 
 

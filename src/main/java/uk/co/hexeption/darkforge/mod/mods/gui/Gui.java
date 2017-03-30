@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.mod.mods.gui;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -32,7 +33,9 @@ public class Gui extends Mod {
     @Override
     public void onEnable() {
 
-        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.guiManager);
+        LogHelper.info("Loading Guis...");
+
+        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.getGui());
         toggle();
     }
 }

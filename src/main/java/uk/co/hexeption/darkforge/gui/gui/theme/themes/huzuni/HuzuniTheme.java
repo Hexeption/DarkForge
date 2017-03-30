@@ -21,10 +21,7 @@ package uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
-import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeCheckButton;
-import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeKeybinds;
-import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeSlider;
-import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeText;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.*;
 import uk.co.hexeption.darkforge.utils.render.Texture;
 
 /**
@@ -44,5 +41,6 @@ public class HuzuniTheme extends Theme {
         addRenderer(ComponentType.EXPANDING_BUTTON, new HuzuniExpandingButton(this));
         addRenderer(ComponentType.TEXT, new DarkForgeText(this));
         addRenderer(ComponentType.KEYBIND, new DarkForgeKeybinds(this));
+        addRenderer(ComponentType.DROPDOWN, new DarkForgeDropDown(this));
     }
 }

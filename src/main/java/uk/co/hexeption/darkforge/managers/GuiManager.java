@@ -21,7 +21,9 @@ package uk.co.hexeption.darkforge.managers;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
+import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni.HuzuniTheme;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
@@ -35,9 +37,6 @@ import uk.co.hexeption.darkforge.value.Value;
 public class GuiManager extends ClickGui {
 
     public void Initialization() {
-
-//        this.setTheme(new HuzuniTheme());
-        this.setTheme(new DarkForgeTheme());
 
         addCategoryPanels();
         addInfoPanel();
@@ -68,8 +67,49 @@ public class GuiManager extends ClickGui {
 //        this.addFrame(frame);
 //    }
 
+    /**
+     * This is bad... but it works for now
+     */
     private void addMiniMapPanel() {
 
+        Frame frame = new Frame(10, 10, 100, 130, "Gui Manager");
+
+        Dropdown dropdown = new Dropdown(0, 0, 100, 18, frame, "Themes");
+        CheckButton Huzuni = new CheckButton(0, 0, dropdown.getDimension().width, 18, dropdown, "Huzuni", false);
+        CheckButton checkButtons = new CheckButton(0, 0, dropdown.getDimension().width, 18, dropdown, "DarkForge", true);
+        Huzuni.addListeners(new CheckButtonClickListener() {
+
+            @Override
+            public void onCheckButtonClick(CheckButton checkButton) {
+
+                if (checkButton.isEnabled()) {
+                    setTheme(new HuzuniTheme());
+                    if (checkButtons.isEnabled()) {
+                        checkButtons.setEnabled(false);
+                    }
+                }
+            }
+        });
+        checkButtons.addListeners(new CheckButtonClickListener() {
+
+            @Override
+            public void onCheckButtonClick(CheckButton checkButton) {
+
+                if (checkButton.isEnabled()) {
+                    setTheme(new DarkForgeTheme());
+                    if (Huzuni.isEnabled()) {
+                        Huzuni.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+        dropdown.addComponent(Huzuni);
+        dropdown.addComponent(checkButtons);
+
+        frame.addComponent(dropdown);
+
+        this.addFrame(frame);
     }
 
     private void addPlayerPanel() {

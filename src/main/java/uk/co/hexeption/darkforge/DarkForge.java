@@ -29,6 +29,7 @@ import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -48,8 +49,6 @@ public enum DarkForge {
 
     public final FileManager fileManager = new FileManager();
 
-    public final GuiManager guiManager = new GuiManager();
-
     public final FriendManager friendManager = new FriendManager();
 
     public final NotificationManager notificationManager = new NotificationManager();
@@ -57,6 +56,8 @@ public enum DarkForge {
     public final Hud hud = new Hud();
 
     public final Tab tab = new Tab();
+
+    public GuiManager guiManager;
 
     public String commandPrefix = ".";
 
@@ -87,9 +88,6 @@ public enum DarkForge {
 
         LogHelper.info("Loading Configs...");
         fileManager.Initialization();
-
-        LogHelper.info("Loading Guis...");
-        guiManager.Initialization();
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
@@ -140,4 +138,17 @@ public enum DarkForge {
 
         notificationManager.addNotification(new Notification(type, location, message, duration));
     }
+
+    public GuiManager getGui() {
+
+        if (DarkForge.INSTANCE.guiManager == null) {
+            this.guiManager = new GuiManager();
+            DarkForge.INSTANCE.guiManager.Initialization();
+            DarkForge.INSTANCE.guiManager.setTheme(new DarkForgeTheme());
+        }
+
+        return this.guiManager;
+    }
+
+
 }

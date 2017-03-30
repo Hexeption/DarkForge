@@ -41,7 +41,7 @@ public class DarkForgeTab implements ITab {
 
     private int tab;
 
-    private int tabHeight = 45;
+    private int tabHeight = 30;
 
     public DarkForgeTab() {
 
@@ -74,8 +74,8 @@ public class DarkForgeTab implements ITab {
             if (!category.name().equalsIgnoreCase("gui")) {
                 int y = tabHeight + (count * 15);
 
-                GLUtils.glColor(new Color(77, 74, 77, 169));
-                GLUtils.drawBorderRect(1, y, 70, y + 15, 1);
+                GLUtils.glColor(new Color(47, 47, 47, 235));
+                GLUtils.drawRect(0, y, 70, y + 15);
                 count++;
             }
         }
@@ -84,9 +84,9 @@ public class DarkForgeTab implements ITab {
         for (Mod.Category categorys : Mod.Category.values()) {
             if (categorys != Mod.Category.GUI) {
                 if (categorys.name().equalsIgnoreCase(category.get(this.selectedTab))) {
-                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow("> " + categorys.name(), 6, tabHeight + count1 * 15 + 4, categorys.color);
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow("> " + categorys.name(), 6, tabHeight + count1 * 15 + 4, -1);
                 } else {
-                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(categorys.name(), 6, tabHeight + count1 * 15 + 4, categorys.color);
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(categorys.name(), 6, tabHeight + count1 * 15 + 4, -1);
 
                 }
                 count1++;
@@ -105,8 +105,8 @@ public class DarkForgeTab implements ITab {
                 }
 
                 int y = tabHeight + (modcount * 15);
-                GLUtils.glColor(new Color(77, 74, 77, 169));
-                GLUtils.drawBorderRect(73, y, 100 + this.getLongestModWidth(), y + 15, 1);
+                GLUtils.glColor(new Color(47, 47, 47, 235));
+                GLUtils.drawRect(73, y, 100 + this.getLongestModWidth(), y + 15);
                 DarkForge.INSTANCE.fontManager.arraylist.drawCenteredStringWithShadow(!mod.getName().equalsIgnoreCase(this.getModsForCategorys().get(this.selectedMod).getName()) ? mod.getName() : "> " + mod.getName(), DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()) / 2 + 80, y + 8, color);
                 modcount++;
             }

@@ -19,12 +19,10 @@
 package uk.co.hexeption.darkforge.ui.hud.themes;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -58,20 +56,14 @@ public class DarkForgeHud implements IGameHud {
 
         ClickGui.renderPinned();
 
-        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow(ClientInfo.MOD_NAME + " for " + ClientInfo.MINECRAFT_VERISON, 1, 5, -1);
-        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Time:§r " + new SimpleDateFormat("hh:mm a").format(new Date()), 1, 17, -1);
-        DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7FPS:§r " + Minecraft.getDebugFPS(), 1, 29, -1);
+        DarkForge.INSTANCE.fontManager.hud_big.drawString("D", 1, 1, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawString("ark", 14, 8, -1);
 
-        if (!minecraft.isSingleplayer()) {
-            int version = 15, ping = 25;
-            if (minecraft.currentScreen instanceof GuiChat) {
-                version += 15;
-                ping += 15;
-            }
+        DarkForge.INSTANCE.fontManager.hud_big.drawString("F", 32, 1, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawString("orge", 42, 8, -1);
+        DarkForge.INSTANCE.fontManager.hud_small.drawString("B43", 45, 4, -1);
 
-            DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Version:§r " + minecraft.getCurrentServerData().gameVersion, 1, scaledResolution.getScaledHeight() - version, -1);
-            DarkForge.INSTANCE.fontManager.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
-        }
+        DarkForge.INSTANCE.fontManager.hud_small.drawString("Time : " + new SimpleDateFormat("hh:mm a").format(new Date()) + " | FPS : " + Minecraft.getDebugFPS(), 1, 22, -1);
 
         reorderMods(0);
         drawArrayList(scaledResolution);
@@ -86,7 +78,7 @@ public class DarkForgeHud implements IGameHud {
             this.orderdMods.addAll(DarkForge.INSTANCE.modManager.getMods());
         }
 
-        int yCount = 5;
+        int yCount = 2;
         for (Mod mod : this.orderdMods) {
             if (mod.getState() && mod.getCategory() != Mod.Category.GUI && mod.isVisable()) {
                 DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
@@ -119,6 +111,7 @@ public class DarkForgeHud implements IGameHud {
                             question.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
                             break;
                     }
+
                     DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
                 }
                 ycount += 15;
