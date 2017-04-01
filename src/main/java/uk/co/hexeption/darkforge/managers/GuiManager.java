@@ -134,7 +134,14 @@ public class GuiManager extends ClickGui {
 
                 for (final Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
                     if (mod.getCategory() == category) {
-                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName(), mod);
+                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName(), mod) {
+
+                            @Override
+                            public void onUpdate() {
+
+                                setEnabled(mod.getState());
+                            }
+                        };
                         expandingButton.addListner((component, button) -> mod.toggle());
                         expandingButton.setEnabled(mod.getState());
                         if (!mod.getValues().isEmpty()) {
