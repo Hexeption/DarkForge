@@ -21,8 +21,6 @@ package uk.co.hexeption.darkforge.mod.mods.render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
@@ -34,7 +32,6 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 @Mod.ModInfo(name = "ItemESP", description = "highlights a Item", category = Mod.Category.RENDER, bind = Keyboard.KEY_L)
 public class ItemESP extends Mod {
 

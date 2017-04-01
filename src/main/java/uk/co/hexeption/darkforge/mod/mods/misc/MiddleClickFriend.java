@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.mod.mods.misc;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StringUtils;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.MouseEvent;
@@ -29,6 +30,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 /**
  * Created by Hexeption on 22/03/2017.
  */
+@NoKeyBind
 @Mod.ModInfo(name = "Middle Click Friend", category = Mod.Category.MISC, description = "Middle click a player to add it to your friend list", visable = false)
 public class MiddleClickFriend extends Mod {
 

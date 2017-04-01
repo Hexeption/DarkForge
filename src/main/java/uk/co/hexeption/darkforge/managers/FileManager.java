@@ -20,8 +20,6 @@ package uk.co.hexeption.darkforge.managers;
 
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.alt.Alt;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
@@ -38,7 +36,6 @@ import java.util.Map;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 public class FileManager {
 
     private static Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();

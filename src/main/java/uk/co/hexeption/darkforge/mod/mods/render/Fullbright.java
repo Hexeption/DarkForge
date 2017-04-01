@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.mod.mods.render;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
@@ -28,7 +26,6 @@ import uk.co.hexeption.darkforge.mod.Mod;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 @Mod.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Mod.Category.RENDER, bind = Keyboard.KEY_V)
 public class Fullbright extends Mod {
 

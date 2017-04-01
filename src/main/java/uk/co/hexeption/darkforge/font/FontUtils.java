@@ -22,12 +22,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static org.lwjgl.opengl.GL11.*;
 
-@SideOnly(Side.CLIENT)
 public class FontUtils {
 
     private static final Tessellator tessellator = Tessellator.getInstance();

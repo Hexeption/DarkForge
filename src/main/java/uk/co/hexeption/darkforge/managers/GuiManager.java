@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
 import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
@@ -178,9 +179,10 @@ public class GuiManager extends ClickGui {
                                 }
                             }
                         }
-
-                        KeybindMods keybind = new KeybindMods(0, 0, 12, 15, expandingButton, mod);
-                        expandingButton.addComponent(keybind);
+                        if (!mod.getClass().isAnnotationPresent(NoKeyBind.class)) {
+                            KeybindMods keybind = new KeybindMods(0, 0, 12, 15, expandingButton, mod);
+                            expandingButton.addComponent(keybind);
+                        }
                         frame.addComponent(expandingButton);
                     }
                 }

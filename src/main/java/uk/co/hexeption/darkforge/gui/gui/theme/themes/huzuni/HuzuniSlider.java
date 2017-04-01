@@ -16,12 +16,12 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
+package uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni;
 
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
-import uk.co.hexeption.darkforge.gui.gui.elements.Button;
+import uk.co.hexeption.darkforge.gui.gui.elements.Slider;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
@@ -29,33 +29,24 @@ import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import java.awt.*;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 28/02/2017.
  */
-public class DarkForgeButton extends ComponentRenderer {
+public class HuzuniSlider extends ComponentRenderer {
 
-    public DarkForgeButton(Theme theme) {
+    public HuzuniSlider(Theme theme) {
 
-        super(ComponentType.BUTTON, theme);
+        super(ComponentType.SLIDER, theme);
     }
 
     @Override
     public void drawComponent(Component component, int mouseX, int mouseY) {
 
-        Button button = (Button) component;
-        String text = button.getText();
-        Color color = new Color(31, 31, 31, 20);
-        Color enable = new Color(77, 8, 8, 100);
-
-        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
-            color = new Color(31, 31, 31, 120);
-        }
-
-        if (button.isEnabled()) {
-            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, enable);
-        } else {
-            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-        }
-
-        theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
+        Slider slider = (Slider) component;
+        int width = (int) ((slider.getDimension().getWidth()) * slider.getPercent());
+        GLUtils.glColor(new Color(128, 128, 128));
+        theme.fontRenderer.drawString(slider.getText(), slider.getX() + 4, slider.getY() + 2, Color.white.hashCode());
+        theme.fontRenderer.drawString(slider.getValue() + "", slider.getX() + slider.getDimension().width - theme.fontRenderer.getStringWidth(slider.getValue() + "") - 5, slider.getY() + 2, Color.white.hashCode());
+        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width) + 1, (slider.getY() + slider.getDimension().height / 2) + 6, new Color(7, 23, 38));
+        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(128, 128, 128));
     }
 }

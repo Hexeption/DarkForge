@@ -23,8 +23,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -45,7 +43,6 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by halalaboos.
  */
-@SideOnly(Side.CLIENT)
 public final class GLUtils {
 
     private static final Random random = new Random();

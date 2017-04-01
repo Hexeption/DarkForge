@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
@@ -33,7 +31,6 @@ import java.awt.*;
 /**
  * Created by Hexeption on 28/02/2017.
  */
-@SideOnly(Side.CLIENT)
 public class DarkForgeExpandingButton extends ComponentRenderer {
 
     public DarkForgeExpandingButton(Theme theme) {

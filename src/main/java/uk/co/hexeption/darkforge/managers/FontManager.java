@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 
@@ -28,7 +26,6 @@ import java.awt.*;
 /**
  * Created by Hexeption on 18/12/2016.
  */
-@SideOnly(Side.CLIENT)
 public class FontManager {
 
     private static String fontName = "Comfortaa";

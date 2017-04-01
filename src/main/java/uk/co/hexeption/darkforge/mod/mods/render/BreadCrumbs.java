@@ -18,9 +18,6 @@
 
 package uk.co.hexeption.darkforge.mod.mods.render;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.hexeption.darkforge.api.annotation.TestClass;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
@@ -33,8 +30,6 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
-@TestClass
 @Mod.ModInfo(name = "Bread Crumbs", description = "Leaves a trail behind you", category = Mod.Category.RENDER, bind = 0)
 public class BreadCrumbs extends Mod {
 

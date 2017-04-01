@@ -20,8 +20,6 @@ package uk.co.hexeption.darkforge.command.commands;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.command.Command;
@@ -33,7 +31,6 @@ import uk.co.hexeption.darkforge.command.Command;
 public class Xray extends Command {
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void execute(String input, String[] args) throws Exception {
 
         if (args.length > 0) {

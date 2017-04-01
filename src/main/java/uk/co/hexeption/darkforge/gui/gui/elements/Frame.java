@@ -17,8 +17,6 @@
  ******************************************************************************/
 package uk.co.hexeption.darkforge.gui.gui.elements;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
@@ -26,7 +24,6 @@ import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.base.Container;
 
-@SideOnly(Side.CLIENT)
 public class Frame extends Container {
 
     private boolean pinned, maximized, maximizible = true, visable = true, pinnable = true;

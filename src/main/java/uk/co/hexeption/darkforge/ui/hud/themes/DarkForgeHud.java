@@ -21,8 +21,6 @@ package uk.co.hexeption.darkforge.ui.hud.themes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -38,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-@SideOnly(Side.CLIENT)
 public class DarkForgeHud implements IGameHud {
 
     public Texture info = new Texture("textures/info.png");

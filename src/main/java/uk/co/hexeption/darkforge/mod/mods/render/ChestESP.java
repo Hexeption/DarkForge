@@ -23,8 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
@@ -39,7 +37,6 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 @Mod.ModInfo(name = "ChestESP", description = "highlights a Chest", category = Mod.Category.RENDER, bind = Keyboard.KEY_N)
 public class ChestESP extends Mod {
 

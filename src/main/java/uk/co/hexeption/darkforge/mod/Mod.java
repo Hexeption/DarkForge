@@ -24,8 +24,6 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.EventManager;
@@ -39,7 +37,6 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 public class Mod {
 
     protected Minecraft mc = Minecraft.getMinecraft();
@@ -186,43 +183,36 @@ public class Mod {
 
     //TODO: Remove
 
-    @SideOnly(Side.CLIENT)
     protected Minecraft getMinecraft() {
 
         return Minecraft.getMinecraft();
     }
 
-    @SideOnly(Side.CLIENT)
     protected EntityPlayerSP getPlayer() {
 
         return getMinecraft().player;
     }
 
-    @SideOnly(Side.CLIENT)
     protected WorldClient getWorld() {
 
         return getMinecraft().world;
     }
 
-    @SideOnly(Side.CLIENT)
     protected GameSettings getGameSettings() {
 
         return getMinecraft().gameSettings;
     }
 
-    @SideOnly(Side.CLIENT)
     protected RenderGlobal getRenderGlobal() {
 
         return getMinecraft().renderGlobal;
     }
 
-    @SideOnly(Side.CLIENT)
     protected EntityRenderer getEntityRenderer() {
 
         return getMinecraft().entityRenderer;
     }
 
-    @SideOnly(Side.CLIENT)
     protected MinecraftFontRenderer getFontRenderer() {
 
         return DarkForge.INSTANCE.fontManager.hud;

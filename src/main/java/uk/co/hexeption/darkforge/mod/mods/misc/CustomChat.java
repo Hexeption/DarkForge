@@ -18,11 +18,13 @@
 
 package uk.co.hexeption.darkforge.mod.mods.misc;
 
+import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
  * Created by Hexeption on 15/03/2017.
  */
+@NoKeyBind
 @Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
 public class CustomChat extends Mod {
 

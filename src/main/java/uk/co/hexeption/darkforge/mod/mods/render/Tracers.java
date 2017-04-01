@@ -21,8 +21,6 @@ package uk.co.hexeption.darkforge.mod.mods.render;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
@@ -35,7 +33,6 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 /**
  * Created by Hexeption on 03/02/2017.
  */
-@SideOnly(Side.CLIENT)
 @Mod.ModInfo(name = "Tracer", description = "Draws a line to a player/mob/friends", category = Mod.Category.RENDER, bind = Keyboard.KEY_P)
 public class Tracers extends Mod {
 

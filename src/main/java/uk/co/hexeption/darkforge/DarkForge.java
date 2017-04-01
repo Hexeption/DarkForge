@@ -22,8 +22,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
@@ -37,7 +35,6 @@ import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 import uk.co.hexeption.darkforge.ui.tab.Tab;
 
-@SideOnly(Side.CLIENT)
 public enum DarkForge {
     INSTANCE;
 

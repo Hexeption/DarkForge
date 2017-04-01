@@ -24,10 +24,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 31/03/2017.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Enabled {
+public @interface NoKeyBind {
 
 }

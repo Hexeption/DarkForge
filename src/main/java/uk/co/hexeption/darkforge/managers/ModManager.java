@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -40,7 +38,6 @@ import java.util.List;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 public class ModManager {
 
     private final List<Mod> mods = new ArrayList<>();

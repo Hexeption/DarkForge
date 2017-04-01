@@ -18,14 +18,11 @@
 
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 
-@SideOnly(Side.CLIENT)
 @Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_L)
 public class AutoSprint extends Mod {
 

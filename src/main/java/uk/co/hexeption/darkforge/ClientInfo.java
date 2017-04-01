@@ -18,13 +18,9 @@
 
 package uk.co.hexeption.darkforge;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 /**
  * Created by Hexeption on 03/02/2017.
  */
-@SideOnly(Side.CLIENT)
 public class ClientInfo {
 
     public static final String MOD_ID = "darkforge";
