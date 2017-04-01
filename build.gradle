@@ -80,7 +80,7 @@ def buildCount = 'B1'
 
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
-    buildCount = "B" + teamcity["build.counter"]
+    buildCount = "B" + teamcity["BuildCounter"]
 
     githubOwner = teamcity["githubOwner"]
     githubRepo = teamcity["githubProject"]
