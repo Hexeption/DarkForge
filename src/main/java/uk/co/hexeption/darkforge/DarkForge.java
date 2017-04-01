@@ -27,6 +27,7 @@ import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.EventManager;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
+import uk.co.hexeption.darkforge.gui.gui.ClickGuiScreen;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
 import uk.co.hexeption.darkforge.managers.*;
@@ -55,6 +56,8 @@ public enum DarkForge {
     public final Tab tab = new Tab();
 
     public GuiManager guiManager;
+
+    public ClickGuiScreen guiScreen;
 
     public String commandPrefix = ".";
 
@@ -136,10 +139,12 @@ public enum DarkForge {
         notificationManager.addNotification(new Notification(type, location, message, duration));
     }
 
-    public GuiManager getGui() {
+    public ClickGuiScreen getGui() {
 
         if (DarkForge.INSTANCE.guiManager == null) {
             this.guiManager = new GuiManager();
+            this.guiScreen = new ClickGuiScreen();
+            ClickGuiScreen.clickGui = this.guiManager;
             DarkForge.INSTANCE.guiManager.Initialization();
             DarkForge.INSTANCE.guiManager.setTheme(new DarkForgeTheme());
         }

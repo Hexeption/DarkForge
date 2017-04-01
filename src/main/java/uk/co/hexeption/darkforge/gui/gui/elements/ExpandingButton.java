@@ -87,6 +87,24 @@ public class ExpandingButton extends Container {
     }
 
     @Override
+    public void onKeyPressed(int key, char character) {
+
+        for (Component component : this.getComponents()) {
+            component.onKeyPressed(key, character);
+
+        }
+
+    }
+
+    @Override
+    public void onKeyReleased(int key, char character) {
+
+        for (Component component : this.getComponents()) {
+            component.onKeyReleased(key, character);
+        }
+    }
+
+    @Override
     public void onMouseDrag(int x, int y) {
 
         if (this.isMouseOver(x, y)) {

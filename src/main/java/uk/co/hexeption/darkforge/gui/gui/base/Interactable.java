@@ -57,11 +57,11 @@ public class Interactable {
         return (x >= xPos && y >= yPos && x <= xPos + dimension.width && y <= yPos + dimension.height);
     }
 
-    public void onKeyPressed(int key) {
+    public void onKeyPressed(int key, char character) {
 
     }
 
-    public void onKeyReleased(int key) {
+    public void onKeyReleased(int key, char character) {
 
     }
 
