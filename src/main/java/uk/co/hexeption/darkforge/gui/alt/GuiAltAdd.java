@@ -47,8 +47,8 @@ public class GuiAltAdd extends GuiScreen {
 
         Keyboard.enableRepeatEvents(true);
         buttonList.clear();
-        buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60, "Add Alt to List"));
-        buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 72 + 12, "Back to Alt List"));
+        buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60 + 10, "Done"));
+        buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 72 + 22, "Back"));
         email = new GuiTextField(0, fontRendererObj, width / 2 - 100, 60, 200, 20);
         email.setMaxStringLength(60);
         email.setFocused(true);
@@ -65,7 +65,7 @@ public class GuiAltAdd extends GuiScreen {
         passwordField.textboxKeyTyped(typedChar, keyCode);
 
         if (keyCode == 28 || keyCode == 156) {
-            actionPerformed((GuiButton) buttonList.get(1));
+            actionPerformed(buttonList.get(1));
         }
     }
 
@@ -125,7 +125,7 @@ public class GuiAltAdd extends GuiScreen {
 
         super.drawDefaultBackground();
         DarkForge.INSTANCE.fontManager.hud.drawCenteredString("Add an alt", width / 2, 20, 16777215);
-        DarkForge.INSTANCE.fontManager.hud.drawString("MixinMinecraft Username or E-Mail:", width / 2 - 100, 47, 10526880);
+        DarkForge.INSTANCE.fontManager.hud.drawString("Minecraft Username or E-Mail:", width / 2 - 100, 47, 10526880);
         DarkForge.INSTANCE.fontManager.hud.drawString("Password:", width / 2 - 100, 87, 10526880);
         email.drawTextBox();
         passwordField.drawTextBox();
