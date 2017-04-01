@@ -31,4 +31,6 @@ public class ClientInfo {
 
     public static final String MINECRAFT_VERISON = "@MCVERSION@";
 
+    public static final String BUILD = "@BUILD@";
+
 }

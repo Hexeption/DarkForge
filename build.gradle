@@ -75,9 +75,12 @@ def githubTargetCommitish = 'g'
 def githubName = 'g'
 def githubPreRelease = true
 
+def buildCount = 'B1'
+
 
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
+    buildCount = "B" + teamcity["build.counter"]
 
     githubOwner = teamcity["githubOwner"]
     githubRepo = teamcity["githubProject"]
@@ -94,6 +97,7 @@ minecraft {
 
     replace "@VERSION@", project.version
     replace "@MCVERSION@", minecraft_version
+    replace "@BUILD@", buildCount
 
     replaceIn "ClientInfo.java"
 

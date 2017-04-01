@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.ui.hud.themes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -58,7 +59,7 @@ public class DarkForgeHud implements IGameHud {
 
         DarkForge.INSTANCE.fontManager.hud_big.drawString("F", 32, 1, -1);
         DarkForge.INSTANCE.fontManager.hud.drawString("orge", 42, 8, -1);
-        DarkForge.INSTANCE.fontManager.hud_small.drawString("B43", 45, 4, -1);
+        DarkForge.INSTANCE.fontManager.hud_small.drawString(ClientInfo.BUILD, 45, 4, -1);
 
         DarkForge.INSTANCE.fontManager.hud_small.drawString("Time : " + new SimpleDateFormat("hh:mm a").format(new Date()) + " | FPS : " + Minecraft.getDebugFPS(), 1, 22, -1);
 
