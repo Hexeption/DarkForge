@@ -48,4 +48,9 @@ public class DarkForgeDropDown extends ComponentRenderer {
             dropdown.renderChildren(mouseX, mouseY);
         }
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
 }

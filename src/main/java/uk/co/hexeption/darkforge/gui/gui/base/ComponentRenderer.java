@@ -29,7 +29,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 27/02/2017.
  */
-public class ComponentRenderer {
+public abstract class ComponentRenderer {
 
     protected static final Color tooltipColor = new Color(0.0F, 0.5F, 1.0F, 0.75F);
 
@@ -44,13 +44,9 @@ public class ComponentRenderer {
         this.theme = theme;
     }
 
-    public void drawComponent(Component component, int mouseX, int mouseY) {
+    public abstract void drawComponent(Component component, int mouseX, int mouseY);
 
-    }
-
-    public void doInteractions(Component component, int mouseX, int mouseY) {
-
-    }
+    public abstract void doInteractions(Component component, int mouseX, int mouseY);
 
     public void drawExpanded(int x, int y, int size, boolean expanded, int color) {
 

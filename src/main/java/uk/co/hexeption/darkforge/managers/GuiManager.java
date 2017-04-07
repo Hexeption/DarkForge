@@ -20,9 +20,11 @@ package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
 import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
+import uk.co.hexeption.darkforge.gui.gui.listener.ComboBoxListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni.HuzuniTheme;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -41,7 +43,7 @@ public class GuiManager extends ClickGui {
 
         addCategoryPanels();
         addInfoPanel();
-        addPlayerPanel();
+//        addPlayerPanel();
         addMiniMapPanel();
 
     }
@@ -114,6 +116,25 @@ public class GuiManager extends ClickGui {
     }
 
     private void addPlayerPanel() {
+
+        Frame frame = new Frame(10, 10, 100, 200, "Testing");
+
+        ComboBox comboBox = new ComboBox(0, 0, 100, 40, frame, "Themes", "Testing", "Working", "Hex");
+
+        comboBox.addListeners(new ComboBoxListener() {
+
+            @Override
+            public void onComboBoxSelectionChange(ComboBox comboBox) {
+
+                LogHelper.info(comboBox.getSelectedElement());
+            }
+        });
+
+        frame.addComponent(comboBox);
+
+        frame.setMaximized(true);
+        frame.setPinnable(false);
+        this.addFrame(frame);
 
     }
 

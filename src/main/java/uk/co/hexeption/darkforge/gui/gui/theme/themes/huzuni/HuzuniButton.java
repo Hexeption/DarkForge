@@ -58,4 +58,9 @@ public class HuzuniButton extends ComponentRenderer {
 
         theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getDimension().height / 2 - theme.fontRenderer.getHeight() / 4), Color.white.hashCode());
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
 }

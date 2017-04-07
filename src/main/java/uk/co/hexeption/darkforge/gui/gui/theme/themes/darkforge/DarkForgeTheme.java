@@ -41,5 +41,6 @@ public class DarkForgeTheme extends Theme {
         addRenderer(ComponentType.TEXT, new DarkForgeText(this));
         addRenderer(ComponentType.KEYBIND, new DarkForgeKeybinds(this));
         addRenderer(ComponentType.DROPDOWN, new DarkForgeDropDown(this));
+        addRenderer(ComponentType.COMBO_BOX, new DarkForgeComboBox(this));
     }
 }

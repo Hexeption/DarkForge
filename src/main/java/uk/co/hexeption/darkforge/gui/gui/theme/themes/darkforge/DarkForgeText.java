@@ -47,4 +47,9 @@ public class DarkForgeText extends ComponentRenderer {
             y += 10;
         }
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
 }

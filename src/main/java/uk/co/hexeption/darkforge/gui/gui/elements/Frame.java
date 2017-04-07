@@ -62,6 +62,8 @@ public class Frame extends Container {
             for (Component c : this.getComponents()) {
                 if (c.isMouseOver(x, y) && maximized) {
                     c.onMousePress(x, y, buttonID);
+                    ClickGui.getTheme().getRenderer().get(getComponentType()).doInteractions(this, x, y);
+
                 }
             }
         }
@@ -90,11 +92,28 @@ public class Frame extends Container {
             for (Component c : this.getComponents()) {
                 if (c.isMouseOver(x, y) && maximized) {
                     c.onMouseDrag(x, y);
+                    ClickGui.getTheme().getRenderer().get(getComponentType()).doInteractions(this, x, y);
+
                 }
             }
         }
     }
 
+    @Override
+    public void onKeyPressed(int key, char character) {
+
+        for (Component c : this.getComponents()) {
+            c.onKeyPressed(key, character);
+        }
+    }
+
+    @Override
+    public void onKeyReleased(int key, char character) {
+
+        for (Component c : this.getComponents()) {
+            c.onKeyReleased(key, character);
+        }
+    }
 
     public boolean isMouseOverBar(int x, int y) {
 

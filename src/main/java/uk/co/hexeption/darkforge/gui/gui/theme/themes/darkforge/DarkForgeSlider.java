@@ -49,4 +49,9 @@ public class DarkForgeSlider extends ComponentRenderer {
         RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width) + 1, (slider.getY() + slider.getDimension().height / 2) + 6, new Color(7, 23, 38));
         RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(128, 128, 128));
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
 }

@@ -53,4 +53,9 @@ public class DarkForgeCheckButton extends ComponentRenderer {
 
         theme.fontRenderer.drawString(text, button.getX() + 18, MathUtils.getMiddle(button.getY(), button.getY() + button.getDimension().height) - theme.fontRenderer.getHeight() / 3 + 2, Color.white.hashCode());
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
 }

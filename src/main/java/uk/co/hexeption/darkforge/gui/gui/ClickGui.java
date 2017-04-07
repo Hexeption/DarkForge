@@ -31,6 +31,10 @@ import java.util.ArrayList;
 
 public class ClickGui extends ClickGuiScreen {
 
+    /**
+     * Bug: Gui Scale fucks up
+     */
+
     private static Theme theme;
 
     private static ArrayList<Frame> frames = new ArrayList<>();

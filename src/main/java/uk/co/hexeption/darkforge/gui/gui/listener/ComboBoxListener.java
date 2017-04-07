@@ -16,11 +16,15 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.gui.gui.base;
+package uk.co.hexeption.darkforge.gui.gui.listener;
+
+import uk.co.hexeption.darkforge.gui.gui.elements.ComboBox;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Hexeption on 01/04/2017.
  */
-public enum ComponentType {
-    FRAME, PANEL, BUTTON, EXPANDING_BUTTON, CHECK_BUTTON, SLIDER, KEYBIND, TEXT, DROPDOWN, COMBO_BOX
+public interface ComboBoxListener {
+
+    void onComboBoxSelectionChange(ComboBox comboBox);
+
 }

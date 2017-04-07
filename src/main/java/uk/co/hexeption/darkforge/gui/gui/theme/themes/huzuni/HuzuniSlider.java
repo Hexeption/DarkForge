@@ -44,9 +44,15 @@ public class HuzuniSlider extends ComponentRenderer {
         Slider slider = (Slider) component;
         int width = (int) ((slider.getDimension().getWidth()) * slider.getPercent());
         GLUtils.glColor(new Color(128, 128, 128));
+//        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width) + 1, (slider.getY() + slider.getDimension().height / 2) + 6, new Color(7, 23, 38));
+//        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(128, 128, 128));
+        RenderUtils.drawRect(slider.getX(), slider.getY(), slider.getX() + slider.getY(), (slider.getY() + slider.getDimension().height / 2) + 5, new Color(122, 122, 122, 100));
         theme.fontRenderer.drawString(slider.getText(), slider.getX() + 4, slider.getY() + 2, Color.white.hashCode());
         theme.fontRenderer.drawString(slider.getValue() + "", slider.getX() + slider.getDimension().width - theme.fontRenderer.getStringWidth(slider.getValue() + "") - 5, slider.getY() + 2, Color.white.hashCode());
-        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width) + 1, (slider.getY() + slider.getDimension().height / 2) + 6, new Color(7, 23, 38));
-        RenderUtils.drawRect(slider.getX(), slider.getY() + slider.getDimension().height / 2 + 3, slider.getX() + (width), (slider.getY() + slider.getDimension().height / 2) + 6, new Color(128, 128, 128));
+    }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
     }
 }

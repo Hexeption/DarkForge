@@ -80,4 +80,11 @@ public class HuzuniExpandingButton extends ComponentRenderer {
             button.renderChildren(mouseX, mouseY);
         }
     }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
+    }
+
+
 }
