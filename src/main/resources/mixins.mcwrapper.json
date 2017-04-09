@@ -6,6 +6,7 @@
   "mixins": [
     "MixinMinecraft",
     "client.gui.MixinGuiInGame",
+    "client.gui.MixinGuiMultiplayer",
     "entity.MixinEntity",
     "entity.living.MixinEntityLiving",
     "entity.living.player.MixinEntityPlayer",
