@@ -32,6 +32,10 @@ public class StatusItem {
 
     private String service;
 
+    private String customAPI;
+
+    private String statusName;
+
     private int status;
 
     private long ping;
@@ -44,24 +48,53 @@ public class StatusItem {
         this.ping = -1L;
     }
 
+    public StatusItem(String name, String service, String customAPI, String statusName) {
+
+        this.name = name;
+        this.service = service;
+        this.customAPI = customAPI;
+        this.statusName = statusName;
+        this.status = 3;
+        this.ping = -1L;
+    }
+
     public void check() {
+        if (customAPI == null) {
+            new Thread(() -> {
 
-        new Thread(() -> {
-
-            try {
-                long startTime = System.currentTimeMillis();
-                StatusItem.this.status = 3;
-                if (((String) URLUtils.getWebsiteContents(new URL("http://status.mojang.com/check?service=" + StatusItem.this.service)).get(0)).contains("green")) {
-                    StatusItem.this.status = 1;
-                    StatusItem.this.ping = (System.currentTimeMillis() - startTime);
-                } else {
-                    StatusItem.this.status = 0;
+                try {
+                    long startTime = System.currentTimeMillis();
+                    this.status = 3;
+                    if (((String) URLUtils.getWebsiteContents(new URL("http://status.mojang.com/check?service=" + this.service)).get(0)).contains("green")) {
+                        this.status = 1;
+                        this.ping = (System.currentTimeMillis() - startTime);
+                    } else {
+                        this.status = 0;
+                    }
+                } catch (Exception e) {
+                    this.status = 2;
                 }
-            } catch (Exception e) {
-                StatusItem.this.status = 2;
-            }
 
-        }).start();
+            }).start();
+        } else {
+            new Thread(() -> {
+
+                try {
+                    long startTime = System.currentTimeMillis();
+                    this.status = 3;
+                    if (((String) URLUtils.getWebsiteContents(new URL(this.customAPI)).get(0)).contains(this.statusName)) {
+                        this.status = 1;
+                        this.ping = (System.currentTimeMillis() - startTime);
+                    } else {
+                        this.status = 0;
+                    }
+                } catch (Exception e) {
+                    this.status = 2;
+                }
+
+            }).start();
+        }
+
     }
 
     public String getStatus() {

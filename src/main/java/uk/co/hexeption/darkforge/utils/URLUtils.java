@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +32,9 @@ public class URLUtils {
     public static ArrayList getWebsiteContents(URL url) throws Exception {
 
         ArrayList fileContents = new ArrayList();
-        BufferedReader fileReader = new BufferedReader(new InputStreamReader(url.openStream()));
+        URLConnection openConnection = url.openConnection();
+        openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36");
+        BufferedReader fileReader = new BufferedReader(new InputStreamReader(openConnection.getInputStream()));
 
         String fileLine = "";
         while ((fileLine = fileReader.readLine()) != null) {
