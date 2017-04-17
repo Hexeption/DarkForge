@@ -128,7 +128,11 @@ public class StatusItem {
 
     public String getName() {
 
-        return name;
+        if (this.customAPI != null) {
+            return TextFormatting.AQUA + name + " | Client";
+        }
+
+        return TextFormatting.LIGHT_PURPLE + name + " | Mojang";
     }
 
     public String getService() {

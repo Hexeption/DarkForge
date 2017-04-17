@@ -45,11 +45,7 @@ public class GuiStatusSlot extends GuiSlot {
         this.statusItems.add(new StatusItem("Skins", "skins.minecraft.net"));
         this.statusItems.add(new StatusItem("CDN", "textures.minecraft.net"));
         this.statusItems.add(new StatusItem("API", "api.mojang.com"));
-
-        /**
-         * Test Code
-         * this.statusItems.add(new StatusItem("Capes", "capesapi.com", "http://status.wizardhaxmc.com/api/v1/components/2", "Operational"));
-         */
+        this.statusItems.add(new StatusItem("Capes", "capesapi.com", "http://capesapi.com/api/ping", "pong"));
 
         updateList();
 
