@@ -24,6 +24,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.math.AxisAlignedBB;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
@@ -118,5 +119,10 @@ public class ChestESP extends Mod {
                 this.enderChest.add(bb);
             }
         }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }

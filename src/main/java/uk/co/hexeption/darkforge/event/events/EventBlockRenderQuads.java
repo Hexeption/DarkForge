@@ -15,22 +15,32 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.mod.mods.misc;
-
-import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import net.minecraft.block.Block;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
+
+import java.awt.*;
 
 /**
- * Created by Hexeption on 15/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-@NoKeyBind
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
-public class CustomChat extends Mod {
+public class EventBlockRenderQuads extends Event {
 
-    @Override
-    public void onEvent(Event event) {
+    private final Block block;
+    private final Color color;
 
+    public EventBlockRenderQuads(Type type, Block block, Color color) {
+        super(type);
+        this.block = block;
+        this.color = color;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

@@ -26,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.TimerUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
@@ -258,4 +259,8 @@ public class Killaura extends Mod {
         return target.getDistanceToEntity(getPlayer()) <= range.value.doubleValue() + 0.2D;
     }
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

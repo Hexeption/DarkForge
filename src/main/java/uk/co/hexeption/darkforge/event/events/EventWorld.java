@@ -15,22 +15,32 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.mod.mods.misc;
-
-import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import net.minecraft.client.multiplayer.WorldClient;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 15/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-@NoKeyBind
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
-public class CustomChat extends Mod {
+public class EventWorld extends Event {
 
-    @Override
-    public void onEvent(Event event) {
+    protected final WorldClient worldClient;
 
+    public EventWorld(Type type, WorldClient worldClient) {
+        super(type);
+        this.worldClient = worldClient;
+    }
+
+    public static class Load extends EventWorld {
+        public Load(Type type, WorldClient worldClient) {
+            super(type, worldClient);
+        }
+    }
+
+    public static class Unload extends EventWorld {
+        public Unload(Type type, WorldClient worldClient) {
+            super(type, worldClient);
+        }
     }
 }

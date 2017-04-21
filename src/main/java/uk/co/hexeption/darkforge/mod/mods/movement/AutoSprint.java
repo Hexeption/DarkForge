@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -48,4 +49,8 @@ public class AutoSprint extends Mod {
         }
     }
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

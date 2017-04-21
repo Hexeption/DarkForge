@@ -18,6 +18,7 @@
 
 package uk.co.hexeption.darkforge.mod.mods.render;
 
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
@@ -78,5 +79,10 @@ public class BreadCrumbs extends Mod {
             glEnable(GL_TEXTURE_2D);
             glPopMatrix();
         }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }

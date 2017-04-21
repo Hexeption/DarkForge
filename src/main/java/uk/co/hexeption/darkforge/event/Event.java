@@ -38,7 +38,7 @@ public class Event {
         return this;
     }
 
-    public boolean isCacelled() {
+    public boolean isCancelled() {
         return cacelled;
     }
 

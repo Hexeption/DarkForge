@@ -19,6 +19,7 @@ package uk.co.hexeption.darkforge.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.Session;
 import net.minecraft.util.Timer;
@@ -34,9 +35,12 @@ import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
 import uk.co.hexeption.darkforge.event.events.EventTick;
+import uk.co.hexeption.darkforge.event.events.EventWorld;
 import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
 import uk.co.hexeption.darkforge.utils.InputHandler;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Keir on 21/04/2017.
@@ -90,6 +94,17 @@ public class MixinMinecraft implements IMixinMinecraft, MC {
     @Inject(method = "runTickMouse", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Mouse;getEventButton()I", ordinal = 0, shift = At.Shift.BEFORE))
     public void IrunTickMouse(CallbackInfo callback) {
         InputHandler.handleKeyboard();
+    }
+
+    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("HEAD"))
+    public void loadWorld(@Nullable WorldClient worldClientIn, String loadingMessage, CallbackInfo callback) {
+        Event event;
+        if (worldClientIn != null) {
+            event = new EventWorld.Load(Event.Type.PRE, worldClientIn);
+        } else {
+            event = new EventWorld.Unload(Event.Type.PRE, null);
+        }
+        EventManager.handleEvent(event);
     }
 
     @Override

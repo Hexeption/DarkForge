@@ -15,22 +15,39 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.mod.mods.misc;
-
-import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import net.minecraft.entity.Entity;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
+
 
 /**
- * Created by Hexeption on 15/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-@NoKeyBind
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
-public class CustomChat extends Mod {
+public class EventRenderEntities extends Event {
 
-    @Override
-    public void onEvent(Event event) {
+    private Entity entity;
+    private float partialTicks;
 
+    public EventRenderEntities(Type type, Entity entity, float partialTicks) {
+        super(type);
+        this.entity = entity;
+        this.partialTicks = partialTicks;
+    }
+
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public void setEntity(Entity entity) {
+        this.entity = entity;
+    }
+
+    public float getPartialTicks() {
+        return partialTicks;
+    }
+
+    public void setPartialTicks(float partialTicks) {
+        this.partialTicks = partialTicks;
     }
 }

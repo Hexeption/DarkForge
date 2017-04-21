@@ -20,6 +20,7 @@ package uk.co.hexeption.darkforge.mod.mods.misc;
 
 import uk.co.hexeption.darkforge.api.annotation.Enabled;
 import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -30,4 +31,8 @@ import uk.co.hexeption.darkforge.mod.Mod;
 @Mod.ModInfo(name = "Name Protect", description = "Hides your real username", category = Mod.Category.MISC, visable = false)
 public class NameProtect extends Mod {
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

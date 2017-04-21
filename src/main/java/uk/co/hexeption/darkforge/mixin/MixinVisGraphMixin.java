@@ -15,22 +15,31 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mixin;
 
-package uk.co.hexeption.darkforge.mod.mods.misc;
-
-import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import net.minecraft.client.renderer.chunk.VisGraph;
+import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.event.events.EventSetOpaqueCube;
+import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
- * Created by Hexeption on 15/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-@NoKeyBind
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
-public class CustomChat extends Mod {
+@Mixin(VisGraph.class)
+public class MixinVisGraphMixin {
 
-    @Override
-    public void onEvent(Event event) {
-
+    @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
+    public void setOpaqueCube(BlockPos pos, CallbackInfo callback) {
+        EventSetOpaqueCube event = new EventSetOpaqueCube(Event.Type.PRE, pos);
+        EventManager.handleEvent(event);
+        if (event.isCancelled()) {
+            callback.cancel();
+        }
     }
 }
+

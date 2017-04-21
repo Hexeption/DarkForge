@@ -22,6 +22,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.init.Blocks;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.value.FloatValue;
 
@@ -111,4 +112,8 @@ public class Xray extends Mod {
     }
 
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

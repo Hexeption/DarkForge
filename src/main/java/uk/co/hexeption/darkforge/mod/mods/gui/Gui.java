@@ -22,6 +22,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -37,5 +38,10 @@ public class Gui extends Mod {
 
         Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.getGui());
         toggle();
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }

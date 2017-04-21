@@ -26,8 +26,9 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.settings.GameSettings;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.event.EventManager;
+import uk.co.hexeption.darkforge.event.EventListener;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
+import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.value.Value;
 
 import java.lang.annotation.Retention;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-public class Mod {
+public abstract class Mod implements EventListener {
 
     protected Minecraft mc = Minecraft.getMinecraft();
 
@@ -135,7 +136,6 @@ public class Mod {
         } else {
             this.state = false;
             onDisable();
-            EventManager.unregister(this);
         }
 
         //TODO: File save

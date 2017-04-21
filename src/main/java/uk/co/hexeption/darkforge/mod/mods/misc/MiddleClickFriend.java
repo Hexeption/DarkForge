@@ -23,6 +23,7 @@ import net.minecraft.util.StringUtils;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.other.MouseEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -55,4 +56,8 @@ public class MiddleClickFriend extends Mod {
         }
     }
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

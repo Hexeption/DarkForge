@@ -18,6 +18,7 @@
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 @Mod.ModInfo(name = "Step", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_K)
@@ -41,5 +42,10 @@ public class Step extends Mod {
 
         if (getPlayer() != null)
             getPlayer().stepHeight = 0.5f;
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }

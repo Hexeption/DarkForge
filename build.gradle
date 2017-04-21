@@ -1,3 +1,9 @@
+
+
+/**
+ * Plugins
+ */
+
 /*******************************************************************************
  *     DarkForge a Forge Hacked Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
@@ -15,10 +21,6 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-/**
- * Plugins
- */
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.matthewprenger.cursegradle"
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
@@ -168,7 +170,7 @@ jar {
                 "MixinConfigs": 'mixins.mcwrapper.json',
                 "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
                 "TweakOrder": 0,
-                'FMLCorePluginContainsFMLMod': 'uk.co.hexeption.darkforge.mixin.MixinLoader',
+                'FMLCorePluginContainsFMLMod': 'uk.co.hexeption.darkforge.loader.MixinLoader',
                 'FMLAT': 'darkforge_at.cfg')
     }
 }

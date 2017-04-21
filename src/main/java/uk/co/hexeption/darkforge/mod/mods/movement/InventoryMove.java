@@ -21,6 +21,7 @@ package uk.co.hexeption.darkforge.mod.mods.movement;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -58,4 +59,8 @@ public class InventoryMove extends Mod {
         }
     }
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

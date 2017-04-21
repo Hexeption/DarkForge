@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.MoveEvent;
 import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
@@ -85,5 +86,10 @@ public class Fly extends Mod {
             event.setMotionX(forward * speed * Math.cos(Math.toRadians(yaw + 90.0f)) + strafe * speed * Math.sin(Math.toRadians(yaw + 90.0f)));
             event.setMotionZ(forward * speed * Math.sin(Math.toRadians(yaw + 90.0f)) - strafe * speed * Math.cos(Math.toRadians(yaw + 90.0f)));
         }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }

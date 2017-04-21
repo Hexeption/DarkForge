@@ -15,22 +15,38 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mixin;
 
-package uk.co.hexeption.darkforge.mod.mods.misc;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import uk.co.hexeption.darkforge.mixin.imp.IMixinPlayerControllerMP;
 
-import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
-import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 15/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-@NoKeyBind
-@Mod.ModInfo(name = "Custom Chat", description = "Custom font in chat", category = Mod.Category.MISC, visable = false)
-public class CustomChat extends Mod {
+@Mixin(PlayerControllerMP.class)
+public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
+
+    @Shadow
+    @Final
+    private Minecraft mc;
+
+    @Shadow
+    private ItemStack currentItemHittingBlock;
 
     @Override
-    public void onEvent(Event event) {
+    public void setCurrentItemHittingBlock(ItemStack stack) {
+        this.currentItemHittingBlock = stack == null ? ItemStack.field_190927_a : stack;
+    }
 
+    @Override
+    public EntityPlayerSP getEntityPlayer() {
+        return mc.player;
     }
 }

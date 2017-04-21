@@ -18,6 +18,7 @@
 
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.movement.PostMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -34,4 +35,8 @@ public class NoSlowdown extends Mod {
     }
 
 
+    @Override
+    public void onEvent(Event event) {
+
+    }
 }

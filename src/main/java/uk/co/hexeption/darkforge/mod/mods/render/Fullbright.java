@@ -19,6 +19,7 @@
 package uk.co.hexeption.darkforge.mod.mods.render;
 
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -47,5 +48,10 @@ public class Fullbright extends Mod {
     public void onDisable() {
 
         getGameSettings().gammaSetting = 0.5f;
+    }
+
+    @Override
+    public void onEvent(Event event) {
+
     }
 }
