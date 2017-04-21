@@ -15,40 +15,14 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.mcwrapper;
+package uk.co.hexeption.darkforge;
 
 import net.minecraft.client.Minecraft;
-import uk.co.hexeption.mcwrapper.base.MinecraftClient;
-import uk.co.hexeption.mcwrapper.base.multiplayer.Controller;
-import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-public class MCWrapper {
+public interface MC {
 
-    private static MinecraftClient mc;
-
-    public static MinecraftClient getMinecraft() {
-
-        return mc;
-    }
-
-    public static void setMinecraft(Minecraft mc) {
-
-        MCWrapper.mc = ((MinecraftClient) mc);
-    }
-
-    public static Controller getController() {
-
-        return getMinecraft().getController();
-    }
-
-    public static RenderManager getRenderManager() {
-
-        return getMinecraft().getRenderManager();
-    }
-
-
+    Minecraft mc = Minecraft.getMinecraft();
 }

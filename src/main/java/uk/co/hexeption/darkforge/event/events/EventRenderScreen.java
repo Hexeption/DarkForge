@@ -15,22 +15,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.darkforge.event.events.other;
+package uk.co.hexeption.darkforge.event.events;
 
 import uk.co.hexeption.darkforge.event.Event;
 
-public class KeyboardEvent extends Event {
+/**
+ * Created by Keir on 21/04/2017.
+ */
+public class EventRenderScreen extends Event {
 
-    private int key;
-
-    public KeyboardEvent(int key) {
-
-        this.key = key;
-    }
-
-    public int getKey() {
-
-        return key;
+    public EventRenderScreen(Type type) {
+        super(type);
     }
 }

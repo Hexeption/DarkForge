@@ -15,20 +15,35 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.event;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import uk.co.hexeption.darkforge.event.Event;
 
 /**
- * Created by Hexeption on 18/12/2016.
+ * Created by Keir on 21/04/2017.
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface EventTarget {
+public class EventKeybind extends Event {
 
-    byte value() default 2;
+    private final boolean state;
+    private final int key;
+    private final char character;
+
+    public EventKeybind(Type type, boolean state, int key, char character) {
+        super(type);
+        this.state = state;
+        this.key = key;
+        this.character = character;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public char getCharacter() {
+        return character;
+    }
 }

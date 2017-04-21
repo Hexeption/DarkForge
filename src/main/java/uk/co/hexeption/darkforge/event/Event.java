@@ -15,79 +15,38 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
 package uk.co.hexeption.darkforge.event;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
- * Created by Hexeption on 18/12/2016.
+ * Created by Keir on 21/04/2017.
  */
-public abstract class Event {
+public class Event {
 
-    /**
-     * Main events you may need:
-     * <p>
-     * MixinMinecraft:
-     * - KeyboardEvent
-     * - EventMiddleClick
-     * - EventTick
-     * <p>
-     * EntityPlayerSP:
-     * - EventUpdate
-     * - EventPreMotionUpdates
-     * - EventPostMotionUpdates
-     * <p>
-     * GuiIngame:
-     * - Render2DEvent
-     * <p>
-     * EntityRenderer:
-     * - Render3DEvent
-     */
+    private Type type;
+    private boolean cacelled;
 
-    private boolean cancelled;
-
-    private static final void call(final Event event) {
-
-        final ArrayHelper<Data> dataList = EventManager.get(event.getClass());
-
-        if (dataList != null) {
-            for (final Data data : dataList) {
-
-                try {
-                    data.target.invoke(data.source, event);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
+    public Event(Type type) {
+        this.type = type;
     }
 
-    public Event call() {
+    public Type getType() {
+        return type;
+    }
 
-        this.cancelled = false;
-        call(this);
+    public Event setType(Type type) {
+        this.type = type;
         return this;
     }
 
-    public boolean isCancelled() {
-
-        return cancelled;
+    public boolean isCacelled() {
+        return cacelled;
     }
 
-    public void setCancelled(boolean cancelled) {
-
-        this.cancelled = cancelled;
+    public <T extends Event> T cast() {
+        return (T) this;
     }
 
-    public enum State {
-        PRE("PRE", 0),
-
-        POST("POST", 1);
-
-        State(final String string, final int number) {
-
-        }
+    public enum Type {
+        PRE, POST
     }
 }

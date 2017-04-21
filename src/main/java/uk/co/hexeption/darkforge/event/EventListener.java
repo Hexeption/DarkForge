@@ -15,18 +15,21 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.mcwrapper.base.renderer;
+package uk.co.hexeption.darkforge.event;
 
 /**
- * Created by Hexeption on 20/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-public interface RenderManager {
+public interface EventListener {
 
-    double getRenderPosX();
+    default Priority getPriority() {
+        return Priority.NORMAL;
+    }
 
-    double getRenderPosY();
+    void onEvent(Event event);
 
-    double getRenderPosZ();
+    enum Priority {
+        LOW, NORMAL, HIGH
+    }
 
 }

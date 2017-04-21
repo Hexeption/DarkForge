@@ -16,42 +16,55 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.mcwrapper.mixin.renderer;
+package uk.co.hexeption.darkforge.loader;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import uk.co.hexeption.mcwrapper.base.renderer.RenderManager;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.mixin.Mixins;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 /**
- * Created by Hexeption on 20/03/2017.
+ * Created by Hexeption on 12/03/2017.
  */
-@Mixin(net.minecraft.client.renderer.entity.RenderManager.class)
-public abstract class MixinRenderManager implements RenderManager {
+public class MixinLoader implements IFMLLoadingPlugin {
 
-    @Shadow
-    private double renderPosX;
+    public MixinLoader() {
 
-    @Shadow
-    private double renderPosY;
+        MixinBootstrap.init();
+        Mixins.addConfiguration("mixins.mcwrapper.json");
 
-    @Shadow
-    private double renderPosZ;
+    }
+
 
     @Override
-    public double getRenderPosX() {
+    public String[] getASMTransformerClass() {
 
-        return renderPosX;
+        return new String[0];
     }
 
     @Override
-    public double getRenderPosY() {
+    public String getModContainerClass() {
 
-        return renderPosY;
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getSetupClass() {
+
+        return null;
     }
 
     @Override
-    public double getRenderPosZ() {
+    public void injectData(Map<String, Object> data) {
 
-        return renderPosZ;
+    }
+
+    @Override
+    public String getAccessTransformerClass() {
+
+        return null;
     }
 }

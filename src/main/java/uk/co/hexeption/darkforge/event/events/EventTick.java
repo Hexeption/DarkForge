@@ -15,16 +15,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.mcwrapper.base.multiplayer;
+import uk.co.hexeption.darkforge.event.Event;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-public interface Controller {
+public class EventTick extends Event {
 
-    float getBlockDamage();
-
-    void setBlockDamage(float damage);
-
+    public EventTick(Type type) {
+        super(type);
+    }
 }

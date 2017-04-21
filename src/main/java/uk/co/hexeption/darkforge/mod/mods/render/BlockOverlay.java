@@ -26,7 +26,6 @@ import uk.co.hexeption.darkforge.event.EventTarget;
 import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
-import uk.co.hexeption.mcwrapper.MCWrapper;
 
 import static org.lwjgl.opengl.GL11.*;
 

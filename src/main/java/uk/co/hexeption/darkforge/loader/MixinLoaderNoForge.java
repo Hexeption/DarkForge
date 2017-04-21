@@ -15,20 +15,35 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.mcwrapper.mixin.entity.living.player;
+package uk.co.hexeption.darkforge.loader;
 
-import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.player.EntityPlayer;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import uk.co.hexeption.mcwrapper.mixin.entity.living.MixinEntityLiving;
+import net.minecraft.launchwrapper.ITweaker;
+import net.minecraft.launchwrapper.LaunchClassLoader;
+
+import java.io.File;
+import java.util.List;
 
 /**
- * Created by Keir on 13/03/2017.
+ * Created by Keir on 17/04/2017.
  */
-@Mixin(EntityPlayer.class)
-public abstract class MixinEntityPlayer extends MixinEntityLiving {
+public class MixinLoaderNoForge implements ITweaker {
+    @Override
+    public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile) {
 
-    @Shadow
-    public abstract GameProfile getGameProfile();
+    }
+
+    @Override
+    public void injectIntoClassLoader(LaunchClassLoader classLoader) {
+
+    }
+
+    @Override
+    public String getLaunchTarget() {
+        return null;
+    }
+
+    @Override
+    public String[] getLaunchArguments() {
+        return new String[0];
+    }
 }

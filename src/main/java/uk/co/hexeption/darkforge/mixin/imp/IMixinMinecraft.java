@@ -15,27 +15,19 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mixin.imp;
 
-package uk.co.hexeption.darkforge.event;
-
-import java.lang.reflect.Method;
+import net.minecraft.util.Session;
+import net.minecraft.util.Timer;
 
 /**
- * Created by Hexeption on 18/12/2016.
+ * Created by Keir on 21/04/2017.
  */
-public class Data {
+public interface IMixinMinecraft {
 
-    public final Object source;
+    Session getSession();
 
-    public final Method target;
+    void setSession(Session session);
 
-    public final byte priority;
-
-    Data(Object source, Method target, byte priority) {
-
-        this.source = source;
-        this.target = target;
-        this.priority = priority;
-    }
-
+    Timer getTimer();
 }

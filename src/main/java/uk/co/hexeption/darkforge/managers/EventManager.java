@@ -15,26 +15,30 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.event.events.movement;
+package uk.co.hexeption.darkforge.managers;
 
+import com.google.common.collect.Lists;
 import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.EventListener;
+
+import java.util.Comparator;
+import java.util.List;
 
 /**
- * Created by Keir on 13/03/2017.
+ * Created by Keir on 21/04/2017.
  */
-public class PostMotionUpdateEvent extends Event {
+public class EventManager {
 
-    private boolean cancelled = false;
+    private static final List<EventListener> LISTENERS = Lists.newCopyOnWriteArrayList();
 
-    @Override
-    public boolean isCancelled() {
-
-        return cancelled;
+    public static void register(EventListener listener) {
+        LISTENERS.add(listener);
+        LISTENERS.sort(Comparator.comparing(EventListener::getPriority));
     }
 
-    @Override
-    public void setCancelled(boolean cancelled) {
-
-        this.cancelled = cancelled;
+    public static void handleEvent(Event event) {
+        for (EventListener listener : LISTENERS) {
+            listener.onEvent(event);
+        }
     }
 }
