@@ -19,10 +19,11 @@
 package uk.co.hexeption.darkforge.mod.mods.render;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.init.Blocks;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.events.EventBlockRenderSide;
+import uk.co.hexeption.darkforge.event.events.EventSetOpaqueCube;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.value.FloatValue;
 
@@ -41,6 +42,7 @@ public class Xray extends Mod {
     public final ArrayList<Block> xrayBlocks = new ArrayList<Block>();
 
     private final FloatValue opacity = new FloatValue("Opacity", 30F, 0F, 100F);
+    private transient int ambientOcclusion;
 
     public Xray() {
 
@@ -79,21 +81,17 @@ public class Xray extends Mod {
     @Override
     public void onEnable() {
 
-        getGameSettings().gammaSetting = 10000;
+        ambientOcclusion = mc.gameSettings.ambientOcclusion;
+        mc.gameSettings.ambientOcclusion = 0;
+        mc.renderGlobal.loadRenderers();
     }
 
     @Override
     public void onDisable() {
 
-        getGameSettings().gammaSetting = 0.5f;
-
-    }
-
-    @Override
-    public void toggle() {
-
-        super.toggle();
+        mc.gameSettings.ambientOcclusion = ambientOcclusion;
         mc.renderGlobal.loadRenderers();
+
     }
 
     public int getOpacity() {
@@ -106,14 +104,19 @@ public class Xray extends Mod {
         return xrayBlocks.contains(block);
     }
 
-    public boolean shouldIgnore(Block block) {
-
-        return !isXrayBlock(block) || block instanceof BlockBush;
-    }
-
-
     @Override
     public void onEvent(Event event) {
-
+        if (getState() && event.getType() == Event.Type.PRE) {
+            if (event instanceof EventSetOpaqueCube) {
+                event.cancel();
+            } else if (event instanceof EventBlockRenderSide) {
+                EventBlockRenderSide eventBlockRenderSide = event.cast();
+                if (isXrayBlock(eventBlockRenderSide.getState().getBlock())) {
+                    eventBlockRenderSide.setToRender(true);
+                } else {
+                    eventBlockRenderSide.cancel();
+                }
+            }
+        }
     }
 }

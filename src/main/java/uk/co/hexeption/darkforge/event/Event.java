@@ -23,7 +23,7 @@ package uk.co.hexeption.darkforge.event;
 public class Event {
 
     private Type type;
-    private boolean cacelled;
+    private boolean cancelled;
 
     public Event(Type type) {
         this.type = type;
@@ -39,7 +39,11 @@ public class Event {
     }
 
     public boolean isCancelled() {
-        return cacelled;
+        return cancelled;
+    }
+
+    public void cancel() {
+        cancelled = true;
     }
 
     public <T extends Event> T cast() {
