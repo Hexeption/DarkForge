@@ -20,6 +20,7 @@ package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.events.EventPlayerWalking;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.value.DoubleValue;
 
@@ -31,14 +32,37 @@ public class Fly extends Mod {
 
     private final DoubleValue speed = new DoubleValue("Speed", 0.8D, 0D, 9D);
 
+
     public Fly() {
 
         addValue(speed);
     }
 
+    @Override
+    public void onEnable() {
+        super.onEnable();
+        mc.player.capabilities.isFlying = true;
+        mc.player.onGround = false;
+        mc.player.isAirBorne = true;
+
+    }
+
+    @Override
+    public void onDisable() {
+        mc.player.capabilities.isFlying = false;
+        mc.player.onGround = true;
+        mc.player.isAirBorne = false;
+        super.onDisable();
+    }
 
     @Override
     public void onEvent(Event event) {
+        if (getState() && event instanceof EventPlayerWalking && event.getType() == Event.Type.PRE) {
+            EventPlayerWalking events = event.cast();
 
+            events.getEntity().capabilities.isFlying = true;
+            events.getEntity().onGround = false;
+            events.getEntity().isAirBorne = true;
+        }
     }
 }
