@@ -15,20 +15,36 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.mod.mods.movement;
-
-import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
+import net.minecraft.client.entity.EntityPlayerSP;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Keir on 22/04/2017.
  */
-@Mod.ModInfo(name = "No Slowdown", description = "Stops items from slowing you down.", category = Mod.Category.MOVEMENT)
-public class NoSlowdown extends Mod {
+public class EventPlayerInput extends AbstractEventPlayer {
 
-    @Override
-    public void onEvent(Event event) {
+    private float forawrd, strafe;
 
+    public EventPlayerInput(Type type, EntityPlayerSP entity, float forawrd, float strafe) {
+        super(type, entity);
+        this.forawrd = forawrd;
+        this.strafe = strafe;
+    }
+
+    public float getForawrd() {
+        return forawrd;
+    }
+
+    public void setForawrd(float forawrd) {
+        this.forawrd = forawrd;
+    }
+
+    public float getStrafe() {
+        return strafe;
+    }
+
+    public void setStrafe(float strafe) {
+        this.strafe = strafe;
     }
 }

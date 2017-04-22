@@ -20,9 +20,6 @@ package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.MoveEvent;
-import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.value.DoubleValue;
 
@@ -39,54 +36,6 @@ public class Fly extends Mod {
         addValue(speed);
     }
 
-    @EventTarget
-    public void eventPreMotionUpdate(PreMotionUpdateEvent event) {
-
-        if (getPlayer().movementInput.jump) {
-            getPlayer().motionY = speed.getValue();
-        } else if (getPlayer().movementInput.sneak) {
-            getPlayer().motionY = -speed.getValue();
-        } else {
-            getPlayer().motionY = 0;
-        }
-    }
-
-    @EventTarget
-    public void eventMove(MoveEvent event) {
-
-        setMoveSpeed(event, speed.getValue());
-    }
-
-    public void setMoveSpeed(final MoveEvent event, final double speed) {
-
-        double forward = getPlayer().movementInput.moveForward;
-        double strafe = getPlayer().movementInput.moveStrafe;
-        float yaw = getPlayer().rotationYaw;
-
-        if (forward == 0.0 && strafe == 0.0) {
-            event.setMotionX(0.0);
-            event.setMotionZ(0.0);
-        } else {
-            if (forward != 0.0) {
-                if (strafe > 0.0) {
-                    yaw += ((forward > 0.0) ? -45 : 45);
-                } else if (strafe < 0.0) {
-                    yaw += ((forward > 0.0) ? 45 : -45);
-                }
-
-                strafe = 0.0;
-
-                if (forward > 0.0) {
-                    forward = 1.0;
-                } else if (forward < 0.0) {
-                    forward = -1.0;
-                }
-            }
-
-            event.setMotionX(forward * speed * Math.cos(Math.toRadians(yaw + 90.0f)) + strafe * speed * Math.sin(Math.toRadians(yaw + 90.0f)));
-            event.setMotionZ(forward * speed * Math.sin(Math.toRadians(yaw + 90.0f)) - strafe * speed * Math.cos(Math.toRadians(yaw + 90.0f)));
-        }
-    }
 
     @Override
     public void onEvent(Event event) {

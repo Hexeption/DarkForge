@@ -15,20 +15,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.darkforge.mod.mods.movement;
+package uk.co.hexeption.darkforge.event.events;
 
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Keir on 22/04/2017.
  */
-@Mod.ModInfo(name = "No Slowdown", description = "Stops items from slowing you down.", category = Mod.Category.MOVEMENT)
-public class NoSlowdown extends Mod {
+public class EventKeyboard extends Event {
 
-    @Override
-    public void onEvent(Event event) {
+    private final int key;
 
+    public EventKeyboard(Type type, int key) {
+        super(type);
+        this.key = key;
+    }
+
+    public int getKey() {
+        return key;
     }
 }

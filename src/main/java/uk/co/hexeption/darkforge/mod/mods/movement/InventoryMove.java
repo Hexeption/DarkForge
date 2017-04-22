@@ -18,15 +18,8 @@
 
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
 import uk.co.hexeption.darkforge.mod.Mod;
-
-import java.util.Objects;
 
 /**
  * Created by Hexeption on 22/03/2017.
@@ -34,30 +27,6 @@ import java.util.Objects;
 @Deprecated
 @Mod.ModInfo(name = "Inventory Move", description = "Allows movement in inventorys", category = Mod.Category.MOVEMENT)
 public class InventoryMove extends Mod {
-
-    @EventTarget
-    public void onPreMotionEvent(PreMotionUpdateEvent event) {
-
-        final KeyBinding[] keys = {mc.gameSettings.keyBindRight, mc.gameSettings.keyBindLeft, mc.gameSettings.keyBindBack, mc.gameSettings.keyBindForward, mc.gameSettings.keyBindJump, mc.gameSettings.keyBindSprint};
-
-        KeyBinding[] arrayKeys;
-        int lenghtOfKeys = (arrayKeys = keys).length;
-        if (mc.currentScreen instanceof GuiContainer) {
-            for (int i = 0; i < lenghtOfKeys; i++) {
-                KeyBinding key = arrayKeys[i];
-
-
-            }
-        } else if (Objects.isNull(mc.currentScreen)) {
-            for (int i = 0; i < lenghtOfKeys; i++) {
-                KeyBinding bind = arrayKeys[i];
-                if (!Keyboard.isKeyDown(bind.getKeyCode())) {
-                    KeyBinding.setKeyBindState(bind.getKeyCode(), false);
-                }
-            }
-
-        }
-    }
 
     @Override
     public void onEvent(Event event) {

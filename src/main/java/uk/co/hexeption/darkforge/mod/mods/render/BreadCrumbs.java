@@ -19,9 +19,8 @@
 package uk.co.hexeption.darkforge.mod.mods.render;
 
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
-import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
+import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
+import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 import java.util.LinkedList;
@@ -36,53 +35,45 @@ public class BreadCrumbs extends Mod {
 
     private final LinkedList<double[]> positions = new LinkedList<double[]>();
 
-
-    @EventTarget
-    public void onUpdate(EventUpdate event) {
-
-        if (getPlayer() == null)
-            return;
-
-        synchronized (positions) {
-            positions.add(new double[]{getPlayer().posX, getPlayer().posY, getPlayer().posZ});
-        }
-    }
-
-
-    @EventTarget
-    public void onRender3D(Render3DEvent event) {
-
-        synchronized (positions) {
-            glPushMatrix();
-
-            glDisable(GL_TEXTURE_2D);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glEnable(GL_LINE_SMOOTH);
-            glEnable(GL_BLEND);
-            glDisable(GL_DEPTH_TEST);
-            getEntityRenderer().disableLightmap();
-            glBegin(GL_LINE_STRIP);
-            glColor4d(0, 0.7D, 0.7D, 1);
-            double renderPosX = mc.getRenderManager().viewerPosX;
-            double renderPosY = mc.getRenderManager().viewerPosY;
-            double renderPosZ = mc.getRenderManager().viewerPosZ;
-
-            for (final double[] pos : positions) {
-                glVertex3d(pos[0] - renderPosX, pos[1] - renderPosY, pos[2] - renderPosZ);
-            }
-
-            glColor4d(1, 1, 1, 1);
-            glEnd();
-            glEnable(GL_DEPTH_TEST);
-            glDisable(GL_LINE_SMOOTH);
-            glDisable(GL_BLEND);
-            glEnable(GL_TEXTURE_2D);
-            glPopMatrix();
-        }
-    }
-
     @Override
     public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventRenderWorld) {
+                synchronized (positions) {
+                    glPushMatrix();
 
+                    glDisable(GL_TEXTURE_2D);
+                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                    glEnable(GL_LINE_SMOOTH);
+                    glEnable(GL_BLEND);
+                    glDisable(GL_DEPTH_TEST);
+                    getEntityRenderer().disableLightmap();
+                    glBegin(GL_LINE_STRIP);
+                    glColor4d(0, 0.7D, 0.7D, 1);
+                    double renderPosX = mc.getRenderManager().viewerPosX;
+                    double renderPosY = mc.getRenderManager().viewerPosY;
+                    double renderPosZ = mc.getRenderManager().viewerPosZ;
+
+                    for (final double[] pos : positions) {
+                        glVertex3d(pos[0] - renderPosX, pos[1] - renderPosY, pos[2] - renderPosZ);
+                    }
+
+                    glColor4d(1, 1, 1, 1);
+                    glEnd();
+                    glEnable(GL_DEPTH_TEST);
+                    glDisable(GL_LINE_SMOOTH);
+                    glDisable(GL_BLEND);
+                    glEnable(GL_TEXTURE_2D);
+                    glPopMatrix();
+                }
+            } else if (event instanceof EventPlayerUpdate) {
+                if (getPlayer() == null)
+                    return;
+
+                synchronized (positions) {
+                    positions.add(new double[]{getPlayer().posX, getPlayer().posY, getPlayer().posZ});
+                }
+            }
+        }
     }
 }

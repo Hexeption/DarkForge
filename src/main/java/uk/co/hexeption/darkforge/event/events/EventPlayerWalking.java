@@ -15,38 +15,17 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.event.events;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.item.ItemStack;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import uk.co.hexeption.darkforge.mixin.imp.IMixinPlayerControllerMP;
-
 
 /**
- * Created by Keir on 21/04/2017.
+ * Created by Keir on 22/04/2017.
  */
-@Mixin(PlayerControllerMP.class)
-public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
+public class EventPlayerWalking extends AbstractEventPlayer {
 
-    @Shadow
-    @Final
-    private Minecraft mc;
-
-    @Shadow
-    private ItemStack currentItemHittingBlock;
-
-    @Override
-    public void setCurrentItemHittingBlock(ItemStack stack) {
-        this.currentItemHittingBlock = stack == null ? ItemStack.field_190927_a : stack;
+    public EventPlayerWalking(Type type, EntityPlayerSP entity) {
+        super(type, entity);
     }
 
-    @Override
-    public EntityPlayerSP getEntityPlayer() {
-        return mc.player;
-    }
 }

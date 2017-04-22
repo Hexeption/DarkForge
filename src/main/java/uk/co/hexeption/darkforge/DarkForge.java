@@ -22,16 +22,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.event.EventManager;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
 import uk.co.hexeption.darkforge.gui.gui.ClickGuiScreen;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
-import uk.co.hexeption.darkforge.gui.screen.DarkForgeInGameGui;
+import uk.co.hexeption.darkforge.hook.HGuiInGame;
 import uk.co.hexeption.darkforge.managers.*;
-import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
 import uk.co.hexeption.darkforge.ui.tab.Tab;
@@ -61,15 +56,10 @@ public enum DarkForge {
 
     public String commandPrefix = ".";
 
-    DarkForge() {
-
-        EventManager.register(this);
-    }
-
     public void start() {
 
         Minecraft mc = Minecraft.getMinecraft();
-        mc.ingameGUI = new DarkForgeInGameGui(mc);
+        mc.ingameGUI = new HGuiInGame(mc);
 
         LogHelper.info("Loading Mods...");
         modManager.Initialization();
@@ -97,31 +87,6 @@ public enum DarkForge {
         fileManager.saveFriends();
         fileManager.saveAlts();
         fileManager.saveModules();
-    }
-
-    @EventTarget
-    private void EventKeyboard(KeyboardEvent event) {
-
-
-        if (event.getKey() == Keyboard.KEY_H) {
-            addNotification(Notification.Type.ERROR, "this", "Testing Error", 50000);
-
-        }
-        if (event.getKey() == Keyboard.KEY_J) {
-            addNotification(Notification.Type.INFO, "this", "Testing Info", 50000);
-
-        }
-        if (event.getKey() == Keyboard.KEY_L) {
-            addNotification(Notification.Type.QUESTION, "this", "Testing Question", 50000);
-
-        }
-
-
-        for (Mod m : modManager.getMods()) {
-            if (Keyboard.getEventKey() == m.getBind()) {
-                m.toggle();
-            }
-        }
     }
 
     public void addChatMessage(ITextComponent component) {

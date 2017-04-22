@@ -15,37 +15,43 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.mixin.mixins;
 
-import net.minecraft.client.entity.EntityPlayerSP;
-import org.spongepowered.asm.lib.Opcodes;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.EventChat;
-import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
+import uk.co.hexeption.darkforge.event.events.EventRenderEntities;
+import uk.co.hexeption.darkforge.event.events.EventRenderEntity;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
  * Created by Keir on 21/04/2017.
  */
-@Mixin(EntityPlayerSP.class)
-public abstract class MixinEntityPlayerSP {
+@Mixin(RenderManager.class)
+public class MixinRenderManager {
 
-    @Inject(method = "onLivingUpdate", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lnet/minecraft/client/entity/EntityPlayerSP;sprintToggleTimer:I", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
-    public void IonLivingUpdate(CallbackInfo callback) {
-        EventPlayerSlowDown event = new EventPlayerSlowDown(Event.Type.POST, (EntityPlayerSP) (Object) this);
+    @Inject(method = "renderEntityStatic", at = @At(value = "RETURN", shift = At.Shift.BEFORE), cancellable = true)
+    public void IrenderEntityStaticPre(Entity entityIn, float partialTicks, boolean p_188388_3_, CallbackInfo callback) {
+        EventRenderEntities event = new EventRenderEntities(Event.Type.PRE, entityIn, partialTicks);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
             callback.cancel();
         }
     }
 
-    @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
-    public void IsendChatMessage(String message, CallbackInfo callback) {
-        EventChat.Send event = new EventChat.Send(Event.Type.PRE, (EntityPlayerSP) (Object) this, message);
+    @Inject(method = "renderEntityStatic", at = @At(value = "RETURN", shift = At.Shift.AFTER))
+    public void IrenderEntityStaticPost(Entity entityIn, float partialTicks, boolean p_188388_3_, CallbackInfo callback) {
+        EventRenderEntities event = new EventRenderEntities(Event.Type.POST, entityIn, partialTicks);
+        EventManager.handleEvent(event);
+    }
+
+    @Inject(method = "doRenderEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/Render;doRender(Lnet/minecraft/entity/Entity;DDDFF)V", shift = At.Shift.BEFORE), cancellable = true)
+    public void IdoRenderEntity(Entity entityIn, double x, double y, double z, float yaw, float partialTicks, boolean p_188391_10_, CallbackInfo callback) {
+        EventRenderEntity event = new EventRenderEntity(Event.Type.PRE, entityIn, x, y, z, yaw, partialTicks);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
             callback.cancel();

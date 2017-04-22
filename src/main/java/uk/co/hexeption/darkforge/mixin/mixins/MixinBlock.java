@@ -15,36 +15,35 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.mixin.mixins;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.EventRenderLabel;
+import uk.co.hexeption.darkforge.event.events.EventBlockRenderSide;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
  * Created by Keir on 21/04/2017.
  */
-@Mixin(Render.class)
-public class MixinRender {
+@Mixin(Block.class)
+public class MixinBlock {
 
-    @Inject(method = "renderLivingLabel", at = @At("HEAD"), cancellable = true)
-    public <T extends Entity> void IrenderLabelPre(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
-        EventRenderLabel event = new EventRenderLabel(Event.Type.PRE, entityIn, str, x, y, z, maxDistance);
+    @Inject(method = "shouldSideBeRendered", at = @At("HEAD"), cancellable = true)
+    public void shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> callback) {
+        EventBlockRenderSide event = new EventBlockRenderSide(Event.Type.PRE, blockState, blockAccess, pos, side);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
-            callback.cancel();
+            callback.setReturnValue(false);
+        } else if (event.isToRender()) {
+            callback.setReturnValue(true);
         }
-    }
-
-    @Inject(method = "renderLivingLabel", at = @At("RETURN"))
-    public <T extends Entity> void IrenderLabelPost(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
-        EventRenderLabel event = new EventRenderLabel(Event.Type.POST, entityIn, str, x, y, z, maxDistance);
-        EventManager.handleEvent(event);
     }
 }

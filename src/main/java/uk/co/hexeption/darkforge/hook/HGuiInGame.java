@@ -15,38 +15,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-package uk.co.hexeption.darkforge.gui.screen;
+package uk.co.hexeption.darkforge.hook;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
-import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
+import uk.co.hexeption.darkforge.gui.screen.DarkForgeChat;
 import uk.co.hexeption.darkforge.utils.ReflectionHelper;
 
 /**
- * Created by Hexeption on 12/03/2017.
+ * Created by Keir on 22/04/2017.
  */
-public class DarkForgeInGameGui extends GuiIngame {
+public class HGuiInGame extends GuiIngame {
 
-    private final Minecraft mc;
-
-    public DarkForgeInGameGui(Minecraft mc) {
-
-        super(mc);
-        this.mc = mc;
+    public HGuiInGame(Minecraft mcIn) {
+        super(mcIn);
         ReflectionHelper.setPersistantChatGUI(this, new DarkForgeChat(mc));
-    }
 
-    @Override
-    public void renderGameOverlay(float partialTicks) {
-
-        super.renderGameOverlay(partialTicks);
-
-        if (!mc.gameSettings.showDebugInfo) {
-            Render2DEvent eventRender2D = new Render2DEvent(mc.displayWidth, mc.displayHeight);
-            eventRender2D.call();
-        }
     }
 
     @Override

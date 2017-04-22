@@ -15,35 +15,40 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.mixin.mixins;
 
-import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.entity.EntityPlayerSP;
+import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
+import uk.co.hexeption.darkforge.event.events.EventChat;
+import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
  * Created by Keir on 21/04/2017.
  */
-@Mixin(EntityRenderer.class)
-public class MixinEntityRenderer {
+@Mixin(EntityPlayerSP.class)
+public abstract class MixinEntityPlayerSP {
 
-    @Inject(method = "renderWorldPass", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderHand:Z", shift = At.Shift.BEFORE))
-    private void renderWorldPassPre(int pass, float partialTicks, long finishTimeNano, CallbackInfo callbackInfo) {
-
-        EventRenderWorld event = new EventRenderWorld(Event.Type.PRE);
+    @Inject(method = "onLivingUpdate", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lnet/minecraft/client/entity/EntityPlayerSP;sprintToggleTimer:I", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
+    public void IonLivingUpdate(CallbackInfo callback) {
+        EventPlayerSlowDown event = new EventPlayerSlowDown(Event.Type.POST, (EntityPlayerSP) (Object) this);
         EventManager.handleEvent(event);
+        if (event.isCancelled()) {
+            callback.cancel();
+        }
     }
 
-    @Inject(method = "renderWorldPass", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderHand:Z", shift = At.Shift.AFTER))
-    private void renderWorldPassPost(int pass, float partialTicks, long finishTimeNano, CallbackInfo callbackInfo) {
-
-        EventRenderWorld event = new EventRenderWorld(Event.Type.POST);
+    @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
+    public void IsendChatMessage(String message, CallbackInfo callback) {
+        EventChat.Send event = new EventChat.Send(Event.Type.PRE, message, (EntityPlayerSP) (Object) this);
         EventManager.handleEvent(event);
+        if (event.isCancelled()) {
+            callback.cancel();
+        }
     }
-
 }

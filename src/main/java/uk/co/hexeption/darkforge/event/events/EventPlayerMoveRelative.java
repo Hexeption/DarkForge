@@ -15,33 +15,45 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.mixin;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.stats.StatisticsManager;
-import net.minecraft.world.World;
-import uk.co.hexeption.darkforge.DarkForge;
 
 /**
- * Created by Hexeption on 13/03/2017.
+ * Created by Keir on 22/04/2017.
  */
-public class DarkForgeEntityPlayer extends EntityPlayerSP {
+public class EventPlayerMoveRelative extends AbstractEventPlayer {
 
-    public DarkForgeEntityPlayer(Minecraft mcIn, World worldIn, NetHandlerPlayClient netHandler, StatisticsManager statFile) {
+    private float forawrd, strafe, frication;
 
-        super(mcIn, worldIn, netHandler, statFile);
+    public EventPlayerMoveRelative(Type type, EntityPlayerSP entity, float forawrd, float strafe, float frication) {
+        super(type, entity);
+        this.forawrd = forawrd;
+        this.strafe = strafe;
+        this.frication = frication;
     }
 
-    @Override
-    public void sendChatMessage(String message) {
+    public float getForawrd() {
+        return forawrd;
+    }
 
-        if (message.startsWith(DarkForge.INSTANCE.commandPrefix)) {
-            DarkForge.INSTANCE.commandManager.executeCommand(message.substring(DarkForge.INSTANCE.commandPrefix.length()));
-        } else {
-            super.sendChatMessage(message);
-        }
+    public void setForawrd(float forawrd) {
+        this.forawrd = forawrd;
+    }
+
+    public float getStrafe() {
+        return strafe;
+    }
+
+    public void setStrafe(float strafe) {
+        this.strafe = strafe;
+    }
+
+    public float getFrication() {
+        return frication;
+    }
+
+    public void setFrication(float frication) {
+        this.frication = frication;
     }
 }

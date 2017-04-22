@@ -67,7 +67,7 @@ public class BlockOverlay extends Mod {
                 glTranslated(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
                 //TODO: Add Controller Mixin
-                float currentBlockDamage = MCWrapper.getController().getBlockDamage();
+                float currentBlockDamage = 10;
 
                 float progress = currentBlockDamage;
 
@@ -88,7 +88,7 @@ public class BlockOverlay extends Mod {
                 glEnable(GL_TEXTURE_2D);
                 glDisable(GL_BLEND);
                 glDisable(GL_LINE_SMOOTH);
-                glPopMatrix()
+                glPopMatrix();
             }
         }
     }

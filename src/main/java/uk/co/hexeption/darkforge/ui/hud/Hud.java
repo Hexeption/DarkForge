@@ -19,16 +19,17 @@
 package uk.co.hexeption.darkforge.ui.hud;
 
 import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.event.EventManager;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
-import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
+import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.EventListener;
+import uk.co.hexeption.darkforge.event.events.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
+import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.ui.hud.themes.DarkForgeHud;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Hud {
+public class Hud implements EventListener {
 
     private final List<IGameHud> themes = new CopyOnWriteArrayList<>();
 
@@ -42,22 +43,6 @@ public class Hud {
     public void Initialization() {
 
         this.themes.add(new DarkForgeHud());
-    }
-
-    @EventTarget
-    public void render(Render2DEvent event) {
-
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
-
-        IGameHud currentTheme = getCurrentTheme();
-        currentTheme.render(Minecraft.getMinecraft(), event.getWidth(), event.getHeight());
-    }
-
-    @EventTarget
-    public void onKeyEvent(KeyboardEvent event) {
-
-        getCurrentTheme().onKeyPressed(event.getKey());
     }
 
     public IGameHud getCurrentTheme() {
@@ -88,6 +73,19 @@ public class Hud {
             }
 
             this.themeIndex = index;
+        }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+        if (event instanceof EventRenderScreen) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo || Minecraft.getMinecraft().currentScreen != null)
+                return;
+
+            IGameHud currentTheme = getCurrentTheme();
+            currentTheme.render(Minecraft.getMinecraft(), ((EventRenderScreen) event).getWidth(), ((EventRenderScreen) event).getHeight());
+        } else if (event instanceof EventKeyboard) {
+            getCurrentTheme().onKeyPressed(((EventKeyboard) event).getKey());
         }
     }
 }

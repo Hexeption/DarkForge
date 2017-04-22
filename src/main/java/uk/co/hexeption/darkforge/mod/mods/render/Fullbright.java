@@ -20,8 +20,7 @@ package uk.co.hexeption.darkforge.mod.mods.render;
 
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.update.EventUpdate;
+import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -29,20 +28,6 @@ import uk.co.hexeption.darkforge.mod.Mod;
  */
 @Mod.ModInfo(name = "Fullbright", description = "Brightens up the game", category = Mod.Category.RENDER, bind = Keyboard.KEY_V)
 public class Fullbright extends Mod {
-
-    @EventTarget
-    public void onUpdate(EventUpdate event) {
-
-        if (getState())
-            if (getGameSettings().gammaSetting < 16) {
-                getGameSettings().gammaSetting += 0.5;
-            } else if (getGameSettings().gammaSetting > 0.5) {
-                if (getGameSettings().gammaSetting < 1f)
-                    getGameSettings().gammaSetting = 0.5f;
-                else
-                    getGameSettings().gammaSetting -= 0.5;
-            }
-    }
 
     @Override
     public void onDisable() {
@@ -52,6 +37,17 @@ public class Fullbright extends Mod {
 
     @Override
     public void onEvent(Event event) {
-
+        if (getState()) {
+            if (event instanceof EventPlayerUpdate) {
+                if (getGameSettings().gammaSetting < 16) {
+                    getGameSettings().gammaSetting += 0.5;
+                } else if (getGameSettings().gammaSetting > 0.5) {
+                    if (getGameSettings().gammaSetting < 1f)
+                        getGameSettings().gammaSetting = 0.5f;
+                    else
+                        getGameSettings().gammaSetting -= 0.5;
+                }
+            }
+        }
     }
 }

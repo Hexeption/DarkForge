@@ -1,23 +1,17 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "uk.co.hexeption.mcwrapper.mixin",
+  "package": "uk.co.hexeption.darkforge.mixin.mixins",
   "refmap": "mixins.darkforge.refmap.json",
   "mixins": [
+    "MixinBlock",
+    "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
     "MixinMinecraft",
-    "client.gui.MixinGuiInGame",
-    "client.gui.MixinGuiMultiplayer",
-    "entity.MixinEntity",
-    "entity.living.MixinEntityLiving",
-    "entity.living.player.MixinEntityPlayer",
-    "entity.living.player.MixinEntityPlayerSP",
-    "entity.living.player.MixinAbstractClientPlayer",
-    "multiplayer.MixinPlayerControllerMP",
-    "block.MixinBlock",
-    "block.MixinBlockModelRenderer",
-    "renderer.MixinEntityRenderer",
-    "renderer.MixinRenderPlayer",
-    "renderer.MixinRenderManager",
-    "renderer.chunk.MixinVisGraph"
+    "MixinNetworkManager",
+    "MixinPlayerControllerMP",
+    "MixinRender",
+    "MixinRenderManager",
+    "MixinVisGraphMixin"
   ]
 }

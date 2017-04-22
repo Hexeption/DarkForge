@@ -23,8 +23,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
+import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
@@ -58,36 +57,6 @@ public class Tracers extends Mod {
         addValue(player, mob, testingFloat, testingDouble);
     }
 
-
-    @EventTarget
-    public void onRender3D(Render3DEvent event) {
-
-        for (Object entityList : getWorld().loadedEntityList) {
-            if (!(entityList instanceof EntityLivingBase)) {
-                continue;
-            }
-
-            EntityLivingBase entity = (EntityLivingBase) entityList;
-
-            if (player.getValue()) {
-                if (entity instanceof EntityPlayer) {
-                    if (entity != getPlayer() && !entity.isInvisible()) {
-                        player(entity);
-
-                    }
-                }
-            }
-
-            if (mob.getValue()) {
-                if (entity instanceof EntityMob) {
-                    player(entity);
-                }
-            }
-
-
-        }
-    }
-
     private void player(EntityLivingBase entity) {
 
         render(1, 1, 1, 1, entity);
@@ -107,9 +76,34 @@ public class Tracers extends Mod {
 
     }
 
-
     @Override
     public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventPlayerUpdate) {
 
+                for (Object entityList : getWorld().loadedEntityList) {
+                    if (!(entityList instanceof EntityLivingBase)) {
+                        continue;
+                    }
+
+                    EntityLivingBase entity = (EntityLivingBase) entityList;
+
+                    if (player.getValue()) {
+                        if (entity instanceof EntityPlayer) {
+                            if (entity != getPlayer() && !entity.isInvisible()) {
+                                player(entity);
+
+                            }
+                        }
+                    }
+
+                    if (mob.getValue()) {
+                        if (entity instanceof EntityMob) {
+                            player(entity);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

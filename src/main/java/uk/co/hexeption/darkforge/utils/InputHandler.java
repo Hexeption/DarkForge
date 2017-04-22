@@ -22,6 +22,7 @@ import org.lwjgl.input.Mouse;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventKeybind;
+import uk.co.hexeption.darkforge.event.events.EventKeyboard;
 import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.mod.Mod;
 
@@ -48,9 +49,10 @@ public class InputHandler {
         boolean state = Keyboard.getEventKeyState();
         int key = Keyboard.getEventKey();
         char character = Keyboard.getEventCharacter();
-        if (key != Keyboard.KEY_NONE) {
-            handleBind(state, key, character);
-        }
+        handleBind(state, key, character);
+        EventKeyboard event = new EventKeyboard(Event.Type.PRE, key);
+        EventManager.handleEvent(event);
+
     }
 
     public static void handleMouse() {

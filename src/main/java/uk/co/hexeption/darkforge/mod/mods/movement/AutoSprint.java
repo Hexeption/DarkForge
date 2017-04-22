@@ -20,8 +20,8 @@ package uk.co.hexeption.darkforge.mod.mods.movement;
 
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.movement.PreMotionUpdateEvent;
+import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
+import uk.co.hexeption.darkforge.event.events.EventPlayerWalking;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 @Mod.ModInfo(name = "Auto Sprint", description = "Automatically Sprints for you.", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_L)
@@ -41,16 +41,18 @@ public class AutoSprint extends Mod {
             getPlayer().setSprinting(false);
     }
 
-    @EventTarget
-    public void onPreMotionTick(PreMotionUpdateEvent event) {
-
-        if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
-            mc.player.setSprinting(true);
-        }
-    }
-
     @Override
     public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventPlayerWalking) {
+                if (event.getType() == Event.Type.PRE) {
+                    if ((!mc.player.isCollidedHorizontally) && (mc.player.moveForward > 0.0F) && (!mc.player.isSneaking())) {
+                        mc.player.setSprinting(true);
+                    }
+                }
+            } else if (event instanceof EventPlayerUpdate) {
 
+            }
+        }
     }
 }

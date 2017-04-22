@@ -18,30 +18,27 @@
 
 package uk.co.hexeption.darkforge.mod.mods.gui;
 
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.events.EventKeyboard;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
  * Created by Hexeption on 27/02/2017.
  */
-@Mod.ModInfo(name = "Click Gui", description = "Enable shit", category = Mod.Category.GUI, bind = Keyboard.KEY_LCONTROL)
+@Mod.ModInfo(name = "Click Gui", description = "Enable shit", category = Mod.Category.GUI, bind = Keyboard.KEY_M)
 public class Gui extends Mod {
 
     @Override
-    public void onEnable() {
-
-        LogHelper.info("Loading Guis...");
-
-        Minecraft.getMinecraft().displayGuiScreen(DarkForge.INSTANCE.getGui());
-        toggle();
-    }
-
-    @Override
     public void onEvent(Event event) {
-
+        if (getState()) {
+            if (event instanceof EventKeyboard) {
+                if (event.getType() == Event.Type.PRE) {
+                    mc.displayGuiScreen(DarkForge.INSTANCE.getGui());
+                    onDisable();
+                }
+            }
+        }
     }
 }

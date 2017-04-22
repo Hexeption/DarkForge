@@ -19,16 +19,17 @@
 package uk.co.hexeption.darkforge.ui.tab;
 
 import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.event.EventManager;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.KeyboardEvent;
-import uk.co.hexeption.darkforge.event.events.render.Render2DEvent;
+import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.EventListener;
+import uk.co.hexeption.darkforge.event.events.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
+import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.ui.tab.themes.DarkForgeTab;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Tab {
+public class Tab implements EventListener {
 
     private final List<ITab> tabs = new CopyOnWriteArrayList<>();
 
@@ -42,22 +43,6 @@ public class Tab {
     public void Initialization() {
 
         this.tabs.add(new DarkForgeTab());
-    }
-
-    @EventTarget
-    public void render2D(Render2DEvent event) {
-
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
-
-        ITab currentTab = getCurrentTab();
-        currentTab.render(Minecraft.getMinecraft(), event.getWidth(), event.getHeight());
-    }
-
-    @EventTarget
-    public void onKeyEvent(KeyboardEvent event) {
-
-        getCurrentTab().onKeyPressed(event.getKey());
     }
 
     public ITab getCurrentTab() {
@@ -78,6 +63,20 @@ public class Tab {
             }
 
             this.tabIndex = index;
+        }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+        if (event instanceof EventRenderScreen) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo || Minecraft.getMinecraft().currentScreen != null)
+                return;
+
+
+            ITab currentTab = getCurrentTab();
+            currentTab.render(Minecraft.getMinecraft(), ((EventRenderScreen) event).getWidth(), ((EventRenderScreen) event).getHeight());
+        } else if (event instanceof EventKeyboard) {
+            getCurrentTab().onKeyPressed(((EventKeyboard) event).getKey());
         }
     }
 

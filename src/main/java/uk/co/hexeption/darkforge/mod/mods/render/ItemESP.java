@@ -23,8 +23,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.render.Render3DEvent;
+import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 
@@ -38,47 +37,44 @@ public class ItemESP extends Mod {
 
     private static final AxisAlignedBB ITEM_BOX = new AxisAlignedBB(-0.175, 0, -0.175, 0.175, 0.35, 0.175);
 
-    @EventTarget
-    public void onRender3D(Render3DEvent event) {
-
-        glPushMatrix();
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable(GL_LINE_SMOOTH);
-        glLineWidth(2);
-        glDisable(GL_TEXTURE_2D);
-        glEnable(GL_CULL_FACE);
-        glDisable(GL_DEPTH_TEST);
-        double renderPosX = mc.getRenderManager().viewerPosX;
-        double renderPosY = mc.getRenderManager().viewerPosY;
-        double renderPosZ = mc.getRenderManager().viewerPosZ;
-
-        glTranslated(-renderPosX, -renderPosY, -renderPosZ);
-
-        glColor4f(0.4f, 0, 1, 0.5F);
-
-        for (Entity entity : mc.world.loadedEntityList) {
-            if (entity instanceof EntityItem) {
+    @Override
+    public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventRenderWorld) {
                 glPushMatrix();
-                glTranslated(entity.posX, entity.posY, entity.posZ);
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glEnable(GL_LINE_SMOOTH);
+                glLineWidth(2);
+                glDisable(GL_TEXTURE_2D);
+                glEnable(GL_CULL_FACE);
+                glDisable(GL_DEPTH_TEST);
+                double renderPosX = mc.getRenderManager().viewerPosX;
+                double renderPosY = mc.getRenderManager().viewerPosY;
+                double renderPosZ = mc.getRenderManager().viewerPosZ;
 
-                RenderUtils.drawOutlinedBox(ITEM_BOX);
+                glTranslated(-renderPosX, -renderPosY, -renderPosZ);
 
+                glColor4f(0.4f, 0, 1, 0.5F);
+
+                for (Entity entity : mc.world.loadedEntityList) {
+                    if (entity instanceof EntityItem) {
+                        glPushMatrix();
+                        glTranslated(entity.posX, entity.posY, entity.posZ);
+
+                        RenderUtils.drawOutlinedBox(ITEM_BOX);
+
+                        glPopMatrix();
+                    }
+                }
+                glColor4f(1, 1, 1, 1);
+
+                glEnable(GL_DEPTH_TEST);
+                glEnable(GL_TEXTURE_2D);
+                glDisable(GL_BLEND);
+                glDisable(GL_LINE_SMOOTH);
                 glPopMatrix();
             }
         }
-        glColor4f(1, 1, 1, 1);
-
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_TEXTURE_2D);
-        glDisable(GL_BLEND);
-        glDisable(GL_LINE_SMOOTH);
-        glPopMatrix();
-    }
-
-
-    @Override
-    public void onEvent(Event event) {
-
     }
 }

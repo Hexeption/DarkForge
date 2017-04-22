@@ -24,8 +24,7 @@ import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.EventTarget;
-import uk.co.hexeption.darkforge.event.events.other.MouseEvent;
+import uk.co.hexeption.darkforge.event.events.EventPlayerInput;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -35,29 +34,29 @@ import uk.co.hexeption.darkforge.mod.Mod;
 @Mod.ModInfo(name = "Middle Click Friend", category = Mod.Category.MISC, description = "Middle click a player to add it to your friend list", visable = false)
 public class MiddleClickFriend extends Mod {
 
-    @EventTarget
-    public void onMouseEvent(MouseEvent event) {
-
-        if (event.getButton() == 2) {
-            if (mc.objectMouseOver != null && mc.objectMouseOver.entityHit != null && mc.objectMouseOver.entityHit instanceof EntityPlayer) {
-                final EntityPlayer player = (EntityPlayer) mc.objectMouseOver.entityHit;
-                final String name = StringUtils.stripControlCodes(player.getDisplayName().getUnformattedText());
-
-                if (DarkForge.INSTANCE.friendManager.isFriend(name)) {
-                    DarkForge.INSTANCE.friendManager.removeFriend(name);
-                    DarkForge.INSTANCE.fileManager.saveFriends();
-                    LogHelper.info("Removed");
-                } else {
-                    DarkForge.INSTANCE.friendManager.addFriend(name);
-                    DarkForge.INSTANCE.fileManager.saveFriends();
-                    LogHelper.info("added");
-                }
-            }
-        }
-    }
+    /**
+     * TODO:
+     */
 
     @Override
     public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventPlayerInput) {
+                if (mc.objectMouseOver != null && mc.objectMouseOver.entityHit != null && mc.objectMouseOver.entityHit instanceof EntityPlayer) {
+                    final EntityPlayer player = (EntityPlayer) mc.objectMouseOver.entityHit;
+                    final String name = StringUtils.stripControlCodes(player.getDisplayName().getUnformattedText());
 
+                    if (DarkForge.INSTANCE.friendManager.isFriend(name)) {
+                        DarkForge.INSTANCE.friendManager.removeFriend(name);
+                        DarkForge.INSTANCE.fileManager.saveFriends();
+                        LogHelper.info("Removed");
+                    } else {
+                        DarkForge.INSTANCE.friendManager.addFriend(name);
+                        DarkForge.INSTANCE.fileManager.saveFriends();
+                        LogHelper.info("added");
+                    }
+                }
+            }
+        }
     }
 }

@@ -46,6 +46,9 @@ public class ModManager {
 
         initMods();
         LogHelper.info(String.format("Mods Loaded: %s!", mods.size()));
+        for (Mod mod : mods) {
+            LogHelper.info(mod.getName() + " Loaded!");
+        }
     }
 
     /**

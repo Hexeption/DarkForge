@@ -15,31 +15,36 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge.mixin;
+package uk.co.hexeption.darkforge.mixin.mixins;
 
-import net.minecraft.client.renderer.chunk.VisGraph;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.EventSetOpaqueCube;
+import uk.co.hexeption.darkforge.event.events.EventRenderLabel;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
  * Created by Keir on 21/04/2017.
  */
-@Mixin(VisGraph.class)
-public class MixinVisGraphMixin {
+@Mixin(Render.class)
+public class MixinRender {
 
-    @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
-    public void setOpaqueCube(BlockPos pos, CallbackInfo callback) {
-        EventSetOpaqueCube event = new EventSetOpaqueCube(Event.Type.PRE, pos);
+    @Inject(method = "renderLivingLabel", at = @At("HEAD"), cancellable = true)
+    public <T extends Entity> void IrenderLabelPre(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
+        EventRenderLabel event = new EventRenderLabel(Event.Type.PRE, entityIn, str, x, y, z, maxDistance);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
             callback.cancel();
         }
     }
-}
 
+    @Inject(method = "renderLivingLabel", at = @At("RETURN"))
+    public <T extends Entity> void IrenderLabelPost(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
+        EventRenderLabel event = new EventRenderLabel(Event.Type.POST, entityIn, str, x, y, z, maxDistance);
+        EventManager.handleEvent(event);
+    }
+}
