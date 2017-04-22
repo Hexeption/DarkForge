@@ -26,10 +26,7 @@ import uk.co.hexeption.darkforge.mod.mods.gui.Gui;
 import uk.co.hexeption.darkforge.mod.mods.misc.CustomChat;
 import uk.co.hexeption.darkforge.mod.mods.misc.MiddleClickFriend;
 import uk.co.hexeption.darkforge.mod.mods.misc.NameProtect;
-import uk.co.hexeption.darkforge.mod.mods.movement.AutoSprint;
-import uk.co.hexeption.darkforge.mod.mods.movement.Fly;
-import uk.co.hexeption.darkforge.mod.mods.movement.InventoryMove;
-import uk.co.hexeption.darkforge.mod.mods.movement.Step;
+import uk.co.hexeption.darkforge.mod.mods.movement.*;
 import uk.co.hexeption.darkforge.mod.mods.render.*;
 
 import java.util.ArrayList;
@@ -58,7 +55,7 @@ public class ModManager {
 
         addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(),
                 new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(),
-                new Xray(), new CustomChat(), new MiddleClickFriend(), new InventoryMove(), new NameProtect());
+                new Xray(), new CustomChat(), new MiddleClickFriend(), new InventoryMove(), new NameProtect(), new NoSlowdown(), new Charms());
     }
 
     public void addModules(final Mod... mods) {

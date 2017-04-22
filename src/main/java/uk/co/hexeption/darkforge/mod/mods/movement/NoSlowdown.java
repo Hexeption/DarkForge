@@ -18,7 +18,12 @@
 
 package uk.co.hexeption.darkforge.mod.mods.movement;
 
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemPotion;
+import net.minecraft.item.ItemShield;
 import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -29,6 +34,23 @@ public class NoSlowdown extends Mod {
 
     @Override
     public void onEvent(Event event) {
+        if (getState()) {
+            if (event instanceof EventPlayerSlowDown) {
+                EventPlayerSlowDown eventPlayerSlowDown = event.cast();
 
+
+                if (eventPlayerSlowDown.getType() == Event.Type.POST && eventPlayerSlowDown.getEntity().getHeldItemMainhand().getItem() instanceof ItemBow ||
+                        eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemBow ||
+                        eventPlayerSlowDown.getEntity().getHeldItemMainhand().getItem() instanceof ItemFood ||
+                        eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemFood ||
+                        eventPlayerSlowDown.getEntity().getHeldItemMainhand().getItem() instanceof ItemPotion ||
+                        eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemPotion ||
+                        eventPlayerSlowDown.getEntity().getHeldItemMainhand().getItem() instanceof ItemShield ||
+                        eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemShield) {
+                    eventPlayerSlowDown.getEntity().movementInput.moveForward /= 0.2;
+                    eventPlayerSlowDown.getEntity().movementInput.moveStrafe /= 0.2;
+                }
+            }
+        }
     }
 }
