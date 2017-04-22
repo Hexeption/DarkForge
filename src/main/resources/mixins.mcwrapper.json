@@ -4,7 +4,9 @@
   "package": "uk.co.hexeption.darkforge.mixin.mixins",
   "refmap": "mixins.darkforge.refmap.json",
   "mixins": [
+    "MixinAbstractClientPlayer",
     "MixinBlock",
+    "MixinEntityPlayer",
     "MixinEntityPlayerSP",
     "MixinEntityRenderer",
     "MixinMinecraft",
