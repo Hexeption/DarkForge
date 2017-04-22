@@ -22,6 +22,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.mod.mods.gui.Gui;
 
 import java.io.IOException;
 
@@ -58,6 +60,8 @@ public class ClickGuiScreen extends GuiScreen {
                 if (Keyboard.getEventKeyState()) {
                     if (Keyboard.getEventKey() == 1) {
                         mc.displayGuiScreen(null);
+                        DarkForge.INSTANCE.modManager.getModuleByClass(Gui.class).setState(false);
+
                     } else {
                         clickGui.onkeyPressed(Keyboard.getEventKey(), Keyboard.getEventCharacter());
                     }

@@ -36,7 +36,6 @@ public class Gui extends Mod {
             if (event instanceof EventKeyboard) {
                 if (event.getType() == Event.Type.PRE) {
                     mc.displayGuiScreen(DarkForge.INSTANCE.getGui());
-                    onDisable();
                 }
             }
         }

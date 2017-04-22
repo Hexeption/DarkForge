@@ -36,8 +36,8 @@ public class InputHandler {
         EventManager.handleEvent(event);
 
         for (Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
-            if (mod.getBind() == key) {
-                mod.onToggle();
+            if (Keyboard.getEventKey() == mod.getBind()) {
+                mod.toggle();
             }
         }
 
@@ -49,7 +49,9 @@ public class InputHandler {
         boolean state = Keyboard.getEventKeyState();
         int key = Keyboard.getEventKey();
         char character = Keyboard.getEventCharacter();
-        handleBind(state, key, character);
+        if (key != Keyboard.KEY_NONE) {
+            handleBind(state, key, character);
+        }
         EventKeyboard event = new EventKeyboard(Event.Type.PRE, key);
         EventManager.handleEvent(event);
 
