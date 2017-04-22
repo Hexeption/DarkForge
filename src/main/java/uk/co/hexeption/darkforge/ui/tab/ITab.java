@@ -27,7 +27,7 @@ public interface ITab {
 
     String name();
 
-    void render(Minecraft mc, int diaplyWidth, int displayHeight);
+    void render(Minecraft mc, int displayWidth, int displayHeight);
 
     void onKeyPressed(int key);
 

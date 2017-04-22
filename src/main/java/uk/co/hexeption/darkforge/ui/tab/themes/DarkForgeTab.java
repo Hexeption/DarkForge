@@ -43,6 +43,9 @@ public class DarkForgeTab implements ITab {
 
     private int tabHeight = 30;
 
+    /**
+     * Initialises mods for the categorys
+     */
     public DarkForgeTab() {
 
         Mod.Category[] array;
@@ -60,14 +63,26 @@ public class DarkForgeTab implements ITab {
         }
     }
 
+    /**
+     * Name for the Tab
+     *
+     * @return
+     */
     @Override
     public String name() {
 
         return "DarkForge";
     }
 
+    /**
+     * Renders the tab
+     *
+     * @param mc
+     * @param displayWidth
+     * @param displayHeight
+     */
     @Override
-    public void render(Minecraft mc, int diaplyWidth, int displayHeight) {
+    public void render(Minecraft mc, int displayWidth, int displayHeight) {
 
         int count = 0;
         for (Mod.Category category : Mod.Category.values()) {
@@ -111,24 +126,11 @@ public class DarkForgeTab implements ITab {
                 modcount++;
             }
         }
-
-//        if (tab == 2) {
-//            int values = 0;
-//            for (Mod mod : getModsForCategorys()) {
-//                for (Value value : mod.getValues()) {
-//                    int y = tabHeight + (values * 15);
-//
-//                    GLUtils.glColor(new Color(77, 8, 8, 169));
-//                    GLUtils.drawBorderRect(105 + getLongestModWidth(), y, 120 + this.getLongestValueWidth() + getLongestModWidth(), y + 15, 1);
-////                    LogHelper.info(value.getName());
-//                    DarkForge.INSTANCE.fontManager.arraylist.drawCenteredStringWithShadow(value.getName(), DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(value.getName()) / 2 + 80 + 70, y + 8, Color.white.hashCode());
-//
-//                    values++;
-//                }
-//            }
-//        }
     }
 
+    /**
+     * Moves up on the tab list
+     */
     private void up() {
 
         if (tab == 0) {
@@ -145,12 +147,16 @@ public class DarkForgeTab implements ITab {
         }
     }
 
+    /**
+     * Moves down on the tab list
+     */
     private void down() {
 
         if (tab == 0) {
-            if (this.selectedTab >= this.category.size() - 1) {
+            if (selectedTab >= this.category.size() - 1) {
                 this.selectedTab = -1;
             }
+
             this.selectedTab += 1;
         } else if (tab == 1) {
             if (this.selectedMod >= getModsForCategorys().size() - 1) {
@@ -159,31 +165,37 @@ public class DarkForgeTab implements ITab {
 
             this.selectedMod += 1;
         }
+
     }
 
+    /**
+     * Moves to the left to close the mod list
+     */
     private void left() {
 
         if (tab == 1) {
             tab = 0;
         }
-        if (tab == 2) {
-            tab = 1;
-        }
     }
 
+    /**
+     * Moves to the right to open the mod list and activate the mods
+     */
     private void right() {
 
         if (tab == 1) {
-            enter();
+            this.enter();
         } else {
             if (tab == 0) {
-
                 tab = 1;
                 this.selectedMod = 0;
             }
         }
     }
 
+    /**
+     * Enables the mods
+     */
     private void enter() {
 
         if (tab == 1) {
@@ -191,6 +203,11 @@ public class DarkForgeTab implements ITab {
         }
     }
 
+    /**
+     * Runs the keybinds for the tab
+     *
+     * @param key
+     */
     @Override
     public void onKeyPressed(int key) {
 
@@ -215,6 +232,11 @@ public class DarkForgeTab implements ITab {
         }
     }
 
+    /**
+     * Gets the mods for each category
+     *
+     * @return
+     */
     private ArrayList<Mod> getModsForCategorys() {
 
         ArrayList<Mod> mods = new ArrayList<>();
@@ -228,6 +250,11 @@ public class DarkForgeTab implements ITab {
         return mods;
     }
 
+    /**
+     * returns the longest mod width
+     *
+     * @return
+     */
     private int getLongestModWidth() {
 
         int longest = 0;
@@ -239,6 +266,11 @@ public class DarkForgeTab implements ITab {
         return longest;
     }
 
+    /**
+     * returns the longest value width
+     *
+     * @return
+     */
     private int getLongestValueWidth() {
 
         int longest = 0;
