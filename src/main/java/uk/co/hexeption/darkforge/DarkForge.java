@@ -46,6 +46,8 @@ public enum DarkForge {
 
     public final NotificationManager notificationManager = new NotificationManager();
 
+    public final WaypointManager waypointManager = new WaypointManager();
+
     public final Hud hud = new Hud();
 
     public final Tab tab = new Tab();

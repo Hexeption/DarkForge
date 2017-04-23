@@ -19,8 +19,11 @@
 package uk.co.hexeption.darkforge.utils;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -238,6 +241,31 @@ public class RenderUtils {
         glEnable(GL_DEPTH_TEST);
         glDepthMask(true);
 //        glDisable(GL_BLEND);
+    }
+
+
+    public static void drawTag(String s, double d, double d1, double d2, float scale, int color) {
+
+        d += 0.5D;
+        d2 += 0.5D;
+        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
+        RenderManager renderManager1 = Minecraft.getMinecraft().getRenderManager();
+        glPushMatrix();
+        glTranslatef((float) d, (float) d1 + 1.5F, (float) d2 - 0.5F);
+        glNormal3f(0.0F, 1.0F, 0.0F);
+        glRotatef(-renderManager1.playerViewY, 0.0F, 1.0F, 0.0F);
+        glRotatef(renderManager1.playerViewX, 1.0F, 0.0F, 0.0F);
+        glScalef(-scale, -scale, scale);
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_BLEND);
+        glBlendFunc(770, 771);
+        fontrenderer.drawStringWithShadow(s, -fontrenderer.getStringWidth(s) / 2, 0, color);
+        fontrenderer.drawStringWithShadow(s, -fontrenderer.getStringWidth(s) / 2, 0, color);
+        glDisable(GL_BLEND);
+        glEnable(GL_DEPTH_TEST);
+        GlStateManager.color(1, 1, 1, 1);
+        glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        glPopMatrix();
     }
 
     public static void drawSolidBox() {
