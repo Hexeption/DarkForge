@@ -25,15 +25,12 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.net.Proxy;
 
-@SideOnly(Side.CLIENT)
 public class LoginUtils {
 
     private static final Logger logger = LogManager.getLogger();
@@ -63,53 +60,6 @@ public class LoginUtils {
             throw e;
         }
     }
-
-    public static void login(String name, String password) {
-
-        YggdrasilAuthenticationService authenticationService;
-        authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
-        YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
-        authentication.setUsername(name);
-        authentication.setPassword(password);
-
-        try {
-            authentication.logIn();
-            setSession(new Session(authentication.getSelectedProfile().getName(), authentication.getSelectedProfile().getId().toString(), authentication.getAuthenticatedToken(), "mojang"));
-
-        } catch (AuthenticationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String check(String email, String password) {
-
-        YggdrasilAuthenticationService authenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
-        YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) authenticationService.createUserAuthentication(Agent.MINECRAFT);
-        authentication.setUsername(email);
-        authentication.setPassword(password);
-        String displayText;
-
-        try {
-            authentication.logIn();
-            displayText = "";
-        } catch (AuthenticationUnavailableException e) {
-            displayText = "§4§lCannot contact authentication server!";
-        } catch (AuthenticationException e)    // wrong password account migrated
-        {
-            if (e.getMessage().contains("Invalid username or password.") || e.getMessage().toLowerCase().contains("account migrated")) {
-                displayText = "§4§lWrong password!";
-            } else {
-                displayText = "§4§lCannot contact authentication server!";
-            }
-
-            logger.error(e.getMessage());
-        } catch (NullPointerException e) {
-            displayText = "§4§lWrong password!";
-        }
-
-        return displayText;
-    }
-
 
     public static String loginAlt(String email, String password) {
 

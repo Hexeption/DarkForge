@@ -23,11 +23,11 @@ package uk.co.hexeption.darkforge.value;
  */
 public class Value<T> {
 
+    public T value;
+
     private String name;
 
     private T defaultValue;
-
-    public T value;
 
     public Value(String name, T defaultValue) {
 

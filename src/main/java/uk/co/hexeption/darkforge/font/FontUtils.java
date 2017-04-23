@@ -22,12 +22,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static org.lwjgl.opengl.GL11.*;
 
-@SideOnly(Side.CLIENT)
 public class FontUtils {
 
     private static final Tessellator tessellator = Tessellator.getInstance();
@@ -42,6 +39,19 @@ public class FontUtils {
         renderer.pos(x, y + height, 0F).tex(u, s).endVertex();
         renderer.pos(x + width, y + height, 0F).tex(t, s).endVertex();
         renderer.pos(x + width, y, 0F).tex(t, v).endVertex();
+        tessellator.draw();
+    }
+
+    public static void drawTextureRect(float x, float y, float width, float height, float u, float v, float t, float s, float z) {
+
+        VertexBuffer renderer = tessellator.getBuffer();
+        renderer.begin(GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX);
+        renderer.pos(x + width, y, z).tex(t, v).endVertex();
+        renderer.pos(x, y, z).tex(u, v).endVertex();
+        renderer.pos(x, y + height, z).tex(u, s).endVertex();
+        renderer.pos(x, y + height, z).tex(u, s).endVertex();
+        renderer.pos(x + width, y + height, z).tex(t, s).endVertex();
+        renderer.pos(x + width, y, z).tex(t, v).endVertex();
         tessellator.draw();
     }
 

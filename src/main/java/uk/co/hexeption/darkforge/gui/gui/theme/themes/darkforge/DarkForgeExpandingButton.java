@@ -23,7 +23,6 @@ import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
 import uk.co.hexeption.darkforge.gui.gui.elements.ExpandingButton;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
-import uk.co.hexeption.darkforge.utils.MathUtils;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 
@@ -45,27 +44,38 @@ public class DarkForgeExpandingButton extends ComponentRenderer {
         ExpandingButton button = (ExpandingButton) component;
         String text = button.getText();
         Color color = new Color(31, 31, 31, 20);
+        Color enable = new Color(77, 8, 8, 100);
 
-        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, button.getDimension().height, mouseX, mouseY)) {
+        if (GLUtils.isHovered(button.getX(), button.getY(), button.getDimension().width, 18, mouseX, mouseY)) {
             color = new Color(31, 31, 31, 120);
         }
 
-        RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + button.getDimension().height, color);
-        theme.fontRenderer.drawString(text, button.getX() + (button.getDimension().width / 2 - theme.fontRenderer.getStringWidth(text) / 2), button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 2), button.isEnabled() ? Color.green.hashCode() : Color.WHITE.hashCode());
-
-        if (button.isMaximized()) {
-            RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getButtonHeight(), new Color(128, 128, 128, 55));
-            RenderUtils.drawRect(button.getX(), button.getY() +  button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getDimension().height, new Color(128, 128, 128, 55));
+        if (button.isEnabled()) {
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, enable);
+        } else {
+            RenderUtils.drawRect(button.getX(), button.getY(), button.getX() + button.getDimension().width - 1, button.getY() + 18, color);
         }
 
-        if(!button.isMaximized()){
-            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 19 - 6, button.getX() + button.getDimension().width - 6, button.getY() + 6, 1.5, Color.WHITE);
-        }else{
-            RenderUtils.drawTri(button.getX() + button.getDimension().width - 19 + 6, button.getY() + 19 - 6, MathUtils.getMiddleDouble(button.getX() + button.getDimension().width - 19, button.getX() + button.getDimension().width), button.getY() + 6, button.getX() + button.getDimension().width - 6, button.getY() + 19 - 6, 1.5, Color.WHITE);
+        theme.fontRenderer.drawString(text, button.getX() + 5, button.getY() + (button.getButtonHeight() / 2 - theme.fontRenderer.getHeight() / 4), Color.WHITE.hashCode());
+
+        if (button.isMaximized()) {
+            RenderUtils.drawRect(button.getX(), button.getY() + button.getButtonHeight() - 1, button.getX() + button.getDimension().width, button.getY() + button.getButtonHeight(), new Color(255, 255, 255, 80));
+            RenderUtils.drawRect(button.getX(), button.getY() + button.getDimension().height - 1, button.getX() + button.getDimension().width, button.getY() + button.getDimension().height, new Color(255, 255, 255, 80));
+        }
+
+        if (!button.isMaximized()) {
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 13, false, new Color(255, 255, 255, 255).hashCode());
+        } else {
+            drawExpanded(button.getX() + button.getDimension().width - 15, button.getY() + 3, 13, true, new Color(255, 255, 255, 255).hashCode());
         }
 
         if (button.isMaximized()) {
             button.renderChildren(mouseX, mouseY);
         }
+    }
+
+    @Override
+    public void doInteractions(Component component, int mouseX, int mouseY) {
+
     }
 }

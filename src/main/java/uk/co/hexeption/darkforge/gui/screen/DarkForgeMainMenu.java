@@ -35,6 +35,9 @@ public class DarkForgeMainMenu extends GuiScreen {
 
     private Panorama panorama = new Panorama(width, height);
 
+    private GuiButton modButton;
+    private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
+
     @Override
     public void initGui() {
 
@@ -44,11 +47,12 @@ public class DarkForgeMainMenu extends GuiScreen {
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, y, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, y + 24 * 1, I18n.format("menu.multiplayer")));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, y + 24 * 2, 98, 20, "Mods"));
+        this.buttonList.add(modButton = new GuiButton(2, this.width / 2 + 2, y + 24 * 2, 98, 20, "Mods"));
         this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, "Alt Manager"));
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, y + 72, 98, 20, I18n.format("menu.options")));
         this.buttonList.add(new GuiButton(5, this.width / 2 + 2, y + 72, 98, 20, I18n.format("menu.quit")));
         this.buttonList.add(new GuiButtonLanguage(6, this.width / 2 - 124, y + 72));
+        modUpdateNotification = net.minecraftforge.client.gui.NotificationModUpdateScreen.init(new GuiMainMenu(), modButton);
     }
 
     @Override
@@ -88,6 +92,7 @@ public class DarkForgeMainMenu extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
+
     }
 
     @Override
@@ -101,7 +106,17 @@ public class DarkForgeMainMenu extends GuiScreen {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         title.render(titleX, titleY + 10, 300, 100);
         drawString(fontRendererObj, ClientInfo.VERSION_BUILD, width - fontRendererObj.getStringWidth(ClientInfo.VERSION_BUILD) - 2, height - 12, 0xffffff);
+
+        java.util.List<String> brandings = com.google.common.collect.Lists.reverse(net.minecraftforge.fml.common.FMLCommonHandler.instance().getBrandings(true));
+        for (int brdline = 0; brdline < brandings.size(); brdline++) {
+            String brd = brandings.get(brdline);
+            if (!com.google.common.base.Strings.isNullOrEmpty(brd)) {
+                this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + brdline * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
+            }
+        }
+
         super.drawScreen(mouseX, mouseY, partialTicks);
+        modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
     }
 
 }

@@ -5,15 +5,560 @@ Changelog of DarkForge
 ## Unreleased
 ### No issue
 
-**:gem: Added Teamcity and SonarCube links**
+**:gem: Updated Tab Gui**
 
 
-[f212b40f433406e](https://github.com/Hexeption/DarkForge/commit/f212b40f433406e) Hexeption *2017-02-25 02:03:47*
+[7e629aa1828b163](https://github.com/Hexeption/DarkForge/commit/7e629aa1828b163) Hexeption *2017-04-22 17:17:00*
 
-**:bug: Fixed Reflection**
+**:sparkles: Added Charms & Updated No Slowdown**
 
 
-[e9e6877869b94ac](https://github.com/Hexeption/DarkForge/commit/e9e6877869b94ac) Hexeption *2017-02-24 23:26:54*
+[f53f8c7b0ca5c8e](https://github.com/Hexeption/DarkForge/commit/f53f8c7b0ca5c8e) Hexeption *2017-04-22 16:22:42*
+
+**:gem: Re Added Fly**
+
+
+[52d7d9148c96553](https://github.com/Hexeption/DarkForge/commit/52d7d9148c96553) Hexeption *2017-04-22 14:56:12*
+
+**:gem: Re Added Capes API**
+
+
+[5ccf5d711ad5836](https://github.com/Hexeption/DarkForge/commit/5ccf5d711ad5836) Hexeption *2017-04-22 14:49:59*
+
+**:gem: Re Added Xray**
+
+
+[d56bcb855d6d822](https://github.com/Hexeption/DarkForge/commit/d56bcb855d6d822) Hexeption *2017-04-22 14:41:26*
+
+**:bug: Fixed Keybinds :gem: Update Forge**
+
+
+[2a59f56733d9ab0](https://github.com/Hexeption/DarkForge/commit/2a59f56733d9ab0) Hexeption *2017-04-22 02:15:21*
+
+**:gem: Updated Mixins & Events**
+
+
+[03c7e6f10ffc74d](https://github.com/Hexeption/DarkForge/commit/03c7e6f10ffc74d) Hexeption *2017-04-22 01:22:24*
+
+**:gem: Added Most of the Mixins & Events**
+
+
+[d21bd0582ead3a0](https://github.com/Hexeption/DarkForge/commit/d21bd0582ead3a0) Hexeption *2017-04-21 22:42:14*
+
+**:gem: Updating Mixins & Events**
+
+
+[1bb165ae2b32412](https://github.com/Hexeption/DarkForge/commit/1bb165ae2b32412) Hexeption *2017-04-21 20:55:02*
+
+**:gem: Added "Capes API Service" to Service Menu**
+
+
+[5d4eb5a2782f57e](https://github.com/Hexeption/DarkForge/commit/5d4eb5a2782f57e) Hexeption *2017-04-17 17:41:32*
+
+**:gem: Updated Status Item to support custom services**
+
+
+[baf17c0b06dbbec](https://github.com/Hexeption/DarkForge/commit/baf17c0b06dbbec) Hexeption *2017-04-16 15:54:22*
+
+**:sparkles: Added Minecraft Status API viewer**
+
+
+[c9f1968bbf599a5](https://github.com/Hexeption/DarkForge/commit/c9f1968bbf599a5) Hexeption *2017-04-09 17:29:24*
+
+**:gem: Cleaned up the code for the Gui**
+
+
+[6aea5e4509c55e5](https://github.com/Hexeption/DarkForge/commit/6aea5e4509c55e5) Hexeption *2017-04-07 19:09:52*
+
+**:gem: Cleaned up the code for the Gui**
+
+
+[90bf082cee0e4c0](https://github.com/Hexeption/DarkForge/commit/90bf082cee0e4c0) Hexeption *2017-04-01 17:33:19*
+
+**:bug: Fixes gui button not showing the real mod state when a mod i turn on/off with a keybind or other means #9**
+
+
+[b2a788359af8fad](https://github.com/Hexeption/DarkForge/commit/b2a788359af8fad) Hexeption *2017-04-01 16:49:13*
+
+**:gem: Updated Build name**
+
+
+[f953fe6ba63f0b8](https://github.com/Hexeption/DarkForge/commit/f953fe6ba63f0b8) Hexeption *2017-04-01 01:28:12*
+
+**:gem: Added Build Number from teamCity**
+
+
+[4922c6c9df93073](https://github.com/Hexeption/DarkForge/commit/4922c6c9df93073) Hexeption *2017-04-01 01:16:42*
+
+**:gem: Lang Changes & Text/Button Alignment #14**
+
+
+[27b11694b4312bb](https://github.com/Hexeption/DarkForge/commit/27b11694b4312bb) Hexeption *2017-04-01 01:07:32*
+
+**:package: Removed Side Only annotation**
+
+
+[5f09e8a21b61dba](https://github.com/Hexeption/DarkForge/commit/5f09e8a21b61dba) Hexeption *2017-04-01 00:56:20*
+
+**:gem: Updated a lot**
+
+ * #forgot to do small commits
+
+[7232e4a3a1ab2ff](https://github.com/Hexeption/DarkForge/commit/7232e4a3a1ab2ff) Hexeption *2017-03-30 23:00:29*
+
+
+## release-b42
+### No issue
+
+**? Updated Changelog**
+
+
+[b7c6123c9eed9c8](https://github.com/Hexeption/DarkForge/commit/b7c6123c9eed9c8) Hexeption *2017-03-24 15:41:49*
+
+**:bug: Fixed Gui Theme**
+
+
+[155fad53c310742](https://github.com/Hexeption/DarkForge/commit/155fad53c310742) Hexeption *2017-03-24 13:31:17*
+
+**:sparkles: Added Notification Icons**
+
+
+[14f3e1ba5dfc281](https://github.com/Hexeption/DarkForge/commit/14f3e1ba5dfc281) Hexeption *2017-03-24 13:20:57*
+
+**:gem: Cleanup some basecode :sparkles: Added Name Protect**
+
+
+[baf33c5fb3094c7](https://github.com/Hexeption/DarkForge/commit/baf33c5fb3094c7) Hexeption *2017-03-24 12:32:16*
+
+
+## release-b41
+### No issue
+
+**:gem: Updated mod sorting with a switch**
+
+
+[3f150344057e68f](https://github.com/Hexeption/DarkForge/commit/3f150344057e68f) Hexeption *2017-03-23 12:37:26*
+
+**:sparkles: Added Sorting for mods**
+
+
+[423f19575e8d595](https://github.com/Hexeption/DarkForge/commit/423f19575e8d595) Hexeption *2017-03-23 12:22:45*
+
+
+## release-b40
+### No issue
+
+**:sparkles: Added Invetory Move :TODO:**
+
+
+[f6dd44f0f699d20](https://github.com/Hexeption/DarkForge/commit/f6dd44f0f699d20) Hexeption *2017-03-22 19:12:50*
+
+**:sparkles: Added Mouse Event, "Middle Click Friend" mod and Mods now can be visible or not**
+
+
+[40893914c243d34](https://github.com/Hexeption/DarkForge/commit/40893914c243d34) Hexeption *2017-03-22 18:51:26*
+
+**:package: Moved mods into there categorys**
+
+
+[2877041dce450de](https://github.com/Hexeption/DarkForge/commit/2877041dce450de) Hexeption *2017-03-22 18:11:04*
+
+**:package: Fixed Notification**
+
+
+[2fb7a2026cd1daa](https://github.com/Hexeption/DarkForge/commit/2fb7a2026cd1daa) Hexeption *2017-03-22 18:01:18*
+
+**:bug: added a check to make sure theres a notification before rendering it**
+
+
+[a56ccc7acd075e6](https://github.com/Hexeption/DarkForge/commit/a56ccc7acd075e6) Hexeption *2017-03-22 17:59:26*
+
+**:sparkles: Renders notifications to hud**
+
+
+[1fef2b5f40bcee0](https://github.com/Hexeption/DarkForge/commit/1fef2b5f40bcee0) Hexeption *2017-03-22 17:55:43*
+
+**:sparkles: Added DarkForge tab theme**
+
+
+[07fe319a1358706](https://github.com/Hexeption/DarkForge/commit/07fe319a1358706) Hexeption *2017-03-22 17:28:59*
+
+
+## release-b39
+### No issue
+
+**:sparkles: Added Notification's. TODO: Render them**
+
+
+[8ed67b4e83e5a64](https://github.com/Hexeption/DarkForge/commit/8ed67b4e83e5a64) Hexeption *2017-03-21 21:06:55*
+
+**:package: Removed friends log**
+
+
+[e35dcc7dea753ad](https://github.com/Hexeption/DarkForge/commit/e35dcc7dea753ad) Hexeption *2017-03-21 20:37:42*
+
+**:sparkles: Added the base for Tab's**
+
+
+[576130514aaa269](https://github.com/Hexeption/DarkForge/commit/576130514aaa269) Hexeption *2017-03-21 20:36:34*
+
+
+## release-b38
+### No issue
+
+**:bug: Fixes #11**
+
+
+[dbb7f2cab1a5110](https://github.com/Hexeption/DarkForge/commit/dbb7f2cab1a5110) Hexeption *2017-03-21 20:30:44*
+
+**:lipstick: Cleaned up**
+
+
+[532370e9cdbd262](https://github.com/Hexeption/DarkForge/commit/532370e9cdbd262) Hexeption *2017-03-21 20:08:59*
+
+
+## release-b37
+### No issue
+
+**:lipstick: Centered text in button for "Huzuni Theme"**
+
+
+[4820445b5c0c0c9](https://github.com/Hexeption/DarkForge/commit/4820445b5c0c0c9) Hexeption *2017-03-20 17:21:48*
+
+**:bug: Fixed Keybind gui element**
+
+
+[838eb874e4079de](https://github.com/Hexeption/DarkForge/commit/838eb874e4079de) Hexeption *2017-03-20 17:18:06*
+
+**:lipstick: Updated Icons**
+
+
+[8291071beb590c3](https://github.com/Hexeption/DarkForge/commit/8291071beb590c3) Hexeption *2017-03-20 16:43:02*
+
+
+## release-b36
+### No issue
+
+**:sparkles: Added a friend command**
+
+
+[ed7a0f9191f90f2](https://github.com/Hexeption/DarkForge/commit/ed7a0f9191f90f2) Hexeption *2017-03-20 06:50:12*
+
+**:sparkles: Added a friend manager**
+
+
+[5ed52c1bc34a340](https://github.com/Hexeption/DarkForge/commit/5ed52c1bc34a340) Hexeption *2017-03-20 06:19:40*
+
+
+## release-b35
+### No issue
+
+**:sparkles: Added a simple "Huzuni Theme"**
+
+
+[41979001cb93949](https://github.com/Hexeption/DarkForge/commit/41979001cb93949) Hexeption *2017-03-20 05:44:55*
+
+**:lipstick: Cleaned up "DarkForge Theme"**
+
+
+[eed47f8cd6e54b3](https://github.com/Hexeption/DarkForge/commit/eed47f8cd6e54b3) Hexeption *2017-03-19 11:31:57*
+
+**:sparkles: Added Pin/Arrows**
+
+
+[c0c50cbd0952f55](https://github.com/Hexeption/DarkForge/commit/c0c50cbd0952f55) Hexeption *2017-03-19 03:43:58*
+
+**Update README.md**
+
+
+[23724e959d405c8](https://github.com/Hexeption/DarkForge/commit/23724e959d405c8) Hexeption *2017-03-19 02:02:39*
+
+
+## release-b34
+### No issue
+
+**:sparkles: Rename**
+
+
+[705579a23c53830](https://github.com/Hexeption/DarkForge/commit/705579a23c53830) Hexeption *2017-03-19 01:52:13*
+
+
+## release-b33
+### No issue
+
+**:sparkles: Added a Keybinds to Gui, but some how its not taking any keyboard inputs //TODO:Fix**
+
+
+[e6ea149c9afba9d](https://github.com/Hexeption/DarkForge/commit/e6ea149c9afba9d) Hexeption *2017-03-19 01:17:49*
+
+**:sparkles: Added a theme to Gui**
+
+
+[599e084fad67d99](https://github.com/Hexeption/DarkForge/commit/599e084fad67d99) Hexeption *2017-03-18 21:08:36*
+
+**:sparkles: Values now save/load from json**
+
+
+[41a62f42223c7f3](https://github.com/Hexeption/DarkForge/commit/41a62f42223c7f3) Hexeption *2017-03-18 18:26:22*
+
+**:bug: Removed potion effects from the hud**
+
+
+[e83888416ca6fcd](https://github.com/Hexeption/DarkForge/commit/e83888416ca6fcd) Hexeption *2017-03-17 21:18:53*
+
+**:bug: Hand no longer changes color and opacity**
+
+
+[e21524622ce3e02](https://github.com/Hexeption/DarkForge/commit/e21524622ce3e02) Hexeption *2017-03-16 16:34:37*
+
+**:bug: Can See Blocks with Fullbright off**
+
+
+[3e77ce128f33f4e](https://github.com/Hexeption/DarkForge/commit/3e77ce128f33f4e) Hexeption *2017-03-16 12:40:50*
+
+
+## release-b31
+### No issue
+
+**:bug: Fixed @MCVERSION@**
+
+
+[789936e29fe5bc1](https://github.com/Hexeption/DarkForge/commit/789936e29fe5bc1) Hexeption *2017-03-16 12:09:25*
+
+**:sparkles: Added Xray Command**
+
+
+[a2cb7a79eaf6372](https://github.com/Hexeption/DarkForge/commit/a2cb7a79eaf6372) Hexeption *2017-03-16 11:37:09*
+
+
+## release-b30
+### No issue
+
+**:sparkles: Added Capes API**
+
+
+[b1258c96d57d32f](https://github.com/Hexeption/DarkForge/commit/b1258c96d57d32f) Hexeption *2017-03-15 05:31:56*
+
+**:sparkles: Added Capes API**
+
+
+[e6a47f569f9fa24](https://github.com/Hexeption/DarkForge/commit/e6a47f569f9fa24) Hexeption *2017-03-15 05:31:41*
+
+
+## release-b29
+### No issue
+
+**:card_index: Update**
+
+
+[25b77140403e7cd](https://github.com/Hexeption/DarkForge/commit/25b77140403e7cd) Hexeption *2017-03-15 03:43:33*
+
+**:card_index: Update?**
+
+
+[7c4f31fb1174e99](https://github.com/Hexeption/DarkForge/commit/7c4f31fb1174e99) Hexeption *2017-03-15 03:31:05*
+
+**:card_index: Update?**
+
+
+[bdd06ca4ed74e51](https://github.com/Hexeption/DarkForge/commit/bdd06ca4ed74e51) Hexeption *2017-03-15 03:26:25*
+
+
+## release-b28
+### No issue
+
+**:card_index: Adding Copyright**
+
+
+[5f33e7c420ab86c](https://github.com/Hexeption/DarkForge/commit/5f33e7c420ab86c) Hexeption *2017-03-15 03:18:30*
+
+**:gem: Added Chat :bug: Fixed Config Loading and some smaller bugs**
+
+
+[cdd4df2b42fc4d6](https://github.com/Hexeption/DarkForge/commit/cdd4df2b42fc4d6) Hexeption *2017-03-15 03:13:52*
+
+
+## release-b27
+### No issue
+
+**:gem: Added Xray**
+
+
+[e0846dbd53b6322](https://github.com/Hexeption/DarkForge/commit/e0846dbd53b6322) Hexeption *2017-03-13 22:22:44*
+
+
+## release-b26
+### No issue
+
+**:gem: Renamed Events**
+
+
+[227f28e3e15a40d](https://github.com/Hexeption/DarkForge/commit/227f28e3e15a40d) Hexeption *2017-03-13 15:18:29*
+
+**:gem: Added Update Event**
+
+
+[4f47f00feaabd84](https://github.com/Hexeption/DarkForge/commit/4f47f00feaabd84) Hexeption *2017-03-13 15:15:51*
+
+**:gem: Re-added Main Menu**
+
+
+[dd213184a3fdabc](https://github.com/Hexeption/DarkForge/commit/dd213184a3fdabc) Hexeption *2017-03-13 15:08:54*
+
+**:gem: Added mixin support for commands**
+
+
+[36a023af225df97](https://github.com/Hexeption/DarkForge/commit/36a023af225df97) Hexeption *2017-03-13 15:01:50*
+
+**:gem: Fixed Expanding button text aligment**
+
+
+[5c697b119816ab2](https://github.com/Hexeption/DarkForge/commit/5c697b119816ab2) Hexeption *2017-03-13 14:47:13*
+
+**Updated most mods with new events**
+
+
+[9ef70101c0a3422](https://github.com/Hexeption/DarkForge/commit/9ef70101c0a3422) Hexeption *2017-03-13 14:42:10*
+
+
+## release-b25
+### No issue
+
+**:gem: Added Movement Events**
+
+
+[30e648bc1e2b5d6](https://github.com/Hexeption/DarkForge/commit/30e648bc1e2b5d6) Hexeption *2017-03-13 07:38:08*
+
+
+## release-b24
+### No issue
+
+**Basic Mixin Support**
+
+
+[1462e3719fac2ea](https://github.com/Hexeption/DarkForge/commit/1462e3719fac2ea) Hexeption *2017-03-12 18:26:28*
+
+**? Renamed Module to Mods**
+
+
+[466856f578246b5](https://github.com/Hexeption/DarkForge/commit/466856f578246b5) Hexeption *2017-03-10 23:48:21*
+
+
+## release-b21
+### No issue
+
+**:gem: Added Text to Gui**
+
+
+[c6719423f3f7509](https://github.com/Hexeption/DarkForge/commit/c6719423f3f7509) Hexeption *2017-03-04 02:34:50*
+
+**:construction: Getting there**
+
+
+[eb4d8bfa6b84b55](https://github.com/Hexeption/DarkForge/commit/eb4d8bfa6b84b55) Hexeption *2017-03-04 02:06:18*
+
+**:construction: Start to Killaura**
+
+
+[6b974b6096a4fc0](https://github.com/Hexeption/DarkForge/commit/6b974b6096a4fc0) Hexeption *2017-02-28 19:10:21*
+
+
+## release-b20
+### No issue
+
+**:sparkles: Re-Coded Hud**
+
+
+[6850615070f98b4](https://github.com/Hexeption/DarkForge/commit/6850615070f98b4) Hexeption *2017-02-28 18:39:07*
+
+**:sparkles: Added Java 8 Checks**
+
+
+[45ffa0b109b776c](https://github.com/Hexeption/DarkForge/commit/45ffa0b109b776c) Hexeption *2017-02-28 18:16:32*
+
+
+## release-b17
+### No issue
+
+**:sparkles: Values**
+
+
+[9e1da634c8ee9ac](https://github.com/Hexeption/DarkForge/commit/9e1da634c8ee9ac) Hexeption *2017-02-28 18:11:05*
+
+
+## release-b16
+### No issue
+
+**:gem: Fixed ArrayList ConcurrentModificationException (Maybe)**
+
+
+[d516689cea11a6a](https://github.com/Hexeption/DarkForge/commit/d516689cea11a6a) Hexeption *2017-02-28 08:28:00*
+
+**:gem: Fixed Gl bugs with Breadcrumbs**
+
+
+[3445f9d54b12a8a](https://github.com/Hexeption/DarkForge/commit/3445f9d54b12a8a) Hexeption *2017-02-28 08:11:20*
+
+**:gem: Moved FontManager into the Manager's package**
+
+
+[4eb1a331537f22e](https://github.com/Hexeption/DarkForge/commit/4eb1a331537f22e) Hexeption *2017-02-28 08:02:53*
+
+**:gem: Cleaned up Gui**
+
+
+[682276185ef3fa4](https://github.com/Hexeption/DarkForge/commit/682276185ef3fa4) Hexeption *2017-02-28 08:02:04*
+
+
+## release-b15
+### No issue
+
+**:gem: Fixed "Auto Sprint", "Step"**
+
+
+[49a2d2dbcc0c430](https://github.com/Hexeption/DarkForge/commit/49a2d2dbcc0c430) Hexeption *2017-02-28 07:19:17*
+
+**Removed already made methods**
+
+
+[5f3162f5f20bbf3](https://github.com/Hexeption/DarkForge/commit/5f3162f5f20bbf3) lucemans *2017-02-26 17:05:23*
+
+**Finishing step.java**
+
+
+[0ea8b8beb1d003c](https://github.com/Hexeption/DarkForge/commit/0ea8b8beb1d003c) lucemans *2017-02-26 17:04:31*
+
+**Create Step.java**
+
+
+[3a73536716e89c2](https://github.com/Hexeption/DarkForge/commit/3a73536716e89c2) lucemans *2017-02-26 16:57:30*
+
+**AutoSprint Complete**
+
+ * I have completed AutoSprint.
+
+[a922c7c13817ac6](https://github.com/Hexeption/DarkForge/commit/a922c7c13817ac6) Xdarkwolf33 *2017-02-25 01:44:03*
+
+**Update AutoSprint.java**
+
+
+[7778afd2547182d](https://github.com/Hexeption/DarkForge/commit/7778afd2547182d) Xdarkwolf33 *2017-02-25 01:35:01*
+
+**Update AutoSprint.java**
+
+
+[960d665e378970d](https://github.com/Hexeption/DarkForge/commit/960d665e378970d) Xdarkwolf33 *2017-02-25 00:58:08*
+
+**Update AutoSprint.java**
+
+
+[c70a183f0b588a6](https://github.com/Hexeption/DarkForge/commit/c70a183f0b588a6) Xdarkwolf33 *2017-02-25 00:55:37*
+
+**Basic AutoSprint**
+
+ * AutoSprint
+
+[d698e9bc31db0ba](https://github.com/Hexeption/DarkForge/commit/d698e9bc31db0ba) Xdarkwolf33 *2017-02-25 00:53:35*
 
 **Grammar (Again)**
 
@@ -34,6 +579,87 @@ Changelog of DarkForge
  * this.buttonList.add(new GuiButton(3, this.width / 2 - 100, y + 24 * 2, 98, 20, &quot;Alt Manager&quot;));
 
 [e636026350535db](https://github.com/Hexeption/DarkForge/commit/e636026350535db) Xdarkwolf33 *2017-02-24 21:06:26*
+
+
+## release-b14
+### No issue
+
+**? Removed Test Code**
+
+
+[6f6986e51c82458](https://github.com/Hexeption/DarkForge/commit/6f6986e51c82458) Hexeption *2017-02-28 04:27:36*
+
+**? Added Expanding Buttons**
+
+
+[0f6863eb6403174](https://github.com/Hexeption/DarkForge/commit/0f6863eb6403174) Hexeption *2017-02-28 04:25:38*
+
+**? Added CheckButtons**
+
+
+[8e92e9208ad56aa](https://github.com/Hexeption/DarkForge/commit/8e92e9208ad56aa) Hexeption *2017-02-28 03:45:26*
+
+**? Added Sliders**
+
+
+[d33753e70ad8cc5](https://github.com/Hexeption/DarkForge/commit/d33753e70ad8cc5) Hexeption *2017-02-28 03:32:14*
+
+**? Fixed Dragging**
+
+
+[31177a13f8f12cb](https://github.com/Hexeption/DarkForge/commit/31177a13f8f12cb) Hexeption *2017-02-28 03:07:39*
+
+**? Fixed Buttons**
+
+
+[80614ad72a04d64](https://github.com/Hexeption/DarkForge/commit/80614ad72a04d64) Hexeption *2017-02-28 02:35:36*
+
+**? Frames and Buttons**
+
+
+[dee3a7caced590c](https://github.com/Hexeption/DarkForge/commit/dee3a7caced590c) Hexeption *2017-02-28 00:06:48*
+
+**? Updated Changelog**
+
+
+[b08b86076536518](https://github.com/Hexeption/DarkForge/commit/b08b86076536518) Hexeption *2017-02-26 03:16:45*
+
+**:construction: The start of a gui**
+
+
+[6b526035b319a95](https://github.com/Hexeption/DarkForge/commit/6b526035b319a95) Hexeption *2017-02-26 03:01:09*
+
+
+## release-b13
+### No issue
+
+**:bug: ESC now doesn't re-initialize the Main Menu**
+
+
+[66a7db932e72a0f](https://github.com/Hexeption/DarkForge/commit/66a7db932e72a0f) Hexeption *2017-02-26 02:55:31*
+
+
+## release-b12
+### No issue
+
+**:clipboard: Updated Changelog**
+
+
+[4afaa9698fa432a](https://github.com/Hexeption/DarkForge/commit/4afaa9698fa432a) Hexeption *2017-02-25 02:05:06*
+
+**:gem: Added Teamcity and SonarCube links**
+
+
+[f212b40f433406e](https://github.com/Hexeption/DarkForge/commit/f212b40f433406e) Hexeption *2017-02-25 02:03:47*
+
+
+## release-b11
+### No issue
+
+**:bug: Fixed Reflection**
+
+
+[e9e6877869b94ac](https://github.com/Hexeption/DarkForge/commit/e9e6877869b94ac) Hexeption *2017-02-24 23:26:54*
 
 **:gem: Reformatted and added IntelliJ Formatting**
 

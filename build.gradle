@@ -1,3 +1,9 @@
+
+
+/**
+ * Plugins
+ */
+
 /*******************************************************************************
  *     DarkForge a Forge Hacked Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
@@ -15,10 +21,6 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-
-/**
- * Plugins
- */
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.matthewprenger.cursegradle"
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
@@ -42,15 +44,23 @@ buildscript {
         maven {
             url = "https://plugins.gradle.org/m2"
         }
+        maven {
+            name = 'SpongePowered'
+            url = 'http://repo.spongepowered.org/maven'
+        }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.8"
-        classpath 'co.riiid:gradle-github-plugin:0.4.2'
+        classpath "co.riiid:gradle-github-plugin:0.4.2"
         classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.40"
+        classpath "org.spongepowered:mixingradle:0.4-SNAPSHOT"
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
     }
 }
-apply plugin: 'co.riiid.gradle'
+apply plugin: "co.riiid.gradle"
+apply plugin: "org.spongepowered.mixin"
+apply plugin: "com.github.johnrengelman.shadow"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -67,9 +77,12 @@ def githubTargetCommitish = 'g'
 def githubName = 'g'
 def githubPreRelease = true
 
+def buildCount = 'B1'
+
 
 if (hasProperty("teamcity")) {
     version = minecraft_version + "-" + teamcity["build.number"] + "-univeral"
+    buildCount = "B" + teamcity["BuildCounter"]
 
     githubOwner = teamcity["githubOwner"]
     githubRepo = teamcity["githubProject"]
@@ -85,7 +98,8 @@ minecraft {
     version = minecraft_version + "-" + forge_version
 
     replace "@VERSION@", project.version
-    replace "@MCVERSION", minecraft_version
+    replace "@MCVERSION@", minecraft_version
+    replace "@BUILD@", buildCount
 
     replaceIn "ClientInfo.java"
 
@@ -123,7 +137,41 @@ github {
 }
 
 task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
-    filePath = "CHANGELOG.md";
-    templateContent = new File('changelog.mustache').getText('UTF-8');
+    filePath = "CHANGELOG.md"
+    templateContent = new File('changelog.mustache').getText('UTF-8')
+}
+
+mixin {
+    add sourceSets.main, "mixins.darkforge.refmap.json"
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('org.spongepowered:mixin'))
+    }
+
+    exclude 'dummyThing'
+    exclude 'LICENSE.txt'
+    classifier = 'full'
+}
+
+reobf {
+    shadowJar {
+        mappingType = 'SEARGE'
+        classpath = sourceSets.main.compileClasspath
+    }
+}
+
+build.dependsOn(shadowJar)
+
+jar {
+    manifest {
+        attributes(
+                "MixinConfigs": 'mixins.mcwrapper.json',
+                "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
+                "TweakOrder": 0,
+                'FMLCorePluginContainsFMLMod': 'uk.co.hexeption.darkforge.loader.MixinLoader',
+                'FMLAT': 'darkforge_at.cfg')
+    }
 }
 

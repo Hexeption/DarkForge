@@ -19,55 +19,132 @@
 package uk.co.hexeption.darkforge.ui.hud.themes;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.GlStateManager;
 import uk.co.hexeption.darkforge.ClientInfo;
 import uk.co.hexeption.darkforge.DarkForge;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.gui.gui.ClickGui;
+import uk.co.hexeption.darkforge.mod.Mod;
+import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.IGameHud;
+import uk.co.hexeption.darkforge.utils.TimerUtils;
+import uk.co.hexeption.darkforge.utils.render.GLUtils;
+import uk.co.hexeption.darkforge.utils.render.Texture;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
-@SideOnly(Side.CLIENT)
 public class DarkForgeHud implements IGameHud {
+
+    public Texture info = new Texture("textures/info.png");
+
+    public Texture error = new Texture("textures/error.png");
+
+    public Texture question = new Texture("textures/question.png");
+
+    private ArrayList<Mod> orderdMods = new ArrayList<>();
 
     @Override
     public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
 
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
 
-        DarkForge.CLICK_GUI.renderPinned();
+        ClickGui.renderPinned();
 
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow(ClientInfo.MOD_NAME + " for " + ClientInfo.MINECRAFT_VERISON, 1, 5, -1);
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Time:§r " + new SimpleDateFormat("hh:mm a").format(new Date()), 1, 17, -1);
-        DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7FPS:§r " + minecraft.getDebugFPS(), 1, 29, -1);
+        DarkForge.INSTANCE.fontManager.hud_big.drawString("D", 1, 1, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawString("ark", 14, 8, -1);
 
-        if (!minecraft.isSingleplayer()) {
-            int version = 15, ping = 25;
-            if (minecraft.currentScreen instanceof GuiChat) {
-                version += 15;
-                ping += 15;
-            }
+        DarkForge.INSTANCE.fontManager.hud_big.drawString("F", 32, 1, -1);
+        DarkForge.INSTANCE.fontManager.hud.drawString("orge", 42, 8, -1);
+        DarkForge.INSTANCE.fontManager.hud_small.drawString(ClientInfo.BUILD, 45, 4, -1);
 
-            DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Version:§r " + minecraft.getCurrentServerData().gameVersion, 1, scaledResolution.getScaledHeight() - version, -1);
-            DarkForge.FONT_MANAGER.hud.drawStringWithShadow("§7Ping:§r " + minecraft.getCurrentServerData().pingToServer + "ms", 1, scaledResolution.getScaledHeight() - ping, -1);
-        }
+        DarkForge.INSTANCE.fontManager.hud_small.drawString("Time : " + new SimpleDateFormat("hh:mm a").format(new Date()) + " | FPS : " + Minecraft.getDebugFPS(), 1, 22, -1);
 
+        reorderMods(0);
         drawArrayList(scaledResolution);
+        drawNotifications(scaledResolution);
+
+        GlStateManager.color(255, 255, 255);
     }
 
-    void drawArrayList(ScaledResolution scaledResolution) {
+    private void drawArrayList(ScaledResolution scaledResolution) {
 
-        int yCount = 5;
-        for (Module module : DarkForge.MODULE_MANAGER.getModules()) {
-            if (module.getState() && module.getCategory() != Module.Category.GUI) {
-                DarkForge.FONT_MANAGER.arraylist.drawStringWithShadow(module.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.FONT_MANAGER.arraylist.getStringWidth(module.getName()), yCount, module.getCategory().color);
+        if (this.orderdMods.isEmpty()) {
+            this.orderdMods.addAll(DarkForge.INSTANCE.modManager.getMods());
+        }
+
+        int yCount = 2;
+        for (Mod mod : this.orderdMods) {
+            if (mod.getState() && mod.getCategory() != Mod.Category.GUI && mod.isVisable()) {
+                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
                 yCount += 10;
             }
         }
+    }
+
+    private void drawNotifications(ScaledResolution scaledResolution) {
+
+        TimerUtils timerUtils = new TimerUtils();
+        int ycount = 0;
+        for (Notification notification : DarkForge.INSTANCE.notificationManager.getNotifications()) {
+            if (notification != null) {
+                if (timerUtils.getSystemTime() - notification.getTime() >= notification.getDuration()) {
+//                    DarkForge.INSTANCE.notificationManager.getNotifications().remove(notification);
+                    ycount -= 15;
+                } else {
+                    switch (notification.getType()) {
+                        case INFO:
+                            GLUtils.glColor(Color.WHITE);
+                            info.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                        case ERROR:
+                            GLUtils.glColor(Color.WHITE);
+                            error.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                        case QUESTION:
+                            GLUtils.glColor(Color.WHITE);
+                            question.render(scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 25, scaledResolution.getScaledHeight() - 22 - ycount, 16, 16);
+                            break;
+                    }
+
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
+                }
+                ycount += 15;
+            }
+        }
+    }
+
+    private void reorderMods(int sort) {
+
+        ArrayList<Mod> mods = this.orderdMods;
+
+        switch (sort) {
+            case 0:
+                mods.sort((o1, o2) -> {
+
+                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) > DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                        return -1;
+                    }
+                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) < DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+                break;
+            case 1:
+                mods.sort(Comparator.comparing(Mod::getName));
+                break;
+            case 2:
+                mods.sort(Comparator.comparingInt(o -> o.getCategory().ordinal()));
+
+                break;
+        }
+
+        this.orderdMods = mods;
     }
 
     @Override

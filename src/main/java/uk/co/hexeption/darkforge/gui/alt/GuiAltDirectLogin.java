@@ -118,10 +118,10 @@ public class GuiAltDirectLogin extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
         super.drawDefaultBackground();
-        DarkForge.FONT_MANAGER.hud.drawCenteredString("Direct Login", width / 2, 15, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString(login, width / 2, 30, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawString("Name or E-Mail", width / 2 - 100, 47, 10526880);
-        DarkForge.FONT_MANAGER.hud.drawString("Password", width / 2 - 100, 87, 10526880);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString("Direct Login", width / 2, 15, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString(login, width / 2, 30, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawString("Name or E-Mail", width / 2 - 100, 47, 10526880);
+        DarkForge.INSTANCE.fontManager.hud.drawString("Password", width / 2 - 100, 87, 10526880);
         email.drawTextBox();
         passwordField.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);

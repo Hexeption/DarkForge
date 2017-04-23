@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 
@@ -28,7 +26,6 @@ import java.awt.*;
 /**
  * Created by Hexeption on 18/12/2016.
  */
-@SideOnly(Side.CLIENT)
 public class FontManager {
 
     private static String fontName = "Comfortaa";
@@ -49,12 +46,12 @@ public class FontManager {
 
     public MinecraftFontRenderer clickGui = new MinecraftFontRenderer();
 
+    public MinecraftFontRenderer huzuni = new MinecraftFontRenderer();
 
-    public FontManager() {
+    public MinecraftFontRenderer hud_big = new MinecraftFontRenderer();
 
-        Initialization();
+    public MinecraftFontRenderer hud_small = new MinecraftFontRenderer();
 
-    }
 
     public static String getFontName() {
 
@@ -64,7 +61,7 @@ public class FontManager {
     public static void setFontName(String fontName) {
 
         FontManager.fontName = fontName;
-        DarkForge.instance.FONT_MANAGER.Initialization();
+        DarkForge.INSTANCE.fontManager.Initialization();
     }
 
     public void Initialization() {
@@ -74,8 +71,11 @@ public class FontManager {
         mainMenu.setFont(new Font(fontName, Font.PLAIN, 50), true);
         button.setFont(new Font(fontName, Font.PLAIN, 22), true);
         buttonHoverd.setFont(new Font(fontName, Font.PLAIN, 25), true);
-        chat.setFont(new Font("Verdana", Font.PLAIN, 17), true);
+        chat.setFont(new Font("Verdana", Font.PLAIN, 18), true);
         guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
         clickGui.setFont(new Font(fontName, Font.PLAIN, 16), true);
+        huzuni.setFont(new Font("Roboto Condensed", Font.PLAIN, 16), true);
+        hud_big.setFont(new Font(fontName, Font.PLAIN, 40), true);
+        hud_small.setFont(new Font(fontName, Font.PLAIN, 12), true);
     }
 }

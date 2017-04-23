@@ -52,6 +52,7 @@ public class AltsSlot extends GuiSlot {
     public static void sortAlts() {
 
         Collections.sort(alts, new Comparator<Alt>() {
+
             @Override
             public int compare(Alt o1, Alt o2) {
 
@@ -153,7 +154,7 @@ public class AltsSlot extends GuiSlot {
 
         Alt alt = alts.get(entryID);
 
-        DarkForge.FONT_MANAGER.hud.drawCenteredString(alt.getName(), width / 2, yPos + 3, 16777215);
-        DarkForge.FONT_MANAGER.hud.drawCenteredString((alt.isCracked() ? "§8Cracked" : "§2Premium") + (alt.isFavourites() ? "§r & §eFavorited" : ""), width / 2, yPos + 15, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString(alt.getName(), width / 2, yPos + 3, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString((alt.isCracked() ? "§8Cracked" : "§2Premium") + (alt.isFavourites() ? "§r & §eFavorited" : ""), width / 2, yPos + 15, 16777215);
     }
 }

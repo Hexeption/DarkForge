@@ -20,16 +20,18 @@ package uk.co.hexeption.darkforge.managers;
 
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.command.Command;
+import uk.co.hexeption.darkforge.command.commands.Friend;
 import uk.co.hexeption.darkforge.command.commands.TestCommand;
+import uk.co.hexeption.darkforge.command.commands.Xray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandManager {
 
-    private final Pattern patten = Pattern.compile("([^\\\"']\\\\S*|\\\".+?\\\"|'.+?')\\\\s*");
+    private final Pattern patten = Pattern.compile("([^\"']\\S*|\".+?\"|'.+?')\\s*");
 
     private final List<Command> commands = new ArrayList<>();
 
@@ -42,7 +44,7 @@ public class CommandManager {
 
     private void initCommands() {
 
-        this.commands.add(new TestCommand());
+        addCommand(new TestCommand(), new Xray(), new Friend());
     }
 
     public List<Command> getCommands() {
@@ -55,14 +57,16 @@ public class CommandManager {
         String commandName = message.contains(" ") ? message.split(" ")[0] : message;
         for (Command command : commands) {
             for (String alias : command.getName()) {
-                if (message.contains(" ")) {
-                    if (message.split(" ")[1].equalsIgnoreCase("aliases")) {
-                        listAllNames(command);
-                        return true;
+                if (alias.toLowerCase().equals(commandName.toLowerCase())) {
+                    if (message.contains(" ")) {
+                        if (message.split(" ")[1].equalsIgnoreCase("aliases")) {
+                            listAllNames(command);
+                            return true;
+                        }
                     }
+                    tryCommand(command, message);
+                    return true;
                 }
-                tryCommand(command, message);
-                return true;
             }
         }
         return false;
@@ -72,20 +76,8 @@ public class CommandManager {
     public void addCommand(Command... command) {
 
         synchronized (this.commands) {
-            for (final Command command1 : command) {
-                this.commands.add(command1);
-            }
+            this.commands.addAll(Arrays.asList(command));
         }
-    }
-
-    private String[] getArguments(String input) {
-
-        Matcher matcher = patten.matcher(input);
-        List<String> list = new ArrayList<>();
-        while (matcher.find()) {
-            list.add(matcher.group(1).replaceAll("\"", "").replaceAll("'", ""));
-        }
-        return list.toArray(new String[list.size()]);
     }
 
     private void listAllNames(Command command) {
@@ -99,10 +91,19 @@ public class CommandManager {
         }
     }
 
-    public void tryCommand(Command command, String input) {
+    public void tryCommand(Command command, String message) {
 
         try {
-            String[] args = input.contains(" ") ? getArguments(input.substring(input.indexOf("") + 1)) : null;
+
+            String input = message.substring(1);
+            String[] args;
+
+            if (input.contains(" ")) {
+                args = input.substring(input.indexOf(" ") + 1).split(" ");
+            } else {
+                args = new String[0];
+            }
+
             command.execute(input, args);
         } catch (Exception e) {
             e.printStackTrace();

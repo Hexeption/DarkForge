@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "uk.co.hexeption.darkforge.mixin.mixins",
+  "refmap": "mixins.darkforge.refmap.json",
+  "mixins": [
+    "MixinAbstractClientPlayer",
+    "MixinBlock",
+    "MixinEntity",
+    "MixinEntityPlayer",
+    "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
+    "MixinMinecraft",
+    "MixinNetworkManager",
+    "MixinPlayerControllerMP",
+    "MixinRender",
+    "MixinRenderManager",
+    "MixinVisGraphMixin"
+  ]
+}

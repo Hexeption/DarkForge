@@ -25,8 +25,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 
@@ -37,7 +35,6 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-@SideOnly(Side.CLIENT)
 public class RenderUtils {
 
     private static final AxisAlignedBB DEFAULT_AABB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
@@ -69,14 +66,6 @@ public class RenderUtils {
         Minecraft.getMinecraft().entityRenderer.enableLightmap();
     }
 
-    /**
-     * TODO: Fix black
-     *
-     * @param x
-     * @param y
-     * @param r
-     * @param c
-     */
     public static void drawCircle(final double x, final double y, final double r, final int c) {
 
         glEnable(GL_BLEND);
@@ -84,7 +73,7 @@ public class RenderUtils {
         glEnable(GL_POLYGON_SMOOTH);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-        color(c);
+        GLUtils.glColor(c);
 
         glBegin(GL_POLYGON);
         for (int i = 0; i <= 360; i++) {
@@ -110,55 +99,23 @@ public class RenderUtils {
         float f1 = (c >> 16 & 0xFF) / 255.0F;
         float f2 = (c >> 8 & 0xFF) / 255.0F;
         float f3 = (c & 0xFF) / 255.0F;
-        enableGL2D();
-        GL11.glScalef(0.5F, 0.5F, 0.5F);
-        GL11.glColor4f(f1, f2, f3, f);
+        GLUtils.enableGL2D();
+        glScalef(0.5F, 0.5F, 0.5F);
+        glColor4f(f1, f2, f3, f);
         glEnable(GL_POLYGON_SMOOTH);
         glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+        glBegin(GL_TRIANGLE_FAN);
 
         for (int i = 0; i <= 360; i++) {
             double x = Math.sin(i * Math.PI / 180.0D) * r;
             double y = Math.cos(i * Math.PI / 180.0D) * r;
-            GL11.glVertex2d(cx + x, cy + y);
+            glVertex2d(cx + x, cy + y);
         }
 
-        GL11.glEnd();
-        GL11.glScalef(2.0F, 2.0F, 2.0F);
-        disableGL2D();
+        glEnd();
+        glScalef(2.0F, 2.0F, 2.0F);
+        GLUtils.disableGL2D();
         glDisable(GL_POLYGON_SMOOTH);
-    }
-
-
-    public static void enableGL2D() {
-
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glDepthMask(true);
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
-        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_NICEST);
-    }
-
-    public static void disableGL2D() {
-
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glDisable(GL11.GL_LINE_SMOOTH);
-        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_DONT_CARE);
-        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_DONT_CARE);
-    }
-
-
-    public static void color(final int color) {
-
-        final float alpha = ((color >> 24) & 255) / 255.0F;
-        final float red = ((color >> 16) & 255) / 255.0F;
-        final float green = ((color >> 8) & 255) / 255.0F;
-        final float blue = (color & 255) / 255.0F;
-        glColor4f(red, green, blue, alpha);
     }
 
     public static void drawBoundingBox(AxisAlignedBB aa) {
@@ -227,7 +184,6 @@ public class RenderUtils {
         tessellator.draw();
     }
 
-    @SideOnly(Side.CLIENT)
     public static void drawOutlineBoundingBox(AxisAlignedBB boundingBox) {
 
         Tessellator tessellator = Tessellator.getInstance();
@@ -262,14 +218,6 @@ public class RenderUtils {
 
         boolean userViewbobbing = Minecraft.getMinecraft().gameSettings.viewBobbing;
         Minecraft.getMinecraft().gameSettings.viewBobbing = false;
-
-//        try{
-//            Method setupCamreaTransform = EntityRenderer.class.getDeclaredMethod("setupCameraTransform", float.class, int.class);
-//            setupCamreaTransform.setAccessible(true);
-//            setupCamreaTransform.invoke(Minecraft.getMinecraft().entityRenderer,Tracers.ticks, 2);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
 
         Minecraft.getMinecraft().gameSettings.viewBobbing = userViewbobbing;
 
@@ -450,10 +398,10 @@ public class RenderUtils {
         GL11.glPushMatrix();
         GLUtils.glColor(color);
         GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2d((float) left, (float) bottom);
-        GL11.glVertex2d((float) right, (float) bottom);
-        GL11.glVertex2d((float) right, (float) top);
-        GL11.glVertex2d((float) left, (float) top);
+        GL11.glVertex2d(left, bottom);
+        GL11.glVertex2d(right, bottom);
+        GL11.glVertex2d(right, top);
+        GL11.glVertex2d(left, top);
         GL11.glEnd();
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -483,14 +431,13 @@ public class RenderUtils {
         GL11.glPushMatrix();
         GLUtils.glColor(color);
         GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2d((float) left, (float) bottom);
-        GL11.glVertex2d((float) right, (float) bottom);
-        GL11.glVertex2d((float) right, (float) top);
-        GL11.glVertex2d((float) left, (float) top);
+        GL11.glVertex2d(left, bottom);
+        GL11.glVertex2d(right, bottom);
+        GL11.glVertex2d(right, top);
+        GL11.glVertex2d(left, top);
         GL11.glEnd();
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
     }
-
 }

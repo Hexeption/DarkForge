@@ -18,16 +18,16 @@
 
 package uk.co.hexeption.darkforge.managers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.api.annotation.NoKeyBind;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.gui.ClickGui;
-import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.elements.*;
 import uk.co.hexeption.darkforge.gui.gui.listener.CheckButtonClickListener;
-import uk.co.hexeption.darkforge.gui.gui.listener.ComponentClickListener;
-import uk.co.hexeption.darkforge.gui.gui.listener.SliderChangeListener;
+import uk.co.hexeption.darkforge.gui.gui.listener.ComboBoxListener;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
-import uk.co.hexeption.darkforge.module.Module;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.huzuni.HuzuniTheme;
+import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.render.GLUtils;
 import uk.co.hexeption.darkforge.value.BooleanValue;
 import uk.co.hexeption.darkforge.value.DoubleValue;
@@ -41,35 +41,138 @@ public class GuiManager extends ClickGui {
 
     public void Initialization() {
 
-        this.setTheme(new DarkForgeTheme());
+        addCategoryPanels();
+        addInfoPanel();
+//        addPlayerPanel();
+        addMiniMapPanel();
+
+    }
+
+//    private void categorys(){
+//        Frame frame = new Frame(10, 10,100, 50, "Gui Manager");
+//        for (Mod.Category category : Mod.Category.values()) {
+//            if(category != Mod.Category.GUI){
+//                String name = Character.toString(category.toString().toLowerCase().charAt(0)).toUpperCase() + category.toString().toLowerCase().substring(1);
+//                Button button = new Button(0,0,100,18, frame, name);
+//                button.addListeners(new ComponentClickListener() {
+//
+//                    @Override
+//                    public void onComponenetClick(Component component, int button) {
+//
+//                    }
+//                });
+//                frame.addComponent(button);
+//            }
+//        }
+//
+//        frame.setMaximizible(true);
+//        frame.setPinnable(false);
+//        this.addFrame(frame);
+//    }
+
+    /**
+     * This is bad... but it works for now
+     */
+    private void addMiniMapPanel() {
+
+        Frame frame = new Frame(10, 10, 100, 130, "Gui Manager");
+
+        Dropdown dropdown = new Dropdown(0, 0, 100, 18, frame, "Themes");
+        CheckButton Huzuni = new CheckButton(0, 0, dropdown.getDimension().width, 18, dropdown, "Huzuni", false);
+        CheckButton checkButtons = new CheckButton(0, 0, dropdown.getDimension().width, 18, dropdown, "DarkForge", true);
+        Huzuni.addListeners(new CheckButtonClickListener() {
+
+            @Override
+            public void onCheckButtonClick(CheckButton checkButton) {
+
+                if (checkButton.isEnabled()) {
+                    setTheme(new HuzuniTheme());
+                    if (checkButtons.isEnabled()) {
+                        checkButtons.setEnabled(false);
+                    }
+                }
+            }
+        });
+        checkButtons.addListeners(new CheckButtonClickListener() {
+
+            @Override
+            public void onCheckButtonClick(CheckButton checkButton) {
+
+                if (checkButton.isEnabled()) {
+                    setTheme(new DarkForgeTheme());
+                    if (Huzuni.isEnabled()) {
+                        Huzuni.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+        dropdown.addComponent(Huzuni);
+        dropdown.addComponent(checkButtons);
+
+        frame.addComponent(dropdown);
+
+        this.addFrame(frame);
+    }
+
+    private void addPlayerPanel() {
+
+        Frame frame = new Frame(10, 10, 100, 200, "Testing");
+
+        ComboBox comboBox = new ComboBox(0, 0, 100, 40, frame, "Themes", "Testing", "Working", "Hex");
+
+        comboBox.addListeners(new ComboBoxListener() {
+
+            @Override
+            public void onComboBoxSelectionChange(ComboBox comboBox) {
+
+                LogHelper.info(comboBox.getSelectedElement());
+            }
+        });
+
+        frame.addComponent(comboBox);
+
+        frame.setMaximized(true);
+        frame.setPinnable(false);
+        this.addFrame(frame);
+
+    }
+
+    private void addInfoPanel() {
+
+    }
+
+    private void addCategoryPanels() {
+
         int x = 40;
         int y = 30;
         int right = GLUtils.getScreenWidth();
 
-        for (Module.Category category : Module.Category.values()) {
-            if (category != Module.Category.GUI) {
+        for (Mod.Category category : Mod.Category.values()) {
+            if (category != Mod.Category.GUI) {
                 String name = Character.toString(category.toString().toLowerCase().charAt(0)).toUpperCase() + category.toString().toLowerCase().substring(1);
                 Frame frame = new Frame(x, y, 100, 130, name);
 
-                for (final Module module : DarkForge.MODULE_MANAGER.getModules()) {
-                    if (module.getCategory() == category) {
-                        if (module.getValues().isEmpty()) {
-                            final Button button = new Button(0, 0, 100, 18, frame, module.getName());
-                            button.addListeners((component, button1) -> module.toggle());
-                            button.setEnabled(module.getState());
-                            frame.addComponent(button);
-                        } else {
-                            final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, module.getName());
-                            expandingButton.addListner((component, button) -> module.toggle());
-                            expandingButton.setEnabled(module.getState());
+                for (final Mod mod : DarkForge.INSTANCE.modManager.getMods()) {
+                    if (mod.getCategory() == category) {
+                        final ExpandingButton expandingButton = new ExpandingButton(0, 0, 100, 18, frame, mod.getName(), mod) {
 
-                            for (Value value : module.getValues()) {
+                            @Override
+                            public void onUpdate() {
+
+                                setEnabled(mod.getState());
+                            }
+                        };
+                        expandingButton.addListner((component, button) -> mod.toggle());
+                        expandingButton.setEnabled(mod.getState());
+                        if (!mod.getValues().isEmpty()) {
+                            for (Value value : mod.getValues()) {
                                 if (value instanceof BooleanValue) {
                                     final BooleanValue booleanValue = (BooleanValue) value;
                                     CheckButton button = new CheckButton(0, 0, expandingButton.getDimension().width, 18, expandingButton, booleanValue.getName(), booleanValue.getValue());
                                     button.addListeners(checkButton -> {
 
-                                        for (Value value1 : module.getValues()) {
+                                        for (Value value1 : mod.getValues()) {
                                             if (value1.getName().equals(booleanValue.getName())) {
                                                 value1.setValue(checkButton.isEnabled());
                                             }
@@ -81,7 +184,7 @@ public class GuiManager extends ClickGui {
                                     final FloatValue floatValue = (FloatValue) value;
                                     Slider slider = new Slider(floatValue.getMin(), floatValue.getMax(), floatValue.getValue(), expandingButton, floatValue.getName());
                                     slider.addListener(slider1 -> {
-                                        for (Value val : module.getValues()) {
+                                        for (Value val : mod.getValues()) {
                                             if (val.getName().equals(value.getName())) {
                                                 val.setValue(slider1.getValue());
                                             }
@@ -93,7 +196,7 @@ public class GuiManager extends ClickGui {
                                     Slider slider = new Slider(doubleValue.getMin(), doubleValue.getMax(), doubleValue.getValue(), expandingButton, doubleValue.getName());
                                     slider.addListener(slider12 -> {
 
-                                        for (Value value1 : module.getValues()) {
+                                        for (Value value1 : mod.getValues()) {
                                             if (value1.getName().equals(value.getName())) {
                                                 value1.setValue(slider12.getValue());
                                             }
@@ -103,11 +206,15 @@ public class GuiManager extends ClickGui {
                                     expandingButton.addComponent(slider);
                                 }
                             }
-
-                            frame.addComponent(expandingButton);
                         }
+                        if (!mod.getClass().isAnnotationPresent(NoKeyBind.class)) {
+                            KeybindMods keybind = new KeybindMods(0, 0, 12, 15, expandingButton, mod);
+                            expandingButton.addComponent(keybind);
+                        }
+                        frame.addComponent(expandingButton);
                     }
                 }
+
                 if (x + 120 < right) {
                     x += 120;
                 } else {
@@ -120,7 +227,6 @@ public class GuiManager extends ClickGui {
                 this.addFrame(frame);
             }
         }
-
     }
 
 

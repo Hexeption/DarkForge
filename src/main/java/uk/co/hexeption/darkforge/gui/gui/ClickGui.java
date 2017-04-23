@@ -18,11 +18,8 @@
 package uk.co.hexeption.darkforge.gui.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.Container;
 import uk.co.hexeption.darkforge.gui.gui.elements.Frame;
@@ -30,18 +27,19 @@ import uk.co.hexeption.darkforge.gui.gui.elements.Slider;
 import uk.co.hexeption.darkforge.gui.gui.theme.Theme;
 
 import javax.vecmath.Vector2f;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class ClickGui extends GuiScreen {
+public class ClickGui extends ClickGuiScreen {
+
+    /**
+     * Bug: Gui Scale fucks up
+     */
 
     private static Theme theme;
 
     private static ArrayList<Frame> frames = new ArrayList<>();
 
     private Frame currentFrame;
-
-    public static int[] mouse = new int[2];
 
     private boolean dragging = false;
 
@@ -65,69 +63,22 @@ public class ClickGui extends GuiScreen {
         GlStateManager.popMatrix();
     }
 
-    //Screen
+    public static Theme getTheme() {
 
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        return theme;
+    }
+
+    public void setTheme(Theme theme) {
+
+        ClickGui.theme = theme;
+    }
+
+    public void render() {
 
         for (Frame frame : frames) {
             frame.render(mouse[0], mouse[1]);
         }
     }
-
-    @Override
-    public void handleInput() throws IOException {
-
-        int scale = mc.gameSettings.guiScale;
-        mc.gameSettings.guiScale = 2;
-
-        if (Keyboard.isCreated()) {
-            Keyboard.enableRepeatEvents(true);
-
-            while (Keyboard.next()) {
-                if (Keyboard.getEventKey() == 1) {
-                    mc.displayGuiScreen(null);
-                }
-            }
-        }
-
-        if (Mouse.isCreated()) {
-            while (Mouse.next()) {
-                ScaledResolution scaledResolution = new ScaledResolution(mc);
-                int mouseX = Mouse.getEventX() * scaledResolution.getScaledWidth() / mc.displayWidth;
-                int mouseY = scaledResolution.getScaledHeight() - Mouse.getEventY() * scaledResolution.getScaledHeight() / mc.displayHeight - 1;
-
-                if (Mouse.getEventButton() == -1) {
-                    if (Mouse.getEventDWheel() != 0) {
-                        int x = mouseX;
-                        int y = mouseY;
-                        onMouseScroll((Mouse.getEventDWheel() / 100) * 3);
-                    }
-
-                    onMouseUpdate(mouseX, mouseY);
-                    mouse[0] = mouseX;
-                    mouse[1] = mouseY;
-                } else if (Mouse.getEventButtonState()) {
-                    onMouseClick(mouseX, mouseY, Mouse.getEventButton());
-                } else {
-                    onMouseRelease(mouseX, mouseY);
-                }
-            }
-        }
-
-        mc.gameSettings.guiScale = scale;
-
-        super.handleInput();
-    }
-
-    @Override
-    public void updateScreen() {
-
-        onUpdate();
-    }
-
-
-    //Frame
 
     public void onMouseUpdate(int x, int y) {
 
@@ -172,6 +123,8 @@ public class ClickGui extends GuiScreen {
             if (frame.isMouseOver(mouse[0], mouse[1])) {
                 frame.scrollFrame(ammount * 4);
             }
+
+            frame.onMouseScroll(ammount * 4);
         }
     }
 
@@ -214,15 +167,9 @@ public class ClickGui extends GuiScreen {
 
     }
 
-
     public void addFrame(Frame frame) {
 
-        this.frames.add(frame);
-    }
-
-    public void setTheme(Theme theme) {
-
-        ClickGui.theme = theme;
+        frames.add(frame);
     }
 
     public ArrayList<Frame> getFrames() {
@@ -230,10 +177,20 @@ public class ClickGui extends GuiScreen {
         return frames;
     }
 
-    public static Theme getTheme() {
 
-        return theme;
+    public void onKeyRelease(int eventKey, char eventCharacter) {
+
+        for (Frame frame : frames) {
+            frame.onKeyReleased(eventKey, eventCharacter);
+        }
     }
 
+    public void onkeyPressed(int eventKey, char eventCharacter) {
 
+
+        for (Frame frame : frames) {
+
+            frame.onKeyPressed(eventKey, eventCharacter);
+        }
+    }
 }

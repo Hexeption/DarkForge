@@ -18,11 +18,8 @@
 
 package uk.co.hexeption.darkforge.alt;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.utils.LoginUtils;
 
-@SideOnly(Side.CLIENT)
 public class Alt {
 
     private String email;

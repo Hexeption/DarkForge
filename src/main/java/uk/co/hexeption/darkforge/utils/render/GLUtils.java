@@ -20,8 +20,9 @@ package uk.co.hexeption.darkforge.utils.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -42,10 +43,11 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by halalaboos.
  */
-@SideOnly(Side.CLIENT)
 public final class GLUtils {
 
     private static final Random random = new Random();
+
+    private static final Tessellator tessellator = Tessellator.getInstance();
 
     public static List<Integer> vbos = new ArrayList<>(), textures = new ArrayList<>();
 
@@ -117,6 +119,17 @@ public final class GLUtils {
         return Minecraft.getMinecraft().displayHeight / getScaleFactor();
     }
 
+    /**
+     * Checks if the mouse is hovering over a given item
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param mouseX
+     * @param mouseY
+     * @return
+     */
     public static boolean isHovered(int x, int y, int width, int height, int mouseX, int mouseY) {
 
         return (mouseX >= x) && (mouseX <= x + width) && (mouseY >= y) && (mouseY < y + height);
@@ -196,6 +209,9 @@ public final class GLUtils {
         return texId;
     }
 
+    /**
+     * Cleans ups the arrays on close
+     */
     public static void cleanup() {
 
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
@@ -210,6 +226,100 @@ public final class GLUtils {
         }
 
     }
+
+    /**
+     * Rect
+     */
+
+
+    public static void drawBorderRect(float x, float y, float x1, float y1, float borderSize) {
+
+        drawBorder(borderSize, x, y, x1, y1);
+        drawRect(x, y, x1, y1);
+    }
+
+    public static void drawBorder(float size, float x, float y, float x1, float y1) {
+
+        glLineWidth(size);
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        VertexBuffer vertexBuffer = tessellator.getBuffer();
+        vertexBuffer.begin(GL_LINE_LOOP, DefaultVertexFormats.POSITION);
+        vertexBuffer.pos(x, y, 0F).endVertex();
+        vertexBuffer.pos(x, y1, 0F).endVertex();
+        vertexBuffer.pos(x1, y1, 0F).endVertex();
+        vertexBuffer.pos(x1, y, 0F).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+    }
+
+    public static void drawRect(float x, float y, float w, float h) {
+
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        VertexBuffer vertexBuffer = tessellator.getBuffer();
+        vertexBuffer.begin(GL_QUADS, DefaultVertexFormats.POSITION);
+        vertexBuffer.pos(x, h, 0F).endVertex();
+        vertexBuffer.pos(w, h, 0F).endVertex();
+        vertexBuffer.pos(w, y, 0F).endVertex();
+        vertexBuffer.pos(x, y, 0F).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+    }
+
+
+    public static void drawGradientRect(int x, int y, int w, int h, int startColor, int endColor) {
+
+        float f = (float) (startColor >> 24 & 255) / 255.0F;
+        float f1 = (float) (startColor >> 16 & 255) / 255.0F;
+        float f2 = (float) (startColor >> 8 & 255) / 255.0F;
+        float f3 = (float) (startColor & 255) / 255.0F;
+        float f4 = (float) (endColor >> 24 & 255) / 255.0F;
+        float f5 = (float) (endColor >> 16 & 255) / 255.0F;
+        float f6 = (float) (endColor >> 8 & 255) / 255.0F;
+        float f7 = (float) (endColor & 255) / 255.0F;
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        vertexbuffer.pos((double) x + w, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
+        vertexbuffer.pos((double) x, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
+        vertexbuffer.pos((double) x, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
+        vertexbuffer.pos((double) x + w, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+
+    public static void enableGL2D() {
+
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glDepthMask(true);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
+        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_NICEST);
+    }
+
+    public static void disableGL2D() {
+
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_DONT_CARE);
+        GL11.glHint(GL11.GL_POLYGON_SMOOTH_HINT, GL11.GL_DONT_CARE);
+    }
+
 
     /**
      * Colors

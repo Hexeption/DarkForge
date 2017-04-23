@@ -18,8 +18,6 @@
 
 package uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.gui.gui.base.Component;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentRenderer;
 import uk.co.hexeption.darkforge.gui.gui.base.ComponentType;
@@ -34,7 +32,6 @@ import java.awt.*;
 /**
  * Created by Hexeption on 27/02/2017.
  */
-@SideOnly(Side.CLIENT)
 public class DarkForgeFrame extends ComponentRenderer {
 
     public DarkForgeFrame(Theme theme) {
@@ -53,7 +50,7 @@ public class DarkForgeFrame extends ComponentRenderer {
             isMaximized(frame, dimension, mouseX, mouseY);
         }
 
-        RenderUtils.drawRect(frame.getX(), frame.getY(), frame.getX() + dimension.width, frame.getY() + 20, new Color(54, 54, 54, 160));
+        RenderUtils.drawRect(frame.getX(), frame.getY(), frame.getX() + dimension.width, frame.getY() + 15, new Color(54, 54, 54, 255));
         GLUtils.glColor(new Color(54, 54, 54));
 
         if (frame.isMaximizible()) {
@@ -66,58 +63,63 @@ public class DarkForgeFrame extends ComponentRenderer {
             isPinnable(frame, dimension, mouseX, mouseY);
         }
         GLUtils.glColor(new Color(54, 54, 54));
-        theme.fontRenderer.drawCenteredString(frame.getText(), frame.getX() + 30, MathUtils.getMiddle(frame.getY(), (int) (frame.getY() + 18)) - (theme.fontRenderer.getHeight() / 10), Color.WHITE.hashCode());
+        theme.fontRenderer.drawString(frame.getText(), frame.getX() + 5, MathUtils.getMiddle(frame.getY(), frame.getY() + 10) - (theme.fontRenderer.getHeight() / 10), Color.WHITE.hashCode());
         GLUtils.glColor(new Color(54, 54, 54));
 
     }
 
-
     private void isPinnable(Frame frame, Dimension dimension, int mouseX, int mouseY) {
-        Color color = new Color(1, 1, 1);
 
-        if (mouseX >= frame.getX() + dimension.width - 38 && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + dimension.width - 19)
-        {
+        Color color;
+
+        if (mouseX >= frame.getX() + dimension.width - 38 && mouseY >= frame.getY() && mouseY <= frame.getY() + 16 && mouseX <= frame.getX() + dimension.width - 16) {
             color = new Color(197, 239, 247, 50);
-        }
-        else
-        {
+        } else {
             color = new Color(54, 54, 54, 160);
         }
 
-        RenderUtils.drawRect(frame.getX() + dimension.width - 38, frame.getY(), frame.getX() + dimension.width - 19, frame.getY() + 20, color);
-        RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 19) + 1, 3, Color.WHITE.getRGB());
-        RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY() , 0x8C808080);
+        RenderUtils.drawRect(frame.getX() + dimension.width - 38, frame.getY(), frame.getX() + dimension.width - 19, frame.getY() + 15, color);
 
-        if (!frame.isPinned())
-        {
-            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 19) + 1, 2, new Color(54, 54, 54).hashCode());
+        if (frame.isMaximized()) {
+            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY(), 0x8C808080);
+        } else {
+            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width - 1, frame.getY(), 0x8C808080);
+        }
+
+        GLUtils.glColor(255, 255, 255, 255);
+        if (!frame.isPinned()) {
+            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 43, frame.getX() + dimension.width - 30) + 1, frame.getY(), 13, true, new Color(158, 158, 158, 255).hashCode());
+
+//            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 30) + 1, frame.getY() + 2, 12, false, new Color(255, 255, 255, 255).hashCode());
+        } else {
+            drawPin(MathUtils.getMiddle(frame.getX() + dimension.width - 43, frame.getX() + dimension.width - 30) + 1, frame.getY() + 1, 13, true, new Color(255, 255, 255, 255).hashCode());
+
+//            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 4, new Color(255, 255, 255, 255).hashCode());
+//            RenderUtils.drawFilledCircle(MathUtils.getMiddle(frame.getX() + dimension.width - 38, frame.getX() + dimension.width - 19) + 1, MathUtils.getMiddle(frame.getY(), frame.getY() + 15) + 1, 2, new Color(176, 176, 176, 255).hashCode());
         }
     }
 
     private void isMaximizible(Frame frame, Dimension dimension, int mouseX, int mouseY) {
-        Color color = new Color(1, 1, 1);
 
-        if (mouseX >= frame.getX() + dimension.width - 19 && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + dimension.width)
-        {
+        Color color;
+
+        if (mouseX >= frame.getX() + dimension.width - 19 && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + dimension.width) {
             color = new Color(197, 239, 247, 50);
-        }
-        else
-        {
+        } else {
             color = new Color(54, 54, 54, 160);
         }
 
-        RenderUtils.drawRect(frame.getX() + dimension.width - 19, frame.getY(), frame.getX() + dimension.width, frame.getY() + 20, color);
+        RenderUtils.drawRect(frame.getX() + dimension.width - 19, frame.getY(), frame.getX() + dimension.width, frame.getY() + 15, color);
 
-        if (frame.isMaximized())
-        {
-            RenderUtils.drawTri(frame.getX() + dimension.width - 19 + 6, frame.getY() + 6, MathUtils.getMiddleDouble(frame.getX() + dimension.width - 19, frame.getX() + dimension.width), frame.getY() + 19 - 6, frame.getX() + dimension.width - 6, frame.getY() + 6, 1.5, Color.WHITE);
-            RenderUtils.drawVLine(frame.getX() , frame.getY(), frame.getY() + dimension.height, 0x8C808080);
-            RenderUtils.drawVLine(frame.getX() + dimension.width, frame.getY(), frame.getY() + dimension.height, 0x8C808080);
-            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY() + dimension.height, 0x8C808080);
-        }
-        else
-        {
-            RenderUtils.drawTri(frame.getX() + dimension.width - 19 + 6, frame.getY() + 19 - 6, MathUtils.getMiddleDouble(frame.getX() + dimension.width - 19, frame.getX() + dimension.width), frame.getY() + 6, frame.getX() + dimension.width - 6, frame.getY() + 19 - 6, 1.8, Color.WHITE);
+        if (frame.isMaximized()) {
+            drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 13, true, new Color(255, 255, 255, 255).hashCode());
+            RenderUtils.drawVLine(frame.getX(), frame.getY() - 1, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+            RenderUtils.drawVLine(frame.getX() + dimension.width, frame.getY() - 1, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+            RenderUtils.drawHLine(frame.getX(), frame.getX() + dimension.width, frame.getY() + dimension.height, new Color(76, 76, 76, 255).hashCode());
+
+        } else {
+
+            drawExpanded(frame.getX() + dimension.width - 15, frame.getY() + 2, 13, false, new Color(255, 255, 255, 255).hashCode());
         }
     }
 
@@ -127,41 +129,38 @@ public class DarkForgeFrame extends ComponentRenderer {
             component.setxPos(frame.getX());
         }
 
-        RenderUtils.drawRect(frame.getX(), frame.getY() + 1, frame.getX() + dimension.width, frame.getY() + dimension.height, new Color(31, 31, 31, 170));
+        RenderUtils.drawRect(frame.getX(), frame.getY() + 1, frame.getX() + dimension.width, frame.getY() + dimension.height, new Color(64, 64, 64, 255));
         float height = 5;
         float maxHeight = 0;
-        height = dimension.height - 19;
+        height = dimension.height - 16;
 
         for (Component component : frame.getComponents()) {
             maxHeight += component.getDimension().height;
         }
-
         float barHeight = height * (height / maxHeight);
-        double y = (frame.getDimension().getHeight() - 19 - barHeight) * ((double) frame.getScrollAmmount() / (double) frame.getMaxScroll());
-        y += frame.getY() + 19;
+        double y = (frame.getDimension().getHeight() - 16 - barHeight) * ((double) frame.getScrollAmmount() / (double) frame.getMaxScroll());
+        y += frame.getY() + 16;
         frame.renderChildren(mouseX, mouseY);
 
         if (!(barHeight >= height)) {
-            RenderUtils.drawRect((int) (frame.getX() + 1), (int) y, (int) (frame.getX()), (int) (y + barHeight), new Color(255, 255, 255));
+            RenderUtils.drawRect((int) (frame.getX() + dimension.getWidth() - 1), (int) y, (int) (frame.getX() + frame.getDimension().getWidth()), (int) (y + barHeight), new Color(255, 239, 239));
         }
 
     }
 
     @Override
     public void doInteractions(Component component, int mouseX, int mouseY) {
-
         Frame frame = (Frame) component;
-        int fontHeight = theme.fontRenderer.getHeight();
         Dimension area = frame.getDimension();
 
-        if (mouseX >= frame.getX() + area.width - 19 && frame.isMaximizible() && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + area.width)
-        {
+        if (mouseX >= frame.getX() + area.width - 16 && frame.isMaximizible() && mouseY >= frame.getY() && mouseY <= frame.getY() + 16 && mouseX <= frame.getX() + area.width) {
             frame.setMaximized(!frame.isMaximized());
         }
 
-        if (mouseX >= frame.getX() + area.width - 38 && mouseY >= frame.getY() && mouseY <= frame.getY() + 19 && mouseX <= frame.getX() + area.width - 19)
-        {
+        if (mouseX >= frame.getX() + area.width - 38 && mouseY >= frame.getY() && mouseY <= frame.getY() + 16 && mouseX <= frame.getX() + area.width - 16) {
             frame.setPinned(!frame.isPinned());
         }
     }
+
+
 }

@@ -18,92 +18,104 @@
 
 package uk.co.hexeption.darkforge;
 
-import net.minecraftforge.common.ForgeVersion;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.JavaVersion;
-import org.apache.commons.lang3.SystemUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.managers.FontManager;
+import uk.co.hexeption.darkforge.gui.gui.ClickGuiScreen;
+import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
+import uk.co.hexeption.darkforge.hook.HGuiInGame;
 import uk.co.hexeption.darkforge.managers.*;
+import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
-import uk.co.hexeption.darkforge.utils.OutdatedJavaException;
+import uk.co.hexeption.darkforge.ui.tab.Tab;
 
-@SideOnly(Side.CLIENT)
-@Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)
-public class DarkForge {
+public enum DarkForge {
+    INSTANCE;
 
+    public final ModManager modManager = new ModManager();
 
-    /**
-     * TODO: Fix Static Crash Bug!
-     * TODO: Redo the Events
-     */
-    public static final EventManager EVENT_MANAGER = new EventManager();
+    public final CommandManager commandManager = new CommandManager();
 
-    public static final ModuleManager MODULE_MANAGER = new ModuleManager();
+    public final FontManager fontManager = new FontManager();
 
-    public static final CommandManager COMMAND_MANAGER = new CommandManager();
+    public final FileManager fileManager = new FileManager();
 
-    public static final FontManager FONT_MANAGER = new FontManager();
+    public final FriendManager friendManager = new FriendManager();
 
-    public static final FileManager FILE_MANAGER = new FileManager();
+    public final NotificationManager notificationManager = new NotificationManager();
 
-    public static final GuiManager CLICK_GUI = new GuiManager();
+    public final Hud hud = new Hud();
 
-    public static final Hud HUD = new Hud();
+    public final Tab tab = new Tab();
 
-    @Mod.Instance(ClientInfo.MOD_ID)
-    public static DarkForge instance;
+    public GuiManager guiManager;
 
-    public String commandPrefix = "#";
+    public ClickGuiScreen guiScreen;
 
+    public String commandPrefix = ".";
 
-    @Mod.EventHandler
-    public void onFMLPreInitialization(FMLPreInitializationEvent event) {
+    public void start() {
 
-        if (!SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
-            throw new OutdatedJavaException(String.format("%s requires Java 8 or newer, Please update your java", ClientInfo.MOD_NAME));
-        }
+        Minecraft mc = Minecraft.getMinecraft();
+        mc.ingameGUI = new HGuiInGame(mc);
 
-    }
-
-    @Mod.EventHandler
-    public void onFMLInitialization(FMLInitializationEvent event) {
-
-        LogHelper.info(String.format("Starting up %s v%s", ClientInfo.MOD_NAME, ClientInfo.VERSION_BUILD));
-        LogHelper.info(String.format("Running %s in Minecraft \"%s\", Forge \"%s\"", ClientInfo.MOD_NAME, MinecraftForge.MC_VERSION, ForgeVersion.getVersion()));
-        instance = new DarkForge();
-
-        LogHelper.info("Loading Modules...");
-        MODULE_MANAGER.Initialization();
+        LogHelper.info("Loading Mods...");
+        modManager.Initialization();
 
         LogHelper.info("Loading Commands...");
-        COMMAND_MANAGER.Initialization();
-
-        LogHelper.info("Registering Forge Events");
-        MinecraftForge.EVENT_BUS.register(EVENT_MANAGER);
+        commandManager.Initialization();
 
         LogHelper.info("Loading Fonts...");
-        FONT_MANAGER.Initialization();
+        fontManager.Initialization();
 
-        LogHelper.info("Loading Hud...");
-        HUD.Initialization();
+        LogHelper.info("Loading Huds...");
+        hud.Initialization();
 
-        CLICK_GUI.Initialization();
+        LogHelper.info("Loading Tabs...");
+        tab.Initialization();
 
-        LogHelper.info("Loading Config...");
-        FILE_MANAGER.Initialization();
+        LogHelper.info("Loading Configs...");
+        fileManager.Initialization();
 
+        Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
 
-    @Mod.EventHandler
-    public void onFMLPostInitialization(FMLPostInitializationEvent event) {
+    public void end() {
 
+        fileManager.saveFriends();
+        fileManager.saveAlts();
+        fileManager.saveModules();
     }
+
+    public void addChatMessage(ITextComponent component) {
+
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(component);
+    }
+
+    public void addChatMessage(String message) {
+
+        addChatMessage(new TextComponentString(TextFormatting.DARK_RED + "[DF] " + TextFormatting.GRAY + message));
+    }
+
+    public void addNotification(Notification.Type type, String location, String message, int duration) {
+
+        notificationManager.addNotification(new Notification(type, location, message, duration));
+    }
+
+    public ClickGuiScreen getGui() {
+
+        if (DarkForge.INSTANCE.guiManager == null) {
+            this.guiManager = new GuiManager();
+            this.guiScreen = new ClickGuiScreen();
+            ClickGuiScreen.clickGui = this.guiManager;
+            DarkForge.INSTANCE.guiManager.Initialization();
+            DarkForge.INSTANCE.guiManager.setTheme(new DarkForgeTheme());
+        }
+
+        return this.guiManager;
+    }
+
 
 }

@@ -18,6 +18,67 @@
 
 package uk.co.hexeption.darkforge.ui.tab;
 
-public class Tab {
+import net.minecraft.client.Minecraft;
+import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.EventListener;
+import uk.co.hexeption.darkforge.event.events.EventKeyboard;
+import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
+import uk.co.hexeption.darkforge.managers.EventManager;
+import uk.co.hexeption.darkforge.ui.tab.themes.DarkForgeTab;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class Tab implements EventListener {
+
+    private final List<ITab> tabs = new CopyOnWriteArrayList<>();
+
+    private int tabIndex = 0;
+
+    public Tab() {
+
+        EventManager.register(this);
+    }
+
+    public void Initialization() {
+
+        this.tabs.add(new DarkForgeTab());
+    }
+
+    public ITab getCurrentTab() {
+
+        return this.tabs.get(tabIndex);
+    }
+
+    public void onNextTheme() {
+
+        int index = this.tabIndex;
+        int maxSize = this.tabs.size();
+
+        if (index != -1) {
+            index++;
+
+            if (index >= maxSize) {
+                index = 0;
+            }
+
+            this.tabIndex = index;
+        }
+    }
+
+    @Override
+    public void onEvent(Event event) {
+        if (event instanceof EventRenderScreen) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo || Minecraft.getMinecraft().currentScreen != null)
+                return;
+
+
+            ITab currentTab = getCurrentTab();
+            currentTab.render(Minecraft.getMinecraft(), ((EventRenderScreen) event).getWidth(), ((EventRenderScreen) event).getHeight());
+        } else if (event instanceof EventKeyboard) {
+            getCurrentTab().onKeyPressed(((EventKeyboard) event).getKey());
+        }
+    }
+
 
 }
