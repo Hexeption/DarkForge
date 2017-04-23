@@ -55,7 +55,8 @@ public class ModManager {
 
         addModules(new Fly(), new BlockOverlay(), new Fullbright(), new BreadCrumbs(), new Tracers(),
                 new ItemESP(), new ChestESP(), new Gui(), new AutoSprint(), new Step(), new Killaura(),
-                new Xray(), new CustomChat(), new MiddleClickFriend(), new InventoryMove(), new NameProtect(), new NoSlowdown(), new Charms());
+                new Xray(), new CustomChat(), new MiddleClickFriend(), new InventoryMove(), new NameProtect(),
+                new NoSlowdown(), new Charms(), new BHop());
     }
 
     public void addModules(final Mod... mods) {

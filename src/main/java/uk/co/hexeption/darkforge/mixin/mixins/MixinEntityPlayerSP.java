@@ -18,13 +18,16 @@
 package uk.co.hexeption.darkforge.mixin.mixins;
 
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.MoverType;
 import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventChat;
+import uk.co.hexeption.darkforge.event.events.EventMove;
 import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
@@ -32,7 +35,10 @@ import uk.co.hexeption.darkforge.managers.EventManager;
  * Created by Keir on 21/04/2017.
  */
 @Mixin(EntityPlayerSP.class)
-public abstract class MixinEntityPlayerSP {
+public abstract class MixinEntityPlayerSP extends MixinEntity {
+
+
+    private EventMove eventMove = new EventMove(Event.Type.PRE, 0, 0, 0);
 
     @Inject(method = "onLivingUpdate", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lnet/minecraft/client/entity/EntityPlayerSP;sprintToggleTimer:I", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
     public void IonLivingUpdate(CallbackInfo callback) {
@@ -50,5 +56,17 @@ public abstract class MixinEntityPlayerSP {
         if (event.isCancelled()) {
             callback.cancel();
         }
+    }
+
+    @Overwrite
+    public void move(MoverType type, double x, double y, double z) {
+        EventMove event = new EventMove(Event.Type.PRE, 0, 0, 0);
+        double d0 = this.posX;
+        double d1 = this.posZ;
+        event.setMotionX(x);
+        event.setMotionY(y);
+        event.setMotionZ(z);
+        EventManager.handleEvent(event);
+        super.move(type, event.getMotionX(), event.getMotionY(), event.getMotionZ());
     }
 }

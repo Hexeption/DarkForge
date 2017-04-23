@@ -15,37 +15,45 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.event.events;
 
-package uk.co.hexeption.darkforge.utils;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import uk.co.hexeption.darkforge.event.Event;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Keir on 22/04/2017.
  */
-public class MathUtils {
+public class EventMove extends Event {
 
-    //TODO: Add Math
+    private double motionX, motionY, motionZ;
 
-    public static int getMiddle(int i, int j) {
-
-        return (i + j) / 2;
+    public EventMove(Type type, double motionX, double motionY, double motionZ) {
+        super(type);
+        this.motionX = motionX;
+        this.motionY = motionY;
+        this.motionZ = motionZ;
     }
 
-    public static double getMiddleDouble(int i, int j) {
-
-        return ((double) i + (double) j) / 2.0;
+    public double getMotionX() {
+        return motionX;
     }
 
-    public static double round(double value, int places) {
-        if (places < 0) {
-            throw new IllegalArgumentException();
-        }
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+    public void setMotionX(double motionX) {
+        this.motionX = motionX;
     }
 
+    public double getMotionY() {
+        return motionY;
+    }
 
+    public void setMotionY(double motionY) {
+        this.motionY = motionY;
+    }
+
+    public double getMotionZ() {
+        return motionZ;
+    }
+
+    public void setMotionZ(double motionZ) {
+        this.motionZ = motionZ;
+    }
 }

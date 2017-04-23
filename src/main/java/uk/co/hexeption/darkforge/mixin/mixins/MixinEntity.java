@@ -15,37 +15,30 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mixin.mixins;
 
-package uk.co.hexeption.darkforge.utils;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 /**
- * Created by Hexeption on 27/02/2017.
+ * Created by Keir on 22/04/2017.
  */
-public class MathUtils {
+@Mixin(Entity.class)
+public class MixinEntity {
+    @Shadow
+    public double posX;
 
-    //TODO: Add Math
+    @Shadow
+    public double posY;
 
-    public static int getMiddle(int i, int j) {
+    @Shadow
+    public double posZ;
 
-        return (i + j) / 2;
+
+    @Shadow
+    public void move(MoverType type, double x, double y, double z) {
+
     }
-
-    public static double getMiddleDouble(int i, int j) {
-
-        return ((double) i + (double) j) / 2.0;
-    }
-
-    public static double round(double value, int places) {
-        if (places < 0) {
-            throw new IllegalArgumentException();
-        }
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
-
-
 }
