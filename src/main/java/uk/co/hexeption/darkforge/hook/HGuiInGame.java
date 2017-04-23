@@ -20,7 +20,11 @@ package uk.co.hexeption.darkforge.hook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import uk.co.hexeption.darkforge.event.Event;
+import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeChat;
+import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.utils.ReflectionHelper;
 
 /**
@@ -28,10 +32,25 @@ import uk.co.hexeption.darkforge.utils.ReflectionHelper;
  */
 public class HGuiInGame extends GuiIngame {
 
-    public HGuiInGame(Minecraft mcIn) {
-        super(mcIn);
+    private final Minecraft mc;
+
+    public HGuiInGame(Minecraft mc) {
+
+        super(mc);
+        this.mc = mc;
         ReflectionHelper.setPersistantChatGUI(this, new DarkForgeChat(mc));
 
+    }
+
+    @Override
+    public void renderGameOverlay(float partialTicks) {
+
+        super.renderGameOverlay(partialTicks);
+
+        GlStateManager.pushMatrix();
+        EventRenderScreen event = new EventRenderScreen(Event.Type.POST, mc.displayWidth, mc.displayHeight);
+        EventManager.handleEvent(event);
+        GlStateManager.popMatrix();
     }
 
     @Override

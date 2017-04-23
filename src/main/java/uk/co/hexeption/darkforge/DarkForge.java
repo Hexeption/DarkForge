@@ -25,7 +25,6 @@ import net.minecraft.util.text.TextFormatting;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.gui.gui.ClickGuiScreen;
 import uk.co.hexeption.darkforge.gui.gui.theme.themes.darkforge.DarkForgeTheme;
-import uk.co.hexeption.darkforge.hook.HGuiInGame;
 import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.notification.Notification;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
@@ -59,9 +58,6 @@ public enum DarkForge {
     public String commandPrefix = ".";
 
     public void start() {
-
-        Minecraft mc = Minecraft.getMinecraft();
-        mc.ingameGUI = new HGuiInGame(mc);
 
         LogHelper.info("Loading Mods...");
         modManager.Initialization();

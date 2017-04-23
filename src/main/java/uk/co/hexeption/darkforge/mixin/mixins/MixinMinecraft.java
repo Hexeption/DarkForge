@@ -20,9 +20,7 @@ package uk.co.hexeption.darkforge.mixin.mixins;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.Session;
 import net.minecraft.util.Timer;
 import org.apache.commons.lang3.JavaVersion;
@@ -39,10 +37,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.EventRenderScreen;
 import uk.co.hexeption.darkforge.event.events.EventTick;
 import uk.co.hexeption.darkforge.event.events.EventWorld;
 import uk.co.hexeption.darkforge.gui.screen.DarkForgeMainMenu;
+import uk.co.hexeption.darkforge.hook.HGuiInGame;
 import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
 import uk.co.hexeption.darkforge.utils.InputHandler;
@@ -60,9 +58,11 @@ public abstract class MixinMinecraft implements IMixinMinecraft, MC {
     @Shadow
     @Nullable
     public GuiScreen currentScreen;
+
     @Shadow
     @Final
     private Timer timer;
+
     @Mutable
     @Shadow
     @Final
@@ -77,6 +77,7 @@ public abstract class MixinMinecraft implements IMixinMinecraft, MC {
 
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;checkGLError(Ljava/lang/String;)V", ordinal = 2, shift = At.Shift.AFTER))
     private void IstartGame(CallbackInfo callback) {
+
         if (SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
             DarkForge.INSTANCE.start();
         } else {
@@ -86,12 +87,14 @@ public abstract class MixinMinecraft implements IMixinMinecraft, MC {
 
     @Inject(method = "runGameLoop", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;startSection(Ljava/lang/String;)V", args = "ldc=tick", shift = At.Shift.AFTER))
     private void IrunGameLoop(CallbackInfo callback) {
+
         EventTick event = new EventTick(Event.Type.PRE);
         EventManager.handleEvent(event);
     }
 
     @Inject(method = "runTickKeyboard", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE))
     public void IrunTickKeyboard(CallbackInfo callback) {
+
         if (Keyboard.getEventKeyState()) {
             InputHandler.handleKeyboard();
         }
@@ -99,24 +102,16 @@ public abstract class MixinMinecraft implements IMixinMinecraft, MC {
 
     @Inject(method = "runTickMouse", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Mouse;getEventButton()I", ordinal = 0, shift = At.Shift.BEFORE))
     public void IrunTickMouse(CallbackInfo callback) {
+
         if (Mouse.getEventButtonState()) {
             InputHandler.handleMouse();
         }
     }
 
-    @Inject(method = "runGameLoop", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;updateCameraAndRender(FJ)V", shift = At.Shift.AFTER))
-    private void IrenderScreenPost(CallbackInfo callback) {
-        if (!((Minecraft) (Object) this).skipRenderWorld) {
-            GlStateManager.pushMatrix();
-            ScaledResolution res = new ScaledResolution((Minecraft) (Object) this);
-            EventRenderScreen event = new EventRenderScreen(Event.Type.POST, res.getScaledWidth(), res.getScaledHeight());
-            EventManager.handleEvent(event);
-            GlStateManager.popMatrix();
-        }
-    }
-
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("HEAD"))
     public void loadWorld(@Nullable WorldClient worldClientIn, String loadingMessage, CallbackInfo callback) {
+
+        mc.ingameGUI = new HGuiInGame(mc);
         Event event;
         if (worldClientIn != null) {
             event = new EventWorld.Load(Event.Type.PRE, worldClientIn);
@@ -137,16 +132,19 @@ public abstract class MixinMinecraft implements IMixinMinecraft, MC {
 
     @Override
     public Session getSession() {
+
         return session;
     }
 
     @Override
     public void setSession(Session session) {
+
         this.session = session;
     }
 
     @Override
     public Timer getTimer() {
+
         return timer;
     }
 }
