@@ -16,39 +16,45 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+package uk.co.hexeption.darkforge.utils;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 28/02/2017.
  */
-@SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_F)
-public class Fly extends Module {
+public class TimerUtils {
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onEnable() {
+    private long currentMS = 0L;
 
-        getPlayer().capabilities.isFlying = true;
+    private long lastMS = -1L;
+
+    public final void updateMS() {
+
+        this.currentMS = System.currentTimeMillis();
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDisable() {
+    public final void updateLastMS() {
 
-        getPlayer().capabilities.isFlying = false;
+        this.lastMS = System.currentTimeMillis();
     }
 
-    @Override
-    public void onWorldTick() {
+    public final boolean hasTimePassedM(long MS) {
 
-        if (!getPlayer().capabilities.isFlying) {
-            getPlayer().capabilities.isFlying = true;
-        }
+        return this.currentMS >= this.lastMS + MS;
     }
+
+    public final boolean hasTimePassedS(float speed) {
+
+        return this.currentMS >= this.lastMS + (1000.0F / speed);
+    }
+
+    public boolean isDelayComplete(long delay) {
+
+        return System.currentTimeMillis() - this.lastMS >= delay;
+    }
+
+    public Long getSystemTime() {
+
+        return System.nanoTime() / 1000000L;
+    }
+
 }

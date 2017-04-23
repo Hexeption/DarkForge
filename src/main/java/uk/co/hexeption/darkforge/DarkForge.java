@@ -26,13 +26,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.JavaVersion;
+import org.apache.commons.lang3.SystemUtils;
 import uk.co.hexeption.darkforge.api.logger.LogHelper;
-import uk.co.hexeption.darkforge.font.FontManager;
-import uk.co.hexeption.darkforge.managers.CommandManager;
-import uk.co.hexeption.darkforge.managers.EventManager;
-import uk.co.hexeption.darkforge.managers.FileManager;
-import uk.co.hexeption.darkforge.managers.ModuleManager;
+import uk.co.hexeption.darkforge.managers.FontManager;
+import uk.co.hexeption.darkforge.managers.*;
 import uk.co.hexeption.darkforge.ui.hud.Hud;
+import uk.co.hexeption.darkforge.utils.OutdatedJavaException;
 
 @SideOnly(Side.CLIENT)
 @Mod(modid = ClientInfo.MOD_ID, name = ClientInfo.MOD_NAME, version = ClientInfo.VERSION_BUILD)
@@ -53,6 +53,8 @@ public class DarkForge {
 
     public static final FileManager FILE_MANAGER = new FileManager();
 
+    public static final GuiManager CLICK_GUI = new GuiManager();
+
     public static final Hud HUD = new Hud();
 
     @Mod.Instance(ClientInfo.MOD_ID)
@@ -63,6 +65,10 @@ public class DarkForge {
 
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event) {
+
+        if (!SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
+            throw new OutdatedJavaException(String.format("%s requires Java 8 or newer, Please update your java", ClientInfo.MOD_NAME));
+        }
 
     }
 
@@ -87,6 +93,8 @@ public class DarkForge {
 
         LogHelper.info("Loading Hud...");
         HUD.Initialization();
+
+        CLICK_GUI.Initialization();
 
         LogHelper.info("Loading Config...");
         FILE_MANAGER.Initialization();

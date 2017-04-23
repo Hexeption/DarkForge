@@ -117,6 +117,11 @@ public final class GLUtils {
         return Minecraft.getMinecraft().displayHeight / getScaleFactor();
     }
 
+    public static boolean isHovered(int x, int y, int width, int height, int mouseX, int mouseY) {
+
+        return (mouseX >= x) && (mouseX <= x + width) && (mouseY >= y) && (mouseY < y + height);
+    }
+
     public static int genVBO() {
 
         int id = GL15.glGenBuffers();

@@ -29,6 +29,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.module.Module;
 import uk.co.hexeption.darkforge.utils.RenderUtils;
+import uk.co.hexeption.darkforge.value.BooleanValue;
+import uk.co.hexeption.darkforge.value.DoubleValue;
+import uk.co.hexeption.darkforge.value.FloatValue;
 
 /**
  * Created by Hexeption on 03/02/2017.
@@ -38,11 +41,25 @@ import uk.co.hexeption.darkforge.utils.RenderUtils;
 public class Tracers extends Module {
 
     //TODO: Values
-    public static boolean player = true, mob;
+    private BooleanValue player, mob;
+
+    private FloatValue testingFloat;
+
+    private DoubleValue testingDouble;
 
     public static double ticks;
 
     public static double x, y, z;
+
+    public Tracers() {
+
+        player = new BooleanValue("Player", true);
+        mob = new BooleanValue("Mobs", false);
+        testingFloat = new FloatValue("Float", 10f, 1f, 100f);
+        testingDouble = new DoubleValue("Double", 10D, 1D, 100D);
+
+        addValue(player, mob, testingFloat, testingDouble);
+    }
 
     @Override
     public void onWorldRender() {
@@ -54,7 +71,7 @@ public class Tracers extends Module {
 
             EntityLivingBase entity = (EntityLivingBase) entityList;
 
-            if (player) {
+            if (player.getValue()) {
                 if (entity instanceof EntityPlayer) {
                     if (entity != getPlayer() && !entity.isInvisible()) {
                         player(entity);
@@ -62,10 +79,9 @@ public class Tracers extends Module {
                     }
                 }
             }
-            mob = true;
 
-            if (mob) {
-                if (entity instanceof EntityMob && entity instanceof EntityAnimal) {
+            if (mob.getValue()) {
+                if (entity instanceof EntityMob) {
                     player(entity);
                 }
             }

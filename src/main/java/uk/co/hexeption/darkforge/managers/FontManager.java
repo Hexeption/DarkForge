@@ -16,11 +16,12 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.font;
+package uk.co.hexeption.darkforge.managers;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 
 import java.awt.*;
 
@@ -45,6 +46,8 @@ public class FontManager {
     public MinecraftFontRenderer chat = new MinecraftFontRenderer();
 
     public MinecraftFontRenderer guiTitle = new MinecraftFontRenderer();
+
+    public MinecraftFontRenderer clickGui = new MinecraftFontRenderer();
 
 
     public FontManager() {
@@ -73,6 +76,6 @@ public class FontManager {
         buttonHoverd.setFont(new Font(fontName, Font.PLAIN, 25), true);
         chat.setFont(new Font("Verdana", Font.PLAIN, 17), true);
         guiTitle.setFont(new Font(fontName, Font.PLAIN, 17), true);
-
+        clickGui.setFont(new Font(fontName, Font.PLAIN, 16), true);
     }
 }

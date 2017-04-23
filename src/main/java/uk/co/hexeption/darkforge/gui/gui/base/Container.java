@@ -16,39 +16,43 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
+package uk.co.hexeption.darkforge.gui.gui.base;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+import java.util.ArrayList;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 27/02/2017.
  */
-@SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_F)
-public class Fly extends Module {
+public class Container extends Component {
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onEnable() {
+    private ArrayList<Component> components = new ArrayList<>();
 
-        getPlayer().capabilities.isFlying = true;
+
+    public Container(int xPos, int yPos, int width, int height, ComponentType componentType, Component component, String text) {
+
+        super(xPos, yPos, width, height, componentType, component, text);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDisable() {
+    public void addComponent(Component c) {
 
-        getPlayer().capabilities.isFlying = false;
+        components.add(c);
     }
 
-    @Override
-    public void onWorldTick() {
+    public void removeCompoent(Component c) {
 
-        if (!getPlayer().capabilities.isFlying) {
-            getPlayer().capabilities.isFlying = true;
+        components.remove(c);
+    }
+
+    public void renderChildren(int mouseX, int mouseY) {
+
+        for (Component c : getComponents()) {
+            c.render(mouseX, mouseY);
         }
     }
+
+    public ArrayList<Component> getComponents() {
+
+        return components;
+    }
+
 }

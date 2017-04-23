@@ -16,39 +16,11 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package uk.co.hexeption.darkforge.module.modules;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.module.Module;
+package uk.co.hexeption.darkforge.gui.gui.base;
 
 /**
- * Created by Hexeption on 15/01/2017.
+ * Created by Hexeption on 27/02/2017.
  */
-@SideOnly(Side.CLIENT)
-@Module.ModInfo(name = "Fly", description = "Be like SuperGirl <3", category = Module.Category.MOVEMENT, bind = Keyboard.KEY_F)
-public class Fly extends Module {
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onEnable() {
-
-        getPlayer().capabilities.isFlying = true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDisable() {
-
-        getPlayer().capabilities.isFlying = false;
-    }
-
-    @Override
-    public void onWorldTick() {
-
-        if (!getPlayer().capabilities.isFlying) {
-            getPlayer().capabilities.isFlying = true;
-        }
-    }
+public enum ComponentType {
+    FRAME, PANEL, BUTTON, EXPANDING_BUTTON, CHECK_BUTTON, SLIDER
 }
