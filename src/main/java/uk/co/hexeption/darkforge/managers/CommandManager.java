@@ -22,6 +22,7 @@ import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.command.Command;
 import uk.co.hexeption.darkforge.command.commands.Friend;
 import uk.co.hexeption.darkforge.command.commands.TestCommand;
+import uk.co.hexeption.darkforge.command.commands.Waypoint;
 import uk.co.hexeption.darkforge.command.commands.Xray;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class CommandManager {
 
     private void initCommands() {
 
-        addCommand(new TestCommand(), new Xray(), new Friend());
+        addCommand(new TestCommand(), new Xray(), new Friend(), new Waypoint());
     }
 
     public List<Command> getCommands() {
