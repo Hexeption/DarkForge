@@ -29,7 +29,9 @@ import uk.co.hexeption.darkforge.value.BooleanValue;
 import uk.co.hexeption.darkforge.value.DoubleValue;
 import uk.co.hexeption.darkforge.value.FloatValue;
 import uk.co.hexeption.darkforge.value.Value;
+import uk.co.hexeption.darkforge.waypoint.Waypoint;
 
+import javax.vecmath.Vector3d;
 import java.io.*;
 import java.util.Map;
 
@@ -44,18 +46,20 @@ public class FileManager {
 
     public final File DARKFORGE_DIR = new File(String.format("%s%sdarkforge%s", Minecraft.getMinecraft().mcDataDir, File.separator, File.separator));
 
-    private final File MODULE = new File(DARKFORGE_DIR, "mods.json");
+    private final File MODS = new File(DARKFORGE_DIR, "mods.json");
 
     private final File ALTS = new File(DARKFORGE_DIR, "alts.json");
 
     private final File FRIENDS = new File(DARKFORGE_DIR, "friends.json");
+
+    private final File WAYPOINTS = new File(DARKFORGE_DIR, "waypoints.json");
 
     public void Initialization() {
 
         if (!DARKFORGE_DIR.exists())
             DARKFORGE_DIR.mkdir();
 
-        if (!MODULE.exists())
+        if (!MODS.exists())
             saveModules();
         else
             loadModules();
@@ -69,13 +73,19 @@ public class FileManager {
             saveFriends();
         else
             loadFriends();
+
+        if (!WAYPOINTS.exists())
+            saveWaypoints();
+        else
+            loadWaypoints();
+
     }
 
 
     public void loadModules() {
 
         try {
-            BufferedReader loadJson = new BufferedReader(new FileReader(MODULE));
+            BufferedReader loadJson = new BufferedReader(new FileReader(MODS));
             JsonObject moduleJason = (JsonObject) jsonParser.parse(loadJson);
             loadJson.close();
 
@@ -146,7 +156,7 @@ public class FileManager {
                 json.add(mod.getName(), jsonModules);
             }
 
-            PrintWriter saveJson = new PrintWriter(new FileWriter(MODULE));
+            PrintWriter saveJson = new PrintWriter(new FileWriter(MODS));
             saveJson.println(gsonPretty.toJson(json));
             saveJson.close();
         } catch (IOException e) {
@@ -236,6 +246,59 @@ public class FileManager {
                 String alias = friend.get("alias").getAsString();
                 DarkForge.INSTANCE.friendManager.addFriend(username, alias);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveWaypoints() {
+
+        try {
+            JsonObject jsonObject = new JsonObject();
+            for (Waypoint waypoint : DarkForge.INSTANCE.waypointManager.getWaypoints()) {
+                JsonObject object = new JsonObject();
+                if (waypoint.server == null)
+                    object.addProperty("server", "localhost");
+                else
+                    object.addProperty("server", waypoint.server);
+
+                object.addProperty("x", waypoint.position.getX());
+                object.addProperty("y", waypoint.position.getY());
+                object.addProperty("z", waypoint.position.getZ());
+                object.addProperty("dimension", waypoint.dimension);
+                object.addProperty("color", waypoint.color);
+                jsonObject.add(waypoint.name, object);
+            }
+
+            PrintWriter savedJson = new PrintWriter(new FileWriter(WAYPOINTS));
+            savedJson.println(gsonPretty.toJson(jsonObject));
+            savedJson.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void loadWaypoints() {
+
+        try {
+            BufferedReader loadJson = new BufferedReader(new FileReader(WAYPOINTS));
+            JsonObject wayPointJson = (JsonObject) jsonParser.parse(loadJson);
+            DarkForge.INSTANCE.waypointManager.getWaypoints().clear();
+
+            for (Map.Entry<String, JsonElement> entry : wayPointJson.entrySet()) {
+                JsonObject waypoint = entry.getValue().getAsJsonObject();
+
+                String name = entry.getKey();
+                String server = waypoint.get("server").getAsString();
+                double x = waypoint.get("x").getAsDouble();
+                double y = waypoint.get("y").getAsDouble();
+                double z = waypoint.get("z").getAsDouble();
+                int dimension = waypoint.get("dimension").getAsInt();
+                int color = waypoint.get("color").getAsInt();
+                DarkForge.INSTANCE.waypointManager.addWaypoint(new Waypoint(name, new Vector3d(x, y, z), server, dimension, color));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

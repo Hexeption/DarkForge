@@ -138,10 +138,6 @@ public abstract class Mod implements EventListener {
             onDisable();
         }
 
-        //TODO: File save
-
-        DarkForge.INSTANCE.fileManager.saveModules();
-
     }
 
     public boolean isVisable() {

@@ -17,6 +17,7 @@
  ******************************************************************************/
 package uk.co.hexeption.darkforge.managers;
 
+import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.waypoint.Waypoint;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class WaypointManager {
 
         boolean added = waypoints.add(waypoint);
         if (added) {
-            //TODO: Save
+            DarkForge.INSTANCE.fileManager.saveWaypoints();
         }
         return added;
 
@@ -43,7 +44,8 @@ public class WaypointManager {
 
         boolean removed = waypoints.remove(waypoint);
         if (removed) {
-            //TODO:Save
+            DarkForge.INSTANCE.fileManager.saveWaypoints();
+
         }
 
         return removed;
