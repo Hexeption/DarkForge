@@ -47,7 +47,7 @@ public class NoSlowdown extends Mod {
                         eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemPotion ||
                         eventPlayerSlowDown.getEntity().getHeldItemMainhand().getItem() instanceof ItemShield ||
                         eventPlayerSlowDown.getEntity().getHeldItemOffhand().getItem() instanceof ItemShield) {
-                    eventPlayerSlowDown.getEntity().movementInput.moveForward /= 0.2;
+//                    eventPlayerSlowDown.getEntity().movementInput.moveForward /= 0.2;
                     eventPlayerSlowDown.getEntity().movementInput.moveStrafe /= 0.2;
                 }
             }

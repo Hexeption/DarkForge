@@ -24,7 +24,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
-import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
 import uk.co.hexeption.darkforge.mod.Mod;
 
 /**
@@ -46,7 +45,7 @@ public class Charms extends Mod {
                     }
 
                     mc.entityRenderer.disableLightmap();
-                    mc.getRenderManager().renderEntityStatic(entity, ((IMixinMinecraft) mc).getTimer().renderPartialTicks, false);
+//                    mc.getRenderManager().renderEntityStatic(entity, ((IMixinMinecraft) mc).getTimer().renderPartialTicks, false);
                     mc.entityRenderer.enableLightmap();
                 }
 

@@ -22,15 +22,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatisticsManager;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import uk.co.hexeption.darkforge.hook.HEntityPlayerSP;
 import uk.co.hexeption.darkforge.mixin.imp.IMixinPlayerControllerMP;
 
 
@@ -53,7 +47,7 @@ public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
 
     @Override
     public void setCurrentItemHittingBlock(ItemStack stack) {
-        this.currentItemHittingBlock = stack == null ? ItemStack.field_190927_a : stack;
+        this.currentItemHittingBlock = stack == null ? ItemStack.EMPTY : stack;
     }
 
     @Override
@@ -61,9 +55,9 @@ public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
         return mc.player;
     }
 
-    @Inject(method = "createClientPlayer", at = @At("HEAD"), cancellable = true)
-    public void IcreateClientPlayer(World worldIn, StatisticsManager statWriter, CallbackInfoReturnable<EntityPlayerSP> callback) {
-        callback.setReturnValue(new HEntityPlayerSP(mc, worldIn, connection, statWriter));
-    }
+//    @Inject(method = "createClientPlayer", at = @At("HEAD"), cancellable = true)
+//    public void IcreateClientPlayer(World worldIn, StatisticsManager statWriter, CallbackInfoReturnable<EntityPlayerSP> callback) {
+//        callback.setReturnValue(new HEntityPlayerSP(mc, worldIn, connection, statWriter));
+//    }
 
 }

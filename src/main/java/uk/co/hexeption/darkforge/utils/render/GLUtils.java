@@ -19,9 +19,9 @@
 package uk.co.hexeption.darkforge.utils.render;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Mouse;
@@ -244,12 +244,12 @@ public final class GLUtils {
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        VertexBuffer vertexBuffer = tessellator.getBuffer();
-        vertexBuffer.begin(GL_LINE_LOOP, DefaultVertexFormats.POSITION);
-        vertexBuffer.pos(x, y, 0F).endVertex();
-        vertexBuffer.pos(x, y1, 0F).endVertex();
-        vertexBuffer.pos(x1, y1, 0F).endVertex();
-        vertexBuffer.pos(x1, y, 0F).endVertex();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(GL_LINE_LOOP, DefaultVertexFormats.POSITION);
+        bufferBuilder.pos(x, y, 0F).endVertex();
+        bufferBuilder.pos(x, y1, 0F).endVertex();
+        bufferBuilder.pos(x1, y1, 0F).endVertex();
+        bufferBuilder.pos(x1, y, 0F).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
     }
@@ -259,12 +259,12 @@ public final class GLUtils {
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        VertexBuffer vertexBuffer = tessellator.getBuffer();
-        vertexBuffer.begin(GL_QUADS, DefaultVertexFormats.POSITION);
-        vertexBuffer.pos(x, h, 0F).endVertex();
-        vertexBuffer.pos(w, h, 0F).endVertex();
-        vertexBuffer.pos(w, y, 0F).endVertex();
-        vertexBuffer.pos(x, y, 0F).endVertex();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(GL_QUADS, DefaultVertexFormats.POSITION);
+        bufferBuilder.pos(x, h, 0F).endVertex();
+        bufferBuilder.pos(w, h, 0F).endVertex();
+        bufferBuilder.pos(w, y, 0F).endVertex();
+        bufferBuilder.pos(x, y, 0F).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
     }
@@ -286,12 +286,12 @@ public final class GLUtils {
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.shadeModel(7425);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        vertexbuffer.pos((double) x + w, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
-        vertexbuffer.pos((double) x, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
-        vertexbuffer.pos((double) x, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
-        vertexbuffer.pos((double) x + w, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferBuilder.pos((double) x + w, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
+        bufferBuilder.pos((double) x, (double) y, (double) 0).color(f1, f2, f3, f).endVertex();
+        bufferBuilder.pos((double) x, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
+        bufferBuilder.pos((double) x + w, (double) y + h, (double) 0).color(f5, f6, f7, f4).endVertex();
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
