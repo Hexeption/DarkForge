@@ -46,7 +46,7 @@ public class Charms extends Mod {
                     }
 
                     mc.entityRenderer.disableLightmap();
-                    mc.getRenderManager().renderEntityStatic(entity, ((IMixinMinecraft) mc).getTimer().field_194148_c, false);
+                    mc.getRenderManager().renderEntityStatic(entity, ((IMixinMinecraft) mc).getTimer().renderPartialTicks, false);
                     mc.entityRenderer.enableLightmap();
                 }
 

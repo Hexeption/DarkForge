@@ -51,11 +51,11 @@ public class GuiAltDirectLogin extends GuiScreen {
         buttonList.clear();
         buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 60 + 10, "Login"));
         buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 72 + 22, "Back"));
-        email = new GuiTextField(0, fontRendererObj, width / 2 - 100, 60, 200, 20);
+        email = new GuiTextField(0, fontRenderer, width / 2 - 100, 60, 200, 20);
         email.setMaxStringLength(60);
         email.setFocused(true);
         email.setText(Minecraft.getMinecraft().getSession().getUsername());
-        passwordField = new GuiPasswordField(fontRendererObj, width / 2 - 100, 100, 200, 20);
+        passwordField = new GuiPasswordField(fontRenderer, width / 2 - 100, 100, 200, 20);
         passwordField.setFocused(false);
         passwordField.func_146203_f(150);
     }

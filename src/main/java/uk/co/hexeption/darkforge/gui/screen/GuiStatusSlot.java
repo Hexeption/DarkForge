@@ -83,15 +83,15 @@ public class GuiStatusSlot extends GuiSlot {
     }
 
     @Override
-    protected void func_192637_a(int i, int i1, int i2, int i3, int i4, int i5, float v) {
-        StatusItem item = this.statusItems.get(i);
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, item.getName(), width / 2, i2 + 2, Color.white.hashCode());
-        i2 += 10;
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Status: " + item.getStatus(), width / 2, i2 + 2, Color.white.hashCode());
+    protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_) {
 
-        i2 += 10;
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Ping: " + item.getPing(), width / 2, i2 + 2, Color.white.hashCode());
+        StatusItem item = this.statusItems.get(p_192637_1_);
+        mc.ingameGUI.drawCenteredString(mc.fontRenderer, item.getName(), width / 2, p_192637_3_ + 2, Color.white.hashCode());
+        p_192637_3_ += 10;
+        mc.ingameGUI.drawCenteredString(mc.fontRenderer, "Status: " + item.getStatus(), width / 2, p_192637_3_ + 2, Color.white.hashCode());
 
+        p_192637_3_ += 10;
+        mc.ingameGUI.drawCenteredString(mc.fontRenderer, "Ping: " + item.getPing(), width / 2, p_192637_3_ + 2, Color.white.hashCode());
     }
 
 }

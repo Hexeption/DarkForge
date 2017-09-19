@@ -54,8 +54,8 @@ public class GuiStatus extends GuiScreen {
 
         this.drawDefaultBackground();
         this.slots.drawScreen(mouseX, mouseY, partialTicks);
-        this.drawCenteredString(this.fontRendererObj, "Status", this.width / 2, 6, 16777215);
-        this.drawCenteredString(this.fontRendererObj, "Check if a certain services is online.", this.width / 2, 16, 16777215);
+        this.drawCenteredString(this.fontRenderer, "Status", this.width / 2, 6, 16777215);
+        this.drawCenteredString(this.fontRenderer, "Check if a certain services is online.", this.width / 2, 16, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
 
     }

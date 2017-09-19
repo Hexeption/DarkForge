@@ -234,7 +234,7 @@ public class RenderUtils {
         glColor4f(red, green, blue, alpha);
         Vec3d eyes = new Vec3d(0, 0, 1).rotatePitch(-(float) Math.toRadians(Minecraft.getMinecraft().player.rotationPitch)).rotateYaw(-(float) Math.toRadians(Minecraft.getMinecraft().player.rotationYaw));
         glBegin(GL_LINES);
-        glVertex3d(eyes.xCoord, Minecraft.getMinecraft().player.getEyeHeight() + eyes.yCoord, eyes.zCoord);
+        glVertex3d(eyes.x, Minecraft.getMinecraft().player.getEyeHeight() + eyes.y, eyes.z);
         glVertex3d(x, y, z);
         glEnd();
         glEnable(GL_TEXTURE_2D);
@@ -248,7 +248,7 @@ public class RenderUtils {
 
         d += 0.5D;
         d2 += 0.5D;
-        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
+        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
         RenderManager renderManager1 = Minecraft.getMinecraft().getRenderManager();
         glPushMatrix();
         glTranslatef((float) d, (float) d1 + 1.5F, (float) d2 - 0.5F);

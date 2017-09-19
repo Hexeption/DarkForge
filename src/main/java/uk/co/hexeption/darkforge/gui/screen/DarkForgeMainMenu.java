@@ -105,13 +105,13 @@ public class DarkForgeMainMenu extends GuiScreen {
         float titleX = width / 2 - 150, titleY = 20;
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         title.render(titleX, titleY + 10, 300, 100);
-        drawString(fontRendererObj, ClientInfo.VERSION_BUILD, width - fontRendererObj.getStringWidth(ClientInfo.VERSION_BUILD) - 2, height - 12, 0xffffff);
+        drawString(fontRenderer, ClientInfo.VERSION_BUILD, width - fontRenderer.getStringWidth(ClientInfo.VERSION_BUILD) - 2, height - 12, 0xffffff);
 
         java.util.List<String> brandings = com.google.common.collect.Lists.reverse(net.minecraftforge.fml.common.FMLCommonHandler.instance().getBrandings(true));
         for (int brdline = 0; brdline < brandings.size(); brdline++) {
             String brd = brandings.get(brdline);
             if (!com.google.common.base.Strings.isNullOrEmpty(brd)) {
-                this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + brdline * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
+                this.drawString(this.fontRenderer, brd, 2, this.height - (10 + brdline * (this.fontRenderer.FONT_HEIGHT + 1)), 16777215);
             }
         }
 

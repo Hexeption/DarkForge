@@ -141,7 +141,7 @@ public class DarkForgeChat extends GuiNewChat {
                 }
 
                 if (flag) {
-                    int k2 = this.mc.fontRendererObj.FONT_HEIGHT;
+                    int k2 = this.mc.fontRenderer.FONT_HEIGHT;
                     GlStateManager.translate(-3.0F, 0.0F, 0.0F);
                     int l2 = j * k2 + j;
                     int i3 = l * k2 + l;
@@ -166,7 +166,7 @@ public class DarkForgeChat extends GuiNewChat {
         if (DarkForge.INSTANCE.modManager.getModuleByClass(CustomChat.class).getState()) {
             DarkForge.INSTANCE.fontManager.chat.drawStringWithShadow(text, (int) x, (int) y - 3, color);
         } else {
-            mc.fontRendererObj.drawStringWithShadow(text, x, y, color);
+            mc.fontRenderer.drawStringWithShadow(text, x, y, color);
         }
     }
 
@@ -204,7 +204,7 @@ public class DarkForgeChat extends GuiNewChat {
         }
 
         int i = MathHelper.floor((float) this.getChatWidth() / this.getChatScale());
-        List<ITextComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
+        List<ITextComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRenderer, false, false);
         boolean flag = this.getChatOpen();
 
         for (ITextComponent itextcomponent : list) {
@@ -302,8 +302,8 @@ public class DarkForgeChat extends GuiNewChat {
             if (j >= 0 && k >= 0) {
                 int l = Math.min(this.getLineCount(), this.drawnChatLines.size());
 
-                if (j <= MathHelper.floor((float) this.getChatWidth() / this.getChatScale()) && k < this.mc.fontRendererObj.FONT_HEIGHT * l + l) {
-                    int i1 = k / this.mc.fontRendererObj.FONT_HEIGHT + this.scrollPos;
+                if (j <= MathHelper.floor((float) this.getChatWidth() / this.getChatScale()) && k < this.mc.fontRenderer.FONT_HEIGHT * l + l) {
+                    int i1 = k / this.mc.fontRenderer.FONT_HEIGHT + this.scrollPos;
 
                     if (i1 >= 0 && i1 < this.drawnChatLines.size()) {
                         ChatLine chatline = this.drawnChatLines.get(i1);
@@ -311,7 +311,7 @@ public class DarkForgeChat extends GuiNewChat {
 
                         for (ITextComponent itextcomponent : chatline.getChatComponent()) {
                             if (itextcomponent instanceof TextComponentString) {
-                                j1 += this.mc.fontRendererObj.getStringWidth(GuiUtilRenderComponents.removeTextColorsIfConfigured(((TextComponentString) itextcomponent).getText(), false));
+                                j1 += this.mc.fontRenderer.getStringWidth(GuiUtilRenderComponents.removeTextColorsIfConfigured(((TextComponentString) itextcomponent).getText(), false));
 
                                 if (j1 > j) {
                                     return itextcomponent;

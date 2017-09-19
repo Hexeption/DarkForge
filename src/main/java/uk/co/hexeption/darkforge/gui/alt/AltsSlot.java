@@ -150,10 +150,10 @@ public class AltsSlot extends GuiSlot {
     }
 
     @Override
-    protected void func_192637_a(int i, int i1, int i2, int i3, int i4, int i5, float v) {
-        Alt alt = alts.get(i);
+    protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_) {
+        Alt alt = alts.get(p_192637_1_);
 
-        DarkForge.INSTANCE.fontManager.hud.drawCenteredString(alt.getName(), width / 2, i2 + 3, 16777215);
-        DarkForge.INSTANCE.fontManager.hud.drawCenteredString((alt.isCracked() ? "§8Cracked" : "§2Premium") + (alt.isFavourites() ? "§r & §eFavorited" : ""), width / 2, i2 + 15, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString(alt.getName(), width / 2, p_192637_3_ + 3, 16777215);
+        DarkForge.INSTANCE.fontManager.hud.drawCenteredString((alt.isCracked() ? "§8Cracked" : "§2Premium") + (alt.isFavourites() ? "§r & §eFavorited" : ""), width / 2, p_192637_3_ + 15, 16777215);
     }
 }

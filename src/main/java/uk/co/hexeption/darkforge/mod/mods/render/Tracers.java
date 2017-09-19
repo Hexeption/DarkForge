@@ -58,9 +58,9 @@ public class Tracers extends Mod {
         double renderPosX = mixRM.getRenderPosX();
         double renderPosY = mixRM.getRenderPosY();
         double renderPosZ = mixRM.getRenderPosZ();
-        double xPos = (entityLivingBase.lastTickPosX + (entityLivingBase.posX - entityLivingBase.lastTickPosX) * mixMC.getTimer().field_194148_c) - renderPosX;
-        double yPos = (entityLivingBase.lastTickPosY + (entityLivingBase.posY - entityLivingBase.lastTickPosY) * mixMC.getTimer().field_194148_c) - renderPosY;
-        double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * mixMC.getTimer().field_194148_c) - renderPosZ;
+        double xPos = (entityLivingBase.lastTickPosX + (entityLivingBase.posX - entityLivingBase.lastTickPosX) * mixMC.getTimer().elapsedPartialTicks) - renderPosX;
+        double yPos = (entityLivingBase.lastTickPosY + (entityLivingBase.posY - entityLivingBase.lastTickPosY) * mixMC.getTimer().elapsedPartialTicks) - renderPosY;
+        double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * mixMC.getTimer().elapsedPartialTicks) - renderPosZ;
         RenderUtils.drawTracer(xPos, yPos, zPos, 2, red, green, blue, alpha);
 
 

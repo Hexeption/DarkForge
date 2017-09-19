@@ -64,7 +64,7 @@ public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
         return mc.player;
     }
 
-    @Inject(method = "func_192830_a", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "createPlayer", at = @At("HEAD"), cancellable = true)
     public void IcreateClientPlayer(World p_192830_1_, StatisticsManager p_192830_2_, RecipeBook p_192830_3_, CallbackInfoReturnable<EntityPlayerSP> callback) {
 
         callback.setReturnValue(new HEntityPlayerSP(mc, p_192830_1_, this.connection, p_192830_2_, p_192830_3_));
