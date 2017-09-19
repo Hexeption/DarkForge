@@ -25,6 +25,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 public class EventPlayerUpdate extends AbstractEventPlayer {
 
     public EventPlayerUpdate(Type type, EntityPlayerSP entity) {
+
         super(type, entity);
     }
 }

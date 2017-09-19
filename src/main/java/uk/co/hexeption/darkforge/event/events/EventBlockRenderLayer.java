@@ -27,19 +27,23 @@ import uk.co.hexeption.darkforge.event.Event;
 public class EventBlockRenderLayer extends Event {
 
     private final Block block;
+
     private final BlockRenderLayer layer;
 
     public EventBlockRenderLayer(Type type, Block block, BlockRenderLayer layer) {
+
         super(type);
         this.block = block;
         this.layer = layer;
     }
 
     public Block getBlock() {
+
         return block;
     }
 
     public BlockRenderLayer getLayer() {
+
         return layer;
     }
 }

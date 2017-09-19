@@ -29,7 +29,6 @@ import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventChat;
 import uk.co.hexeption.darkforge.event.events.EventMove;
 import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
-import uk.co.hexeption.darkforge.event.events.EventPlayerWalking;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**

@@ -37,6 +37,7 @@ public class BlockOverlay extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventRenderWorld) {
                 RayTraceResult rayTraceResult = mc.objectMouseOver;

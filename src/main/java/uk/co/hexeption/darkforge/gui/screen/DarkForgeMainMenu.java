@@ -36,6 +36,7 @@ public class DarkForgeMainMenu extends GuiScreen {
     private Panorama panorama = new Panorama(width, height);
 
     private GuiButton modButton;
+
     private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
     @Override

@@ -27,6 +27,7 @@ import java.util.List;
  * Created by Keir on 17/04/2017.
  */
 public class MixinLoaderNoForge implements ITweaker {
+
     @Override
     public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile) {
 
@@ -39,11 +40,13 @@ public class MixinLoaderNoForge implements ITweaker {
 
     @Override
     public String getLaunchTarget() {
+
         return null;
     }
 
     @Override
     public String[] getLaunchArguments() {
+
         return new String[0];
     }
 }

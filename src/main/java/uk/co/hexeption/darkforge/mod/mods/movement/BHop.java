@@ -35,7 +35,9 @@ public class BHop extends Mod {
 
     //TODO:
     boolean speed = true;
+
     private int stage;
+
     private double moveSpeed, lastDist;
 
     @Override
@@ -87,6 +89,7 @@ public class BHop extends Mod {
     }
 
     private double getBaseMoveSpeed() {
+
         double baseSpeed = 0.2873D;
         if (mc.world != null && mc.player.isPotionActive(Potion.getPotionById(1))) {
             int amplifire = mc.player.getActivePotionEffect(Potion.getPotionById(1)).getAmplifier();
@@ -96,6 +99,7 @@ public class BHop extends Mod {
     }
 
     private void setMoveSpeed(EventMove event, double moveSpeed) {
+
         double forward = mc.player.moveForward;
         double strafe = mc.player.moveStrafing;
         float yaw = mc.player.rotationYaw;

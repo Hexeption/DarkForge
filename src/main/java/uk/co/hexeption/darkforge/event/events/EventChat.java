@@ -28,33 +28,41 @@ public class EventChat extends Event {
     private String message;
 
     public EventChat(Type type, String message) {
+
         super(type);
         this.message = message;
     }
 
     public String getMessage() {
+
         return message;
     }
 
     public void setMessage(String message) {
+
         this.message = message;
     }
 
     public static class Send extends EventChat {
+
         private EntityPlayerSP entity;
 
         public Send(Type type, String message, EntityPlayerSP entity) {
+
             super(type, message);
             this.entity = entity;
         }
 
         public EntityPlayerSP getEntity() {
+
             return entity;
         }
     }
 
     public static class Recive extends EventChat {
+
         public Recive(Type type, String message) {
+
             super(type, message);
         }
     }

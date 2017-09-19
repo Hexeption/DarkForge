@@ -39,6 +39,7 @@ public class ItemESP extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventRenderWorld) {
                 glPushMatrix();

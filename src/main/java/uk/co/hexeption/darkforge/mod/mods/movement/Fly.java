@@ -40,6 +40,7 @@ public class Fly extends Mod {
 
     @Override
     public void onEnable() {
+
         super.onEnable();
         if (mc.world == null)
             return;
@@ -51,6 +52,7 @@ public class Fly extends Mod {
 
     @Override
     public void onDisable() {
+
         if (mc.world == null)
             return;
         mc.player.capabilities.isFlying = false;
@@ -61,6 +63,7 @@ public class Fly extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState() && event instanceof EventPlayerWalking && event.getType() == Event.Type.PRE) {
             EventPlayerWalking events = event.cast();
 

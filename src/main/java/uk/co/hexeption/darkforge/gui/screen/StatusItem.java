@@ -59,6 +59,7 @@ public class StatusItem {
     }
 
     public void check() {
+
         if (customAPI == null) {
             new Thread(() -> {
 

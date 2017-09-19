@@ -27,24 +27,29 @@ public class EventPlayerInput extends AbstractEventPlayer {
     private float forawrd, strafe;
 
     public EventPlayerInput(Type type, EntityPlayerSP entity, float forawrd, float strafe) {
+
         super(type, entity);
         this.forawrd = forawrd;
         this.strafe = strafe;
     }
 
     public float getForawrd() {
+
         return forawrd;
     }
 
     public void setForawrd(float forawrd) {
+
         this.forawrd = forawrd;
     }
 
     public float getStrafe() {
+
         return strafe;
     }
 
     public void setStrafe(float strafe) {
+
         this.strafe = strafe;
     }
 }

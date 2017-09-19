@@ -23,27 +23,33 @@ import uk.co.hexeption.darkforge.event.Event;
  * Created by Keir on 21/04/2017.
  */
 public class EventRenderScreen extends Event {
+
     private int width, height;
 
     public EventRenderScreen(Type type, int width, int height) {
+
         super(type);
         this.width = width;
         this.height = height;
     }
 
     public int getWidth() {
+
         return width;
     }
 
     public void setWidth(int width) {
+
         this.width = width;
     }
 
     public int getHeight() {
+
         return height;
     }
 
     public void setHeight(int height) {
+
         this.height = height;
     }
 }

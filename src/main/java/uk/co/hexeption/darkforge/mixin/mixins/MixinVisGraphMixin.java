@@ -35,6 +35,7 @@ public class MixinVisGraphMixin {
 
     @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
     public void setOpaqueCube(BlockPos pos, CallbackInfo callback) {
+
         EventSetOpaqueCube event = new EventSetOpaqueCube(Event.Type.PRE, pos);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {

@@ -32,11 +32,13 @@ public class EventManager {
     private static final List<EventListener> LISTENERS = Lists.newCopyOnWriteArrayList();
 
     public static void register(EventListener listener) {
+
         LISTENERS.add(listener);
         LISTENERS.sort(Comparator.comparing(EventListener::getPriority));
     }
 
     public static void handleEvent(Event event) {
+
         for (EventListener listener : LISTENERS) {
             listener.onEvent(event);
         }

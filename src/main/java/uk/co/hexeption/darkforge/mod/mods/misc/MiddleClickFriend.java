@@ -40,6 +40,7 @@ public class MiddleClickFriend extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerInput) {
                 if (mc.objectMouseOver != null && mc.objectMouseOver.entityHit != null && mc.objectMouseOver.entityHit instanceof EntityPlayer) {

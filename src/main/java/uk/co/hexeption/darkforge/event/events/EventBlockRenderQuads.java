@@ -28,19 +28,23 @@ import java.awt.*;
 public class EventBlockRenderQuads extends Event {
 
     private final Block block;
+
     private final Color color;
 
     public EventBlockRenderQuads(Type type, Block block, Color color) {
+
         super(type);
         this.block = block;
         this.color = color;
     }
 
     public Block getBlock() {
+
         return block;
     }
 
     public Color getColor() {
+
         return color;
     }
 }

@@ -42,6 +42,7 @@ public class Xray extends Mod {
     public final ArrayList<Block> xrayBlocks = new ArrayList<Block>();
 
     private final FloatValue opacity = new FloatValue("Opacity", 30F, 0F, 100F);
+
     private transient int ambientOcclusion;
 
     public Xray() {
@@ -106,6 +107,7 @@ public class Xray extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState() && event.getType() == Event.Type.PRE) {
             if (event instanceof EventSetOpaqueCube) {
                 event.cancel();

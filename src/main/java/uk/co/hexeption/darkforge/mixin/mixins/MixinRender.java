@@ -35,6 +35,7 @@ public class MixinRender {
 
     @Inject(method = "renderLivingLabel", at = @At("HEAD"), cancellable = true)
     public <T extends Entity> void IrenderLabelPre(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
+
         EventRenderLabel event = new EventRenderLabel(Event.Type.PRE, entityIn, str, x, y, z, maxDistance);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
@@ -44,6 +45,7 @@ public class MixinRender {
 
     @Inject(method = "renderLivingLabel", at = @At("RETURN"))
     public <T extends Entity> void IrenderLabelPost(T entityIn, String str, double x, double y, double z, int maxDistance, CallbackInfo callback) {
+
         EventRenderLabel event = new EventRenderLabel(Event.Type.POST, entityIn, str, x, y, z, maxDistance);
         EventManager.handleEvent(event);
     }

@@ -25,6 +25,7 @@ import uk.co.hexeption.darkforge.event.Event;
 public class EventRenderWorld extends Event {
 
     public EventRenderWorld(Type type) {
+
         super(type);
     }
 }

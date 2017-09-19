@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
  */
 @Mixin(Entity.class)
 public class MixinEntity {
+
     @Shadow
     public double posX;
 

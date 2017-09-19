@@ -68,6 +68,7 @@ public class Tab implements EventListener {
 
     @Override
     public void onEvent(Event event) {
+
         if (event instanceof EventRenderScreen) {
             if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
                 return;

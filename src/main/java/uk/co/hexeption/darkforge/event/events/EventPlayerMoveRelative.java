@@ -27,6 +27,7 @@ public class EventPlayerMoveRelative extends AbstractEventPlayer {
     private float forawrd, strafe, frication;
 
     public EventPlayerMoveRelative(Type type, EntityPlayerSP entity, float forawrd, float strafe, float frication) {
+
         super(type, entity);
         this.forawrd = forawrd;
         this.strafe = strafe;
@@ -34,26 +35,32 @@ public class EventPlayerMoveRelative extends AbstractEventPlayer {
     }
 
     public float getForawrd() {
+
         return forawrd;
     }
 
     public void setForawrd(float forawrd) {
+
         this.forawrd = forawrd;
     }
 
     public float getStrafe() {
+
         return strafe;
     }
 
     public void setStrafe(float strafe) {
+
         this.strafe = strafe;
     }
 
     public float getFrication() {
+
         return frication;
     }
 
     public void setFrication(float frication) {
+
         this.frication = frication;
     }
 }

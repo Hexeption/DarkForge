@@ -151,6 +151,7 @@ public class AltsSlot extends GuiSlot {
 
     @Override
     protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_) {
+
         Alt alt = alts.get(p_192637_1_);
 
         DarkForge.INSTANCE.fontManager.hud.drawCenteredString(alt.getName(), width / 2, p_192637_3_ + 3, 16777215);

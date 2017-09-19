@@ -23,30 +23,37 @@ package uk.co.hexeption.darkforge.event;
 public class Event {
 
     private Type type;
+
     private boolean cancelled;
 
     public Event(Type type) {
+
         this.type = type;
     }
 
     public Type getType() {
+
         return type;
     }
 
     public Event setType(Type type) {
+
         this.type = type;
         return this;
     }
 
     public boolean isCancelled() {
+
         return cancelled;
     }
 
     public void cancel() {
+
         cancelled = true;
     }
 
     public <T extends Event> T cast() {
+
         return (T) this;
     }
 

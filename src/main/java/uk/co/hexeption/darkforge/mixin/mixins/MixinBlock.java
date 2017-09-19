@@ -38,6 +38,7 @@ public class MixinBlock {
 
     @Inject(method = "shouldSideBeRendered", at = @At("HEAD"), cancellable = true)
     public void shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> callback) {
+
         EventBlockRenderSide event = new EventBlockRenderSide(Event.Type.PRE, blockState, blockAccess, pos, side);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {

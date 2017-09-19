@@ -20,7 +20,9 @@ package uk.co.hexeption.darkforge.mixin.imp;
 public interface IMixinRenderManager {
 
     double getRenderPosX();
+
     double getRenderPosY();
+
     double getRenderPosZ();
 
 }

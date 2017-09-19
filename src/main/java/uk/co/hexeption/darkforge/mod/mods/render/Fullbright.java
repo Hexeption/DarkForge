@@ -37,6 +37,7 @@ public class Fullbright extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerUpdate) {
                 if (mc.gameSettings.gammaSetting < 16) {

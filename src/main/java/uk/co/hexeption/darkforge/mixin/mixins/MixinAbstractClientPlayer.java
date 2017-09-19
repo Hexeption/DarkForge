@@ -44,6 +44,7 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
 
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     public void IAbstractClientPlayer(World worldIn, GameProfile playerProfile, CallbackInfo callbackInfo) {
+
         CapesAPI.loadCape(getGameProfile().getId());
     }
 

@@ -26,10 +26,13 @@ import uk.co.hexeption.darkforge.event.Event;
 public class EventRenderEntity extends Event {
 
     private final Entity entity;
+
     private final double x, y, z;
+
     private final float yaw, partialTicks;
 
     public EventRenderEntity(Type type, Entity entity, double x, double y, double z, float yaw, float partialTicks) {
+
         super(type);
         this.entity = entity;
         this.x = x;
@@ -40,26 +43,32 @@ public class EventRenderEntity extends Event {
     }
 
     public Entity getEntity() {
+
         return entity;
     }
 
     public double getX() {
+
         return x;
     }
 
     public double getY() {
+
         return y;
     }
 
     public double getZ() {
+
         return z;
     }
 
     public float getYaw() {
+
         return yaw;
     }
 
     public float getPartialTicks() {
+
         return partialTicks;
     }
 }

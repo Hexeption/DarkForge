@@ -28,11 +28,13 @@ public class AbstractEventPlayer extends Event {
     protected EntityPlayerSP entity;
 
     public AbstractEventPlayer(Type type, EntityPlayerSP entity) {
+
         super(type);
         this.entity = entity;
     }
 
     public EntityPlayerSP getEntity() {
+
         return entity;
     }
 }

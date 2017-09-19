@@ -34,6 +34,7 @@ public class NoSlowdown extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerSlowDown) {
                 EventPlayerSlowDown eventPlayerSlowDown = event.cast();

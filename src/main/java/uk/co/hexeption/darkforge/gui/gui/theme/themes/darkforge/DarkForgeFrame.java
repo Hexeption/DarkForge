@@ -150,6 +150,7 @@ public class DarkForgeFrame extends ComponentRenderer {
 
     @Override
     public void doInteractions(Component component, int mouseX, int mouseY) {
+
         Frame frame = (Frame) component;
         Dimension area = frame.getDimension();
 

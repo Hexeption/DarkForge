@@ -28,11 +28,13 @@ public class EventSetOpaqueCube extends Event {
     private final BlockPos pos;
 
     public EventSetOpaqueCube(Type type, BlockPos pos) {
+
         super(type);
         this.pos = pos;
     }
 
     public BlockPos getPos() {
+
         return pos;
     }
 }

@@ -32,6 +32,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
  */
 @Mod.ModInfo(name = "Charms", description = "highlights a entities", category = Mod.Category.RENDER, bind = Keyboard.KEY_J)
 public class Charms extends Mod {
+
     @Override
     public void onEvent(Event event) {
 

@@ -27,27 +27,33 @@ import uk.co.hexeption.darkforge.event.Event;
 public class EventRenderEntities extends Event {
 
     private Entity entity;
+
     private float partialTicks;
 
     public EventRenderEntities(Type type, Entity entity, float partialTicks) {
+
         super(type);
         this.entity = entity;
         this.partialTicks = partialTicks;
     }
 
     public Entity getEntity() {
+
         return entity;
     }
 
     public void setEntity(Entity entity) {
+
         this.entity = entity;
     }
 
     public float getPartialTicks() {
+
         return partialTicks;
     }
 
     public void setPartialTicks(float partialTicks) {
+
         this.partialTicks = partialTicks;
     }
 }

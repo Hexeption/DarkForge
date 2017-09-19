@@ -25,6 +25,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 public class EventPlayerWalking extends AbstractEventPlayer {
 
     public EventPlayerWalking(Type type, EntityPlayerSP entity) {
+
         super(type, entity);
     }
 

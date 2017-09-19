@@ -36,6 +36,7 @@ public class MixinNetworkManager {
 
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
     public void IchannelRead0(ChannelHandlerContext context, Packet<?> packet, CallbackInfo callback) {
+
         Event event = new EventPacket.Receive(Event.Type.PRE, packet);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
@@ -45,6 +46,7 @@ public class MixinNetworkManager {
 
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
     public void IsendPacket(Packet<?> packet, CallbackInfo callback) {
+
         Event event = new EventPacket.Send(Event.Type.PRE, packet);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {

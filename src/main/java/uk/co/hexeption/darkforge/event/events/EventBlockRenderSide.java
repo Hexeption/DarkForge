@@ -29,12 +29,17 @@ import uk.co.hexeption.darkforge.event.Event;
 public class EventBlockRenderSide extends Event {
 
     private final IBlockState state;
+
     private final IBlockAccess world;
+
     private final BlockPos pos;
+
     private final EnumFacing side;
+
     private boolean toRender;
 
     public EventBlockRenderSide(Type type, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+
         super(type);
         this.state = state;
         this.world = world;
@@ -43,26 +48,32 @@ public class EventBlockRenderSide extends Event {
     }
 
     public IBlockState getState() {
+
         return state;
     }
 
     public IBlockAccess getWorld() {
+
         return world;
     }
 
     public BlockPos getPos() {
+
         return pos;
     }
 
     public EnumFacing getSide() {
+
         return side;
     }
 
     public boolean isToRender() {
+
         return toRender;
     }
 
     public void setToRender(boolean toRender) {
+
         this.toRender = toRender;
     }
 }

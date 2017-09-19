@@ -27,11 +27,13 @@ public class EventKeyboard extends Event {
     private final int key;
 
     public EventKeyboard(Type type, int key) {
+
         super(type);
         this.key = key;
     }
 
     public int getKey() {
+
         return key;
     }
 }

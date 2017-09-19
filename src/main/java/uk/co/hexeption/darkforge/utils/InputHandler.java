@@ -32,6 +32,7 @@ import uk.co.hexeption.darkforge.mod.Mod;
 public class InputHandler {
 
     public static void handleBind(boolean state, int key, char character) {
+
         EventKeybind event = new EventKeybind(Event.Type.PRE, state, key, character);
         EventManager.handleEvent(event);
 
@@ -46,6 +47,7 @@ public class InputHandler {
     }
 
     public static void handleKeyboard() {
+
         boolean state = Keyboard.getEventKeyState();
         int key = Keyboard.getEventKey();
         char character = Keyboard.getEventCharacter();
@@ -58,6 +60,7 @@ public class InputHandler {
     }
 
     public static void handleMouse() {
+
         int button = Mouse.getEventButton();
         boolean state = Mouse.getEventButtonState();
 

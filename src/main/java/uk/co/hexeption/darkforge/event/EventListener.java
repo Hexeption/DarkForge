@@ -23,6 +23,7 @@ package uk.co.hexeption.darkforge.event;
 public interface EventListener {
 
     default Priority getPriority() {
+
         return Priority.NORMAL;
     }
 

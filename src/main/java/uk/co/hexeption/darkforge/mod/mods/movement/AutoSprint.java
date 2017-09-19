@@ -43,6 +43,7 @@ public class AutoSprint extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerWalking) {
                 if (event.getType() == Event.Type.PRE) {

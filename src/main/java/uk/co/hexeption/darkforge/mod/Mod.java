@@ -18,17 +18,9 @@
 
 package uk.co.hexeption.darkforge.mod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.settings.GameSettings;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.EventListener;
-import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.managers.EventManager;
 import uk.co.hexeption.darkforge.value.Value;
 
@@ -39,7 +31,7 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-public abstract class Mod implements EventListener, MC{
+public abstract class Mod implements EventListener, MC {
 
     private String name = getClass().getAnnotation(ModInfo.class).name();
 
