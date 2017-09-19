@@ -26,6 +26,7 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.settings.GameSettings;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.EventListener;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.managers.EventManager;
@@ -38,9 +39,7 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-public abstract class Mod implements EventListener {
-
-    protected Minecraft mc = Minecraft.getMinecraft();
+public abstract class Mod implements EventListener, MC{
 
     private String name = getClass().getAnnotation(ModInfo.class).name();
 
@@ -55,6 +54,22 @@ public abstract class Mod implements EventListener {
     private ArrayList<Value> values = new ArrayList<>();
 
     private boolean state;
+
+    protected void onEnable() {
+
+    }
+
+    protected void onDisable() {
+
+    }
+
+    public void onToggle() {
+
+    }
+
+    /**
+     * Values
+     */
 
     public void addValue(Value... values) {
 
@@ -80,6 +95,9 @@ public abstract class Mod implements EventListener {
 
     }
 
+    /**
+     * Getters/Setters
+     */
 
     public String getName() {
 
@@ -150,17 +168,6 @@ public abstract class Mod implements EventListener {
         this.visable = visable;
     }
 
-    public void onEnable() {
-
-    }
-
-    public void onDisable() {
-
-    }
-
-    public void onToggle() {
-
-    }
 
     public void toggle() {
 
@@ -177,43 +184,9 @@ public abstract class Mod implements EventListener {
         return getBind() == -1 ? "-1" : Keyboard.getKeyName(getBind());
     }
 
-    //TODO: Remove
-
-    protected Minecraft getMinecraft() {
-
-        return Minecraft.getMinecraft();
-    }
-
-    protected EntityPlayerSP getPlayer() {
-
-        return getMinecraft().player;
-    }
-
-    protected WorldClient getWorld() {
-
-        return getMinecraft().world;
-    }
-
-    protected GameSettings getGameSettings() {
-
-        return getMinecraft().gameSettings;
-    }
-
-    protected RenderGlobal getRenderGlobal() {
-
-        return getMinecraft().renderGlobal;
-    }
-
-    protected EntityRenderer getEntityRenderer() {
-
-        return getMinecraft().entityRenderer;
-    }
-
-    protected MinecraftFontRenderer getFontRenderer() {
-
-        return DarkForge.INSTANCE.fontManager.hud;
-    }
-
+    /**
+     * Enum Class
+     */
     public enum Category {
         COMBAT(0x3ABDFF), MOVEMENT(0xF8FF1F), RENDER(0x48FF1F), WORLD(0xCF1FFF), MISC(0xFFC100), PLAYER(0x00FFEC), GUI(0);
 
@@ -225,6 +198,9 @@ public abstract class Mod implements EventListener {
         }
     }
 
+    /**
+     * Mod information class
+     */
     @Retention(RetentionPolicy.RUNTIME)
     public @interface ModInfo {
 

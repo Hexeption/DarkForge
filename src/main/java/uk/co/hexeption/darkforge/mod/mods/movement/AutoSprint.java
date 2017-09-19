@@ -30,15 +30,15 @@ public class AutoSprint extends Mod {
     @Override
     public void onEnable() {
 
-        if (getPlayer() != null)
-            getPlayer().setSprinting(true);
+        if (mc.player != null)
+            mc.player.setSprinting(true);
     }
 
     @Override
     public void onDisable() {
 
-        if (getPlayer() != null)
-            getPlayer().setSprinting(false);
+        if (mc.player != null)
+            mc.player.setSprinting(false);
     }
 
     @Override

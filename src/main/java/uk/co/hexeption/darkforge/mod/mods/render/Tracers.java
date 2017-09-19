@@ -78,10 +78,11 @@ public class Tracers extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerUpdate) {
 
-                for (Object entityList : getWorld().loadedEntityList) {
+                for (Object entityList : mc.world.loadedEntityList) {
                     if (!(entityList instanceof EntityLivingBase)) {
                         continue;
                     }
@@ -90,7 +91,7 @@ public class Tracers extends Mod {
 
                     if (player.getValue()) {
                         if (entity instanceof EntityPlayer) {
-                            if (entity != getPlayer() && !entity.isInvisible()) {
+                            if (entity != mc.player && !entity.isInvisible()) {
                                 player(entity);
 
                             }

@@ -18,6 +18,7 @@
 
 package uk.co.hexeption.darkforge.mod.mods.render;
 
+import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
 import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
@@ -31,12 +32,13 @@ import static org.lwjgl.opengl.GL11.*;
  * Created by Hexeption on 15/01/2017.
  */
 @Mod.ModInfo(name = "Bread Crumbs", description = "Leaves a trail behind you", category = Mod.Category.RENDER, bind = 0)
-public class BreadCrumbs extends Mod {
+public class BreadCrumbs extends Mod implements MC {
 
     private final LinkedList<double[]> positions = new LinkedList<double[]>();
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventRenderWorld) {
                 synchronized (positions) {
@@ -47,7 +49,7 @@ public class BreadCrumbs extends Mod {
                     glEnable(GL_LINE_SMOOTH);
                     glEnable(GL_BLEND);
                     glDisable(GL_DEPTH_TEST);
-                    getEntityRenderer().disableLightmap();
+                    mc.entityRenderer.disableLightmap();
                     glBegin(GL_LINE_STRIP);
                     glColor4d(0, 0.7D, 0.7D, 1);
                     double renderPosX = mc.getRenderManager().viewerPosX;
@@ -67,11 +69,11 @@ public class BreadCrumbs extends Mod {
                     glPopMatrix();
                 }
             } else if (event instanceof EventPlayerUpdate) {
-                if (getPlayer() == null)
+                if (mc.player == null)
                     return;
 
                 synchronized (positions) {
-                    positions.add(new double[]{getPlayer().posX, getPlayer().posY, getPlayer().posZ});
+                    positions.add(new double[]{mc.player.posX, mc.player.posY, mc.player.posZ});
                 }
             }
         }

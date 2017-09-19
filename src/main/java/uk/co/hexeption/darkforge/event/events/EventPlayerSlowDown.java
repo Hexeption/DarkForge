@@ -25,6 +25,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 public class EventPlayerSlowDown extends AbstractEventPlayer {
 
     public EventPlayerSlowDown(Type type, EntityPlayerSP entity) {
+
         super(type, entity);
     }
+
+
 }
