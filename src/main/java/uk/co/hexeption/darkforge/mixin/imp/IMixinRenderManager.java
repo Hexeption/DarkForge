@@ -15,20 +15,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package uk.co.hexeption.darkforge;
+package uk.co.hexeption.darkforge.mixin.imp;
 
-import net.minecraft.client.Minecraft;
-import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
-import uk.co.hexeption.darkforge.mixin.imp.IMixinRenderManager;
+public interface IMixinRenderManager {
 
-/**
- * Created by Keir on 21/04/2017.
- */
-public interface MC {
+    double getRenderPosX();
+    double getRenderPosY();
+    double getRenderPosZ();
 
-    Minecraft mc = Minecraft.getMinecraft();
-
-    IMixinMinecraft mixMC = (IMixinMinecraft) mc;
-
-    IMixinRenderManager mixRM = (IMixinRenderManager) mc.getRenderManager();
 }
