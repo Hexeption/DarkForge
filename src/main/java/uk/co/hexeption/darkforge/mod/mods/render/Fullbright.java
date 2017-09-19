@@ -32,20 +32,20 @@ public class Fullbright extends Mod {
     @Override
     public void onDisable() {
 
-        getGameSettings().gammaSetting = 0.5f;
+        mc.gameSettings.gammaSetting = 0.5f;
     }
 
     @Override
     public void onEvent(Event event) {
         if (getState()) {
             if (event instanceof EventPlayerUpdate) {
-                if (getGameSettings().gammaSetting < 16) {
-                    getGameSettings().gammaSetting += 0.5;
-                } else if (getGameSettings().gammaSetting > 0.5) {
-                    if (getGameSettings().gammaSetting < 1f)
-                        getGameSettings().gammaSetting = 0.5f;
+                if (mc.gameSettings.gammaSetting < 16) {
+                    mc.gameSettings.gammaSetting += 0.5;
+                } else if (mc.gameSettings.gammaSetting > 0.5) {
+                    if (mc.gameSettings.gammaSetting < 1f)
+                        mc.gameSettings.gammaSetting = 0.5f;
                     else
-                        getGameSettings().gammaSetting -= 0.5;
+                        mc.gameSettings.gammaSetting -= 0.5;
                 }
             }
         }

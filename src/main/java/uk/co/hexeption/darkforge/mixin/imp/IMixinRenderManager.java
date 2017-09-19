@@ -15,23 +15,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package uk.co.hexeption.darkforge.mixin.imp;
 
-task wrapper(type: Wrapper) {
-    gradleVersion = "3.5"
+public interface IMixinRenderManager {
+
+    double getRenderPosX();
+    double getRenderPosY();
+    double getRenderPosZ();
+
 }
-
-task installMods(type: Copy, dependsOn: "deInstallMods") {
-    from {
-        configurations.mods
-    }
-
-    include "**/*.jar"
-    into file(minecraft.runDir + "/mods")
-}
-
-task deInstallMods(type: Delete) {
-    delete fileTree(dir: minecraft.runDir + "/mods", include: "*.jar")
-}
-
-tasks.setupDecompWorkspace.dependsOn installMods
-tasks.setupDevWorkspace.dependsOn installMods

@@ -22,6 +22,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.RecipeBook;
 import net.minecraft.stats.StatisticsManager;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
@@ -53,17 +54,20 @@ public class MixinPlayerControllerMP implements IMixinPlayerControllerMP {
 
     @Override
     public void setCurrentItemHittingBlock(ItemStack stack) {
-        this.currentItemHittingBlock = stack == null ? ItemStack.field_190927_a : stack;
+
+        this.currentItemHittingBlock = stack == null ? ItemStack.EMPTY : stack;
     }
 
     @Override
     public EntityPlayerSP getEntityPlayer() {
+
         return mc.player;
     }
 
-    @Inject(method = "createClientPlayer", at = @At("HEAD"), cancellable = true)
-    public void IcreateClientPlayer(World worldIn, StatisticsManager statWriter, CallbackInfoReturnable<EntityPlayerSP> callback) {
-        callback.setReturnValue(new HEntityPlayerSP(mc, worldIn, connection, statWriter));
+    @Inject(method = "func_192830_a", at = @At("HEAD"), cancellable = true)
+    public void IcreateClientPlayer(World p_192830_1_, StatisticsManager p_192830_2_, RecipeBook p_192830_3_, CallbackInfoReturnable<EntityPlayerSP> callback) {
+
+        callback.setReturnValue(new HEntityPlayerSP(mc, p_192830_1_, this.connection, p_192830_2_, p_192830_3_));
     }
 
 }

@@ -97,11 +97,11 @@ public class Killaura extends Mod {
 //
 //                    if (!(entity instanceof EntityPlayerSP) && isValid(entity)) {
 //                        faceTarget(entity, Float.MAX_VALUE, Float.MAX_VALUE);
-//                        getPlayer().rotationPitch += 9.0E-4F;
+//                        mc.player.rotationPitch += 9.0E-4F;
 //
 //                        if (time.hasTimePassedM(delay.getValue().intValue())) {
-//                            getPlayer().swingArm(EnumHand.MAIN_HAND);
-//                            getMinecraft().playerController.attackEntity(getPlayer(), entity);
+//                            mc.player.swingArm(EnumHand.MAIN_HAND);
+//                            getMinecraft().playerController.attackEntity(mc.player, entity);
 //                            time.updateLastMS();
 //                        }
 //                    }
@@ -117,7 +117,7 @@ public class Killaura extends Mod {
 //            if ((y instanceof EntityLiving)) {
 //                EntityLiving e = (EntityLiving) y;
 //
-//                if ((isValid(e)) && (e.getDistanceToEntity(getPlayer()) < target.getDistanceToEntity(getPlayer()))) {
+//                if ((isValid(e)) && (e.getDistanceToEntity(mc.player) < target.getDistanceToEntity(mc.player))) {
 //                    target = e;
 //                }
 //            }
@@ -126,18 +126,18 @@ public class Killaura extends Mod {
 //        if (isValid(target)) {
 //            if (isInStareRange(target)) {
 //                faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
-//                getPlayer().rotationPitch += 9.0E-4F;
+//                mc.player.rotationPitch += 9.0E-4F;
 //            }
 //
 //            faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
-//            getPlayer().rotationPitch += 9.0E-4F;
+//            mc.player.rotationPitch += 9.0E-4F;
 //            attackEntity();
 //        }
 //    }
 
     private void updateTargets() {
 
-        for (Object o : getWorld().loadedEntityList) {
+        for (Object o : mc.world.loadedEntityList) {
             if ((o instanceof EntityLivingBase)) {
                 EntityLivingBase entity = (EntityLivingBase) o;
 
@@ -154,20 +154,20 @@ public class Killaura extends Mod {
 
         if (isValid(target)) {
             faceTarget(target, Float.MAX_VALUE, Float.MAX_VALUE);
-            getPlayer().rotationPitch += 9.0E-4F;
+            mc.player.rotationPitch += 9.0E-4F;
 
             //1.9 Aura
             if (autoDelay.getValue()) {
 
-                if (getPlayer().getCooledAttackStrength(0) == 1) {
+                if (mc.player.getCooledAttackStrength(0) == 1) {
 
-                    getMinecraft().playerController.attackEntity(getPlayer(), target);
-                    getPlayer().swingArm(EnumHand.MAIN_HAND);
+                    mc.playerController.attackEntity(mc.player, target);
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
 
                 }
             } else if (time.hasTimePassedM(delay.getValue().intValue())) {
-                getMinecraft().playerController.attackEntity(getPlayer(), target);
-                getPlayer().swingArm(EnumHand.MAIN_HAND);
+                mc.playerController.attackEntity(mc.player, target);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
                 time.updateLastMS();
             }
 
@@ -176,26 +176,26 @@ public class Killaura extends Mod {
 
     private void faceTarget(Entity entity, float i, float j) {
 
-        double xPos = entity.posX - getPlayer().posX;
-        double yPos = entity.posY - getPlayer().posY;
+        double xPos = entity.posX - mc.player.posX;
+        double yPos = entity.posY - mc.player.posY;
         double k;
 
         if (entity instanceof EntityLivingBase) {
             EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
-            k = entityLivingBase.posY + entityLivingBase.getEyeHeight() - (getPlayer().posY - getPlayer().getEyeHeight());
+            k = entityLivingBase.posY + entityLivingBase.getEyeHeight() - (mc.player.posY - mc.player.getEyeHeight());
         } else {
-            k = (entity.getEntityBoundingBox().minY + entity.getEntityBoundingBox().maxY) / 2D - (getPlayer().posY + getPlayer().getEyeHeight());
+            k = (entity.getEntityBoundingBox().minY + entity.getEntityBoundingBox().maxY) / 2D - (mc.player.posY + mc.player.getEyeHeight());
         }
 
         double l = MathHelper.sqrt(xPos * xPos + yPos * yPos);
         float m = (float) (Math.atan2(yPos, xPos) * 180D / Math.PI) - 90F;
         float n = (float) (Math.atan2(k - ((entity instanceof EntityLiving) ? 0.5F : 0F), l) * 180D / Math.PI);
-        pitch = changeRoation(getPlayer().rotationPitch, n, j);
-        yaw = changeRoation(getPlayer().rotationYaw, m, i);
+        pitch = changeRoation(mc.player.rotationPitch, n, j);
+        yaw = changeRoation(mc.player.rotationYaw, m, i);
 
         if (locked.getValue()) {
-            getPlayer().rotationPitch = pitch;
-            getPlayer().rotationYaw = yaw;
+            mc.player.rotationPitch = pitch;
+            mc.player.rotationYaw = yaw;
         }
     }
 
@@ -219,11 +219,11 @@ public class Killaura extends Mod {
 
         if (player.getValue().booleanValue() && ((entity instanceof EntityPlayer)) && (isInAttackRange(entity)) && (entity.ticksExisted > 30) && (entity.getHealth() > 0.0F) && (!entity.isDead)) {
             if ((!entity.getName().startsWith("Body #"))) {
-                if (invisiableEntitys.getValue().booleanValue() && (!entity.isInvisible()) && (entity.canEntityBeSeen(getPlayer()))) {
+                if (invisiableEntitys.getValue().booleanValue() && (!entity.isInvisible()) && (entity.canEntityBeSeen(mc.player))) {
                     return true;
                 }
 
-                if (entity.canEntityBeSeen(getPlayer())) {
+                if (entity.canEntityBeSeen(mc.player)) {
                     return true;
                 }
 
@@ -233,11 +233,11 @@ public class Killaura extends Mod {
 
         if (mob.getValue().booleanValue() && ((entity instanceof EntityLivingBase)) && (!(entity instanceof EntityPlayer)) && (isInStareRange(entity)) && (entity.ticksExisted > 30) && (!entity.isDead)) {
             if (!entity.getName().startsWith("Body #")) {
-                if (invisiableEntitys.getValue().booleanValue() && (!entity.isInvisible()) && (entity.canEntityBeSeen(getPlayer()))) {
+                if (invisiableEntitys.getValue().booleanValue() && (!entity.isInvisible()) && (entity.canEntityBeSeen(mc.player))) {
                     return true;
                 }
 
-                if (entity.canEntityBeSeen(getPlayer())) {
+                if (entity.canEntityBeSeen(mc.player)) {
                     return true;
                 }
 
@@ -251,12 +251,12 @@ public class Killaura extends Mod {
 
     public boolean isInAttackRange(Entity target) {
 
-        return target.getDistanceToEntity(getPlayer()) <= range.value.doubleValue();
+        return target.getDistanceToEntity(mc.player) <= range.value.doubleValue();
     }
 
     public boolean isInStareRange(Entity target) {
 
-        return target.getDistanceToEntity(getPlayer()) <= range.value.doubleValue() + 0.2D;
+        return target.getDistanceToEntity(mc.player) <= range.value.doubleValue() + 0.2D;
     }
 
     @Override

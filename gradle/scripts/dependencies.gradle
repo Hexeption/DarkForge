@@ -38,9 +38,12 @@ configurations {
 }
 
 dependencies {
-    mods "com.fireball1725.devworld:devworld:1.11-b15-client"
+//    mods "com.fireball1725.devworld:devworld:1.11-b15-client"
+//
+//    compile "mezz.jei:jei_1.11:4.1.1.207"
 
-    compile "mezz.jei:jei_1.11:4.1.1.207"
+    //Mixins Support
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.0-beta9'
 
     compile("org.spongepowered:mixin:0.6.4-SNAPSHOT") {
         exclude module: "launchwrapper"

@@ -21,8 +21,8 @@ package uk.co.hexeption.darkforge.gui.alt;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.opengl.GL11;
@@ -519,16 +519,16 @@ public class GuiPasswordField extends Gui {
         }
 
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
         GL11.glColor4f(50.0F, 50.0F, 150.0F, 255.0F);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
         GL11.glLogicOp(GL11.GL_OR_REVERSE);
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        vertexbuffer.pos(p_146188_1_, p_146188_4_, 0.0D);
-        vertexbuffer.pos(p_146188_3_, p_146188_4_, 0.0D);
-        vertexbuffer.pos(p_146188_3_, p_146188_2_, 0.0D);
-        vertexbuffer.pos(p_146188_1_, p_146188_2_, 0.0D);
+        bufferBuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferBuilder.pos(p_146188_1_, p_146188_4_, 0.0D);
+        bufferBuilder.pos(p_146188_3_, p_146188_4_, 0.0D);
+        bufferBuilder.pos(p_146188_3_, p_146188_2_, 0.0D);
+        bufferBuilder.pos(p_146188_1_, p_146188_2_, 0.0D);
         tessellator.draw();
         GL11.glDisable(GL11.GL_COLOR_LOGIC_OP);
         GL11.glEnable(GL11.GL_TEXTURE_2D);

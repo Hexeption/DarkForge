@@ -24,6 +24,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.math.AxisAlignedBB;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
 import uk.co.hexeption.darkforge.event.events.EventRenderWorld;
@@ -50,6 +51,7 @@ public class ChestESP extends Mod {
     public void onEvent(Event event) {
         if (getState()) {
             if (event instanceof EventRenderWorld) {
+
                 glEnable(GL_BLEND);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glEnable(GL_LINE_SMOOTH);

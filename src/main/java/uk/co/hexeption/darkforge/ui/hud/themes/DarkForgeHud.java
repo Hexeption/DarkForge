@@ -33,7 +33,6 @@ import uk.co.hexeption.darkforge.utils.render.Texture;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -45,7 +44,8 @@ public class DarkForgeHud implements IGameHud {
 
     public Texture question = new Texture("textures/question.png");
 
-    private ArrayList<Mod> orderdMods = new ArrayList<>();
+
+    private int y;
 
     @Override
     public void render(Minecraft minecraft, int displayWidth, int displayHeight) {
@@ -63,26 +63,17 @@ public class DarkForgeHud implements IGameHud {
 
         DarkForge.INSTANCE.fontManager.hud_small.drawString("Time : " + new SimpleDateFormat("hh:mm a").format(new Date()) + " | FPS : " + Minecraft.getDebugFPS(), 1, 22, -1);
 
-        reorderMods(0);
-        drawArrayList(scaledResolution);
+        //Array List
+        y = 2;
+        DarkForge.INSTANCE.modManager.getMods().stream().filter(Mod::getState).sorted(Comparator.comparingInt(m -> -DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(m.getName()))).forEach(mod -> {
+            DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), y, mod.getCategory().color);
+            y += 10;
+        });
+
+
         drawNotifications(scaledResolution);
 
         GlStateManager.color(255, 255, 255);
-    }
-
-    private void drawArrayList(ScaledResolution scaledResolution) {
-
-        if (this.orderdMods.isEmpty()) {
-            this.orderdMods.addAll(DarkForge.INSTANCE.modManager.getMods());
-        }
-
-        int yCount = 2;
-        for (Mod mod : this.orderdMods) {
-            if (mod.getState() && mod.getCategory() != Mod.Category.GUI && mod.isVisable()) {
-                DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(mod.getName(), (scaledResolution.getScaledWidth() - 3) - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(mod.getName()), yCount, mod.getCategory().color);
-                yCount += 10;
-            }
-        }
     }
 
     private void drawNotifications(ScaledResolution scaledResolution) {
@@ -110,42 +101,13 @@ public class DarkForgeHud implements IGameHud {
                             break;
                     }
 
-                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 20 - ycount, Color.white.hashCode());
+                    DarkForge.INSTANCE.fontManager.arraylist.drawStringWithShadow(notification.getMessage(), scaledResolution.getScaledWidth() - DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(notification.getMessage()) - 10, scaledResolution.getScaledHeight() - 18 - ycount, Color.white.hashCode());
                 }
                 ycount += 15;
             }
         }
     }
 
-    private void reorderMods(int sort) {
-
-        ArrayList<Mod> mods = this.orderdMods;
-
-        switch (sort) {
-            case 0:
-                mods.sort((o1, o2) -> {
-
-                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) > DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
-                        return -1;
-                    }
-                    if (DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o1.getName()) < DarkForge.INSTANCE.fontManager.arraylist.getStringWidth(o2.getName())) {
-                        return 1;
-                    }
-
-                    return 0;
-                });
-                break;
-            case 1:
-                mods.sort(Comparator.comparing(Mod::getName));
-                break;
-            case 2:
-                mods.sort(Comparator.comparingInt(o -> o.getCategory().ordinal()));
-
-                break;
-        }
-
-        this.orderdMods = mods;
-    }
 
     @Override
     public String name() {

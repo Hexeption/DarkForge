@@ -45,6 +45,11 @@ public class Waypoint implements MC {
         setName(name).setPosition(position).setServer(server).setDimension(dimension).setColor(color);
     }
 
+    public Waypoint(String name, Vector3d position, String server, int dimension, int color) {
+
+        setName(name).setPosition(position).setServer(server).setDimension(dimension).setColor(color);
+    }
+
     public Waypoint(String name, Vector3d position, ServerData server) {
 
         this(name, position, server, mc.player.dimension, GLUtils.getRandomColor().hashCode());

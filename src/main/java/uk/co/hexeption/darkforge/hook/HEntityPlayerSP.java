@@ -20,11 +20,14 @@ package uk.co.hexeption.darkforge.hook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.stats.RecipeBook;
 import net.minecraft.stats.StatisticsManager;
 import net.minecraft.world.World;
 import uk.co.hexeption.darkforge.DarkForge;
 import uk.co.hexeption.darkforge.event.Event;
-import uk.co.hexeption.darkforge.event.events.*;
+import uk.co.hexeption.darkforge.event.events.EventPlayerJump;
+import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
+import uk.co.hexeption.darkforge.event.events.EventPlayerWalking;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
@@ -32,16 +35,14 @@ import uk.co.hexeption.darkforge.managers.EventManager;
  */
 public class HEntityPlayerSP extends EntityPlayerSP {
 
-    private HEntityPlayerSP(World world) {
-        this(Minecraft.getMinecraft(), world, Minecraft.getMinecraft().getConnection(), new StatisticsManager());
-    }
+    public HEntityPlayerSP(Minecraft p_i47378_1_, World p_i47378_2_, NetHandlerPlayClient p_i47378_3_, StatisticsManager p_i47378_4_, RecipeBook p_i47378_5_) {
 
-    public HEntityPlayerSP(Minecraft mcIn, World worldIn, NetHandlerPlayClient netHandler, StatisticsManager statFile) {
-        super(mcIn, worldIn, netHandler, statFile);
+        super(p_i47378_1_, p_i47378_2_, p_i47378_3_, p_i47378_4_, p_i47378_5_);
     }
 
     @Override
     public void onUpdate() {
+
         EventPlayerUpdate event = new EventPlayerUpdate(Event.Type.PRE, this);
         EventManager.handleEvent(event);
         if (!event.isCancelled()) {
@@ -62,40 +63,8 @@ public class HEntityPlayerSP extends EntityPlayerSP {
     }
 
     @Override
-    public void onUpdateWalkingPlayer() {
-        EventPlayerWalking event = new EventPlayerWalking(Event.Type.PRE, this);
-        EventManager.handleEvent(event);
-        if (!event.isCancelled()) {
-            super.onUpdateWalkingPlayer();
-            event.setType(Event.Type.POST);
-            EventManager.handleEvent(event);
-        }
-    }
-
-    @Override
-    public void moveEntityWithHeading(float strafe, float forward) {
-        EventPlayerInput event = new EventPlayerInput(Event.Type.PRE, this, forward, strafe);
-        EventManager.handleEvent(event);
-        if (!event.isCancelled()) {
-            super.moveEntityWithHeading(event.getStrafe(), event.getForawrd());
-            event.setType(Event.Type.POST);
-            EventManager.handleEvent(event);
-        }
-    }
-
-    @Override
-    public void moveRelative(float strafe, float forward, float friction) {
-        EventPlayerMoveRelative event = new EventPlayerMoveRelative(Event.Type.PRE, this, forward, strafe, friction);
-        EventManager.handleEvent(event);
-        if (!event.isCancelled()) {
-            super.moveRelative(event.getStrafe(), event.getForawrd(), event.getFrication());
-            event.setType(Event.Type.POST);
-            EventManager.handleEvent(event);
-        }
-    }
-
-    @Override
     public void jump() {
+
         EventPlayerJump event = new EventPlayerJump(Event.Type.PRE, this);
         EventManager.handleEvent(event);
         if (!event.isCancelled()) {

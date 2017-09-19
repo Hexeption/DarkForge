@@ -18,9 +18,9 @@
 
 package uk.co.hexeption.darkforge.font;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -31,7 +31,7 @@ public class FontUtils {
 
     public static void drawTextureRect(float x, float y, float width, float height, float u, float v, float t, float s) {
 
-        VertexBuffer renderer = tessellator.getBuffer();
+        BufferBuilder renderer = tessellator.getBuffer();
         renderer.begin(GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX);
         renderer.pos(x + width, y, 0F).tex(t, v).endVertex();
         renderer.pos(x, y, 0F).tex(u, v).endVertex();
@@ -44,7 +44,7 @@ public class FontUtils {
 
     public static void drawTextureRect(float x, float y, float width, float height, float u, float v, float t, float s, float z) {
 
-        VertexBuffer renderer = tessellator.getBuffer();
+        BufferBuilder renderer = tessellator.getBuffer();
         renderer.begin(GL_TRIANGLES, DefaultVertexFormats.POSITION_TEX);
         renderer.pos(x + width, y, z).tex(t, v).endVertex();
         renderer.pos(x, y, z).tex(u, v).endVertex();
@@ -64,10 +64,10 @@ public class FontUtils {
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        VertexBuffer vertexBuffer = tessellator.getBuffer();
-        vertexBuffer.begin(GL_LINES, DefaultVertexFormats.POSITION);
-        vertexBuffer.pos(x, y, 0F).endVertex();
-        vertexBuffer.pos(x1, y1, 0F).endVertex();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(GL_LINES, DefaultVertexFormats.POSITION);
+        bufferBuilder.pos(x, y, 0F).endVertex();
+        bufferBuilder.pos(x1, y1, 0F).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
     }

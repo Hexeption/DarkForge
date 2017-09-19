@@ -83,15 +83,15 @@ public class GuiStatusSlot extends GuiSlot {
     }
 
     @Override
-    protected void drawSlot(int entryID, int insideLeft, int yPos, int insideSlotHeight, int mouseXIn, int mouseYIn) {
+    protected void func_192637_a(int i, int i1, int i2, int i3, int i4, int i5, float v) {
+        StatusItem item = this.statusItems.get(i);
+        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, item.getName(), width / 2, i2 + 2, Color.white.hashCode());
+        i2 += 10;
+        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Status: " + item.getStatus(), width / 2, i2 + 2, Color.white.hashCode());
 
-        StatusItem item = this.statusItems.get(entryID);
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, item.getName(), width / 2, yPos + 2, Color.white.hashCode());
-        yPos += 10;
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Status: " + item.getStatus(), width / 2, yPos + 2, Color.white.hashCode());
-
-        yPos += 10;
-        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Ping: " + item.getPing(), width / 2, yPos + 2, Color.white.hashCode());
+        i2 += 10;
+        mc.ingameGUI.drawCenteredString(mc.fontRendererObj, "Ping: " + item.getPing(), width / 2, i2 + 2, Color.white.hashCode());
 
     }
+
 }

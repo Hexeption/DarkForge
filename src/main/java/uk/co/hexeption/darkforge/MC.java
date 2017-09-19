@@ -18,6 +18,8 @@
 package uk.co.hexeption.darkforge;
 
 import net.minecraft.client.Minecraft;
+import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
+import uk.co.hexeption.darkforge.mixin.imp.IMixinRenderManager;
 
 /**
  * Created by Keir on 21/04/2017.
@@ -25,4 +27,8 @@ import net.minecraft.client.Minecraft;
 public interface MC {
 
     Minecraft mc = Minecraft.getMinecraft();
+
+    IMixinMinecraft mixMC = (IMixinMinecraft) mc;
+
+    IMixinRenderManager mixRM = (IMixinRenderManager) mc.getRenderManager();
 }

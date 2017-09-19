@@ -41,6 +41,8 @@ public class Fly extends Mod {
     @Override
     public void onEnable() {
         super.onEnable();
+        if (mc.world == null)
+            return;
         mc.player.capabilities.isFlying = true;
         mc.player.onGround = false;
         mc.player.isAirBorne = true;
@@ -49,6 +51,8 @@ public class Fly extends Mod {
 
     @Override
     public void onDisable() {
+        if (mc.world == null)
+            return;
         mc.player.capabilities.isFlying = false;
         mc.player.onGround = true;
         mc.player.isAirBorne = false;

@@ -22,6 +22,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.darkforge.api.logger.LogHelper;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
 import uk.co.hexeption.darkforge.mod.Mod;
@@ -36,41 +37,30 @@ import uk.co.hexeption.darkforge.value.FloatValue;
 @Mod.ModInfo(name = "Tracer", description = "Draws a line to a player/mob/friends", category = Mod.Category.RENDER, bind = Keyboard.KEY_P)
 public class Tracers extends Mod {
 
-    public static double ticks;
-
-    public static double x, y, z;
-
     //TODO: Values
     private BooleanValue player, mob;
-
-    private FloatValue testingFloat;
-
-    private DoubleValue testingDouble;
 
     public Tracers() {
 
         player = new BooleanValue("Player", true);
         mob = new BooleanValue("Mobs", false);
-        testingFloat = new FloatValue("Float", 10f, 1f, 100f);
-        testingDouble = new DoubleValue("Double", 10D, 1D, 100D);
 
-        addValue(player, mob, testingFloat, testingDouble);
+        addValue(player, mob);
     }
 
     private void player(EntityLivingBase entity) {
 
-        render(1, 1, 1, 1, entity);
+        render(255, 255, 255, 255, entity);
     }
 
     private void render(float red, float green, float blue, float alpha, EntityLivingBase entityLivingBase) {
 
-        double renderPosX = mc.getRenderManager().viewerPosX;
-        double renderPosY = mc.getRenderManager().viewerPosY;
-        double renderPosZ = mc.getRenderManager().viewerPosZ;
-        double xPos = (entityLivingBase.lastTickPosX + (entityLivingBase.posX - entityLivingBase.lastTickPosX) * ticks) - renderPosX;
-        double yPos = (entityLivingBase.lastTickPosY + (entityLivingBase.posY - entityLivingBase.lastTickPosY) * ticks) - renderPosY;
-        double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * ticks) - renderPosZ;
-//        LogHelper.info("X:" + x + " Y:" + y + " Z:" + z);
+        double renderPosX = mixRM.getRenderPosX();
+        double renderPosY = mixRM.getRenderPosY();
+        double renderPosZ = mixRM.getRenderPosZ();
+        double xPos = (entityLivingBase.lastTickPosX + (entityLivingBase.posX - entityLivingBase.lastTickPosX) * mixMC.getTimer().field_194148_c) - renderPosX;
+        double yPos = (entityLivingBase.lastTickPosY + (entityLivingBase.posY - entityLivingBase.lastTickPosY) * mixMC.getTimer().field_194148_c) - renderPosY;
+        double zPos = (entityLivingBase.lastTickPosZ + (entityLivingBase.posZ - entityLivingBase.lastTickPosZ) * mixMC.getTimer().field_194148_c) - renderPosZ;
         RenderUtils.drawTracer(xPos, yPos, zPos, 2, red, green, blue, alpha);
 
 
@@ -78,10 +68,11 @@ public class Tracers extends Mod {
 
     @Override
     public void onEvent(Event event) {
+
         if (getState()) {
             if (event instanceof EventPlayerUpdate) {
 
-                for (Object entityList : getWorld().loadedEntityList) {
+                for (Object entityList : mc.world.loadedEntityList) {
                     if (!(entityList instanceof EntityLivingBase)) {
                         continue;
                     }
@@ -90,9 +81,8 @@ public class Tracers extends Mod {
 
                     if (player.getValue()) {
                         if (entity instanceof EntityPlayer) {
-                            if (entity != getPlayer() && !entity.isInvisible()) {
+                            if (entity != mc.player && !entity.isInvisible()) {
                                 player(entity);
-
                             }
                         }
                     }

@@ -77,6 +77,7 @@ public class Waypoint extends Command {
             if (args[0].equalsIgnoreCase("clear")) {
                 DarkForge.INSTANCE.addNotification(Notification.Type.INFO, "Waypoint", "Waypoints Cleared", 5000);
                 DarkForge.INSTANCE.waypointManager.getWaypoints().clear();
+                DarkForge.INSTANCE.fileManager.saveWaypoints();
             }
         }
     }

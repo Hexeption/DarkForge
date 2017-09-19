@@ -27,12 +27,12 @@ import java.util.UUID;
  * A class to help communicate with the CapesAPI API.
  *
  * @author Matthew Hatcher
- * @version 2.1.0, February 2017
+ * @version 2.2.1, February 2017
  */
 
 public class UserAPI {
 
-    static String baseURL = "http://capesapi.com/api/v1/";
+    private static String baseURL = "http://capesapi.com/api/v1/";
 
     public static boolean hasCape(UUID uuid, String capeId) throws IOException {
 

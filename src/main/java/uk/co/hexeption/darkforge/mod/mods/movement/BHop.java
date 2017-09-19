@@ -22,7 +22,6 @@ import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventMove;
 import uk.co.hexeption.darkforge.event.events.EventPlayerUpdate;
-import uk.co.hexeption.darkforge.mixin.imp.IMixinMinecraft;
 import uk.co.hexeption.darkforge.mod.Mod;
 import uk.co.hexeption.darkforge.utils.MathUtils;
 
@@ -44,7 +43,7 @@ public class BHop extends Mod {
 
         if (getState() && event.getType() == Event.Type.PRE) {
             if (event instanceof EventMove) {
-                ((IMixinMinecraft) mc).getTimer().timerSpeed = 1.0888F;
+//                ((IMixinMinecraft) mc).getTimer().timerSpeed = 1.0888F;
 
                 if ((!mc.player.isCollidedHorizontally)) {
                     if (MathUtils.round(mc.player.posY - (int) mc.player.posY, 3) == MathUtils.round(0.4D, 3)) {

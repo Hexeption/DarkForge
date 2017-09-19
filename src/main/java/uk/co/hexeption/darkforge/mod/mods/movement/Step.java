@@ -33,15 +33,15 @@ public class Step extends Mod {
     @Override
     public void onEnable() {
 
-        if (getPlayer() != null)
-            getPlayer().stepHeight = stepHeight;
+        if (mc.player != null)
+            mc.player.stepHeight = stepHeight;
     }
 
     @Override
     public void onDisable() {
 
-        if (getPlayer() != null)
-            getPlayer().stepHeight = 0.5f;
+        if (mc.player != null)
+            mc.player.stepHeight = 0.5f;
     }
 
     @Override
