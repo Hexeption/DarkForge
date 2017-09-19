@@ -29,6 +29,7 @@ import uk.co.hexeption.darkforge.event.Event;
 import uk.co.hexeption.darkforge.event.events.EventChat;
 import uk.co.hexeption.darkforge.event.events.EventMove;
 import uk.co.hexeption.darkforge.event.events.EventPlayerSlowDown;
+import uk.co.hexeption.darkforge.event.events.EventPlayerWalking;
 import uk.co.hexeption.darkforge.managers.EventManager;
 
 /**
@@ -42,6 +43,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
 
     @Inject(method = "onLivingUpdate", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lnet/minecraft/client/entity/EntityPlayerSP;sprintToggleTimer:I", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
     public void IonLivingUpdate(CallbackInfo callback) {
+
         EventPlayerSlowDown event = new EventPlayerSlowDown(Event.Type.POST, (EntityPlayerSP) (Object) this);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
@@ -51,6 +53,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     public void IsendChatMessage(String message, CallbackInfo callback) {
+
         EventChat.Send event = new EventChat.Send(Event.Type.PRE, message, (EntityPlayerSP) (Object) this);
         EventManager.handleEvent(event);
         if (event.isCancelled()) {
@@ -60,6 +63,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
 
     @Overwrite
     public void move(MoverType type, double x, double y, double z) {
+
         EventMove event = new EventMove(Event.Type.PRE, 0, 0, 0);
         double d0 = this.posX;
         double d1 = this.posZ;
@@ -69,4 +73,5 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
         EventManager.handleEvent(event);
         super.move(type, event.getMotionX(), event.getMotionY(), event.getMotionZ());
     }
+
 }
