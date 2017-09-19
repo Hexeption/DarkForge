@@ -34,13 +34,19 @@ import uk.co.hexeption.darkforge.managers.EventManager;
  */
 public class HEntityPlayerSP extends EntityPlayerSP {
 
-    private HEntityPlayerSP(World world) {
-        this(Minecraft.getMinecraft(), world, Minecraft.getMinecraft().getConnection(), new StatisticsManager(), new RecipeBook());
-    }
-
     public HEntityPlayerSP(Minecraft p_i47378_1_, World p_i47378_2_, NetHandlerPlayClient p_i47378_3_, StatisticsManager p_i47378_4_, RecipeBook p_i47378_5_) {
+
         super(p_i47378_1_, p_i47378_2_, p_i47378_3_, p_i47378_4_, p_i47378_5_);
     }
+
+//    private HEntityPlayerSP(World world) {
+//        this(Minecraft.getMinecraft(), world, Minecraft.getMinecraft().getConnection(), new StatisticsManager(), new RecipeBook());
+//    }
+//
+//    public HEntityPlayerSP(Minecraft p_i47378_1_, World p_i47378_2_, NetHandlerPlayClient p_i47378_3_, StatisticsManager p_i47378_4_, RecipeBook p_i47378_5_) {
+//        super(p_i47378_1_, p_i47378_2_, p_i47378_3_, p_i47378_4_, p_i47378_5_);
+//    }
+
 
     @Override
     public void onUpdate() {
