@@ -44,7 +44,7 @@ public class BHop extends Mod {
 
         if (getState() && event.getType() == Event.Type.PRE) {
             if (event instanceof EventMove) {
-                ((IMixinMinecraft) mc).getTimer().timerSpeed = 1.0888F;
+                mixMC.getTimer().timerSpeed = 1.0888F;
 
                 if ((!mc.player.isCollidedHorizontally)) {
                     if (MathUtils.round(mc.player.posY - (int) mc.player.posY, 3) == MathUtils.round(0.4D, 3)) {

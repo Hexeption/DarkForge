@@ -27,39 +27,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import uk.co.hexeption.darkforge.MC;
 
 import java.lang.reflect.Field;
 import java.net.Proxy;
 
-public class LoginUtils {
+public class LoginUtils implements MC{
 
     private static final Logger logger = LogManager.getLogger();
-
-    public static void setSession(Session s) throws IllegalAccessException {
-
-        Class<? extends Minecraft> mc = Minecraft.getMinecraft().getClass();
-        try {
-            Field session = null;
-
-            for (Field f : mc.getDeclaredFields()) {
-                if (f.getType().isInstance(s)) {
-                    session = f;
-                }
-            }
-
-            if (session == null) {
-                throw new IllegalStateException("no field of type " + Session.class.getCanonicalName() + " declared.");
-            }
-
-            session.setAccessible(true);
-            session.set(Minecraft.getMinecraft(), s);
-            session.setAccessible(false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
 
     public static String loginAlt(String email, String password) {
 
@@ -71,7 +46,7 @@ public class LoginUtils {
 
         try {
             authentication.logIn();
-            setSession(new Session(authentication.getSelectedProfile().getName(), authentication.getSelectedProfile().getId().toString(), authentication.getAuthenticatedToken(), "mojang"));
+            mixMC.setSession(new Session(authentication.getSelectedProfile().getName(), authentication.getSelectedProfile().getId().toString(), authentication.getAuthenticatedToken(), "mojang"));
             displayText = "";
         } catch (AuthenticationUnavailableException e) {
             displayText = "§4§lCannot contact authentication server!";
@@ -86,8 +61,6 @@ public class LoginUtils {
             logger.error(e.getMessage());
         } catch (NullPointerException e) {
             displayText = "§4§lWrong password!";
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         }
 
         return displayText;
@@ -110,11 +83,7 @@ public class LoginUtils {
 
     public static void changeCrackedName(String name) {
 
-        try {
-            setSession(new Session(name, "", "", "mojang"));
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        mixMC.setSession(new Session(name, "", "", "mojang"));
     }
 
 

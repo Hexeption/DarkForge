@@ -26,6 +26,7 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.settings.GameSettings;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.darkforge.DarkForge;
+import uk.co.hexeption.darkforge.MC;
 import uk.co.hexeption.darkforge.event.EventListener;
 import uk.co.hexeption.darkforge.font.MinecraftFontRenderer;
 import uk.co.hexeption.darkforge.managers.EventManager;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 /**
  * Created by Hexeption on 15/01/2017.
  */
-public abstract class Mod implements EventListener {
+public abstract class Mod implements EventListener, MC {
 
     protected Minecraft mc = Minecraft.getMinecraft();
 
